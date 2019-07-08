@@ -3,7 +3,13 @@ class PostsController < ApplicationController
   before_action :owned_post, only: %w[edit update destroy]
 
   def index
-    @posts = Post.with_attached_photo.includes(:user).order(created_at: :desc).all
+    @posts = Post.
+                with_attached_photo.
+                includes(user: { avatar_attachment: :blob }).
+                order(created_at: :desc).
+                limit(20).
+                all
+
   end
 
   def show

@@ -4,7 +4,7 @@
       = link_to user_path(post.user) do
         .avatar-linear-wrapper
           - if post.user.avatar.attached?
-            = image_tag post.user.avatar, loading: 'lazy', class: 'linear-avatar'
+            = image_tag post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar'
           - else
             = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
       = post.user.user_name
@@ -12,7 +12,7 @@
 
   article.posts__post
     - if post.photo.attached?
-      = image_tag post.photo, loading: 'lazy', class: 'posts__photo'
+      = image_tag post.photo.service_url, loading: 'lazy', class: 'posts__photo'
     - else
       = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
 
