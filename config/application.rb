@@ -10,7 +10,9 @@ module Photogram
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-
+    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
+    I18n.available_locales = [:en, :vi]
+    I18n.default_locale = :en
     config.generators do |g|
       g.test_framework :rspec,
         :fixtures => true,
