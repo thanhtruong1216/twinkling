@@ -5,12 +5,15 @@ section.users
           .sub-header
               .avatar-wrapper
                 .avatar-linear-wrapper
-                  = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
+                  - if user.avatar.attached?
+                    = image_tag user.avatar, loading: 'lazy', class: 'linear-avatar'
+                  - else
+                    = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
           p
             = user.user_name
         div
           p
             = user.email
 
-  .paginate-container
-    = paginate @users
+.paginate-container
+  = paginate @users

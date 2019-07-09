@@ -76,6 +76,10 @@ img
 .paginate-container
   display: flex
   justify-content: center
+  position: fixed
+  bottom: 39pt
+  background: white
+  width: 100vw
 
 .avatar-linear-wrapper
   @include avatar-wrapper
@@ -148,3 +152,11 @@ input
   .users
     .sub-header
       border-bottom: none
+
+@media screen and(min-width: 769px)
+  .paginate-container
+    bottom: 0
+    width: 100%
+  .posts
+    &__wrapper
+      padding-bottom: 50pt
