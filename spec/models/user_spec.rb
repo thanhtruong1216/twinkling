@@ -6,17 +6,17 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it 'is invalid without a user name' do
+  it 'expect user name is not nil' do
     user = FactoryBot.build(:user, user_name: nil)
     expect(user).not_to be_valid
   end
 
-  it 'is invalid without a full name' do
+  it 'expect user full name is not nil' do
     user = FactoryBot.build(:user, full_name: nil)
     expect(user).not_to be_valid
   end
 
-  it 'is invalid without a email' do
+  it 'expect user email is not nil' do
     user = FactoryBot.build(:user, email: nil)
     expect(user).not_to be_valid
   end

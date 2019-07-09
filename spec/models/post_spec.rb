@@ -6,17 +6,17 @@ RSpec.describe Post, type: :model do
     expect(post).to be_valid
   end
 
-  it 'is invalid without a content' do
+  it 'expect post content must be not nil' do
     post_content = FactoryBot.build(:post, content: nil)
     expect(post_content).not_to be_valid
   end
 
-  it 'is invalid without a photo attached' do
+  it 'expect post photo must ne not nil' do
     post = FactoryBot.build(:post, photo: nil)
     expect(post).not_to be_valid
   end
 
-  it 'is invalid when user is unknown' do
+  it 'expect a post must belongs to an user' do
     post = FactoryBot.build(:post, user: nil)
     expect(post).not_to be_valid
   end
