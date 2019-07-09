@@ -201,8 +201,10 @@
         align-items: center
       textarea
         border: none
-        padding-top: 10pt
+        padding-top: 20pt
         margin: 0
+      input[type='submit']
+        margin-bottom: 0
       @include add-comment-box
 
     &__add-comment-mobile
@@ -211,6 +213,7 @@
   .new-post
     width: 500pt
     margin: 0 auto 0 auto
+    padding-top: 80pt
 
   .post
     display: flex
@@ -303,9 +306,6 @@
 
     .posts__actions
       padding-left: 10pt
-
-  .new-post
-    padding-top: 80pt
 
 @media screen and (min-width: 767px)
   .post
