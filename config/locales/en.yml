@@ -10,7 +10,7 @@ en:
       users_count: 'users'
       user: 'user'
       users: 'users'
-      nothing: 'user matched width your search'
+      nothing: 'user matched with your search'
   relationship:
     follow: 'Follow'
     unfollow: 'Unfollow'
