@@ -3,34 +3,32 @@ require 'spec_helper'
 
 RSpec.describe PostsController, type: :controller do
   describe 'GET #index' do
+    let(:user) { FactoryBot.create :user }
+    let(:post) { FactoryBot.create :post, user: user }
+
     it 'populates an array of post' do
-      post = FactoryBot.create(:post)
-      user = post.user
       sign_in user
       get :index
       expect(assigns(:posts)).to eq([post])
     end
 
     it 'renders the :index view' do
-      post = FactoryBot.create(:post)
-      sign_in post.user
+      sign_in user
       get :index
       expect(response).to render_template('index')
     end
   end
 
   describe 'GET #show' do
+    let(:user) { FactoryBot.create :user }
+    let(:post) { FactoryBot.create :post, user: user }
     it 'assigns the requested post to @post' do
-      user = FactoryBot.create(:user)
-      post = FactoryBot.create(:post, user: user)
       sign_in post.user
       get :show, params: { id: post.id }
       expect(assigns(:post)).to eq(post)
     end
 
     it 'renders the #show view' do
-      user = FactoryBot.create(:user)
-      post = FactoryBot.create(:post, user: user)
       sign_in post.user
       get :show, params: { id: post.id }
       expect(response).to render_template('show')
@@ -47,9 +45,9 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'POST #create' do
+    let(:user) { FactoryBot.create :user }
+    let(:new_post) { FactoryBot.create :post, user: user }
     it "creates a new post" do
-      user = FactoryBot.create(:user)
-      new_post = FactoryBot.build(:post, user: user)
       sign_in user
       expect(Post).to receive(:new).and_return(new_post)
       post :create, params: { post: { content: new_post.content, photo: 'photo.jpg' } }
@@ -57,9 +55,6 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it "redirects to the new post path" do
-      user = FactoryBot.create(:user)
-      new_post = FactoryBot.build(:post, user: user)
-      posts = Post.all
       sign_in user
       expect(Post).to receive(:new).and_return(new_post)
       post :create, params: { post: { content: new_post.content, photo: 'photo.jpg' } }
