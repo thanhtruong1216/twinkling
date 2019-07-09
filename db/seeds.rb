@@ -7,7 +7,7 @@ User.create(
   password_confirmation: "123456",
 )
 
-60.times do |n|
+10.times do |n|
   email = Faker::Internet.email
   user_name = Faker::Artist.name
   full_name = Faker::Name.name
@@ -47,7 +47,7 @@ puts '--> Creating comments...'
 end
 
 puts '--> Creating likes...'
-1000.times do |n|
+10.times do |n|
   Like.create!(user: User.first, post: Post.first)
 end
 
