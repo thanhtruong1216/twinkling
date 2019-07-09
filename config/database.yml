@@ -75,6 +75,4 @@ test:
 #
 production:
   <<: *default
-  database: Photograms_production
-  username: thanhtruong
-  password: <%= ENV['PHOTOGRAM_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
