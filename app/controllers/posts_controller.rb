@@ -7,9 +7,8 @@ class PostsController < ApplicationController
                 with_attached_photo.
                 includes(user: { avatar_attachment: :blob }).
                 order(created_at: :desc).
-                limit(20).
-                all
-
+                limit(10).
+                page params[:page]
   end
 
   def show
@@ -32,13 +31,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.includes(:comments).find(params[id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to posts_path
+      redirect_to @post
     else
       render 'edit'
     end
@@ -81,8 +80,6 @@ class PostsController < ApplicationController
   end
 
   def owned_post
-    p "current user id #{current_user.id}"
-    p "post user id #{@post.user.id}"
     unless current_user.id == @post.user.id
       flash[:alert] = "That post doesn't belong to you!"
       redirect_to root_path
