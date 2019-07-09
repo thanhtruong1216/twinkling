@@ -14,6 +14,7 @@ gem 'mini_magick'
 gem 'faker'
 gem "slim"
 gem 'rails-i18n'
+gem 'kaminari'
 # Use simple_form
 gem 'simple_form'
 # Bootstrap
@@ -68,6 +69,7 @@ group :test do
   gem 'faker'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
