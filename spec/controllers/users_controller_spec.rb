@@ -38,4 +38,33 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'GET #followers' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+    end
+    context 'followers' do
+      it 'expect assigns the requested user to @user' do
+        get :followers, params: { id: user.id }
+        expect(assigns(:user)).to eq(user)
+      end
+    end
+  end
+
+  describe 'GET #following' do
+    let(:user) { create(:user) }
+
+    before do
+      sign_in user
+    end
+
+    context 'following' do
+      it 'expect assigns the requested user to @user' do
+        get :following, params: { id: user.id }
+        expect(assigns(:user)).to eq(user)
+      end
+    end
+  end
+
 end
