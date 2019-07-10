@@ -105,4 +105,44 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to redirect_to Post
     end
   end
+
+  describe 'POST #like' do
+    def do_request
+      post :like, params: { id: target_post.id, format: :js }
+    end
+
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:target_post) { FactoryBot.create(:post) }
+
+    before do
+      sign_in user
+    end
+
+    context 'liked' do
+      let!(:like) {  FactoryBot.create(:like, user: user, post: target_post) }
+
+      it 'does not change like count' do
+        expect { do_request }.not_to change{ Like.count }
+      end
+
+      it 'response correct layout and format' do
+        do_request
+        expect(response.content_type).to eq('text/javascript')
+        expect(response).to render_template('like')
+      end
+    end
+
+    context 'did not like' do
+      it 'change like count' do
+        expect { do_request }.to change{ Like.count }.by(1)
+      end
+
+      it 'response correct layout and format' do
+        do_request
+        expect(response.content_type).to eq('text/javascript')
+        expect(response).to render_template('like')
+      end
+    end
+  end
+
 end

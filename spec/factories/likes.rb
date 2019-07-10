@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :like do |f|
+  factory :like do
     user
     post
   end

@@ -26,8 +26,21 @@ RSpec.describe User, type: :model do
     expect(user_name_length).to be <= 16
   end
 
-  it 'expect max length of full_name is 30' do
-    full_name_length = FactoryBot.build(:user).full_name.length
-    expect(full_name_length).to be <= 30
+  describe 'validates full_name' do
+    context 'valid' do
+      let!(:user) { FactoryBot.build(:user, full_name: 'ben') }
+
+      it 'should be valid object' do
+        expect(user).to be_valid
+      end
+    end
+
+    context 'invalid' do
+      let!(:user) { FactoryBot.build(:user, full_name: SecureRandom.alphanumeric(31)) }
+
+      it 'shoud not be valid object' do
+        expect(user).not_to be_valid
+      end
+    end
   end
 end

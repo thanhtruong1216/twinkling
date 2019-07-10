@@ -70,6 +70,7 @@ group :test do
   gem 'guard-rspec'
   gem 'launchy'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
