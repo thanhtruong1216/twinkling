@@ -3,8 +3,8 @@ require 'spec_helper'
 
 RSpec.describe PostsController, type: :controller do
   describe 'GET #index' do
-    let(:user) { FactoryBot.create :user }
-    let(:post) { FactoryBot.create :post, user: user }
+    let(:user) { create :user }
+    let(:post) { create :post, user: user }
 
     it 'expect populates an array of post' do
       sign_in user
@@ -20,8 +20,8 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:user) { FactoryBot.create :user }
-    let(:post) { FactoryBot.create :post, user: user }
+    let(:user) { create :user }
+    let(:post) { create :post, user: user }
     it 'expect assigns the requested post to @post' do
       sign_in post.user
       get :show, params: { id: post.id }
@@ -37,7 +37,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe 'GET #new' do
     it 'expect render new template' do
-      user = FactoryBot.create(:user)
+      user = create(:user)
       sign_in user
       get :new
       expect(assigns(:post)).to be_a_new(Post)
@@ -45,8 +45,8 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:user) { FactoryBot.create :user }
-    let(:new_post) { FactoryBot.create :post, user: user }
+    let(:user) { create :user }
+    let(:new_post) { create :post, user: user }
     it "expect return a new post" do
       sign_in user
       expect(Post).to receive(:new).and_return(new_post)
@@ -63,8 +63,8 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #edit' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:post) { FactoryBot.create(:post, user: user) }
+    let(:user) { create(:user) }
+    let(:post) { create(:post, user: user) }
     it 'render edit view' do
       sign_in user
       get :edit, params: { id: post.id }
@@ -73,8 +73,8 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:post) { FactoryBot.create(:post, user: user) }
+    let(:user) { create(:user) }
+    let(:post) { create(:post, user: user) }
     it 'expect return the post edited' do
       sign_in user
       put :update, params: { id: post.id, post: { content: 'new content' } }
@@ -91,8 +91,8 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:post) { FactoryBot.create(:post, user: user) }
+    let(:user) { create(:user) }
+    let(:post) { create(:post, user: user) }
     it 'expect remove post from table posts' do
       sign_in user
       delete :destroy, params: { id: post.id }
@@ -111,15 +111,15 @@ RSpec.describe PostsController, type: :controller do
       post :like, params: { id: target_post.id, format: :js }
     end
 
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:target_post) { FactoryBot.create(:post) }
+    let!(:user) { create(:user) }
+    let!(:target_post) { create(:post) }
 
     before do
       sign_in user
     end
 
     context 'liked' do
-      let!(:like) {  FactoryBot.create(:like, user: user, post: target_post) }
+      let!(:like) { create(:like, user: user, post: target_post) }
 
       it 'does not change like count' do
         expect { do_request }.not_to change{ Like.count }
@@ -134,7 +134,7 @@ RSpec.describe PostsController, type: :controller do
 
     context 'did not like' do
       it 'change like count' do
-        expect { do_request }.to change{ Like.count }.by(1)
+        expect { do_request }.to change { Like.count }.by(1)
       end
 
       it 'response correct layout and format' do
