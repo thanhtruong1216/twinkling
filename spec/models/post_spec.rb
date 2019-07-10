@@ -6,23 +6,48 @@ RSpec.describe Post, type: :model do
     expect(post).to be_valid
   end
 
-  it 'expect post content must be not nil' do
-    post_content = build(:post, content: nil)
-    expect(post_content).not_to be_valid
+  describe 'validate post content' do
+    let(:user) { create(:user) }
+
+    context 'with a valid content' do
+      it 'content is presence' do
+        post = create(:post, content: 'My post', user: user)
+        expect(post).to be_valid
+      end
+      it 'length of post is less than or equal 200' do
+        post = create(:post, content: SecureRandom.alphanumeric(199), user: user)
+        expect(post).to be_valid
+      end
+    end
+
+    context 'with a invalid content' do
+      it 'content is nil' do
+        post = build(:post, content: nil, user: user)
+        expect(post).not_to be_valid
+      end
+      it 'length of post is greater than 200' do
+        post = build(:post, content: SecureRandom.alphanumeric(201), user: user)
+        expect(post).not_to be_valid
+      end
+    end
+
   end
 
-  it 'expect post photo must ne not nil' do
-    post = build(:post, photo: nil)
-    expect(post).not_to be_valid
+  describe 'upload post photo' do
+    let(:user) { create(:user) }
+    context 'with a valid avatar' do
+      it 'photo is attached' do
+        post = build(:post, photo: 'photo.png', user: user)
+        expect(post).to be_valid
+      end
+    end
+
+    context 'with a invalid avatar' do
+      it 'photo is nil' do
+        post = build(:post, photo: nil, user: user)
+        expect(post).not_to be_valid
+      end
+    end
   end
 
-  it 'expect a post must belongs to an user' do
-    post = build(:post, user: nil)
-    expect(post).not_to be_valid
-  end
-
-  it 'expect max length of post content is less than or equal to 200' do
-    post_content = build(:post).content.length
-    expect(post_content).to be <= 200
-  end
 end

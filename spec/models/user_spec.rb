@@ -6,41 +6,65 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it 'expect user name is not nil' do
-    user = build(:user, user_name: nil)
-    expect(user).not_to be_valid
-  end
-
-  it 'expect user full name is not nil' do
-    user = build(:user, full_name: nil)
-    expect(user).not_to be_valid
-  end
-
-  it 'expect user email is not nil' do
-    user = build(:user, email: nil)
-    expect(user).not_to be_valid
-  end
-
-  it 'expect max length of user_name is 16' do
-    user_name_length = build(:user).user_name.length
-    expect(user_name_length).to be <= 16
-  end
-
-  describe 'validates full_name' do
+  describe 'validate user name' do
     context 'valid' do
-      let!(:user) { build(:user, full_name: 'ben') }
-
-      it 'should be valid object' do
+      it 'user name is presence' do
+        user = build(:user, user_name: 'Thanh Thanh')
+      end
+      it 'max length is less than or equal to 16' do
+        user= build(:user, user_name: SecureRandom.alphanumeric(15))
         expect(user).to be_valid
       end
     end
 
     context 'invalid' do
-      let!(:user) { build(:user, full_name: SecureRandom.alphanumeric(31)) }
-
-      it 'shoud not be valid object' do
+      it 'user name is nil' do
+        user = build(:user, user_name: nil)
+        expect(user).not_to be_valid
+      end
+      it ' max length greater than 16' do
+        user= build(:user, user_name: SecureRandom.alphanumeric(17))
         expect(user).not_to be_valid
       end
     end
   end
+
+  describe 'user email' do
+    context 'valid' do
+      let(:user) { build(:user, email: 'thanhthanh@gmail.com') }
+      it 'email is presence' do
+        expect(user).to be_valid
+      end
+    end
+
+    context 'invalid' do
+      let(:user) { build(:user, email: nil) }
+      it 'email is nil' do
+        expect(user).not_to be_valid
+      end
+    end
+
+  end
+
+  describe 'validate user full_name' do
+    context 'valid' do
+      let(:user) { build(:user, full_name: 'ben') }
+      it 'full name is valid' do
+        expect(user).to be_valid
+      end
+    end
+
+    context 'invalid' do
+      it 'full name is nil' do
+        user = build(:user, full_name: nil)
+        expect(user).not_to be_valid
+      end
+      it 'full name is greater than 30' do
+        user = build(:user, full_name: SecureRandom.alphanumeric(31))
+        expect(user).not_to be_valid
+      end
+    end
+
+  end
+
 end
