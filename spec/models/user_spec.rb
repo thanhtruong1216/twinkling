@@ -52,6 +52,10 @@ RSpec.describe User, type: :model do
       it 'full name is valid' do
         expect(user).to be_valid
       end
+      it 'full name is less than or equal to 30' do
+        user = build(:user, full_name: SecureRandom.alphanumeric(29))
+        expect(user).to be_valid
+      end
     end
 
     context 'invalid' do
