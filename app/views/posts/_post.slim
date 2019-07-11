@@ -7,7 +7,7 @@
             = image_tag post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar'
           - else
             = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
-        span
+        span.sub-header__user-name
           = post.user.user_name
     = render 'users/follow_form', post: post
 

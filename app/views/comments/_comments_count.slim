@@ -2,14 +2,16 @@
   = link_to post do
     span
       = t('post.comments.view')
-    =<> post.comments_count
+    span.comments-count-text
+      =<> post.comments_count
     span
       = t('post.comments.comment')
 - elsif post.comments_count > 1
   = link_to post do
     span
       = t('post.comments.view_all')
-    =<> post.comments_count
+    span.comments-count-text
+      =<> post.comments_count
     span
       = t('post.comments.comments')
 - else

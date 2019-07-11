@@ -84,9 +84,11 @@ img
 .avatar-linear-wrapper
   @include avatar-wrapper
   background-image: $border-linear-avatar
-  //padding: 10px
   width: 40pt
   height: 40pt
+
+.sub-header__user-name
+  padding-left: 5pt
 
 .avatar-simple-wrapper
   @include avatar-wrapper
@@ -142,11 +144,16 @@ input
   .form-control
     color: red
 
+.comments-count-text
+  padding-left: 5pt
+  padding-right: 5pt
+  display: inline-block
+
 @media screen and (max-width: 766px)
   h1
     font-size: 24pt
   .sub-header
-    padding: 10pt 0
+    padding: 10pt 0 10pt 10pt
     border-bottom: $border-line
 
   .users
