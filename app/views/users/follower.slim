@@ -1,15 +1,14 @@
 section.show_follow
-  div
-    h3 Followers
-    - @user.following.each do |follower|
-        .users__short-info
-          = link_to user_path(@user) do
-            .sub-header
-                .avatar-wrapper
-                  .avatar-linear-wrapper
-                    = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
-            p
-              = follower.user_name
-          div
-            p
-              = follower.email
+  h3 Followers
+  - @user.following.each do |follower|
+      .users__short-info
+        = link_to user_path(@user) do
+          .sub-header
+              .avatar-wrapper
+                .avatar-linear-wrapper
+                  = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
+          p
+            = follower.user_name
+        div
+          p
+            = follower.email
