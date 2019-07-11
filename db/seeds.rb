@@ -47,9 +47,10 @@ puts '--> Creating comments...'
 end
 
 puts '--> Creating likes...'
-10.times do |n|
-  Like.create!(user: User.first, post: Post.first)
-end
+User.second.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
+User.third.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
+User.fourth.posts.find_each {|post|  Like.create!(user: User.second, post: post) }
+User.fifth.posts.find_each {|post|  Like.create!(user: User.fourth, post: post) }
 
 puts '--> Creating relationships...'
 users = User.all
