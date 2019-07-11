@@ -14,9 +14,10 @@
           .user__name-edit-group
             h2
               = @user.user_name
-            .user__edit-wrapper 
-              .user__edit-btn
-                = link_to "Edit Profile", edit_user_registration_path
+            - if @user.id == current_user.id
+              .user__edit-wrapper
+                .user__edit-btn
+                  = link_to "Edit Profile", edit_user_registration_path
 
     .user__follows
       div
@@ -28,12 +29,14 @@
         p
           = @user.followers.count
         p
-          = t('relationship.follower')
+          = link_to followers_user_path(@user) do
+            = t('relationship.follower')
       div
         p
           = @user.following.count
         p
-          = t('relationship.following')
+          = link_to following_user_path(@user) do
+            = t('relationship.following')
 
     .user__photos
       - @user.posts.each do |post|
@@ -68,12 +71,14 @@
         p
           = @user.followers.count
         p
-          = t('relationship.follower')
+          = link_to followers_user_path(@user) do
+            = t('relationship.follower')
       div
         p
           = @user.following.count
         p
-          = t('relationship.following')
+          = link_to following_user_path(@user) do
+            = t('relationship.following')
 
     .user__photos
       - @user.posts.each do |post|

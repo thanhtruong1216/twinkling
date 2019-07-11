@@ -10,13 +10,13 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user  = User.find(params[:id])
-    render 'show_follow'
+    render 'following'
   end
 
   def followers
     @title = "Followers"
     @user  = User.find(params[:id])
-    render 'show_follow'
+    render 'follower'
   end
 
   def search

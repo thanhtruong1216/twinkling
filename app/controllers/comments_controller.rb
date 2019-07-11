@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     @comment.user_id = current_user.id
     if @comment.update_attributes(comment_params)
-      flash[:success] = "You commented updated"
+      flash[:success] = "You comment updated"
       respond_to do |format|
         format.html { redirect_to @post }
         format.js { render layout: false }
