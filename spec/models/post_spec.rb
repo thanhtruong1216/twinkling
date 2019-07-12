@@ -28,21 +28,14 @@ RSpec.describe Post, type: :model do
 
   end
 
-  # describe 'upload post photo' do
-  #   let(:user) { create(:user) }
-  #   context 'with a valid avatar' do
-  #     let(:post) { build(:post, photo: 'photo.png', user: user) }
-  #     it 'photo is attached' do
-  #       expect(post).to be_valid
-  #     end
-  #   end
-
-  #   context 'with a invalid photo' do
-  #     let(:post) { build(:post, photo: nil, user: user) }
-  #     it 'photo is nil' do
-  #       expect(post).not_to be_valid
-  #     end
-  #   end
-  # end
+  describe 'upload post photo' do
+    let(:user) { create(:user) }
+    context 'with a valid avatar' do
+      let(:post) { build(:post, photo: 'photo.png', user: user) }
+      it 'photo is attached' do
+        expect(post).to be_valid
+      end
+    end
+  end
 
 end

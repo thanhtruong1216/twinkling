@@ -68,7 +68,32 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
     end
-
   end
+
+  describe 'password' do
+    context 'valid' do
+      it 'max length is 128' do
+        user = build(:user, password: SecureRandom.alphanumeric(128))
+        expect(user).to be_valid
+      end
+      it 'min length is 6' do
+        user = build(:user, password: SecureRandom.alphanumeric(6))
+        expect(user).to be_valid
+      end
+    end
+
+    context 'invalid' do
+      it 'max length greater than 128' do
+        user = build(:user, password: SecureRandom.alphanumeric(129))
+        expect(user).not_to be_valid
+      end
+      it 'min length is less than 6' do
+        user = build(:user, password: SecureRandom.alphanumeric(5))
+        expect(user).not_to be_valid
+      end
+    end
+  end
+
+  
 
 end

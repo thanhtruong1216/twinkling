@@ -13,7 +13,7 @@
 
   article.posts__post
     - if post.photo.attached?
-      = image_tag post.photo.service_url, loading: 'lazy', class: 'posts__photo', crossorigin:'anonymous'
+      = image_tag post.photo.service_url, loading: 'lazy', class: 'posts__photo'
     - else
       = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
 

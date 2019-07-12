@@ -36,9 +36,11 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET #new' do
-    it 'expect render new template' do
-      user = create(:user)
+    let(:user) { create(:user) }
+    before do
       sign_in user
+    end
+    it 'expect receive a new post object' do
       get :new
       expect(assigns(:post)).to be_a_new(Post)
     end
@@ -60,6 +62,12 @@ RSpec.describe PostsController, type: :controller do
       post :create, params: { post: { content: new_post.content, photo: 'photo.jpg' } }
       expect(response).to redirect_to Post.last
     end
+
+    it 'expect render edit view if update failure' do
+      sign_in user
+      post :create, params: { id: new_post.id, post: { content: nil } }
+      expect(response).to render_template('new')
+    end
   end
 
   describe 'GET #edit' do
@@ -74,20 +82,27 @@ RSpec.describe PostsController, type: :controller do
 
   describe 'PUT #update' do
     let(:user) { create(:user) }
-    let(:post) { create(:post, user: user) }
+    let(:target_post) { create(:post, user: user) }
     it 'expect return the post edited' do
       sign_in user
-      put :update, params: { id: post.id, post: { content: 'new content' } }
-      post.reload
-      expect(post.content).to eq 'new content'
+      put :update, params: { id: target_post.id, post: { content: 'new content' } }
+      target_post.reload
+      expect(target_post.content).to eq 'new content'
     end
 
     it 'expect redirect to the post path after edit success' do
       sign_in user
-      put :update, params: { id: post.id, post: { content: 'new content' } }
-      post.reload
-      expect(response).to redirect_to Post.find(post.id)
+      put :update, params: { id: target_post.id, post: { content: 'new content' } }
+      target_post.reload
+      expect(response).to redirect_to Post.find(target_post.id)
     end
+
+    it 'expect render edit view if update failure' do
+      sign_in user
+      put :update, params: { id: target_post.id, post: { content: nil } }
+      expect(response).to render_template('edit')
+    end
+
   end
 
   describe 'DELETE #destroy' do
@@ -131,18 +146,29 @@ RSpec.describe PostsController, type: :controller do
         expect(response).to render_template('like')
       end
     end
+  end
 
-    context 'did not like' do
+  describe 'POST #unlike' do
+    def do_request
+      post :unlike, params: { id: target_post.id, format: :js }
+    end
+
+    let!(:user) { create(:user) }
+    let!(:target_post) { create(:post) }
+
+    before do
+      sign_in user
+    end
+    context 'unlike' do
       it 'change like count' do
-        expect { do_request }.to change { Like.count }.by(1)
+        expect { do_request }.to change { Like.count }.by(0)
       end
 
       it 'response correct layout and format' do
         do_request
         expect(response.content_type).to eq('text/javascript')
-        expect(response).to render_template('like')
+        expect(response).to render_template('unlike')
       end
     end
   end
-
 end

@@ -39,32 +39,53 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'GET #followers' do
+    def do_request
+      get :followers, params: { id: user.id }
+    end
     let(:user) { create(:user) }
-
     before do
       sign_in user
     end
     context 'followers' do
       it 'expect assigns the requested user to @user' do
-        get :followers, params: { id: user.id }
+        do_request
         expect(assigns(:user)).to eq(user)
+      end
+      it 'expect renders the #followers view' do
+        do_request
+        expect(response).to render_template('follower')
       end
     end
   end
 
   describe 'GET #following' do
+    def do_request
+      get :following, params: { id: user.id }
+    end
     let(:user) { create(:user) }
-
     before do
       sign_in user
     end
 
     context 'following' do
       it 'expect assigns the requested user to @user' do
-        get :following, params: { id: user.id }
+        do_request
         expect(assigns(:user)).to eq(user)
+      end
+      it 'expect renders the #following view' do
+        do_request
+        expect(response).to render_template('following')
       end
     end
   end
 
+  describe 'search' do
+    let(:user) { create(:user) }
+    context 'search' do
+      it 'return result' do
+        sign_in user
+        get: search
+      end
+    end
+  end
 end

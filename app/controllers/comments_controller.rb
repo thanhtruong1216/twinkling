@@ -14,10 +14,10 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
+  def update
     @comment = @post.comments.find(params[:id])
     @comment.user_id = current_user.id
-    if @comment.update_attributes(comment_params)
+    if @comment.update(comment_params)
       flash[:success] = "You comment updated"
       respond_to do |format|
         format.html { redirect_to @post }
