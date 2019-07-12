@@ -78,14 +78,4 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
-
-  describe 'search' do
-    let(:user) { create(:user) }
-    context 'search' do
-      it 'return result' do
-        sign_in user
-        get: search
-      end
-    end
-  end
 end
