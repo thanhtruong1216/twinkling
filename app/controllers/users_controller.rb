@@ -20,11 +20,11 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User.all
-    @search = params['search']
-    if @search.present?
-      @user_name = @search['user_name']
-      @users = User.where('user_name ILIKE?', "%#{@user_name}%")
+    search = params[:search]
+    if search.present?
+      user_name = search[:user_name]
+
+      @users = User.where('user_name ILIKE ?', "%#{user_name}%")
     end
   end
 

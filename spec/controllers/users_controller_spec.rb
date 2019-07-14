@@ -78,4 +78,13 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe 'search' do
+    let(:user) { create(:user) }
+    it 'return the users match with search query' do
+      sign_in user
+      get :search, params: { search: { user_name: user.user_name} }
+      expect(assigns(:users)).to eq([user])
+    end
+  end
 end
