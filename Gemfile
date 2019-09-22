@@ -12,7 +12,7 @@ gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
 gem 'mini_magick'
 gem 'faker'
-gem "slim"
+gem 'slim'
 gem 'rails-i18n'
 gem 'kaminari'
 # Use simple_form
