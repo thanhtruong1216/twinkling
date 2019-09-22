@@ -6,7 +6,7 @@
     </div>
     <div class="above-box phone-box">
       <%= image_tag "apple-iphone7-silver-portrait.png" %>
-      <div id="slideshow">
+      <div id="log-in-slideshow">
         <div>
           <%= image_tag "slide-log-in_1.jpeg" %>
         </div>
@@ -21,6 +21,15 @@
         </div>
         <div>
           <%= image_tag "slide-log-in_5.jpeg" %>
+        </div>
+        <div>
+          <%= image_tag "slide-image_10.jpeg" %>
+        </div>
+        <div>
+          <%= image_tag "slide-under-image" %>
+        </div>
+        <div>
+          <%= image_tag "slide-image_15.jpeg" %>
         </div>
       </div>
     </div>
@@ -53,14 +62,14 @@
 </section>
 
 <script>
-  $("#slideshow > div:gt(0)").hide();
+  $("#log-in-slideshow > div:gt(0)").hide();
 
   setInterval(function() {
-    $('#slideshow > div:first')
-      .fadeOut(1000)
+    $('#log-in-slideshow > div:first')
+      .fadeOut(1500)
       .next()
-      .fadeIn(1000)
+      .fadeIn(1500)
       .end()
-      .appendTo('#slideshow');
+      .appendTo('#log-in-slideshow');
   },  4000);
 </script>

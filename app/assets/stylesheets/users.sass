@@ -51,8 +51,9 @@
 
   .right-box
     max-width: 300pt
-    input
-      height: 30pt
+    .form-control
+      height: 40px
+    input:not(:last-child)
       border: 1px solid #e6e6e6
       box-shadow: none
       background: #fafafa
@@ -89,7 +90,7 @@
         width: 195pt
         left: 35pt
         top: 62pt
-        height: 320pt
+        height: 300pt
     .above-box
       position: relative
       right: 171pt
@@ -211,7 +212,7 @@
       p
         padding-top: 10pt
 
-#slideshow
+#sign-up-slideshow, #log-in-slideshow
   margin: 50px auto
   position: absolute
   height: 200pt
@@ -220,7 +221,7 @@
   z-index: 999999999
   top: 48pt
 
-#slideshow
+#sign-up-slideshow, #log-in-slideshow
   > div
     position: absolute
     top: 10px
@@ -229,7 +230,7 @@
     bottom: 10px
     img
       width: 178pt
-      height: 320pt
+      height: 300pt
 
 #user-form-edit-container
   display: flex
