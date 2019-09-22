@@ -52,8 +52,19 @@ article
       position: relative
       bottom: 20pt
       left: 25%
-    .search-icon
-      width: 20pt
+
+  input
+    &::placeholder
+      padding-left: 50pt
+    &:focus
+      &::placeholder
+        padding-left: 20pt
+
+
+  .search-icon
+    width: 10pt
+    position: relative
+    left: 60pt
 
 .mobile-header
   display: flex
