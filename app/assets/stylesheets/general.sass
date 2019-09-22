@@ -121,14 +121,30 @@ img
   padding: 0
   height: auto
 
-.unfollow-btn
-  background-color: #bbb
+#unfollow-btn
+  color: #d9534f
+  border: none
+  background-color: transparent
+  margin: 0
+  &:hover
+    color: red
+
+#follow-btn
+  color: #337ab7
+  border: none
+  background-color: transparent
+  margin: 0
+  &:hover
+    color: #1e90ff
 
 input, textarea, select, .uneditable-input
   border: 1px solid #bbb
   width: 100%
   margin-bottom: 15px
   @include box_sizing
+
+#trash-icon
+  width: 10pt
 
 // input
 //   height: 30pt

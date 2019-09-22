@@ -8,6 +8,6 @@
           = comment.user.user_name
         - if comment.user.id == current_user.id
           = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do
-            = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'mini-icon'
+            = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'mini-icon', id: 'trash-icon'
       p.comment__comment
         = comment.content
