@@ -6,8 +6,10 @@
 script
 	|
 		$(document).ready(function() {
-			$( ".search-form input" ).focus(function() {
-				$('#icon-search').css( "left", "20pt" );
-				$(this).css("paddingLeft", "25pt");
+			$("input").focus(function() {
+				$("#icon-search").css( "left", "20pt" );
+				$(this).css("paddingLeft", "20pt")
+
+        $(this).attr('placeholder', null);
 			});
 		})
