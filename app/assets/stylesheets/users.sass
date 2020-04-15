@@ -33,6 +33,7 @@
   align-items: center
   max-width: 800pt
   margin: 0 auto 0 auto
+  padding: 20px
   h1, h4
     text-align: center
   h1
@@ -60,9 +61,12 @@
       &:focus
         border: 1px solid gray
     > div:first-child
-      border: 1px solid #e6e6e6
+      border: 10px solid
       padding: 0 20pt
       margin-bottom: 20pt
+      border-image-source: linear-gradient(45deg, #13547a, #80d0c7)
+      border-image-slice: 1
+      margin-top: 90px
     > div:last-child
       border: 1px solid #e6e6e6
       padding: 15pt 0
@@ -103,8 +107,12 @@
 
   .log-in-form
     padding: 20pt
-    border: 1px solid #e6e6e6
+    border: 10px solid
     width: 300pt
+    border-image-source: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66))
+    border-image-slice: 1
+    height: 500px
+    margin-top: 90px
 
 .user-authenticate-message
   white-space: nowrap
@@ -324,3 +332,7 @@
     .right-box
       position: relative
       right: 80pt
+      > div:first-child
+        margin-top: initial !important
+    .log-in-form
+      margin-top: initial
