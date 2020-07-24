@@ -1,31 +1,33 @@
 en:
   header:
-    logout: 'Log out'
-    profile: 'Profile'
-    new_post: 'New post'
+    logout: "Log out"
+    profile: "Profile"
+    new_post: "New post"
   users:
     index:
-      message_search: 'people matched with your search'
+      message_search: "people matched with your search"
+    show:
+      edit_profile: "Edit profile"
     search:
-      users_count: 'users'
-      user: 'user'
-      users: 'users'
-      nothing: 'user matched with your search'
+      users_count: "users"
+      user: "user"
+      users: "users"
+      nothing: "user matched with your search"
   relationship:
-    follow: 'Follow'
-    unfollow: 'Unfollow'
-    follower: 'follower'
-    following: 'following'
-    posts: 'posts'
+    follow: "Follow"
+    unfollow: "Unfollow"
+    follower: "follower"
+    following: "following"
+    posts: "posts"
   post:
     likes:
-      people_like_first: 'Be like first'
-      people_liked: 'people liked'
+      people_like_first: "Be like first"
+      people_liked: "people liked"
     comments:
-      add_comment: 'Add a comment...'
-      post: 'Post'
-      view: 'View'
-      view_all: 'View all'
-      comment: 'comment'
-      comments: 'comments'
-      no_comment: 'No comment for this post'
+      add_comment: "Add a comment..."
+      post: "Post"
+      view: "View"
+      view_all: "View all"
+      comment: "comment"
+      comments: "comments"
+      no_comment: "No comment for this post"
