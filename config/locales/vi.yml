@@ -18,6 +18,7 @@ vi:
       update_profile: "Chỉnh sửa thông tin cá nhân"
       update: "Cập nhật"
       cancel: "Hủy"
+      new_password: "Mật khẩu mới"
       confirm_new_password: "Xác nhận mật khẩu mới"
       current_password: "Mật khẩu hiện tại"
   relationship:
