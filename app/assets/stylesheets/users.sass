@@ -1,6 +1,15 @@
 @import "variables"
 @import "general"
 
+.edit-user-profile-btn-wrapper
+  display: flex
+  a
+    flex: 1
+    margin-right: 10px
+  input
+    flex: 1
+    margin-left: 10px
+
 .users
   position: relative
   top: 60pt
@@ -31,7 +40,7 @@
   display: flex
   justify-content: center
   align-items: center
-  max-width: 800pt
+  max-width: 600pt
   margin: 0 auto 0 auto
   padding: 20px
   h1, h4
@@ -44,6 +53,7 @@
     line-height: 20pt
   form
     padding: 20pt 0
+    width: 100%
 
   .form-check
     display: flex
@@ -206,7 +216,8 @@
         margin-left: 10px
       span
         border: $border-line
-        padding: 10px 20px
+        padding: 5px 20px
+        border-radius: 5px
 
   &__fullname-box
     display: flex
@@ -291,6 +302,13 @@
           top: 70pt
           left: 220pt
           white-space: nowrap
+
+    &__photos-title-wrapper
+      display: flex
+      align-items: center
+      img
+        width: 30px
+        height: 30px
 
     &__photos
       display: grid
