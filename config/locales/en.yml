@@ -3,6 +3,7 @@ en:
     logout: "Log out"
     profile: "Profile"
     new_post: "New post"
+    search: "Search"
   users:
     index:
       message_search: "people matched with your search"
@@ -13,6 +14,12 @@ en:
       user: "user"
       users: "users"
       nothing: "user matched with your search"
+    edit:
+      update_profile: "Edit user"
+      update: "Update"
+      cancel: "Cancel"
+      confirm_new_password: "Confirm new pasword"
+      current_password: "Current password"
   relationship:
     follow: "Follow"
     unfollow: "Unfollow"
@@ -20,6 +27,8 @@ en:
     following: "following"
     posts: "posts"
   post:
+    new:
+      create_post: "Create post"
     likes:
       people_like_first: "Be like first"
       people_liked: "people liked"

@@ -1,7 +1,7 @@
 @import "variables"
 @import "general"
 
-.edit-user-profile-btn-wrapper
+.user-actions-btns-wrapper
   display: flex
   a
     flex: 1
@@ -40,7 +40,7 @@
   display: flex
   justify-content: center
   align-items: center
-  max-width: 600pt
+  max-width: 500pt
   margin: 0 auto 0 auto
   padding: 20px
   h1, h4
@@ -218,6 +218,7 @@
         border: $border-line
         padding: 5px 20px
         border-radius: 5px
+        white-space: nowrap
 
   &__fullname-box
     display: flex
@@ -291,6 +292,8 @@
 
     &__name-edit-group
       display: flex
+      h2
+        white-space: nowrap
 
     &__fullname-box
       > div

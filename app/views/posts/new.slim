@@ -1,4 +1,5 @@
-- provide(:button_text, 'Create post')
+- provide(:button_text, t("post.new.create_post"))
 article.new-post
-  h1 Create a post
+  h1
+    = t("post.new.create_post")
   = render 'form'

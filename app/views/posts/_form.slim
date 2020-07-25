@@ -3,4 +3,6 @@
   .upload-photo-wrapper
     = f.input :photo, class: 'form-control'
   = f.text_area :content, class: 'form-control'
-  = f.button :submit, yield(:button_text), class: "btn btn-primary"
+  .user-actions-btns-wrapper
+    = link_to t("users.edit.cancel"), root_path, class: "btn btn-danger"
+    = f.button :submit, yield(:button_text), class: "btn btn-primary"
