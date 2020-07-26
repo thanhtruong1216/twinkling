@@ -44,7 +44,8 @@
       - @user.posts.each do |post|
         - if post.photo.attached?
           .thumbnail-photo-wrapper
-            = image_tag post.photo, loading: 'lazy', class: "thumbnail-photo"
+            = link_to post_path(post) do
+              = image_tag post.photo, loading: 'lazy', class: "thumbnail-photo"
 - else
   section.user
     .user__flex-box
@@ -86,4 +87,5 @@
       - @user.posts.each do |post|
         - if post.photo.attached?
           .thumbnail-photo-wrapper
-            = image_tag post.photo, loading: 'lazy', class: "thumbnail-photo"
+            = link_to post_path(post) do
+              = image_tag post.photo, loading: 'lazy', class: "thumbnail-photo"
