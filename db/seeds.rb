@@ -52,7 +52,7 @@ User.third.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
 User.fourth.posts.find_each {|post|  Like.create!(user: User.second, post: post) }
 User.fifth.posts.find_each {|post|  Like.create!(user: User.fourth, post: post) }
 User.fifth.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
-Like.create!(user_id: 31, post_id: 169)
+Like.create!(user_id: User.first.id, post_id: Post.first.id)
 
 puts '--> Creating relationships...'
 users = User.all
