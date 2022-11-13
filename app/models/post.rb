@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
+  before_create :generate_key
+
   extend FriendlyId
-  friendly_id :key, use: :slugged
+  friendly_id :slug, use: :slugged
 
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -12,4 +14,10 @@ class Post < ApplicationRecord
   validates :content, presence: true
   validates :photo, content_type: ['image/png', 'image/jpg', 'image/jpeg']
   validates :photo, attached: true, size: { less_than: 3.megabytes, message: 'is not given between size' }
+
+  private
+
+  def generate_key
+    self[:slug] = SecureRandom.uuid
+  end
 end
