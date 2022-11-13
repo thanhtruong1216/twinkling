@@ -27,7 +27,9 @@ gem 'active_storage_validations'
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
 gem 'psych', '< 4.0.0'
 gem 'net-ssh'
-gem 'net-smtp'
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 
 group :development, :test do
   gem 'pry-rails'
