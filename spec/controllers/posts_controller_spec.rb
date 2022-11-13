@@ -94,7 +94,7 @@ RSpec.describe PostsController, type: :controller do
       sign_in user
       put :update, params: { id: target_post.id, post: { content: 'new content' } }
       target_post.reload
-      expect(response).to redirect_to Post.find(target_post.id)
+      expect(response).to redirect_to Post.friendly.find(target_post.id)
     end
 
     it 'expect render edit view if update failure' do
