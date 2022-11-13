@@ -30,6 +30,7 @@ gem 'net-ssh'
 gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
+gem 'friendly_id', '~> 5.4.0'
 
 group :development, :test do
   gem 'pry-rails'

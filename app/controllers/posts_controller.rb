@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:comments, :likes).find(params[:id])
+    @post = Post.includes(:comments, :likes).friendly.find(params[:id])
   end
 
   def new
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.includes(:comments).find(params[:id])
+    @post = Post.includes(:comments).friendly.find(params[:id])
   end
 
   def update
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    Post.friendly.find(params[:id]).destroy
     redirect_to posts_path
   end
 
@@ -75,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   def owned_post
