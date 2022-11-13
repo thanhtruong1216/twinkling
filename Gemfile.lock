@@ -196,6 +196,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    net-ssh (7.0.1)
     nio4r (2.5.8)
     nokogiri (1.13.9)
       mini_portile2 (~> 2.8.0)
@@ -384,6 +385,7 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
+  net-ssh
   pg (>= 0.18, < 2.0)
   pry-byebug
   pry-rails
