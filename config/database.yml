@@ -28,3 +28,11 @@ test:
 production:
   <<: *default
   database: photograms_production
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  pool: 5
+  username: user_name
+  password:
+  url: <%= ENV['DATABASE_URL'] %>
