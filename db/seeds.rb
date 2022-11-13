@@ -7,7 +7,7 @@ User.create(
   password_confirmation: "123456",
 )
 
-10.times do |n|
+5.times do |n|
   email = Faker::Internet.email
   user_name = Faker::Artist.name
   full_name = Faker::Name.name
@@ -29,7 +29,7 @@ end
 puts '--> Creating posts...'
 
 User.find_each do |user|
-  3.times do |n|
+  6.times do |n|
     content = Faker::TvShows::GameOfThrones.quote
     image_index = ((user.id * 9 + n) % 30) + 1
     file = File.open(Rails.root.join('db', 'images', "#{image_index}.jpg"))
