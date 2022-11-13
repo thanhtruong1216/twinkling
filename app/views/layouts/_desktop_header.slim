@@ -15,3 +15,12 @@
       div
         = link_to "EN", locale:"en"
         = link_to "VI", locale:"vi"
+script
+	|
+		$(document).ready(function() {
+			$("#search_user_name").focus(function() {
+				/ $(".desktop-header img#icon-search.search-icon").css('left', '150px')
+				/ $(this).css("paddingLeft", "20pt")
+        $(this).attr('placeholder', null);
+			});
+		})

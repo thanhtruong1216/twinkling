@@ -1,15 +1,4 @@
-= image_tag "search-solid.svg", class: "search-icon", id: "icon-search"
 = simple_form_for :search, url: search_users_path, method: "GET", html: { class: 'form-inline search-form' } do |f|
   = f.input :user_name, input_html: { value: "", type: 'search' }, label: false, placeholder: t("header.search"), id: "search"
-  = f.submit "Search", class: "btn btn-primary"
-
-script
-	|
-		$(document).ready(function() {
-			$("#search").focus(function() {
-				$("#icon-search").css( "left", "20pt" );
-				$(this).css("paddingLeft", "20pt")
-
-        $(this).attr('placeholder', null);
-			});
-		})
+  button.btn.btn-primary.search-submit-btn
+		= image_tag "search-solid.svg", class: "search-icon", id: "icon-search"

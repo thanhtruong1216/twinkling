@@ -3,7 +3,7 @@ vi:
     logout: "Đăng xuất"
     profile: "Hồ sơ"
     new_post: "Đăng bài"
-    search: "Tìm kiếm"
+    search: ""
   users:
     index:
       message_search: "people được tìm thấy"

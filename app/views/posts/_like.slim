@@ -13,7 +13,7 @@ div
     div
       = link_to post_path(post), method: :delete, data: { confirm: 'Are you sure?' } do
         = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'mini-icon'
-  div class="fb-share-button" data-href=post_url(post) data-layout="button_count"
+  / div class="fb-share-button" data-href=post_url(post) data-layout="button_count"
 
 - if post.likes_count == 0
   div

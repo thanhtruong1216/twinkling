@@ -10,7 +10,7 @@ div
     div
       = link_to edit_post_path(post) do
         = image_tag 'edit-regular.svg', loading: 'lazy', class: 'small-icon'
-  div class="fb-share-button" data-href=post_url(post) data-layout="button_count"
+  / div class="fb-share-button" data-href=post_url(post) data-layout="button_count"
 
 - if post.likes_count == 0
   div
