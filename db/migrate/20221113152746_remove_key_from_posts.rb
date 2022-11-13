@@ -1,5 +1,8 @@
 class RemoveKeyFromPosts < ActiveRecord::Migration[6.0]
-  def change
+  def up
     remove_column :posts, :key
+  end
+
+  def down
   end
 end
