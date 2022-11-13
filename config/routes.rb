@@ -15,8 +15,8 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments
       member do
-        post :like
-        post :unlike
+        post :like, xhr: true
+        post :unlike, xhr: true
       end
     end
 
