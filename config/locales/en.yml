@@ -3,7 +3,7 @@ en:
     logout: "Log out"
     profile: "Profile"
     new_post: "New post"
-    search: "Search"
+    search: "Person name"
   users:
     index:
       message_search: "people matched with your search"
