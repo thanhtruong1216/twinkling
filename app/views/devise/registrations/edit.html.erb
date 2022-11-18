@@ -3,39 +3,32 @@
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
-      <%# <%= f.file_field :avatar, class: 'form-control' %>
-
-      <%= f.input :email,
-        required: true,
-        autofocus: true,
-        label: false %>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       <% end %>
       <%= f.input :full_name,
           required: true,
-          label: false %>
+          label: t('users.edit.full_name') %>
 
       <%= f.input :user_name,
           required: true,
-          label: false %>
+          label: t('users.edit.user_name') %>
 
       <%= f.input :password,
                   required: false,
                   input_html: { placeholder: t("users.edit.new_password"), value: "", autocomplete: "off" },
-                  label: false
-                  %>
+                  label: t('users.edit.new_password') %>
 
       <%= f.input :password_confirmation,
                   required: false,
                   input_html: { placeholder: t("users.edit.confirm_new_password") },
-                  label: false %>
+                  label: t('users.edit.confirm_new_password') %>
 
       <%= f.input :current_password,
                   required: true,
                   input_html: { placeholder: t("users.edit.current_password") },
-                  label: false %>
+                  label: t('users.edit.current_password') %>
 
     </div>
 
