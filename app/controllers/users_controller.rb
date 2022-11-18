@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[index show update following followers]
+  before_action :find_user, only: %i[index show update following followers upload_avatar]
 
   def index
     @users = User.limit(10).page params[:page]
@@ -10,19 +10,19 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect root_path
+      redirect_to user_path
     else
-      render "index"
+      render 'index'
     end
   end
 
   def following
-    @title = "Following"
+    @title = 'Following'
     render 'following'
   end
 
   def followers
-    @title = "Followers"
+    @title = 'Followers'
     render 'follower'
   end
 
@@ -32,6 +32,9 @@ class UsersController < ApplicationController
       user_name = search[:user_name]
       @users = User.where('user_name ILIKE ?', "%#{user_name}%")
     end
+  end
+
+  def upload_avatar
   end
 
   private

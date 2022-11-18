@@ -21,6 +21,9 @@ vi:
       new_password: "Mật khẩu mới"
       confirm_new_password: "Xác nhận mật khẩu mới"
       current_password: "Mật khẩu hiện tại"
+    upload_avatar:
+      upload_your_avatar: "Tải ảnh đại diện của bạn"
+      upload: "Tải lên"
   relationship:
     follow: "Theo dõi"
     unfollow: "Hủy theo dõi"

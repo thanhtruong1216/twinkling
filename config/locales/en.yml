@@ -21,6 +21,9 @@ en:
       new_password: "New password"
       confirm_new_password: "Confirm new pasword"
       current_password: "Current password"
+    upload_avatar:
+      upload_your_avatar: "Upload your avatar"
+      upload: "Upload now"
   relationship:
     follow: "Follow"
     unfollow: "Unfollow"

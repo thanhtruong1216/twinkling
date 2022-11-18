@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_key
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   extend FriendlyId
   friendly_id :slug, use: :slugged
 
@@ -24,7 +23,6 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
-  # Follows a user.
   def follow(other_user)
     following << other_user
   end

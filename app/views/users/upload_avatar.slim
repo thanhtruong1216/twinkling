@@ -1,0 +1,8 @@
+section.users
+  h1= t('users.upload_avatar.upload_your_avatar')
+  = simple_form_for @user do |f|
+    .upload-photo-wrapper
+      = f.input :avatar, class: 'form-control'
+    .user-actions-btns-wrapper
+      = link_to t("users.edit.cancel"), user_path, class: "btn btn-danger"
+      = f.button :submit, t('users.upload_avatar.upload'), class: 'btn btn-primary'

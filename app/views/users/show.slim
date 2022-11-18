@@ -3,12 +3,12 @@
     .user__flex-box
       .user__fullname-box
         div
-          - if @user.avatar.attached?
-            = image_tag @user.avatar, loading: 'lazy', class: 'user__avatar'
-          - else
-            div.user__avatar
-              = link_to edit_user_registration_path
-                = image_tag "user-alt-solid.svg", loading: 'lazy', class: 'user__avatar'
+          div.user__avatar
+            = link_to upload_avatar_user_path(@user.slug)
+              - if @user.avatar.attached?
+                = image_tag @user.avatar, loading: 'lazy', class: 'user__avatar'
+              - else
+                = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'user__avatar'
           p.user__fullname
             = @user.full_name
         div
@@ -21,7 +21,7 @@
                   = link_to edit_user_registration_path
                     span
                       = t('users.show.edit_profile')
-                    = image_tag "circle-notch-solid.svg"
+                    = image_tag 'circle-notch-solid.svg'
     .user__follows
       div
         p
@@ -46,7 +46,7 @@
         - if post.photo.attached?
           .thumbnail-photo-wrapper
             = link_to post_path(post) do
-              = image_tag post.photo, loading: 'lazy', class: "thumbnail-photo"
+              = image_tag post.photo, loading: 'lazy', class: 'thumbnail-photo'
 - else
   section.user
     .user__flex-box
@@ -90,4 +90,4 @@
         - if post.photo.attached?
           .thumbnail-photo-wrapper
             = link_to post_path(post) do
-              = image_tag post.photo, loading: 'lazy', class: "thumbnail-photo"
+              = image_tag post.photo, loading: 'lazy', class: 'thumbnail-photo'
