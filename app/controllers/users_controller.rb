@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[index create show update following followers upload_avatar edit]
+  before_action :find_user, only: %i[index show update following followers upload_avatar edit]
 
   def index
     @users = User.limit(10).page params[:page]
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path
     else
-      render 'index'
+      redirect_to root_path
     end
   end
 
