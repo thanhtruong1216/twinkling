@@ -35,6 +35,6 @@ class User < ApplicationRecord
   end
 
   def send_email
-    UserNotifierMailer.send_signup_email(User.find_by(email: 'thanhtruong1216@gmail.com')).deliver
+    UserNotifierMailer.send_signup_email(self).deliver
   end
 end
