@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-actions user-actions-btns-wrapper">
-      <%= link_to t("users.edit.cancel"), root_path, class: "btn btn-danger" %>
+      <%= link_to t('users.edit.cancel'), user_path(@user.slug), class: "btn btn-danger" %>
       <%= f.button :submit, t("users.edit.update"), class: "btn btn-primary" %>
     </div>
   <% end %>

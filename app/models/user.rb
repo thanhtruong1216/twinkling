@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_key
+  after_create :send_email
 
   extend FriendlyId
   friendly_id :slug, use: :slugged
@@ -31,5 +32,9 @@ class User < ApplicationRecord
 
   def generate_key
     self[:slug] = SecureRandom.uuid
+  end
+
+  def send_email
+    UserNotifierMailer.send_signup_email(User.find_by(email: 'thanhtruong1216@gmail.com')).deliver
   end
 end

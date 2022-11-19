@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[index show update following followers upload_avatar]
+  before_action :find_user, only: %i[index create show update following followers upload_avatar edit]
 
   def index
     @users = User.limit(10).page params[:page]
