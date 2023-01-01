@@ -4,6 +4,13 @@ class UserNotifierMailer < ApplicationMailer
 
   def send_signup_email(user)
     @user = user
+    
+    headers(
+      'X-SMTPAPI' => {
+        category: 'sign_up'
+      }.to_json
+    )
+
     mail(
       from: 'BloodMoon<rosy03122022@gmail.com>',
       to:      @user.email,
