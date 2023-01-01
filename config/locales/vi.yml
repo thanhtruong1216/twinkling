@@ -26,6 +26,16 @@ vi:
     upload_avatar:
       upload_your_avatar: "Tải ảnh đại diện của bạn"
       upload: "Tải lên"
+    forgot_password:
+      forgot_your_password: Bạn quên mật khẩu phải không?
+      send_me_reset_password_instructions: Tôi muốn đặt lại mật khẩu
+    account:
+      have_an_account: Bạn đã có tài khoản rồi?
+      do_not_have_an_account: Bạn chưa có tài khoản?
+      login: Đăng nhập
+      sign_up: Đăng ký
+      sign_up_to_see_photos_and_videos: Đăng ký tài khoản để thấy hình ảnh và videos từ bạn bè của bạn
+      remember_me: Nhớ tôi
   relationship:
     follow: "Theo dõi"
     unfollow: "Hủy theo dõi"

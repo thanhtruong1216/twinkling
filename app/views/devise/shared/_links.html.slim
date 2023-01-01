@@ -1,0 +1,29 @@
+- if controller_name != 'sessions'
+  p.user-authenticate-message
+    = t('users.account.have_an_account') 
+    = link_to t('users.account.login'), new_session_path(resource_name)
+    br
+
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  p.forgot-password-text
+    = link_to t('users.forgot_password.forgot_your_password'), new_password_path(resource_name)
+    br
+
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  p.user-authenticate-message
+    = t('users.account.do_not_have_an_account') 
+    = link_to t('users.account.sign_up'), new_registration_path(resource_name)
+    br
+
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
+  br
+
+- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+  = link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name)
+  br
+
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
+    br

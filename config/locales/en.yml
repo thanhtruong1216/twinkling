@@ -26,6 +26,16 @@ en:
     upload_avatar:
       upload_your_avatar: "Upload your avatar"
       upload: "Upload now"
+    forgot_password:
+      forgot_your_password: Forgot your password?
+      send_me_reset_password_instructions: Send me reset password instructions
+    account:
+      have_an_account: Have an account?
+      do_not_have_an_account: Don't have an account? 
+      login: Login
+      sign_up: Sign up
+      sign_up_to_see_photos_and_videos: Sign up to see photos and videos from your friends.
+      remember_me: Remember me
   relationship:
     follow: "Follow"
     unfollow: "Unfollow"
