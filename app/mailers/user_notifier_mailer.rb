@@ -1,5 +1,5 @@
 class UserNotifierMailer < ApplicationMailer
-  default :from => 'rosy03122022@gmail.com'
+  default :from => 'BloodMoon<rosy03122022@gmail.com>'
   layout 'mailer'
 
   def send_signup_email(user)

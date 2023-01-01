@@ -42,7 +42,7 @@ en:
       add_comment: "Add a comment..."
       post: "Post"
       view: "View"
-      view_all: "View all"
+      view_all: "View"
       comment: "comment"
       comments: "comments"
       no_comment: "No comment for this post"
