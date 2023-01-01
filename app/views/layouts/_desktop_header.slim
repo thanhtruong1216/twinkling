@@ -3,7 +3,10 @@
     header.desktop-header__wrapper
       div
         = image_tag 'studiovinari-brands.svg', loading: 'lazy', class: 'large-icon'
-        = link_to 'Wandergram', root_path, class: 'app-name'
+        = link_to root_path, class: 'app-name' do
+          div.content
+            h2 Wandergram
+            h2 Wandergram
 
       = render 'layouts/search'
 
