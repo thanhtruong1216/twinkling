@@ -4,6 +4,7 @@ vi:
     profile: "Hồ sơ"
     new_post: "Đăng bài"
     search: "Tên người dùng..."
+    posts: Bài viết
   users:
     index:
       message_search: "people được tìm thấy"
