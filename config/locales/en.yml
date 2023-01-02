@@ -4,7 +4,7 @@ en:
     profile: "Profile"
     new_post: "New post"
     search: "Person name..."
-    posts: Post
+    posts: Posts
   users:
     index:
       message_search: "people matched with your search"
