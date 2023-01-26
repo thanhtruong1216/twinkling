@@ -594,18 +594,18 @@ body {
                         cursor: pointer;
                     }
 
-                    &:after {
-                        content: '\f104';
-                        display: block;
-                        font-family: 'Font Awesome 5 Free';
-                        font-weight: 900;
-                        color: var(--yellow);
-                        position: absolute;
-                        left: 10px;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        transition: all .2s;
-                    }
+                                        // &:after {
+                                        //     content: '\f104';
+                                        //     display: block;
+                                        //     font-family: 'Font Awesome 5 Free';
+                                        //     font-weight: 900;
+                                        //     color: var(--yellow);
+                                        //     position: absolute;
+                                        //     left: 10px;
+                                        //     top: 50%;
+                                        //     transform: translateY(-50%);
+                                        //     transition: all .2s;
+                                        // }
 
                     &:before {
                         content: '';

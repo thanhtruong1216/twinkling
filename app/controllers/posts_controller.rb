@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:success] = "Your post has been created!"
+      flash[:success] = 'Your post has been created!'
       redirect_to @post
     else
       flash[:danger] = "Your new post couldn't be created! Please check the form."
