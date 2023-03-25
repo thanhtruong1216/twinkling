@@ -8,7 +8,7 @@ section.show_follow
               .avatar-linear-wrapper
                 = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
         p
-          = following.user_name
+          = following&.user_name
       div
         p
           = following.email
