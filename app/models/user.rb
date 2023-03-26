@@ -5,8 +5,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :slug, use: :slugged
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
   # validates :user_name, presence: true, length: { maximum: 16 }
   # validates :full_name, presence: true, length: { maximum: 30 }
   validates :email, presence: true

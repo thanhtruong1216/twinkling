@@ -31,6 +31,8 @@ gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'friendly_id', '~> 5.4.0'
+gem 'omniauth'
+gem 'devise_token_auth'
 
 group :development, :test do
   gem 'pry-rails'
