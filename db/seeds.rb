@@ -40,24 +40,24 @@ User.find_each do |user|
   end
 end
 
-puts '--> Creating comments...'
-5.times do |n|
-  comment = Faker::Quotes::Shakespeare.romeo_and_juliet_quote
-  Comment.create!(content: comment, user: User.first, post: Post.first)
-end
+# puts '--> Creating comments...'
+# 5.times do |n|
+#   comment = Faker::Quotes::Shakespeare.romeo_and_juliet_quote
+#   Comment.create!(content: comment, user: User.first, post: Post.first)
+# end
 
-puts '--> Creating likes...'
-User.second.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
-User.third.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
-User.fourth.posts.find_each {|post|  Like.create!(user: User.second, post: post) }
-User.fifth.posts.find_each {|post|  Like.create!(user: User.fourth, post: post) }
-User.fifth.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
-Like.create!(user_id: User.first.id, post_id: Post.first.id)
+# puts '--> Creating likes...'
+# User.second.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
+# User.third.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
+# User.fourth.posts.find_each {|post|  Like.create!(user: User.second, post: post) }
+# User.fifth.posts.find_each {|post|  Like.create!(user: User.fourth, post: post) }
+# User.fifth.posts.find_each {|post|  Like.create!(user: User.first, post: post) }
+# Like.create!(user_id: User.first.id, post_id: Post.first.id)
 
-puts '--> Creating relationships...'
-users = User.all
-user  = users.first
-following = users[2..50]
-followers = users[3..40]
-following.each { |followed| user.follow(followed) }
-followers.each { |follower| follower.follow(user) }
+# puts '--> Creating relationships...'
+# users = User.all
+# user  = users.first
+# following = users[2..50]
+# followers = users[3..40]
+# following.each { |followed| user.follow(followed) }
+# followers.each { |follower| follower.follow(user) }
