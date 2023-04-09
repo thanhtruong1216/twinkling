@@ -4,7 +4,7 @@ require 'date'
 class ZodiacsController < ApplicationController
   include ApplicationHelper
   def index
-    table = CSV.parse(File.read('db/users.csv'), headers: false)
+    table = CSV.parse(File.read('db/zodiac_users.csv'), headers: false)
     # table = table.sort! do |a,b| 
     #   birthdate_splited = a[3].split('/')
     #   birthdate_splited_b = b[3].split('/')
@@ -20,12 +20,13 @@ class ZodiacsController < ApplicationController
     table.each_with_index do |user, index|
       s = {
         user_name: user[1],
-        date_of_birth: user[3],
-        zodiac: zodiac(user[3]),
-        destiny: destiny(user[3].split('/')[2]),
-        year: user[3].split('/')[2].to_i,
-        chinese_zodiac: chinese_zodiac(user[3].split('/')[2].to_i),
-        zodiac_name_translate: zodiac_name_translate(chinese_zodiac(user[3].split('/')[2].to_i))
+        date_of_birth: user[2],
+        zodiac: zodiac(user[2]),
+        destiny: destiny(user[2].split('/')[2]),
+        year: user[2].split('/')[2].to_i,
+        chinese_zodiac: chinese_zodiac(user[2].split('/')[2].to_i),
+        zodiac_name_translate: zodiac_name_translate(chinese_zodiac(user[2].split('/')[2].to_i)),
+        zodiac_name_translate_sex: user[3] == 'Male' ? zodiac_name_translate_male(user[2].split('/')[2].to_i) : zodiac_name_translate_female(user[2].split('/')[2].to_i),
       }
 
       @users_zodiac.push(s)

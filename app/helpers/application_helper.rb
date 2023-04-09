@@ -155,4 +155,88 @@ module ApplicationHelper
     else
     end
   end
+
+  def zodiac_name_translate_male(year)
+    case year.to_i
+    when 1983
+      'Cấn Thổ'
+    when 1984
+      'Đoài Kim'
+    when 1985
+      'Càn Kim'
+    when 1986
+      'Khôn Thổ'
+    when 1987
+      'Tốn Mộc'
+    when 1988
+      'Chấn Mộc'
+    when 1989
+      'Khôn Thổ'
+    when 1990
+      'Khảm Thuỷ'
+    when 1991
+      'Ly Hoả'
+    when 1992
+      'Cấn Thổ'
+    when 1993
+      'Đoài Kim'
+    when 1994
+     'Càn Kim	'
+    when 1995
+      'Khôn Thổ'
+    when 1996
+      'Tốn Mộc'
+    when 1997
+      'Chấn Mộc'
+    when 1998
+      'Khôn Thổ'
+    when 1999
+      'Khảm Thuỷ'
+    when 2000
+      'Ly Hoả'
+    else
+    end
+  end
+
+  def zodiac_name_translate_female(year)
+    case year.to_i
+    when 1983
+      'Đoài Kim'
+    when 1984
+      'Cấn Thổ'
+    when 1985
+      'Ly Hoả'
+    when 1986
+      'Khảm Thuỷ'
+    when 1987
+      'Khôn Thổ'
+    when 1988
+      'Chấn Mộc'
+    when 1989
+      'Tốn Mộc'
+    when 1990
+      'Cấn Thổ'
+    when 1991
+      'Càn Kim'
+    when 1992
+      'Đoài Kim'
+    when 1993
+      'Cấn Thổ'
+    when 1994
+     'Ly Hoả'
+    when 1995
+      'Khảm Thuỷ'
+    when 1996
+      'Khôn Thổ'
+    when 1997
+      'Chấn Mộc'
+    when 1998
+      'Tốn Mộc'
+    when 1999
+      'Cấn Thổ'
+    when 2000
+      'Càn Kim'
+    else
+    end
+  end
 end
