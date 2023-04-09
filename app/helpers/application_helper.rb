@@ -33,41 +33,41 @@ module ApplicationHelper
   def destiny(year)
     case year.to_i
     when 1983
-      'Đại Hải Thủy (Nước biển lớn)'
+      'Đại Hải Thủy - Nước biển lớn'
     when 1984
-      'Hải Trung Kim (Vàng trong biển)'
+      'Hải Trung Kim - Vàng trong biển'
     when 1985
-      'Hải Trung Kim (Vàng trong biển)'
+      'Hải Trung Kim - Vàng trong biển'
     when 1986
-      'Lư Trung Hỏa(Lửa trong lò)'
+      'Lư Trung Hỏa - Lửa trong lò'
     when 1987
-      'Lư Trung Hỏa(Lửa trong lò)'
+      'Lư Trung Hỏa - Lửa trong lò'
     when 1988
-      'Đại Lâm Mộc (Gỗ rừng già)'
+      'Đại Lâm Mộc - Gỗ rừng già'
     when 1989
-      'Đại Lâm Mộc (Gỗ rừng già)'
+      'Đại Lâm Mộc - Gỗ rừng già'
     when 1990
-      'Lộ Bàng Thổ (Đất đường đi)'
+      'Lộ Bàng Thổ - Đất đường đi'
     when 1991
-      'Lộ Bàng Thổ (Đất đường đi)'
+      'Lộ Bàng Thổ - Đất đường đi'
     when 1992
-      'Kiếm Phong Kim (Vàng mũi kiếm)'
+      'Kiếm Phong Kim - Vàng mũi kiếm'
     when 1993
-      'Kiếm Phong Kim (Vàng mũi kiếm)'
+      'Kiếm Phong Kim - Vàng mũi kiếm'
     when 1994
-     'Sơn Đầu Hỏa (Lửa trên núi)'
+     'Sơn Đầu Hỏa - Lửa trên núi'
     when 1995
-      'Sơn Đầu Hỏa (Lửa trên núi)'
+      'Sơn Đầu Hỏa - Lửa trên núi'
     when 1996
-      'Giản Hạ Thủy (Nước khe suối)'
+      'Giản Hạ Thủy - Nước khe suối'
     when 1997
-      'Giản Hạ Thủy (Nước khe suối)'
+      'Giản Hạ Thủy - Nước khe suối'
     when 1998
-      'Thành Đầu Thổ (Đất trên thành)'
+      'Thành Đầu Thổ - Đất trên thành'
     when 1999
-      'Thành Đầu Thổ (Đất trên thành)'
+      'Thành Đầu Thổ - Đất trên thành'
     when 2000
-      'Bạch Lạp Kim (Vàng sáp ong)'
+      'Bạch Lạp Kim - Vàng sáp ong'
     else
     end
   end
@@ -110,6 +110,48 @@ module ApplicationHelper
       'Kỷ Mão'
     when 2000
       'Canh Thìn'
+    else
+    end
+  end
+
+  def zodiac_name_translate(zodiac_name)
+    case zodiac_name
+    when 'Quý Hợi'
+      'Lâm Hạ Chi Trư - Lợn trong rừng'
+    when 'Giáp Tý'
+      'Ốc Thượng Chi Thử -Chuột ở nóc nhà'
+    when 'Ất Sửu'
+      'Hải Nội Chi Ngưu - Trâu trong biển'
+    when 'Bính Dần'
+      'Sơn Lâm Chi Hổ - Hổ trong rừng'
+    when 'Đinh Mão'
+      'Vọng Nguyệt Chi Thố - Thỏ ngắm trăng'
+    when 'Mậu Thìn'
+      'Thanh Ôn Chi Long - Rồng ôn hoà'
+    when 'Kỷ Tỵ'
+      'Phúc Khí Chi Xà - Rắn có phúc'
+    when 'Canh Ngọ'
+      'Thất Lý Chi Mã - Ngựa trong nhà'
+    when 'Tân Mùi'
+      'Đắc Lộc Chi Dương - Dê có lộc'
+    when 'Nhâm Thân'
+      'Thanh Tú Chi Hầu - Khỉ thanh tú'
+    when 'Quý Dậu'
+      'Lâu Túc Kê - Gà nhà gác'
+    when 'Giáp Tuất'
+     'Thủ Thân Chi Cẩu - Chó giữ mình'
+    when 'Ất Hợi'
+      'Quá Vãng Chi Trư - Lợn hay đi'
+    when 'Bính Tý'
+      'Điền Nội Chi Thử - Chuột trong ruộng'
+    when 'Đinh Sửu'
+      'Hồ Nội Chi Ngưu - Trâu trong hồ nước'
+    when 'Mậu Dần'
+      'Quá Sơn Chi Hổ - Hổ qua rừng'
+    when 'Kỷ Mão'
+      'Sơn Lâm Chi Thố - Thỏ ở rừng'
+    when 'Canh Thìn'
+      'Thứ Tính Chi Long - Rồng khoan dung'
     else
     end
   end

@@ -15,7 +15,7 @@ class ZodiacsController < ApplicationController
     #   Date.parse(birthdate_result_b) <=>  Date.parse(birthdate_result)
     # end
 
-    @users = []
+    @users_zodiac = []
 
     table.each_with_index do |user, index|
       s = {
@@ -24,12 +24,13 @@ class ZodiacsController < ApplicationController
         zodiac: zodiac(user[3]),
         destiny: destiny(user[3].split('/')[2]),
         year: user[3].split('/')[2].to_i,
-        chinese_zodiac: chinese_zodiac(user[3].split('/')[2].to_i)
+        chinese_zodiac: chinese_zodiac(user[3].split('/')[2].to_i),
+        zodiac_name_translate: zodiac_name_translate(chinese_zodiac(user[3].split('/')[2].to_i))
       }
 
-      @users.push(s)
+      @users_zodiac.push(s)
     end
 
-    @users = @users.sort { |a,b| a[:year] <=> b[:year] }
+    @users_zodiac = @users_zodiac.sort { |a,b| a[:year] <=> b[:year] }
   end
 end
