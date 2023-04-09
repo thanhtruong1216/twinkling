@@ -1,0 +1,17 @@
+section.zodiacs
+  .zodiacs-wrapper
+    .zodiac-header
+      p.order-th STT
+      p Tên
+      p Ngày sinh
+      p Cung mặt trời
+      p Con giáp
+      p Mệnh
+    - @users.each_with_index do |user, index|
+      .zodiac-row
+        p.order= index + 1
+        p.user_name= user[:user_name]
+        p= user[:date_of_birth]
+        p= user[:zodiac]
+        p= user[:chinese_zodiac]
+        p= user[:destiny]
