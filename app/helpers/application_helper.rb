@@ -119,7 +119,7 @@ module ApplicationHelper
     when 'Quý Hợi'
       'Lâm Hạ Chi Trư - Lợn trong rừng'
     when 'Giáp Tý'
-      'Ốc Thượng Chi Thử -Chuột ở nóc nhà'
+      'Ốc Thượng Chi Thử - Chuột ở nóc nhà'
     when 'Ất Sửu'
       'Hải Nội Chi Ngưu - Trâu trong biển'
     when 'Bính Dần'
