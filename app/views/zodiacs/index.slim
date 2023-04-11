@@ -16,7 +16,8 @@ section.zodiacs
         p.order= index + 1
         p.user_name= user[:user_name]
         p= user[:date_of_birth]
-        p= user[:zodiac]
+        p
+          = link_to user[:zodiac], west_zodiacs_path(sign: user[:zodiac])
         p= user[:destiny]
         p= user[:zodiac_name_translate_sex]
         p= user[:chinese_zodiac]
