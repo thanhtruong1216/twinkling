@@ -53,7 +53,7 @@ class WestZodiacsController < ApplicationController
     when 'Sư Tử'
       @result = {
         love: 'Nhân Mã',
-        friend: '',
+        friend: 'Song Tử, Kim Ngưu, Bạch Dương',
         avoid_love: 'Thiên Bình'
       }
     when 'Xử Nữ'
@@ -82,6 +82,7 @@ class WestZodiacsController < ApplicationController
       }
     else
     end
+    
     @result
   end
 end
