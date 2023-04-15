@@ -55,7 +55,7 @@ module ApplicationHelper
     when 1993
       'Kiếm Phong Kim - Vàng mũi kiếm'
     when 1994
-     'Sơn Đầu Hỏa - Lửa trên núi'
+      'Sơn Đầu Hỏa - Lửa trên núi'
     when 1995
       'Sơn Đầu Hỏa - Lửa trên núi'
     when 1996
@@ -238,5 +238,228 @@ module ApplicationHelper
       'Càn Kim'
     else
     end
+  end
+  
+  def west_zodiacs_suit(sign)
+    result = {}
+  
+    case sign
+
+    when 'Ma Kết'
+      result = {
+        suit: 'Kim Ngưu',
+        avoid: 'Bạch Dương'
+      }
+    when 'Bảo Bình'
+      result = {
+        suit: 'Song Tử',
+        avoid: 'Bọ Cạp'
+      }
+    when 'Song Ngư'
+      result = {
+        suit: 'Cự Giải, Bọ Cạp',
+        avoid: 'Bảo Bình'
+      }
+    when 'Bạch Dương'
+      result = {
+        suit: 'Nhân Mã',
+        avoid: 'Cự Giải'
+      }
+    when 'Kim Ngưu'
+      result = {
+        suit: 'Cự Giải',
+        avoid: 'Song Tử'
+      }
+    when 'Song Tử'
+      result = {
+        suit: 'Bảo Bình, Thiên Bình',
+        avoid: 'Xử Nữ'
+      }
+    when 'Cự Giải'
+      result = {
+        suit: 'Song Ngư',
+        avoid: 'Ma Kết'
+      }
+    when 'Sư Tử'
+      result = {
+        suit: 'Nhân Mã',
+        avoid: 'Thiên Bình'
+      }
+    when 'Xử Nữ'
+      result = {
+        suit: 'Kim Ngưu',
+        avoid: 'Nhân Mã'
+      }
+    when 'Thiên Bình'
+      result = {
+        suit: 'Song Tử',
+        avoid: 'Song Ngư'
+      }
+    when 'Bọ Cạp'
+      result = {
+        suit: 'Cự Giải, Song Ngư',
+        avoid: 'Sư Tử'
+      }
+    when 'Nhân Mã'
+      result = {
+        suit: 'Sư Tử, Bạch Dương',
+        avoid: 'Kim Ngưu'
+      }
+    else
+    end
+    result
+  end
+
+  def chinese_zodiac_analysis(name)
+    result = {}
+
+    case name.split(' ')[1]
+
+    when 'Tý'
+      result = {
+        suit: 'Thân, Thìn',
+        avoid: 'Ngọ'
+      }
+    when 'Sửu'
+      result = {
+        suit: 'Tỵ, Dậu',
+        avoid: 'Mùi'
+      }
+    when 'Dần'
+      result = {
+        suit: 'Ngọ, Tuất',
+        avoid: 'Thân'
+      }
+    when 'Mẹo'
+      result = {
+        suit: 'Hợi, Mùi',
+        avoid: 'Dậu'
+      }
+    when 'Thìn'
+      result = {
+        suit: 'Thân, Tý',
+        avoid: 'Tuất'
+      }
+    when 'Tỵ'
+      result = {
+        suilt: 'Dậu, Sửu',
+        avoid: 'Hợi'
+      }
+    when 'Ngọ'
+      result = {
+        suit: 'Dần, Tuất',
+        avoidd: 'Tý'
+      }
+    when 'Mùi'
+      result = {
+        suit: 'Hợi, Mẹo',
+        avoid: 'Sửu'
+      }
+    when 'Thân'
+      result = {
+        suit: 'Tý, Thìn',
+        avoid: 'Dần'
+      }
+    when 'Dậu'
+      result = {
+        suit: 'Tỵ, Sửu',
+        avoid: 'Mẹo'
+      }
+    when 'Tuất'
+      result = {
+        suit: 'Dần, Ngọ',
+        avoid: 'Thìn'
+      }
+    when 'Hợi'
+      result = {
+        suit: 'Mẹo, Mùi',
+        avoid: 'Tỵ'
+      }
+    else
+    end
+    result
+  end
+
+  def five_elements_analysis(element)
+    result = {}
+
+    case element.split('-')[0].split(' ')[2]
+    when 'Kim'
+      result = {
+        suit: 'Thủy, Thổ',
+        avoid: 'Hỏa, Mộc'
+      }
+    when 'Mộc'
+      result = {
+        suit: 'Hỏa, Thủy',
+        avoid: 'Thổ, Kim'
+      }
+    when 'Thủy'
+      result = {
+        suit: 'Mộc, Kim',
+        avoid: 'Thổ, Hỏa'
+      }
+    when 'Hỏa'
+      result = {
+        suit: 'Thổ, Mộc',
+        avoid: 'Thủy, Kim'
+      }
+    when 'Thổ'
+      result = {
+        suit: 'Kim, Hỏa',
+        avoid: 'Mộc, Thủy'
+      }
+    else
+    end
+    result
+  end
+
+  def trigrams_analysis(element)
+    result = {}
+
+    case element.split(' ')[0]
+    when 'Cấn'
+      result = {
+        suit: 'Cấn, Càn, Khôn, Đoài',
+        avoid: 'Khảm, Chấn, Tốn, Ly'
+      }
+    when 'Ly'
+      result = {
+        suit: 'Ly, Tốn, Đoài, Khôn',
+        avoid: 'Càn, Khảm, Cấn'
+      }
+    when 'Đoài'
+      result = {
+        suit: 'Đoài, Càn, Cấn, Khôn',
+        avoid: 'Khảm, Chấn, Tốn, Ly'
+      }
+    when 'Khôn'
+      result = {
+        suit: 'Khôn, Cấn, Càn, Đoài',
+        avoid: 'Khảm, Chấn, Tốn, Ly'
+      }
+    when 'Khảm'
+      result = {
+        suit: 'Khảm, Chấn, Ly, Tốn',
+        avoid: 'Cấn, Khôn, Chấn, Đoài'
+      }
+    when 'Chấn'
+      result = {
+        suit: 'Chấn, Khảm, Tốn, Ly',
+        avoid: 'Càn, Cấn, Khôn, Đoài'
+      }
+    when 'Tốn'
+      result = {
+        suit: 'Tốn, Khảm, Ly, Chấn',
+        avoid: 'Càn, Đoài, Khôn, Cấn'
+      }
+    when 'Càn'
+      result = {
+        suit: 'Càn, Cấn, Khôn, Đoài',
+        avoid: 'Khảm, Chân, Tốn, Ly'
+      }
+    else
+    end
+    result
   end
 end

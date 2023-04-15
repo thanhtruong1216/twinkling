@@ -6,7 +6,7 @@ section.zodiacs
       p Tên
       p Ngày sinh
       p Cung hoàng đạo
-      p Cung mệnh chung
+      p Ngũ hành mệnh
       p Cung bát quái
       p Con giáp
       p Ý nghĩa tên con giáp
@@ -14,11 +14,10 @@ section.zodiacs
     - @users_zodiac.each_with_index do |user, index|
       .zodiac-row
         p.order= index + 1
-        p.user_name= user[:user_name]
-        p= user[:date_of_birth]
-        p
-          = link_to user[:zodiac], west_zodiacs_path(sign: user[:zodiac])
-        p= user[:destiny]
-        p= user[:zodiac_name_translate_sex]
-        p= user[:chinese_zodiac]
-        p= user[:zodiac_name_translate]
+        p= link_to user.name, zodiac_suits_path(sign: user.west_zodiac, element: user.destiny, chinese_zodiac: user.chinese_zodiac, trigram: user.zodiac_name_translate_sex)
+        p= user.birthday
+        p= user.west_zodiac
+        p= user.destiny
+        p= user.zodiac_name_translate_sex
+        p= user.chinese_zodiac
+        p= user.zodiac_name_translate
