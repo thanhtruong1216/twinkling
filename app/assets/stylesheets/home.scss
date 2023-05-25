@@ -98,14 +98,24 @@ body {
         }
     }
 
+    & .slogan {
+        max-width: 1300px;
+        margin: 0 auto;
+        p {
+            font-family: 'Cormorant Infant', serif;
+            font-size: 18pt;
+            text-align: center;
+        }
+    }
+
     & .pages {
         // width: calc(100% - var(--margin));
-        height: calc(100% - var(--margin));
+        height: 580px;
         position: absolute;
         left: 0;
         right: 0;
         margin: auto;
-        top: 50%;
+        top: 60%;
         transform: translateY(-50%);
         perspective: var(--perspective);
         box-shadow: 0 41px 38px -20px #0a3150;
