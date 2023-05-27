@@ -115,7 +115,7 @@ body {
         left: 0;
         right: 0;
         margin: auto;
-        top: 60%;
+        top: calc(100% - 300px);
         transform: translateY(-50%);
         perspective: var(--perspective);
         box-shadow: 0 41px 38px -20px #0a3150;
@@ -700,7 +700,7 @@ body {
                         }
 
                         h4 {
-                            color: var(--yellow);
+                            color: green;
                             font-size: 30px;
                             font-weight: normal;
                             margin: 0;
@@ -708,6 +708,7 @@ body {
                             border-top: 1px solid;
                             border-bottom: 1px solid;
                             padding: 15px 20px 29px;
+                            letter-spacing: 1px;
                         }
 
                         h6 {
