@@ -2,7 +2,9 @@
   = render 'shared/error_messages'
   .upload-photo-wrapper
     = f.input :photo, class: 'form-control'
+  label= t('post.new.content')
   = f.text_area :content, class: 'form-control'
+
   .user-actions-btns-wrapper
-    = link_to t("users.edit.cancel"), root_path, class: "btn btn-danger"
-    = f.button :submit, yield(:button_text), class: "btn btn-primary"
+    = link_to t("users.edit.cancel"), root_path, class: 'twink-btn-cancel twink-normal-btn'
+    = f.button :submit, yield(:button_text), class: 'twink-btn-submit twink-normal-btn'

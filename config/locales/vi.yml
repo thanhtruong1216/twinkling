@@ -46,6 +46,7 @@ vi:
   post:
     new:
       create_post: "Tạo bài viết"
+      content: Nội dung bài viết
     likes:
       people_like_first: "Hãy là người like đầu tiên"
       people_liked: "người đã thích"

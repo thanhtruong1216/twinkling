@@ -46,6 +46,7 @@ en:
   post:
     new:
       create_post: "Create post"
+      content: Content
     likes:
       people_like_first: "Be like first"
       people_liked: "people liked"

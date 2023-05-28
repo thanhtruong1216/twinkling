@@ -462,7 +462,7 @@ body {
             }
             &:nth-of-type(7) {
                 .pages_page__inner {
-                    background: url('https://images.unsplash.com/photo-1502139214982-d0ad755818d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80');
+                    background: url('https://images.unsplash.com/photo-1521313197574-27f7ef4a3be4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80');
 
                     background-position: 0 0;
                     background-size: 1400px !important;
@@ -494,7 +494,7 @@ body {
 
                             &:nth-of-type(1) {
                                 top: 100px;
-                                width: 200px;
+                                width: 300px;
                             }
 
                             &:nth-of-type(2) {
@@ -504,7 +504,7 @@ body {
 
                             &:nth-of-type(3) {
                                 top: 410px;
-                                width: 260px;
+                                width: 300px;
                             }
                         }
                     }
@@ -551,7 +551,7 @@ body {
                     z-index: 1;
                     width: 31px;
                     height: 31px;
-                    border: 1px solid var(--yellow);
+                    border: 1px solid white;
                     border-radius: 100px;
                     top: 50%;
                     transform: translateY(-50%);
@@ -624,7 +624,7 @@ body {
                         display: block;
                         width: 32px;
                         height: 1px;
-                        background: var(--yellow);
+                        background: white;
                         top: 50%;
                         transform: translateY(-50%);
                         left: -32px;
@@ -716,6 +716,7 @@ body {
                             margin: 0;
                             opacity: 1;
                             font-size: italic;
+                            color: white;
 
                             &:nth-of-type(2) {
                                 font-size: 20px;
