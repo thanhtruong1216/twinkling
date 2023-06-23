@@ -37,9 +37,11 @@
   display: flex
   justify-content: center
   align-items: center
-  max-width: 500pt
+  // max-width: 500pt
+  height: 100vh
   margin: 0 auto 0 auto
   padding: 20px
+
   h1, h4
     text-align: center
   h1
@@ -60,6 +62,12 @@
   .right-box
     max-width: 300pt
     min-width: 235pt
+    min-height: 500px
+    border: 10px solid
+    padding: 0 20pt
+    margin-bottom: 20pt
+    border-image-source: linear-gradient(45deg, #13547a, #80d0c7)
+    border-image-slice: 1
     .form-control
       height: 40px
     input:not(:last-child)
@@ -69,12 +77,12 @@
       &:focus
         border: 1px solid gray
     > div:first-child
-      border: 10px solid
-      padding: 0 20pt
-      margin-bottom: 20pt
-      border-image-source: linear-gradient(45deg, #13547a, #80d0c7)
-      border-image-slice: 1
-      margin-top: 90px
+      // border: 10px solid
+      // padding: 0 20pt
+      // margin-bottom: 20pt
+      // border-image-source: linear-gradient(45deg, #13547a, #80d0c7)
+      // border-image-slice: 1
+      // margin-top: 90px
     > div:last-child
       border: 1px solid #e6e6e6
       padding: 15pt 0
@@ -408,10 +416,17 @@
   .user-form-container
     .left-box
       display: flex
+      width: 900px
+      height: 450px
+    
+      margin-right: 20px
     .right-box
       position: relative
-      right: 80pt
+      right: 10px
+      background-color: white
+      top: 40px
       > div:first-child
         margin-top: initial !important
     .log-in-form
-      margin-top: initial
+      margin-top: initial 
+      z-index: 2

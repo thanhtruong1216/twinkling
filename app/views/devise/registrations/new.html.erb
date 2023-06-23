@@ -1,38 +1,6 @@
 <section class="user-form-container">
   <div class="left-box">
-    <div class="under-box phone-box">
-      <%= image_tag "iphone-frame.png" %>
-      <%= image_tag "slide-under-image" %>
-    </div>
-    <div class="above-box phone-box">
-      <%= image_tag "apple-iphone7-silver-portrait.png" %>
-      <div id="sign-up-slideshow">
-        <div>
-          <%= image_tag "slide-image_1.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_2.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_3.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_4.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_12.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_11.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_13.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_14.jpeg" %>
-        </div>
-      </div>
-    </div>
+    <%= image_tag('bg2.jpeg') %>
   </div>
 
   <div class="right-box">
@@ -86,17 +54,5 @@
       <%= render "devise/shared/links" %>
     </div>
   </div>
+
 </section>
-
-<script>
-  $("#sign-up-slideshow > div:gt(0)").hide();
-
-  setInterval(function() {
-    $('#sign-up-slideshow > div:first')
-      .fadeOut(1500)
-      .next()
-      .fadeIn(1500)
-      .end()
-      .appendTo('#sign-up-slideshow');
-  },  4000);
-</script>

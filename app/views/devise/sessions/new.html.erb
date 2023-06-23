@@ -1,38 +1,7 @@
 <section class="user-form-container">
   <div class="left-box">
-    <div class="under-box phone-box">
-      <%= image_tag "iphone-frame.png" %>
-      <%= image_tag "slide-image_9.jpeg" %>
-    </div>
-    <div class="above-box phone-box">
-      <%= image_tag "apple-iphone7-silver-portrait.png" %>
-      <div id="log-in-slideshow">
-        <div>
-          <%= image_tag "slide-log-in_1.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-log-in_2.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-log-in_3.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-log-in_4.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-log-in_5.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_10.jpeg" %>
-        </div>
-        <div>
-          <%= image_tag "slide-under-image" %>
-        </div>
-        <div>
-          <%= image_tag "slide-image_15.jpeg" %>
-        </div>
-      </div>
-    </div>
+    <%= image_tag('bg.jpeg') %>
+    
   </div>
 
   <div class="right-box log-in-form">
@@ -63,15 +32,3 @@
   </div>
 </section>
 
-<script>
-  $("#log-in-slideshow > div:gt(0)").hide();
-
-  setInterval(function() {
-    $('#log-in-slideshow > div:first')
-      .fadeOut(1500)
-      .next()
-      .fadeIn(1500)
-      .end()
-      .appendTo('#log-in-slideshow');
-  },  4000);
-</script>
