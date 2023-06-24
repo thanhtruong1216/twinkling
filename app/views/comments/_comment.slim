@@ -3,9 +3,10 @@
     .avatar-simple-wrapper
       = image_tag 'user-alt-solid.svg', class: 'simple-avatar'
     .comment__user-name
-      h5.comment__actions
-        span.sub-header__user-name
-          = comment.user.user_name
+      div.comment__user-name-actions
+        h5.comment__actions
+          span.sub-header__user-name
+            = comment.user.user_name
         - if comment.user.id == current_user.id
           = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do
             = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'mini-icon', id: 'trash-icon'

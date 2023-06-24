@@ -1,7 +1,7 @@
 .comment
   p
     font-size: 10pt
-    padding-left: 7pt
+    padding-left: 5pt
 
   &__comment
     display: flex
@@ -17,6 +17,9 @@
 
   &__content
       display: flex
+
+  &__user-name-actions
+    display: flex
 
 @media screen and (max-width: 767px)
   .comment
@@ -36,7 +39,11 @@
       display: flex
       align-items: center
       justify-content: space-between
-      width: 150pt
+      width: 200pt
+
+    .actions-icon
+      margin-bottom: 5px
+      margin-bottom: 5px
 
     &__content
       display: flex
