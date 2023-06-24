@@ -9,10 +9,10 @@ div
   - if post.user.id == current_user.id
     div
       = link_to edit_post_path(post) do
-        = image_tag 'edit-regular.svg', loading: 'lazy', class: 'small-icon'
+        = image_tag 'edit-regular.svg', loading: 'lazy', class: 'small-icon actions-icon'
     div
       = link_to post_path(post), method: :delete, data: { confirm: 'Are you sure?' } do
-        = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'mini-icon '
+        = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'mini-icon actions-icon'
   / div class="fb-share-button" data-href=post_url(post) data-layout="button_count"
 
 - if post.likes_count == 0
