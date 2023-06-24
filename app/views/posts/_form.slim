@@ -1,9 +1,17 @@
 = simple_form_for @post do |f|
   = render 'shared/error_messages'
   .upload-photo-wrapper
-    = f.input :photo, class: 'form-control'
+    label= t('post.new.photo')
+    = f.input :photo, class: 'form-control', label: false
+
   label= t('post.new.content')
   = f.text_area :content, class: 'form-control'
+
+  label= t('post.new.origin')
+  = f.input :origin, class: 'form-control', label: false, placeholder: 'Optional'
+
+  label= t('post.new.author')
+  = f.input :author, class: 'form-control', label: false, placeholder: 'Optional'
 
   .user-actions-btns-wrapper
     = link_to t("users.edit.cancel"), root_path, class: 'twink-btn-cancel twink-normal-btn'

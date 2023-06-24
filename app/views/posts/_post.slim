@@ -20,6 +20,14 @@
     div.posts__post-content
       = simple_format(post.content)
 
+    - if post.origin.present?
+      div.posts__post-content
+        span.normal-text= post.origin
+
+    - if post.author.present?
+      div.posts__post-content
+        span.normal-text= post.author
+
     = render 'actions', post: post
     .posts__comments-count
       = render 'comments/comments_count', post: post

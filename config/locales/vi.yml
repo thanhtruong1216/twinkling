@@ -47,6 +47,9 @@ vi:
     new:
       create_post: "Tạo bài viết"
       content: Nội dung bài viết
+      author: Tác giả
+      photo: Hình ảnh
+      origin: Sách/Phim/Bản nhạc
     likes:
       people_like_first: "Hãy là người like đầu tiên"
       people_liked: "người đã thích"

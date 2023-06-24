@@ -47,6 +47,9 @@ en:
     new:
       create_post: "Create post"
       content: Content
+      author: Author
+      photo: Photo
+      origin: Book/Film/Song
     likes:
       people_like_first: "Be like first"
       people_liked: "people liked"
