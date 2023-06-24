@@ -41,6 +41,7 @@ vi:
     follow: "Theo dõi"
     unfollow: "Hủy theo dõi"
     follower: "người đã theo dõi"
+    followers: "người đã theo dõi"
     following: "người đang theo dõi"
     posts: "bài viết"
   post:

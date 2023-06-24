@@ -41,6 +41,7 @@ en:
     follow: "Follow"
     unfollow: "Unfollow"
     follower: "follower"
+    followers: "followers"
     following: "following"
     posts: "posts"
   post:

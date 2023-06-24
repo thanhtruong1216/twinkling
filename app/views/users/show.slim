@@ -32,7 +32,8 @@
           = @user.followers.count
         p
           = link_to followers_user_path(@user) do
-            = t('relationship.follower')
+            - @user.followers.count > 1 ? t('relationship.followers') : t('relationship.follower')
+
       div
         p
           = @user.following.count
