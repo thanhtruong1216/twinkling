@@ -7,10 +7,16 @@ body
   // font-family: sans-serif
   font-family: 'Aref Ruqaa', serif !important
 
-p
+p, a, li
   font-size: 14pt
 
-button
+input::placeholder
+  z-index: 999
+
+input.form-control
+  background: transparent
+
+button, input:focus
   white-space: nowrap
   &:focus
     outline: none
@@ -20,7 +26,7 @@ button
 
 .purple-text
   color: $purple
-  
+
 .twink-normal-btn
   height: 40pt
   border-radius: 4px

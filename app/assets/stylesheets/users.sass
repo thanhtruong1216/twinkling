@@ -1,6 +1,9 @@
 @import "variables"
 @import "general"
 
+.user-form-submit-btn
+  width: 100%
+
 .user-actions-btns-wrapper
   display: flex
   justify-content: flex-end
@@ -33,6 +36,17 @@
     width: 100%
     justify-content: space-around
 
+.user-form-container.new,
+.user-form-container.login
+  max-width: 900pt
+  input 
+    font-size: 14pt
+    &::placeholder
+      font-size: 14pt
+
+.user-form-container.login h1
+  padding-top: 0
+
 .user-form-container
   font-family: 'Aref Ruqaa', serif !important
   display: flex
@@ -40,7 +54,7 @@
   height: 100vh
   margin: 0 auto 0 auto
   padding: 0 20px
-  max-width: 900pt
+  max-width: 600pt
   padding-top: 70pt
 
   h1, h4
@@ -146,12 +160,13 @@
   white-space: nowrap
   text-align: center
   font-size: 12pt
+  display: flex
   a 
     margin-left: 5px
 
 .forgot-password-text
   text-align: center
-  padding: 20pt 0
+  padding: 10pt 0
   font-size: 12pt
 
 .user-show-header
@@ -352,7 +367,8 @@
       justify-content: space-between
 
     &__edit-btn
-      padding: 5pt 10pt
+      padding-left: 20pt
+      padding-top: 15pt
 
     &__avatar
       width: 120pt

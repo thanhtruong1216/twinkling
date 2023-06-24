@@ -1,4 +1,4 @@
-<section class="user-form-container">
+<section class="user-form-container new">
   <div class="left-box">
     <%= image_tag('bg2.jpeg') %>
   </div>
@@ -21,9 +21,9 @@
           <%# <%= f.input :avatar, required: false, class: 'form-control' %>
           <%= f.input :email,
                       required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" },
-                      placeholder: "Email",
+                      autofocus: false,
+                      placeholder: "Your Email",
+                      tabindex: "-1",
                       label: false %>
           <%# <%= f.input :full_name,
                       required: true,
@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+          <%= f.button :submit, "Sign up", class: "twink-normal-btn twink-btn-submit user-form-submit-btn" %>
         </div>
       <% end %>
     </div>
