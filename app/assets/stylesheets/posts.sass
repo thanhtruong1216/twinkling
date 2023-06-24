@@ -22,6 +22,8 @@
   &__wrapper
     height: 1000px
     overflow: scroll
+    padding-bottom: 50pt
+    padding-top: 40px
 
   a
     @include link
@@ -174,7 +176,7 @@
 
 @media screen and (min-width: 767px)
   .posts
-    top: 50pt
+    // top: 50pt
     &__post
       display: flex
       flex-direction: column
@@ -328,8 +330,10 @@
   .posts
     width: 600pt
     margin: 0 auto
-    padding-bottom: 50pt
 
   .post
     max-width: 600pt
     margin: 0 auto
+
+    &__wrapper
+      padding-bottom: 100px

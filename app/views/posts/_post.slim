@@ -17,8 +17,8 @@
     - else
       = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
 
-    p.posts__post-content
-      = post.content
+    div.posts__post-content
+      = simple_format(post.content)
 
     = render 'actions', post: post
     .posts__comments-count
