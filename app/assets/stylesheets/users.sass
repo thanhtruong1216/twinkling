@@ -37,10 +37,9 @@
   display: flex
   justify-content: center
   align-items: center
-  // max-width: 500pt
   height: 100vh
   margin: 0 auto 0 auto
-  padding: 20px
+  padding: 0 20px
 
   h1, h4
     text-align: center
@@ -68,6 +67,12 @@
     margin-bottom: 20pt
     border-image-source: linear-gradient(45deg, #13547a, #80d0c7)
     border-image-slice: 1
+
+    .content
+      width: 300px
+      position: relative
+      left: 120px
+  
     .form-control
       height: 40px
     input:not(:last-child)
@@ -123,7 +128,6 @@
   
   .account-regis-header
     margin-top: 50pt
-  
 
   .log-in-form
     padding: 20pt
@@ -418,7 +422,6 @@
       display: flex
       width: 900px
       height: 450px
-    
       margin-right: 20px
     .right-box
       position: relative
