@@ -49,7 +49,7 @@ article
       position: relative
       bottom: 20pt
       left: 25%
-
+  
   input
     &::placeholder
       // padding-left: 50pt
@@ -63,6 +63,30 @@ article
   .search-submit-btn
     margin-left: 5px
     margin-bottom: 2px
+    background-color: #8A2BE2
+
+  .heart 
+    position: relative
+    top: 15px
+    &:before 
+      display: block
+      width: 60px
+      height: 40px
+      content: ''
+      background: #8A2BE2
+      border-top-left-radius: 20px
+      border-bottom-left-radius: 20px
+      transform: rotate(45deg)
+    &:after
+      display: block
+      width: 60px
+      height: 40px
+      content: ''
+      background: #8A2BE2
+      border-top-right-radius: 20px
+      border-bottom-right-radius: 20px
+      transform: rotate(-45deg) translateY(-18px) translateX(40px)
+      position: relative
 
 .mobile-header
   display: flex
@@ -78,6 +102,29 @@ article
     font-size: 20pt
   h1
     margin: 0
+
+.heart 
+  position: relative
+  top: 15px
+  &:before 
+    display: block
+    width: 38px
+    height: 26px
+    content: ''
+    background: #8A2BE2
+    border-top-left-radius: 20px
+    border-bottom-left-radius: 20px
+    transform: rotate(45deg)
+  &:after
+    display: block
+    width: 45px
+    height: 27px
+    content: ''
+    background: #8A2BE2
+    border-top-right-radius: 20px
+    border-bottom-right-radius: 20px
+    transform: rotate(-46deg) translateY(-8px) translateX(26px)
+    position: relative
 
 @media screen and (min-width: 769px)
   .mobile-header
@@ -106,10 +153,10 @@ article
 
   .content h2:nth-child(1)
     color: transparent
-    -webkit-text-stroke: 2px teal
+    -webkit-text-stroke: 2px #8A2BE2
 
   .content h2:nth-child(2)
-    color: teal
+    color: #8A2BE2
     animation: animate 4s ease-in-out infinite
 
   @keyframes animate
