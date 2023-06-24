@@ -26,7 +26,8 @@
         p
           = @user.posts.count
         p
-          = t('relationship.posts')
+          - @user.posts.count > 1 ? t('relationship.posts') : t('relationship.post')
+
       div
         p
           = @user.followers.count
@@ -39,7 +40,7 @@
           = @user.following.count
         p
           = link_to following_user_path(@user) do
-            = t('relationship.following')
+            - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
 
     .user__photos
       - @user.posts.each do |post|

@@ -43,7 +43,9 @@ en:
     follower: "follower"
     followers: "followers"
     following: "following"
+    followings: "followings"
     posts: "posts"
+    post: "post"
   post:
     new:
       create_post: "Create post"

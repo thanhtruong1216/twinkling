@@ -43,7 +43,9 @@ vi:
     follower: "người đã theo dõi"
     followers: "người đã theo dõi"
     following: "người đang theo dõi"
+    followings: "người đang theo dõi"
     posts: "bài viết"
+    post: "bài viết"
   post:
     new:
       create_post: "Tạo bài viết"
