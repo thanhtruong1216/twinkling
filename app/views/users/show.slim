@@ -9,19 +9,19 @@
                 = image_tag @user.avatar, loading: 'lazy', class: 'user__avatar'
               - else
                 = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'user__avatar'
-          p.user__fullname
-            = @user&.full_name
+          / p.user__fullname
+          /   = @user&.full_name
         div
           .user__name-edit-group
             h2
-              = @user&.user_name
+              = @user&.full_name
             - if @user.id == current_user.id
               .user__edit-wrapper
                 .user__edit-btn
                   = link_to edit_user_registration_path
                     span
                       = t('users.show.edit_profile')
-                    = image_tag 'circle-notch-solid.svg'
+                    / = image_tag 'circle-notch-solid.svg'
     .user__follows
       div
         p

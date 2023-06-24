@@ -22,13 +22,19 @@ button
   text-align: center
 
 .twink-btn-cancel
-  background: $ruby-red
+  background: transparent
   width: 100pt
   line-height: 40pt
+  border: 1px solid $purple
+  color: #121212
+  &:focus 
+    color: #121212
 
 .twink-btn-submit
-  background: $boeing-blue
+  background: $purple
   width: 140pt
+  &:focus, &:hover
+    color: whitesmoke
 
 a
   text-decoration: none
@@ -71,8 +77,9 @@ input
 
 .new-post
   textarea
-    height: 100pt
-  &:focus
+    height: 200pt
+  input:focus, textarea:focus
+    border: 1px solid $purple
     outline: none
     box-shadow: none
 

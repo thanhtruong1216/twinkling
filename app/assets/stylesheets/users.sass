@@ -40,6 +40,7 @@
   height: 100vh
   margin: 0 auto 0 auto
   padding: 0 20px
+  max-width: 600px
 
   h1, h4
     text-align: center
@@ -180,7 +181,7 @@
     align-items: center
 
   &__photos
-    padding-bottom: 50pt
+    padding-bottom: 100pt
     display: grid
     grid-template-columns: 200pt
     grid-row-gap: 20pt
@@ -215,6 +216,10 @@
 
   &__edit-btn
     padding-left: 20pt
+    a
+      background-color: #8A2BE2
+      color: white
+      border-radius: 4px
 
   .footer-container
     display: block
@@ -400,6 +405,7 @@
 
 @media screen and(min-width: 1023px)
   .users
+    padding-top: 30pt
     width: 600pt
 
   .user
