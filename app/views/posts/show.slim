@@ -6,6 +6,18 @@ section.post
       = image_tag @post.photo, class: 'post__cover-image'
     - else
       = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'post__cover-image'
+
+    div.posts__post-content
+      = simple_format(@post.content)
+
+    div.posts__post-content
+      - if @post.origin.present? && @post.author.present?
+          span.normal-text.purple-text= "#{@post.origin} - #{@post.author}"
+      - elsif @post.origin.present?
+          span.normal-text.purple-text= @post.origin
+      - elsif @post.author.present?
+          span.normal-text.purple-text= @post.author
+
   .post__add-comment-mobile
     .post__add-comment-wrapper
       .avatar-simple-wrapper

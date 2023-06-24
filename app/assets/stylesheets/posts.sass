@@ -81,9 +81,12 @@
 
 
 .post
-  position: relative
-  top: 48pt
-
+  position: absolute
+  top: 70pt
+  bottom: 0
+  left: 0
+  right: 0
+  
   &__header-desktop
     display: none
 
@@ -134,8 +137,13 @@
   &__content
     display: none
     flex: 1.5
+    height: 100%
+    overflow: scroll
+    padding-bottom: 15pt
+    border-right: 1px solid rgba(0, 0, 0, 0.0975)
     img
       width: 100%
+      height: 50%
 
   &__comments-wrapper
     flex: 1
@@ -230,8 +238,7 @@
   .post
     display: flex
     border: $border-line
-    position: relative
-    top: 80pt
+    top: 100pt
     height: 400pt
 
     .like-wrapper
