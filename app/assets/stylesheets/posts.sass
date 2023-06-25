@@ -181,6 +181,16 @@
 
 .new-post
   padding: 50pt 20pt 0 20pt
+  height: 86vh
+  overflow: scroll
+  .user-actions-btns-wrapper
+    position: fixed
+    width: 100vw
+    left: 0
+    right: 0
+    bottom: 30pt
+    display: flex
+    justify-content: center
 
 @media screen and (min-width: 767px)
   .posts
@@ -345,3 +355,9 @@
   .post
     max-width: 800pt
     margin: 0 auto
+
+  .new-post
+    height: 100vh
+    overflow: scroll
+    .user-actions-btns-wrapper
+      position: static

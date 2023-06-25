@@ -1,10 +1,11 @@
 - if user_signed_in?
   header.mobile-header
-    = link_to t('header.new_post'), new_post_path
+    = link_to current_user do
+      = image_tag "user-alt-solid.svg", loading: 'lazy', class: "small-icon"
 
     h1
       = link_to root_path, class: "mobile-header__text" do
         / = image_tag 'studiovinari-brands.svg', loading: 'lazy', class: 'medium-icon'
-      div.heart
+        div.heart
 
     = link_to t('header.logout'), destroy_user_session_path, method: :delete
