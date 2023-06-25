@@ -7,6 +7,30 @@ article
   p
     padding-top: 20pt
 
+
+.app-name
+  height: 42pt
+  width: 30%
+
+  .content
+    width: 270pt 
+    position: relative
+
+  .content h2
+    color: #fff
+    font-size: 30pt
+    position: absolute
+    transform: translate(-50%, -50%)
+    left: 15%
+
+  .content h2:nth-child(1)
+    color: transparent
+    -webkit-text-stroke: 2px #8A2BE2
+
+  .content h2:nth-child(2)
+    color: #8A2BE2
+    animation: animate 4s ease-in-out infinite
+
 .desktop-header
   display: none
   position: fixed
@@ -153,29 +177,6 @@ article
     .form-inline
       .form-group
         margin-bottom: -10pt
-
-  .app-name
-    height: 42pt
-    width: 30%
-
-  .content
-    width: 270pt 
-    position: relative
-
-  .content h2
-    color: #fff
-    font-size: 30pt
-    position: absolute
-    transform: translate(-50%, -50%)
-    left: 15%
-
-  .content h2:nth-child(1)
-    color: transparent
-    -webkit-text-stroke: 2px #8A2BE2
-
-  .content h2:nth-child(2)
-    color: #8A2BE2
-    animation: animate 4s ease-in-out infinite
 
   @keyframes animate
     0%,
