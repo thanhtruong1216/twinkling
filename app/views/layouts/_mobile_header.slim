@@ -1,10 +1,10 @@
-header.mobile-header
+- if user_signed_in?
+  header.mobile-header
+    = link_to t('header.new_post'), new_post_path
 
-  = link_to t('header.new_post'), new_post_path
+    h1
+      = link_to root_path, class: "mobile-header__text" do
+        / = image_tag 'studiovinari-brands.svg', loading: 'lazy', class: 'medium-icon'
+      div.heart
 
-  h1
-    = link_to root_path, class: "mobile-header__text" do
-      / = image_tag 'studiovinari-brands.svg', loading: 'lazy', class: 'medium-icon'
-    div.heart
-
-  = link_to t('header.logout'), destroy_user_session_path, method: :delete
+    = link_to t('header.logout'), destroy_user_session_path, method: :delete
