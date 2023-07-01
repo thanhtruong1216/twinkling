@@ -1,0 +1,10 @@
+.article.new-post.comment__edit
+  h1
+    = t('comment.edit_comment')
+
+  = form_for [@post, @comment] do |f|
+    = f.text_area :content, placeholder: t('post.comments.add_comment'), spellcheck: false
+
+    .user-actions-btns-wrapper
+      = link_to t("users.edit.cancel"), root_path, class: 'twink-btn-cancel twink-normal-btn'
+      = f.button t("actions.save"), class: 'twink-btn-submit twink-normal-btn'

@@ -12,10 +12,11 @@
     = render 'users/follow_form', post: post
 
   article.posts__post
-    - if post.photo.attached?
-      = image_tag post.photo.service_url, loading: 'lazy', class: 'posts__photo', crossorigin: 'anonymous'
-    - else
-      = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
+    = link_to post_path(post)
+      - if post.photo.attached?
+        = image_tag post.photo.service_url, loading: 'lazy', class: 'posts__photo', crossorigin: 'anonymous'
+      - else
+        = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
 
     div.posts__post-content
       = simple_format(post.content)

@@ -64,3 +64,9 @@ en:
       comment: "comment"
       comments: "comments"
       no_comment: "No comment for this post"
+  actions:
+    save: "Save"
+    cancel: "Cancel"
+  comment:
+    edit_comment: "Edit your comment"
+    content: "Content"

@@ -64,3 +64,9 @@ vi:
       comment: "bình luận"
       comments: "bình luận"
       no_comment: "Không có bình luận nào"
+  actions:
+    save: "Lưu"
+    cancel: "Hủy"
+  comment:
+    edit_comment: "Sửa bình luận của bạn"
+    content: "Nội dung bình luận"

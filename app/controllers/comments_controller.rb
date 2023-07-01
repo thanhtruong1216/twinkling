@@ -14,6 +14,10 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @comment = @post.comments.find(params[:id])
+  end
+
   def update
     @comment = @post.comments.find(params[:id])
     @comment.user_id = current_user.id
