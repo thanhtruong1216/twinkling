@@ -3,8 +3,8 @@
     .comment__content
       .avatar-simple-wrapper
         = link_to user_path(post.user) do
-          - if post.user.avatar.attached?
-            = image_tag post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+          - if comment.user.avatar.attached?
+            = image_tag comment.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
           - else
             = image_tag 'user-alt-solid.svg', class: 'simple-avatar'
       .comment__user-name

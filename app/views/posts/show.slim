@@ -21,11 +21,18 @@ section.post
   .post__add-comment-mobile
     .post__add-comment-wrapper
       .avatar-simple-wrapper
-        = image_tag "user-alt-solid.svg", loading: 'lazy', class: "simple-avatar"
+        - if current_user.avatar.attached?
+          = image_tag current_user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+        - else
+          = image_tag "user-alt-solid.svg", loading: 'lazy', class: "simple-avatar"
+          
       = render 'add_comment_form', post: @post
     .sub-header
       .avatar-linear-wrapper
-        = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
+        - if @post.user.avatar.attached?
+           = image_tag @post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+        - else
+          = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
       span.sub-header__user-name
         = @post.user.user_name || @post.user.full_name
     - if @post.comments
@@ -36,7 +43,10 @@ section.post
   .post__header-desktop
     .sub-header
       .avatar-linear-wrapper
-        = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
+        - if @post.user.avatar.attached?
+          = image_tag @post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+        - else
+          = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
       span.sub-header__user-name
         = @post.user.user_name
     - if @post.comments
