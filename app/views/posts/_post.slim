@@ -9,6 +9,7 @@
             = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
         span.sub-header__user-name
           = post.user.full_name || post.user.user_name
+          
     = render 'users/follow_form', post: post
 
   article.posts__post

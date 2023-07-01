@@ -16,4 +16,4 @@
             span.sub-header__user-name
               = comment.user.full_name || comment.user.user_name
         h5.comment__comment
-          = comment.content
+          = simple_format(comment.content)
