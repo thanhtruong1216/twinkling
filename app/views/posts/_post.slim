@@ -29,6 +29,20 @@
       - elsif post.author.present?
           span.normal-text.purple-text= post.author
 
+      - if post.comments
+        .short-comment.container
+          - post.comments.last(2).each do |comment|
+            .comment__content
+              .avatar-simple-wrapper
+                = image_tag 'user-alt-solid.svg', class: 'simple-avatar'
+              .comment__user-name
+                div.comment__user-name-actions
+                  h5.comment__actions
+                    span.sub-header__user-name
+                      = comment.user.user_name
+                p.comment__comment
+                  = comment.content
+
     = render 'actions', post: post
     .posts__comments-count
       = render 'comments/comments_count', post: post
