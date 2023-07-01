@@ -1,5 +1,6 @@
 - post.comments&.order(created_at: :desc).take(2).each do |comment|
   .short-comment
+    h4= t('comment.newest_comments')
     .comment__content
       .avatar-simple-wrapper
         = image_tag 'user-alt-solid.svg', class: 'simple-avatar'

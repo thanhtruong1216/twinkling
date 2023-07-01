@@ -29,12 +29,14 @@
       - elsif post.author.present?
           span.normal-text.purple-text= post.author
 
-      / - if post.comments_count.positive?
+      = render 'actions', post: post
+     
       .short-comments
-        = render 'comments/short_comments', post: post
+          = render 'comments/short_comments', post: post
+        
+    - if post.comments_count > 2
+      .posts__comments-count
+        = render 'comments/comments_count', post: post
 
-    = render 'actions', post: post
-    / .posts__comments-count
-    /   = render 'comments/comments_count', post: post
     div.posts__add-comment-box
       = render 'add_comment_form', post: post
