@@ -1,4 +1,4 @@
-- post.comments.order(created_at: :desc).take(2).each do |comment|
+- post.comments&.order(created_at: :desc).take(2).each do |comment|
   .short-comment
     .comment__content
       .avatar-simple-wrapper
