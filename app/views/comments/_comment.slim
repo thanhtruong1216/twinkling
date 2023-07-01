@@ -6,7 +6,7 @@
       div.comment__user-name-actions
         h5.comment__actions
           span.sub-header__user-name
-            = comment.user.user_name
+            = comment.user.full_name || comment.user.user_name
         - if comment.user.id == current_user.id
           = link_to edit_post_comment_path(@post, comment), class: 'comment__edit-icon' do
             = image_tag 'edit-regular.svg', loading: 'lazy', class: 'tiny-icon'

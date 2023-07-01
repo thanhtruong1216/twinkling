@@ -32,7 +32,8 @@
       = render 'actions', post: post
      
       .short-comments
-          = render 'comments/short_comments', post: post
+        h4= t('comment.newest_comments')
+        = render 'comments/short_comments', post: post
         
     - if post.comments_count > 2
       .posts__comments-count
