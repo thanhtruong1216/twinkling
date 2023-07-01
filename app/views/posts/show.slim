@@ -27,9 +27,10 @@ section.post
       .avatar-linear-wrapper
         = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
       span.sub-header__user-name
-        = @post.user.user_name
+        = @post.user.user_name || @post.user.full_name
     - if @post.comments
       .post__comments
+        h4 Comments
         = render @post.comments.order(created_at: :desc), post: @post
 
   .post__header-desktop
@@ -40,6 +41,7 @@ section.post
         = @post.user.user_name
     - if @post.comments
       .post__comments-desktop-wrapper
+        h4= t('comment.comments')
         .post__comments
           = render @post.comments.order(created_at: :desc)
 
