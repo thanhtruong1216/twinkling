@@ -30,10 +30,11 @@
           span.normal-text.purple-text= post.author
 
       = render 'actions', post: post
-     
-      .short-comments
-        h4= t('comment.newest_comments')
-        = render 'comments/short_comments', post: post
+
+      -if post.comments_count.positive?
+        .short-comments
+          h4= t('comment.newest_comments')
+          = render 'comments/short_comments', post: post
         
     - if post.comments_count > 2
       .posts__comments-count
