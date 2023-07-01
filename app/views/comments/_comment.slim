@@ -16,5 +16,5 @@
             = image_tag 'edit-regular.svg', loading: 'lazy', class: 'tiny-icon'
           = link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do
             = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'tiny-icon', id: 'trash-icon'
-      p.comment__comment
+      .comment__comment
         = simple_format(comment.content)
