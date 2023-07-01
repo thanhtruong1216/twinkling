@@ -1,0 +1,12 @@
+- post.comments.order(created_at: :desc).take(2).each do |comment|
+  .short-comment
+    .comment__content
+      .avatar-simple-wrapper
+        = image_tag 'user-alt-solid.svg', class: 'simple-avatar'
+      .comment__user-name
+        div.comment__user-name-actions
+          h5.comment__actions
+            span.sub-header__user-name
+              = comment.user.user_name
+        p.comment__comment
+          = comment.content
