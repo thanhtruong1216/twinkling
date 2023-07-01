@@ -31,7 +31,7 @@
 
       = render 'actions', post: post
 
-      .short-comments
+      .short-comments data-post-id="#{post.id}"
         = render 'comments/short_comments', post: post
         
     - if post.comments_count > 2
