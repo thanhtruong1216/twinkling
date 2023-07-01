@@ -1,3 +1,4 @@
+h4= t('comment.newest_comments')
 - post.comments&.order(created_at: :desc).take(2).each do |comment|
   .short-comment
     .comment__content
