@@ -64,6 +64,7 @@ vi:
       comment: "bình luận"
       comments: "bình luận"
       no_comment: "Không có bình luận nào"
+      view_all_comments: "Xem tất cả bình luận"
   actions:
     save: "Lưu"
     cancel: "Hủy"
