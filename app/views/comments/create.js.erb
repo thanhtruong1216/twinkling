@@ -1,4 +1,4 @@
 jQuery(".short-comments[data-post-id='<%= @post.id %>']").html("<%= j render 'comments/short_comments', post: @post %>");
-jQuery(".post__comments").append("<%= j render "comments/comment", post: @post, comment: @comment %>");
+jQuery(".post-comments-wrapper").html("<%= j render 'posts/post_brief', post: @post %>");
 jQuery(".posts__comments-count").html("<%= j render "comments/comments_count", post: @post, comment: @comment %>");
 jQuery("textarea").val('')

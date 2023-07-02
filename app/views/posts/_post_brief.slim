@@ -1,0 +1,6 @@
+- if post.comments_count.positive?
+  .post__comments
+    h4= t('comment.comments')
+    = render post.comments.order(created_at: :desc)
+- else
+  = t('post.comments.no_comment')
