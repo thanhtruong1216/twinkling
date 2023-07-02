@@ -36,10 +36,12 @@ section.post
       span.sub-header__user-name
         = @post.user.user_name || @post.user.full_name
 
-    - if @post.comments_count.positive?
-      .post__comments
+    .post__comments
+      - if @post.comments_count.positive?
         h4= t('comment.comments')
         = render @post.comments.order(created_at: :desc), post: @post
+      - else
+        = render 'comments/comments_count', post: @post
 
   .post__header-desktop
     .sub-header
@@ -51,11 +53,10 @@ section.post
       span.sub-header__user-name
         = @post.user.user_name
 
-    - if @post.comments_count.positive?
-      .post__comments-desktop-wrapper
+    .post__comments-desktop-wrapper
+      .post__comments
         h4= t('comment.comments')
-        .post__comments
-          = render @post.comments.order(created_at: :desc)
+        = render @post.comments.order(created_at: :desc)
 
     .post__actions-desktop
       = render 'actions', post: @post
