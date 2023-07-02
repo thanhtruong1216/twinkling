@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.2'
 gem 'rails'
 gem 'devise'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
 gem 'mini_magick'
 gem 'faker'
