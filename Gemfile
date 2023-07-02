@@ -35,7 +35,6 @@ gem 'net-pop', require: false
 gem 'friendly_id', '~> 5.4.0'
 gem 'omniauth'
 gem 'devise_token_auth'
-gem 'nokogiri', '1.15.2'
 
 group :development, :test do
   gem 'pry-rails'
