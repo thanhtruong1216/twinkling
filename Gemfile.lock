@@ -407,6 +407,7 @@ DEPENDENCIES
   net-pop
   net-smtp
   net-ssh
+  nokogiri (= 1.15.2)
   omniauth
   pg (>= 0.18, < 2.0)
   pry-byebug
