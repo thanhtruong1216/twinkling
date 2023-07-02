@@ -22,34 +22,36 @@ section.post
     .post__add-comment-wrapper
       .avatar-simple-wrapper
         - if current_user.avatar.attached?
-          = image_tag current_user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+          = image_tag (image_url(rails_storage_proxy_path(current_user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
         - else
           = image_tag "user-alt-solid.svg", loading: 'lazy', class: "simple-avatar"
-          
+
       = render 'add_comment_form', post: @post
     .sub-header
       .avatar-linear-wrapper
         - if @post.user.avatar.attached?
-           = image_tag @post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+           = image_tag (image_url(rails_storage_proxy_path(@post.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
         - else
           = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
       span.sub-header__user-name
         = @post.user.user_name || @post.user.full_name
-    - if @post.comments
+
+    - if @post.comments_count.positive?
       .post__comments
-        h4 Comments
+        h4= t('comment.comments')
         = render @post.comments.order(created_at: :desc), post: @post
 
   .post__header-desktop
     .sub-header
       .avatar-linear-wrapper
         - if @post.user.avatar.attached?
-          = image_tag @post.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+          = image_tag (image_url(rails_storage_proxy_path(@post.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
         - else
           = image_tag 'user-alt-solid.svg', loading: 'lazy', class: "linear-avatar"
       span.sub-header__user-name
         = @post.user.user_name
-    - if @post.comments
+
+    - if @post.comments_count.positive?
       .post__comments-desktop-wrapper
         h4= t('comment.comments')
         .post__comments

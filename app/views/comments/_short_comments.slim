@@ -7,7 +7,7 @@
       .avatar-simple-wrapper
         = link_to user_path(post.user) do
           - if comment.user.avatar.attached?
-            = image_tag comment.user.avatar.service_url, loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+            = image_tag (image_url(rails_storage_proxy_path(comment.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
           - else
             = image_tag 'user-alt-solid.svg', class: 'simple-avatar'
       .comment__user-name

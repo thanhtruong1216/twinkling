@@ -2,8 +2,10 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
-gem 'rails', '~> 6.0.0.rc1'
+require 'nokogiri'
+
+ruby '3.2.2'
+gem 'rails'
 gem 'devise'
 gem "aws-sdk-s3", require: false
 gem 'active_storage_validations'
@@ -33,6 +35,7 @@ gem 'net-pop', require: false
 gem 'friendly_id', '~> 5.4.0'
 gem 'omniauth'
 gem 'devise_token_auth'
+gem 'nokogiri', '1.15.2'
 
 group :development, :test do
   gem 'pry-rails'
@@ -44,12 +47,12 @@ end
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '>=3.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
 end
 
 group :test do
-  gem 'capybara', '>= 3.24.0'
+  gem 'capybara', '>= 3.38.0'
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'faker'
