@@ -36,10 +36,10 @@ gem 'devise_token_auth'
 gem 'nokogiri', '1.15.2'
 
 group :development, :test do
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'rspec-rails', '>= 4.0.0.beta2'
   gem 'factory_bot_rails'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'rspec-rails', '>= 4.0.0.beta2'
   gem 'rails-controller-testing'
 end
 
