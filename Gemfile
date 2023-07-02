@@ -3,14 +3,12 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
-gem 'rails'
-gem 'devise'
-gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
-gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
+gem 'devise'
 gem 'faker'
+gem 'mini_magick'
 gem 'slim'
-gem 'rails-i18n'
 gem 'kaminari'
 gem 'simple_form'
 gem 'bootstrap-sass'
@@ -21,7 +19,6 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'rack-cors'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'active_storage_validations'
 gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
@@ -34,13 +31,16 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'omniauth'
 gem 'devise_token_auth'
 gem 'nokogiri', '1.15.2'
+gem 'rack-cors'
+gem 'rails'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '>= 4.0.0.beta2'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '>= 4.0.0.beta2'
 end
 
 group :development do
