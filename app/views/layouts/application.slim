@@ -34,6 +34,10 @@ html
       = render 'layouts/footer'
     / #fb-root
 
+    script
+      |
+        window.process = { env: "#{Rails.env}" }
+
 / script
 /   |
 /     (function(d, s, id) {
