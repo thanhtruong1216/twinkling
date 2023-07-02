@@ -44,18 +44,17 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'spring', '>=3.0.0'
   gem 'spring-watcher-listen', '~> 2.1.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :test do
   gem 'capybara', '>= 3.38.0'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
-  gem 'faker'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
