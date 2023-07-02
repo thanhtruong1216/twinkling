@@ -1,7 +1,7 @@
 - if post.comments_count == 1
   = link_to post do
-    / span
-    /   = t('post.comments.view')
+    span
+      = t('post.comments.view')
     span.comments-count-text
       =<> post.comments_count
     span
@@ -10,7 +10,7 @@
 - elsif post.comments_count > 1
   = link_to post do
     span
-      / = t('post.comments.view_all')
+      = t('post.comments.view_all')
       / = t('post.comments.view_all_comments')
     span.comments-count-text
       =<> post.comments_count
