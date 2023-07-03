@@ -30,7 +30,7 @@
       - elsif post.author.present?
           span.normal-text.purple-text= post.author
 
-      = render 'actions', post: post
+      = render 'posts/actions', post: post
 
       .short-comments data-post-id="#{post.id}"
         = render 'comments/short_comments', post: post
@@ -40,4 +40,4 @@
         = render 'comments/comments_count', post: post
 
     div.posts__add-comment-box
-      = render 'add_comment_form', post: post
+      = render 'posts/add_comment_form', post: post
