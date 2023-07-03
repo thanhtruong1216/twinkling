@@ -15,5 +15,6 @@
           h5.comment__actions
             span.sub-header__user-name
               = comment.user.full_name || comment.user.user_name
+            span.comment__comment= distance_time_from(comment.created_at)
         h5.comment__comment
           = simple_format(comment.content)
