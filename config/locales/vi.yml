@@ -65,6 +65,10 @@ vi:
       comments: "bình luận"
       no_comment: "Không có bình luận nào"
       view_all_comments: "Xem tất cả bình luận"
+    date_time:
+      x_days:
+          one: 1 day ago
+          other: "%{count} ngày trước"
   actions:
     save: "Lưu"
     cancel: "Hủy"

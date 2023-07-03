@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def distance_time_from(from_time)
+    to_time             = Time.current
+    distance_in_minutes = ((to_time - from_time) / 60.0).floor
+    distance_in_hours   = distance_in_minutes / 60
+    distance_in_days    = distance_in_hours / 24
+    I18n.t('post.date_time.x_days', count: distance_in_days)
+  end
+
   def zodiac(birthday)
     birthdate_splited = birthday.split('/')
     birthdate_result = "#{birthdate_splited[0]}/#{birthdate_splited[1]}/#{birthdate_splited[1] == '01' ? '0001' : '0000'}".to_date

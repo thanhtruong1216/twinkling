@@ -65,6 +65,10 @@ en:
       comments: "comments"
       no_comment: "No comment for this post"
       view_all_comments: "View all comments"
+    date_time:
+      x_days:
+        one: 1 day ago
+        other: "%{count} days ago"
   actions:
     save: "Save"
     cancel: "Cancel"

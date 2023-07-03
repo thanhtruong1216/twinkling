@@ -19,6 +19,9 @@
       - else
         = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
 
+    div.distance-time-wrapper
+      span= distance_time_from(post.created_at)
+
     div.posts__post-content
       = simple_format(post.content)
 
@@ -30,7 +33,8 @@
       - elsif post.author.present?
           span.normal-text.purple-text= post.author
 
-      = render 'posts/actions', post: post
+      div
+        = render 'posts/actions', post: post
 
       .short-comments data-post-id="#{post.id}"
         = render 'comments/short_comments', post: post
