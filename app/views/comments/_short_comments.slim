@@ -18,3 +18,9 @@
             span.comment__comment= distance_time_from(comment.created_at)
         h5.comment__comment
           = simple_format(comment.content)
+    - if comment.user.id == current_user.id
+      .short-comment-actions
+        = link_to t('actions.edit'), edit_post_comment_path(post, comment), class: 'short-comment-action short-comment-action-edit'
+          / = image_tag 'edit-regular.svg', loading: 'lazy', class: 'tiny-icon'
+        = link_to t('actions.delete'), post_comment_path(post, comment), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: 'short-comment-action'
+          / = image_tag 'trash-alt-solid.svg', loading: 'lazy', class: 'tiny-icon', id: 'trash-icon'

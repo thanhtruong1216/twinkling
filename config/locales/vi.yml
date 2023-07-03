@@ -67,11 +67,19 @@ vi:
       view_all_comments: "Xem tất cả bình luận"
     date_time:
       x_days:
-          one: 1 day ago
-          other: "%{count} ngày trước"
+        one: 1 day ago
+        other: "%{count} ngày trước"
+      x_hours: 
+        one: "%{count} giờ trước"
+        other: "%{count} giờ trước"
+      x_minutes:
+        one: "%{count} phút trước"
+        other: "%{count} phút trước"
   actions:
     save: "Lưu"
     cancel: "Hủy"
+    edit: "Sửa"
+    delete: "Xóa"
   comment:
     edit_comment: "Sửa bình luận của bạn"
     content: "Nội dung bình luận"

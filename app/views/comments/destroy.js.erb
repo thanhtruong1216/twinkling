@@ -1,1 +1,2 @@
 jQuery(".post-comments-wrapper").html("<%= j render 'posts/post_brief', post: @post %>");
+jQuery(".short-comments[data-post-id='<%= @post.id %>']").html("<%= j render 'comments/short_comments', post: @post %>");

@@ -4,7 +4,15 @@ module ApplicationHelper
     distance_in_minutes = ((to_time - from_time) / 60.0).floor
     distance_in_hours   = distance_in_minutes / 60
     distance_in_days    = distance_in_hours / 24
-    I18n.t('post.date_time.x_days', count: distance_in_days)
+
+    if distance_in_days.positive?
+      I18n.t('post.date_time.x_days', count: distance_in_days)
+    elsif distance_in_hours.positive?
+      I18n.t('post.date_time.x_hours', count: distance_in_hours)
+    else
+      distance_in_minutes = 1 if distance_in_minutes.zero?
+      I18n.t('post.date_time.x_minutes', count: distance_in_minutes)
+    end
   end
 
   def zodiac(birthday)

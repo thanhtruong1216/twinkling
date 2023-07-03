@@ -69,9 +69,18 @@ en:
       x_days:
         one: 1 day ago
         other: "%{count} days ago"
+      x_hours: 
+        one: "%{count} hour ago"
+        other: "%{count} hours ago"
+      x_minutes:
+        one: "%{count} minute ago"
+        other: "%{count} minutes ago"
+        
   actions:
     save: "Save"
     cancel: "Cancel"
+    edit: "Edit"
+    delete: "Delete"
   comment:
     edit_comment: "Edit your comment"
     content: "Content"
