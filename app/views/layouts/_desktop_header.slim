@@ -5,8 +5,8 @@
         = link_to root_path, class: 'app-name' do
           div.heart
           div.content
-            h2 Leaves
-            h2 Leaves
+            h2 Thanh
+            h2 Thanh
 
       = render 'layouts/search'
 
@@ -17,8 +17,8 @@
         li = link_to t('header.profile'), current_user
 
       div
-        = link_to "EN", locale:"en"
-        = link_to "VI", locale:"vi"
+        = link_to 'EN', locale: 'en'
+        = link_to 'VI', locale: 'vi'
 script
 	|
 		$(document).ready(function() {
