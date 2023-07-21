@@ -201,10 +201,12 @@
 
 .new-post
   padding: 70pt 20pt 0 20pt
-  height: 100vh
+  height: 120vh
   overflow: scroll
   form 
-    height: 100vh
+    height: 900pt
+  &:has(.alert-danger)
+    padding: 20pt 20pt 0 20pt
 
   .user-actions-btns-wrapper
     // position: fixed
@@ -408,8 +410,11 @@
     margin: 0 auto
 
   .new-post
-    height: 100vh
+    // height:  !important
     overflow: scroll
     position: initial
+    padding: 100pt 20pt 0 20pt !important
+    // form
+    //   height: 800pt
     .user-actions-btns-wrapper
       justify-content: flex-end
