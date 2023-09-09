@@ -16,14 +16,18 @@
     = link_to post_path(post)
       - if post.photo.attached?
         = image_tag (image_url(rails_storage_proxy_path(post.photo))), loading: 'lazy', class: 'posts__photo', crossorigin: 'anonymous'
-      - else
-        = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
+      / - else
+      /   = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'posts__photo'
 
     div.distance-time-wrapper
       span= distance_time_from(post.created_at)
 
-    div.posts__post-content
-      = simple_format(post.content)
+    - if post.photo.attached?
+      div.posts__post-content
+        = simple_format(post.content)
+    - else
+      div.posts__post-content.no-pic-post
+        = simple_format(post.content)
 
     div.posts__post-content
       - if post.origin.present? && post.author.present?

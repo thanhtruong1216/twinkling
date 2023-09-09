@@ -47,6 +47,12 @@
           .thumbnail-photo-wrapper
             = link_to post_path(post) do
               = image_tag post.photo, loading: 'lazy', class: 'thumbnail-photo'
+        - else
+          .thumbnail-photo-wrapper
+            = link_to post_path(post) do
+              .thumbnail-photo.thumbnail-content-no-pic-wrapper
+                .thumbnail-content
+                  = post.content
 - else
   section.user
     .user__flex-box
@@ -91,3 +97,9 @@
           .thumbnail-photo-wrapper
             = link_to post_path(post) do
               = image_tag post.photo, loading: 'lazy', class: 'thumbnail-photo'
+        - else
+          .thumbnail-photo-wrapper
+            = link_to post_path(post) do
+              .thumbnail-photo.thumbnail-content-no-pic-wrapper
+                .thumbnail-content
+                  = post.content

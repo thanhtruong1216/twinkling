@@ -4,11 +4,14 @@ section.post
   .post__content
     - if @post.photo.attached?
       = image_tag @post.photo, class: 'post__cover-image'
+    / - else
+    /   = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'post__cover-image'
+    - if @post.photo.attached?
+      div.posts__post-content
+        = simple_format(@post.content)
     - else
-      = image_tag 'background_search_desktop.jpg', loading: 'lazy', alt: 'thumbnail-image', class: 'post__cover-image'
-
-    div.posts__post-content
-      = simple_format(@post.content)
+      div.posts__post-content.no-pic-post
+        = simple_format(@post.content)
 
     div.posts__post-content
       - if @post.origin.present? && @post.author.present?
