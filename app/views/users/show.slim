@@ -46,6 +46,9 @@ meta property="og:image"         content=image_url("bg2.jpg")
           = link_to following_user_path(@user) do
             - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
 
+      div
+        p= @user.west_zodiac
+
     .user__photos
       - @user.posts.each do |post|
         - if post.photo.attached?
