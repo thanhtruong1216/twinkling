@@ -4,7 +4,7 @@ section.zodiacs
       p Theo cung hoàng đạo
       p Theo con giáp
       p Theo cung ngũ hành
-      p Theo cung bát quái
+      / p Theo cung bát quái
 
     .zodiac-row.zodiac-detail
       div
@@ -22,8 +22,8 @@ section.zodiacs
         p= "Những người này gồm: #{@result[:five_elements_people_suit].map(&:name).join(', ')}"
         p= "Bạn không hợp với: #{@result[:five_elements_analysis][:avoid]}"
         p= "Những người này gồm: #{@result[:five_elements_people_avoid].map(&:name).join(', ')}"
-      div
-        p= "Bạn hợp với: #{@result[:trigrams_analysis][:suit]}"
-        p= "Những người này gồm: #{@result[:trigrams_people_suit].map(&:name).join(', ')}"
-        p= "Bạn không hợp với: #{@result[:trigrams_analysis][:avoid]}"
-        p= "Những người này gồm: #{@result[:trigrams_people_avoid].map(&:name).join(', ')}"
+      / div
+      /   p= "Bạn hợp với: #{@result[:trigrams_analysis][:suit]}"
+      /   p= "Những người này gồm: #{@result[:trigrams_people_suit].map(&:name).join(', ')}"
+      /   p= "Bạn không hợp với: #{@result[:trigrams_analysis][:avoid]}"
+      /   p= "Những người này gồm: #{@result[:trigrams_people_avoid].map(&:name).join(', ')}"
