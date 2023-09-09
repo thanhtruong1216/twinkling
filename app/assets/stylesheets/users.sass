@@ -51,6 +51,10 @@
 .user-form-container.login h1
   padding-top: 0
 
+.user-form-container.new  
+  .new_user
+    padding: 20pt
+
 .user-form-container
   font-family: 'Aref Ruqaa', serif !important
   display: flex
@@ -80,14 +84,17 @@
 
   .right-box
     width: 300pt
-    min-width: 235pt
-    height: 500px
+    // min-width: 235pt
+    height: 600px
     border: 10px solid
-    padding: 0 20pt
+    // padding: 0 20pt
     margin-bottom: 20pt
     border-image-source: linear-gradient(45deg, #13547a, #80d0c7)
     border-image-slice: 1
-
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
     .content
       width: 300px
       position: relative
@@ -95,6 +102,7 @@
   
     .form-control
       height: 40px
+      margin: 0 auto
     input:not(:last-child)
       // border: 1px solid #e6e6e6
       box-shadow: none
@@ -324,11 +332,6 @@
   .order-th 
     width: 50px !important
 
-// .zodiacs
-//   display: flex 
-//   justify-content: center
-//   align-items: center
-
 .zodiacs-wrapper
   overflow: scroll
   height: 100vh
@@ -469,3 +472,7 @@
     .log-in-form
       margin-top: initial 
       z-index: 2
+
+  .user-form-container.new
+    .new_user
+      padding: 20pt 0
