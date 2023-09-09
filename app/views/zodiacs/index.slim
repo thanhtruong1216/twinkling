@@ -14,7 +14,7 @@ section.zodiacs
     - @users_zodiac.each_with_index do |user, index|
       .zodiac-row
         p.order= index + 1
-        p= link_to user.name, zodiac_suits_path(sign: user.west_zodiac, element: user.destiny, chinese_zodiac: user.chinese_zodiac, trigram: user.zodiac_name_translate_sex)
+        p= link_to user.name, zodiac_suits_path(sign: user.slug)
         p= user.birthday
         p= user.west_zodiac
         p= user.destiny
