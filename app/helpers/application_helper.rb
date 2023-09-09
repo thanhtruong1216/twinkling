@@ -278,8 +278,8 @@ module ApplicationHelper
       }
     when 'Bạch Dương'
       result = {
-        suit: 'Nhân Mã',
-        avoid: 'Cự Giải'
+        suit: 'Cự Giải, Ma Kết',
+        avoid: 'Xử Nữ'
       }
     when 'Kim Ngưu'
       result = {
