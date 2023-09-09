@@ -15,6 +15,11 @@
           required: true,
           label: t('users.edit.user_name') %>
 
+      <%= f.input :birthday,
+                   required: true,
+                   placeholder: "Your birthday",
+                   label: false %>
+
       <%= f.input :password,
                   required: false,
                   autofocus: false,
