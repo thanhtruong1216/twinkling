@@ -112,5 +112,8 @@ meta property="og:image"         content=image_url("bg2.jpeg")
 script
 	|
 		$(document).ready(function() {
-      $("#edit_user #user_password").val('');
+			$("#edit_user #user_password").focus(function() {
+        $(this).attr('placeholder', null);
+        $(this).attr('value', '');
+			});
 		})

@@ -10,6 +10,7 @@ module Photogram
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
     I18n.available_locales = [:en, :vi]
     I18n.default_locale = :en
+    config.assets.initialize_on_precompile = false
     config.generators do |g|
       g.test_framework :rspec,
         :fixtures => true,
