@@ -1,4 +1,12 @@
 module ApplicationHelper
+  def days_from(from_time)
+    to_time             = Time.current
+    from_time = DateTime.new(from_time.split('/')[2].to_i, from_time.split('/')[1].to_i, from_time.split('/')[0].to_i)
+    distance_in_minutes = ((to_time - from_time) / 60.0).floor
+    distance_in_hours   = distance_in_minutes / 60
+    distance_in_days    = distance_in_hours / 24
+  end
+  
   def distance_time_from(from_time)
     to_time             = Time.current
     distance_in_minutes = ((to_time - from_time) / 60.0).floor

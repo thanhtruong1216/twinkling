@@ -104,8 +104,14 @@ meta property="og:image"         content=image_url("bg2.jpg")
                   = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
                   p= t('zodiacs.sagittarius')
 
-              - if @user.blood.present?
-                div= "#{t('users.blood_type')}: #{@user.blood}"
+              div= "#{t('users.blood_type')}: #{@user&.blood}"
+
+              - if @user.birthday.present?
+                div
+                  p= t('users.years', count: days_from(@user.birthday) / 365.25.floor)
+                  - if (days_from(@user.birthday) % 365.25) > 0
+                    p= t('users.days', count: days_from(@user.birthday) % 365.25.ceil)
+
         - else
            .user__zodiac-wrapper.user__follows.user__follows-vie
             - if @user.birthday.present?
@@ -144,9 +150,14 @@ meta property="og:image"         content=image_url("bg2.jpg")
                   = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
                   p= t('zodiacs.sagittarius')
 
-              - if @user.blood.present?
-                div= "#{t('users.blood_type')}: #{@user.blood}"
-            
+              div= "#{t('users.blood_type')}: #{@user&.blood}"
+
+              - if @user.birthday.present?
+                div
+                  p= t('users.years', count: days_from(@user.birthday) / 365.25.floor)
+                  - if (days_from(@user.birthday) % 365.25) > 0
+                    p= t('users.days', count: days_from(@user.birthday) % 365.25.ceil)
+
     .user__photos
       - @user.posts.each do |post|
         - if post.photo.attached?
@@ -251,8 +262,13 @@ meta property="og:image"         content=image_url("bg2.jpg")
                 = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
                 p= t('zodiacs.sagittarius')
           
-            - if @user.blood.present?
-            div= "#{t('users.blood_type')}: #{@user.blood}"
+            div= "#{t('users.blood_type')}: #{@user&.blood}"
+
+            - if @user.birthday.present?
+              div
+                / p= "#{days_from(@user.birthday) / 365.25.floor} years"
+                - if (days_from(@user.birthday) % 365.25) > 0
+                  p= "#{(days_from(@user.birthday) % 365.25).ceil} days"
 
     .user__photos
       - @user.posts.each do |post|

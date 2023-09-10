@@ -38,6 +38,8 @@ en:
       sign_up_to_see_photos_and_videos: I am always here for you
       remember_me: Remember me
     blood_type: Blood type
+    years: "%{count} years"
+    days: "%{count} days"
 
   zodiacs:
     capricorn: 'Capricorn'

@@ -38,6 +38,8 @@ vi:
       sign_up_to_see_photos_and_videos: Tôi luôn ở đây vì bạn
       remember_me: Nhớ tôi
     blood_type: 'Nhóm máu'
+    years: "%{count} tuổi"
+    days: "%{count} ngày"
 
   zodiacs:
     capricorn: 'Ma Kết'
