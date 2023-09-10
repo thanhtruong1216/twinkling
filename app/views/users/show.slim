@@ -45,35 +45,45 @@ meta property="og:image"         content=image_url("bg2.jpg")
             p
               = link_to following_user_path(@user) do
                 - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
+        .user__zodiac-wrapper.user__follows
+          - if @user.birthday.present?
+            - name = zodiac(@user.birthday)
+            div
+              - case name
+              - when 'Ma Kết'
+                p= t('zodiacs.capricorn')
+              - when 'Bảo Bình'
+                = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.aquarius')
+              - when 'Song Ngư'
+                p= t('zodiacs.pisces')
+              - when 'Bạch Dương'
+                p= t('zodiacs.aries')
+              - when 'Kim Ngưu'
+                = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.taurus')
+              - when 'Song Tử'
+                = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.gemini')
+              - when 'Cự Giải'
+                = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.cancer')
+              - when 'Sư Tử'
+                = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.leo')
+              - when 'Xử Nữ'
+                p= t('zodiacs.virgo')
+              - when 'Thiên Bình'
+                p= t('zodiacs.libra')
+              - when 'Bọ Cạp'
+                = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.scorpius')
+              - when 'Nhân Mã'
+                = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.sagittarius')
 
-        - if @user.birthday.present?
-          - name = zodiac(@user.birthday)
-          .user__zodiac-wrapper
-            - case name
-            - when 'Ma Kết'
-              p= t('zodiacs.capricorn')
-            - when 'Bảo Bình'
-              p= t('zodiacs.aquarius')
-            - when 'Song Ngư'
-              p= t('zodiacs.pisces')
-            - when 'Bạch Dương'
-              p= t('zodiacs.aries')
-            - when 'Kim Ngưu'
-              p= t('zodiacs.taurus')
-            - when 'Song Tử'
-              p= t('zodiacs.gemini')
-            - when 'Cự Giải'
-              p= t('zodiacs.cancer')
-            - when 'Sư Tử'
-              p= t('zodiacs.leo')
-            - when 'Xử Nữ'
-              p= t('zodiacs.virgo')
-            - when 'Thiên Bình'
-              p= t('zodiacs.libra')
-            - when 'Bọ Cạp'
-              p= t('zodiacs.scorpius')
-            - when 'Nhân Mã'
-              p= t('zodiacs.sagittarius')
+          - if @user.blood.present?
+            div= "#{t('users.blood_type')}: #{@user.blood}"
             
     .user__photos
       - @user.posts.each do |post|
@@ -122,35 +132,44 @@ meta property="og:image"         content=image_url("bg2.jpg")
             p
               = link_to following_user_path(@user) do
                 = t('relationship.following')
-
-        - if @user.birthday.present?
-          - name = zodiac(@user.birthday)
-          div
-            - case name
-            - when 'Ma Kết'
-              p= t('zodiacs.capricorn')
-            - when 'Bảo Bình'
-              p= t('zodiacs.aquarius')
-            - when 'Song Ngư'
-              p= t('zodiacs.pisces')
-            - when 'Bạch Dương'
-              p= t('zodiacs.aries')
-            - when 'Kim Ngưu'
-              p= t('zodiacs.taurus')
-            - when 'Song Tử'
-              p= t('zodiacs.gemini')
-            - when 'Cự Giải'
-              p= t('zodiacs.cancer')
-            - when 'Sư Tử'
-              p= t('zodiacs.leo')
-            - when 'Xử Nữ'
-              p= t('zodiacs.virgo')
-            - when 'Thiên Bình'
-              p= t('zodiacs.libra')
-            - when 'Bọ Cạp'
-              p= t('zodiacs.scorpius')
-            - when 'Nhân Mã'
-              p= t('zodiacs.sagittarius')
+        div
+          - if @user.birthday.present?
+            - name = zodiac(@user.birthday)
+            div
+              - case name
+              - when 'Ma Kết'
+                p= t('zodiacs.capricorn')
+              - when 'Bảo Bình'
+                = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.aquarius')
+              - when 'Song Ngư'
+                p= t('zodiacs.pisces')
+              - when 'Bạch Dương'
+                p= t('zodiacs.aries')
+              - when 'Kim Ngưu'
+                = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.taurus')
+              - when 'Song Tử'
+                = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.gemini')
+              - when 'Cự Giải'
+                = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.cancer')
+              - when 'Sư Tử'
+                = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.leo')
+              - when 'Xử Nữ'
+                p= t('zodiacs.virgo')
+              - when 'Thiên Bình'
+                p= t('zodiacs.libra')
+              - when 'Bọ Cạp'
+                = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.scorpius')
+              - when 'Nhân Mã'
+                = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.sagittarius')
+          - if @user.blood.present?
+            div= "#{t('users.blood_type')}: #{@user.blood}"
 
     .user__photos
       - @user.posts.each do |post|

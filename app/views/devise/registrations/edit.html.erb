@@ -16,8 +16,13 @@
           label: t('users.edit.user_name') %>
 
       <%= f.input :birthday,
-                   required: true,
+                   required: false,
                    placeholder: "Your birthday",
+                   label: false %>
+
+      <%= f.input :blood,
+                   required: false,
+                   placeholder: "Your blood type",
                    label: false %>
 
       <%= f.input :password,
