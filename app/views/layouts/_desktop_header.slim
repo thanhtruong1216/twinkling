@@ -15,9 +15,11 @@
         li = link_to t('header.logout'), destroy_user_session_path, method: :delete
         li = link_to t('header.profile'), current_user
 
-      div
-        = link_to 'EN', locale: 'en'
-        = link_to 'VI', locale: 'vi'
+      div(class="#{I18n.locale == I18n.default_locale ? 'locale-active-en' : 'locale-active-vi'}")
+        div.locale-en
+          = link_to 'EN', locale: 'en'
+        div.locale-vi
+          = link_to 'VI', locale: 'vi'
 script
 	|
 		$(document).ready(function() {
