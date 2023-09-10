@@ -47,9 +47,34 @@ meta property="og:image"         content=image_url("bg2.jpg")
             - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
 
       - if @user.birthday.present?
+        - name = zodiac(@user.birthday)
         div
-          p= zodiac(@user.birthday)
-
+          - case name
+          - when 'Ma Kết'
+            p= t('zodiacs.capricorn')
+          - when 'Bảo Bình'
+            p= t('zodiacs.aquarius')
+          - when 'Song Ngư'
+            p= t('zodiacs.pisces')
+          - when 'Bạch Dương'
+            p= t('zodiacs.aries')
+          - when 'Kim Ngưu'
+            p= t('zodiacs.taurus')
+          - when 'Song Tử'
+            p= t('zodiacs.gemini')
+          - when 'Cự Giải'
+            p= t('zodiacs.cancer')
+          - when 'Sư Tử'
+            p= t('zodiacs.leo')
+          - when 'Xử Nữ'
+            p= t('zodiacs.virgo')
+          - when 'Thiên Bình'
+            p= t('zodiacs.libra')
+          - when 'Bọ Cạp'
+            p= t('zodiacs.scorpius')
+          - when 'Nhân Mã'
+            p= t('zodiacs.sagittarius')
+          
     .user__photos
       - @user.posts.each do |post|
         - if post.photo.attached?
@@ -101,8 +126,33 @@ meta property="og:image"         content=image_url("bg2.jpg")
             = t('relationship.following')
 
       - if @user.birthday.present?
+        - name = zodiac(@user.birthday)
         div
-          p= zodiac(@user.birthday)
+          - case name
+          - when 'Ma Kết'
+            p= t('zodiacs.capricorn')
+          - when 'Bảo Bình'
+            p= t('zodiacs.aquarius')
+          - when 'Song Ngư'
+            p= t('zodiacs.pisces')
+          - when 'Bạch Dương'
+            p= t('zodiacs.aries')
+          - when 'Kim Ngưu'
+            p= t('zodiacs.taurus')
+          - when 'Song Tử'
+            p= t('zodiacs.gemini')
+          - when 'Cự Giải'
+            p= t('zodiacs.cancer')
+          - when 'Sư Tử'
+            p= t('zodiacs.leo')
+          - when 'Xử Nữ'
+            p= t('zodiacs.virgo')
+          - when 'Thiên Bình'
+            p= t('zodiacs.libra')
+          - when 'Bọ Cạp'
+            p= t('zodiacs.scorpius')
+          - when 'Nhân Mã'
+            p= t('zodiacs.sagittarius')
 
     .user__photos
       - @user.posts.each do |post|

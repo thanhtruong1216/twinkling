@@ -37,6 +37,21 @@ en:
       sign_up: Sign up
       sign_up_to_see_photos_and_videos: I am always here for you
       remember_me: Remember me
+
+  zodiacs:
+    capricorn: 'Capricorn'
+    aquarius: 'Aquarius'
+    pisces: 'Pisces'
+    aries: 'Aries'
+    taurus: 'Taurus'
+    gemini: 'Gemini'
+    cancer: 'Cancer'
+    leo: 'Leo'
+    virgo: 'Virgo'
+    libra: 'Libra'
+    scorpius: 'Scorpius'
+    sagittarius: 'Sagittarius'
+
   relationship:
     follow: "Follow"
     unfollow: "Unfollow"

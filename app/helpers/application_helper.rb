@@ -478,4 +478,21 @@ module ApplicationHelper
     end
     result
   end
+
+  def translate_zodiac_name(name)
+    { 
+      'Ma Kết': 'Capricorn',
+      'Bảo Bình': 'Aquarius',
+      'Song Ngư': 'Pisces',
+      'Bạch Dương': 'Aries',
+      'Kim Ngưu': 'Taurus',
+      'Song Tử': 'Gemini',
+      'Cự Giải': 'Cancer',
+      'Sư Tử': 'Leo',
+      'Xử Nữ': 'Virgo',
+      'Thiên Bình': 'Libra',
+      'Bọ Cạp': 'Scorpius',
+      'Nhân Mã': 'Sagittarius'
+    }
+  end
 end

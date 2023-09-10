@@ -37,6 +37,21 @@ vi:
       sign_up: Đăng ký
       sign_up_to_see_photos_and_videos: Tôi luôn ở đây vì bạn
       remember_me: Nhớ tôi
+
+  zodiacs:
+    capricorn: 'Ma Kết'
+    aquarius: 'Bảo Bình'
+    pisces: 'Song Ngư'
+    aries: 'Bạch Dương'
+    taurus: 'Kim Ngưu'
+    gemini: 'Song Tử'
+    cancer: 'Cự Giải'
+    leo: 'Sư Tử'
+    virgo: 'Xử Nữ'
+    libra: 'Thiên Bình'
+    scorpius: 'Bọ Cạp'
+    sagittarius: 'Nhân Mã'
+
   relationship:
     follow: "Theo dõi"
     unfollow: "Hủy theo dõi"
