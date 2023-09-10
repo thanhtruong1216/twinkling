@@ -208,8 +208,8 @@
 
   &__flex-box
     display: flex
-    justify-content: space-around
-    align-items: center
+    // justify-content: space-around
+    // align-items: center
 
   &__photos
     padding-bottom: 100pt
@@ -246,16 +246,21 @@
 
   > div:first-child
     display: flex
-    align-items: center
+    // align-items: center
+
+  &__info-wrapper
+    padding: 0 20pt
+    display: flex
+    flex-direction: column
+    align-items: flex-start
 
   &__follows
     display: flex
     justify-content: space-between
-    padding: 0 20pt
+    // padding: 0 20pt
     border-top: $border-line
     border-bottom: $border-line
     max-width: 500pt
-    margin: 10pt auto 0 auto
     > div
       padding: 10pt 0
     p
@@ -307,6 +312,9 @@
       position: relative
       p
         padding-top: 10pt
+
+  &__zodiac-wrapper
+    display: flex
 
 #sign-up-slideshow, #log-in-slideshow
   margin: 50px auto
@@ -391,7 +399,7 @@
     position: relative
     top: 30pt
     > div:first-child
-      justify-content: space-between
+      // justify-content: space-between
 
     &__edit-btn
       padding-left: 20pt
@@ -434,20 +442,20 @@
       height: 600px
 
     &__follows
-      margin-top: 50pt
+      // margin-top: 50pt
       border: none
-      position: absolute
-      left: 200pt
-      top: 64pt
+      // position: absolute
+      // left: 200pt
+      // top: 64pt
       justify-content: initial
       > div
         display: flex
         padding-right: 10pt
 
     &__fullname
-      position: relative
-      left: 156pt
-      bottom: 48pt
+      // position: relative
+      // left: 156pt
+      // bottom: 48pt
 
 @media screen and(min-width: 1023px)
   .users
