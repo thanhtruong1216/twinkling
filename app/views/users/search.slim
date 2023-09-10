@@ -18,7 +18,7 @@ section.users
                   - else
                     = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar'
           p
-            = user.user_name
+            = user.user_name ||  user.full_name
         div
           p
             = user.email
