@@ -266,7 +266,7 @@ meta property="og:image"         content=image_url("bg2.jpg")
 
             - if @user.birthday.present?
               div
-                / p= "#{days_from(@user.birthday) / 365.25.floor} years"
+                p= t('users.years', count: days_from(@user.birthday) / 365.25.floor)
                 - if (days_from(@user.birthday) % 365.25) > 0
                   p= "#{(days_from(@user.birthday) % 365.25).ceil} days"
 
