@@ -5,9 +5,12 @@
   <%# </div> %>
 
   <div class="right-box log-in-form">
-    <h1>
-      <%= t('users.account.login') %>
-    </h1>
+    <%= link_to root_path, class: 'app-name' do %>
+      <div class='content'>
+        <h2>TWINKLING</h2>
+        <h2>TWINKLING</h2>
+      </div>
+    <% end %>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { autocomplete: "disabled" }) do |f| %>
       <div class="form-inputs">
         <%= f.input :email,
