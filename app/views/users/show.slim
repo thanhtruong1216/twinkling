@@ -207,7 +207,7 @@ meta property="og:image"         content=image_url("bg2.jpg")
                 = link_to following_user_path(@user) do
                   = t('relationship.following')
 
-          .user__zodiac-wrapper.user__follows.user__follows-vie
+          .user__zodiac-wrapper.user__follows
             - if @user.birthday.present?
               - name = zodiac(@user.birthday)
               div
