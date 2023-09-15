@@ -20,10 +20,3 @@
           = link_to 'EN', locale: 'en'
         div.locale-vi
           = link_to 'VI', locale: 'vi'
-script
-	|
-		$(document).ready(function() {
-			$("#search_user_name").focus(function() {
-        $(this).attr('placeholder', null);
-			});
-		})

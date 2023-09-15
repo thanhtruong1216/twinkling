@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     search = params[:search]
     if search.present?
       user_name = search[:user_name]
-      @users = User.where('full_name ILIKE ?', "%#{user_name}%") || User.where('user_name ILIKE ?', "%#{user_name}%")
+      @users = User.where('user_name ILIKE ?', "%#{user_name}%")
     end
   end
 
