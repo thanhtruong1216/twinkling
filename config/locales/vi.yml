@@ -7,7 +7,7 @@ vi:
     posts: Bài viết
   users:
     index:
-      message_search: "people được tìm thấy"
+      message_search: "người được tìm thấy"
     show:
       edit_profile: "Chỉnh sửa trang cá nhân"
     search:

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def set_host_for_local_storage
     if Rails.application.config.active_storage.service == :local
-      ActiveStorage::Current.host = request.base_url
+      ActiveStorage::Current.url_options = request.base_url
     end
   end
 end
