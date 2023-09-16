@@ -3,7 +3,7 @@ vi:
     logout: "Đăng xuất"
     profile: "Hồ sơ"
     new_post: "Đăng bài"
-    search: "Tên người dùng..."
+    search: "Tên người dùng không dấu..."
     posts: Bài viết
     articles: Tất cả bài viết
   users:

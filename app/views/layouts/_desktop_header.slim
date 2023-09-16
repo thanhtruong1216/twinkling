@@ -30,3 +30,11 @@
           = link_to 'EN', locale: 'en'
         div.locale-vi
           = link_to 'VI', locale: 'vi'
+- else
+  section.desktop-header.desktop-header-no-signin
+    header.desktop-header__wrapper
+      div(class="#{I18n.locale == I18n.default_locale ? 'locale-active-en' : 'locale-active-vi'}")
+        div.locale-en
+          = link_to 'EN', locale: 'en'
+        div.locale-vi
+          = link_to 'VI', locale: 'vi'

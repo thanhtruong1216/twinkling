@@ -27,17 +27,17 @@
           <%= f.input :email,
                       required: true,
                       autofocus: false,
-                      placeholder: "Your email",
+                      placeholder: "Email",
                       tabindex: "-1",
                       label: false %>
-          <%= f.input :full_name,
+          <%= f.input :user_name,
                       required: true,
-                      placeholder: "Your name",
+                      placeholder: t('devise.registrations.user_name'),
                       label: false %>
           <%= f.input :password,
                       required: true,
                       input_html: { autocomplete: "new-password" },
-                      placeholder: "Password",
+                      placeholder: t('devise.registrations.password'),
                       label: false %>
           <%# <%= f.input :password_confirmation,
                       required: true,
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: "twink-normal-btn twink-btn-submit user-form-submit-btn" %>
+          <%= f.button :submit, t('devise.registrations.sign_up'), class: "twink-normal-btn twink-btn-submit user-form-submit-btn" %>
         </div>
       <% end %>
     </div>

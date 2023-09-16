@@ -1,0 +1,6 @@
+vi:
+  devise:
+    registrations:
+      user_name: Tên người dùng không dấu
+      password: Mật khẩu
+      sign_up: Đăng ký
