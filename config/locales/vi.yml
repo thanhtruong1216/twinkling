@@ -5,6 +5,7 @@ vi:
     new_post: "Đăng bài"
     search: "Tên người dùng..."
     posts: Bài viết
+    articles: Tất cả bài viết
   users:
     index:
       message_search: "người được tìm thấy"

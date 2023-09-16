@@ -9,11 +9,22 @@
 
       = render 'layouts/search'
 
-      ul
-        li = link_to t('header.posts'), posts_path
-        li = link_to t('header.new_post'), new_post_path
-        li = link_to t('header.logout'), destroy_user_session_path, method: :delete
-        li = link_to t('header.profile'), current_user
+      div.dropdown.normal-header-link
+        button.posts-btn
+          = t('header.posts')
+          
+        ul.posts-menu
+          li 
+            = link_to t('header.articles'), posts_path
+          li 
+            = link_to t('header.new_post'), new_post_path
+
+      div
+        = link_to t('header.logout'), destroy_user_session_path, method: :delete, class: 'normal-header-link'
+
+      div
+        = link_to t('header.profile'), current_user, class: 'normal-header-link'
+
 
       div(class="#{I18n.locale == I18n.default_locale ? 'locale-active-en' : 'locale-active-vi'}")
         div.locale-en

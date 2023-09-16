@@ -19,6 +19,34 @@ article
     color: $purple
     font-weight: 700
 
+.dropdown
+  position: relative
+  display: inline-block
+
+ul.posts-menu 
+  display: none !important
+  position: absolute
+  background-color: #f9f9f9
+  min-width: 160px
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+  z-index: 1
+  padding: 10pt 0 10pt 10pt !important
+  background-color: none
+  border: none
+  li
+    padding-bottom: 5pt
+
+.dropdown:hover .posts-menu
+  display: block !important
+
+.posts-btn 
+  background: none
+  border: none
+
+.normal-header-link
+  padding: 0 20pt
+  white-space: nowrap
+
 .app-name
   height: 50pt
   width: 30%
