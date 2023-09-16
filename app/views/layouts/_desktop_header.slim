@@ -10,9 +10,8 @@
       = render 'layouts/search'
 
       div.dropdown.normal-header-link
-        button.posts-btn
-          = t('header.posts')
-          
+        = link_to t('header.posts'), posts_path, class: 'posts-btn'
+
         ul.posts-menu
           li 
             = link_to t('header.articles'), posts_path
