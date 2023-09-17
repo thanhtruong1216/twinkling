@@ -24,6 +24,7 @@ html
       - flash.each do |message_type, message|
         div class=('alert alert-#{message_type}') = message
       = yield
+      = render 'layouts/desktop_footer'
       = render 'layouts/footer'
     / #fb-root
 

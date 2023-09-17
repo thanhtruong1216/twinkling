@@ -22,7 +22,29 @@
   &__box:last-child
     justify-content: flex-end
 
+.desktop-footer
+  display: none
 
 @media only screen and (min-width: 769px)
   .footer
     display: none
+
+@media only screen and (min-width: 1023px)
+  .desktop-footer
+    display: block
+    padding: 10pt 50pt 25pt 50pt
+    min-height: 100px
+    background: #FAEBD7
+
+    .desktop-header-content
+      max-width: 900pt
+      margin: 10pt auto 0 auto
+
+    .desktop-footer-icons
+      display: flex
+      > div
+        padding-right: 15pt
+
+    .social-icon
+      width: 25pt
+      height: 25pt
