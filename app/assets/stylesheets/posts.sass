@@ -20,17 +20,17 @@
   display: flex
   flex-direction: column
   justify-content: center
-  // position: absolute
-  // top: 70pt
-  // bottom: 0
-  // left: 0
-  // right: 0
-  height: calc(100vh - 120px)
+  position: absolute
+  top: 70pt
+  bottom: 70pt
+  left: 0
+  right: 0
+  // height: 800px
   overflow: scroll
 
   &__wrapper
     // padding-bottom: 100px
-    // height: 100vh
+    height: 100%
     overflow: scroll
   a
     @include link
@@ -206,10 +206,10 @@
 
 .new-post
   padding: 70pt 20pt 0 20pt
-  height: 120vh
+  height: calc(100vh - 150px)
   overflow: scroll
   form 
-    height: 900pt
+    height: 100%
   &:has(.alert-danger)
     padding: 20pt 20pt 0 20pt
 
@@ -408,7 +408,7 @@
   .posts
     width: 900pt
     margin: 0 auto
-    top: 100pt
+    top: 85pt
     margin-bottom: 20pt
 
   .post
@@ -419,7 +419,7 @@
     // height:  !important
     overflow: scroll
     position: initial
-    padding: 100pt 20pt 0 20pt !important
+    padding: 80pt 20pt 0 20pt !important
     // form
     //   height: 800pt
     .user-actions-btns-wrapper
