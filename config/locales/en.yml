@@ -6,6 +6,10 @@ en:
     search: "User name..."
     posts: Posts
     articles: All posts
+    you: You
+  footer:
+    about_me: About me
+    contact_me: Contact me
   users:
     index:
       message_search: "people matched with your search"

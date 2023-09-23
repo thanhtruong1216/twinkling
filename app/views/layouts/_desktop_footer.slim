@@ -1,17 +1,21 @@
 section.desktop-footer
   .desktop-header-content
-    p Contact me
-    .desktop-footer-icons
-      div
-        = image_tag 'facebook.svg', class: 'social-icon'
+    div
+      = link_to t('footer.about_me'), destroy_user_session_path, method: :delete
 
-      div
-        = image_tag 'telegram.svg', class: 'social-icon'
+    .social-icons-wrapper
+      p= t('footer.contact_me')
+      .desktop-footer-icons
+        div
+          = image_tag 'facebook.svg', class: 'social-icon'
 
-      div
-        = link_to 'https://www.linkedin.com/in/thanhtruong0312/', target: '_blank' do
-          = image_tag 'linkedin.svg', class: 'social-icon'
+        div
+          = image_tag 'telegram.svg', class: 'social-icon'
 
-      div
-        = link_to 'https://join.skype.com/invite/wyyqTEkC1LsI', target: '_blank' do
-          = image_tag 'skype.svg', class: 'social-icon'
+        div
+          = link_to 'https://www.linkedin.com/in/thanhtruong0312/', target: '_blank' do
+            = image_tag 'linkedin.svg', class: 'social-icon'
+
+        div
+          = link_to 'https://join.skype.com/invite/wyyqTEkC1LsI', target: '_blank' do
+            = image_tag 'skype.svg', class: 'social-icon'
