@@ -13,7 +13,6 @@ section.posts
 script
   |
     window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-      'event': 'page_view',
-      'page_type': "posts"
-    });
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6FJR2S6TE7');
