@@ -11,8 +11,9 @@ section.posts
       = paginate @posts
 
 script
-  window.dataLayer=window.dataLayer||[];
-  dataLayer.push({
-    'event': 'page_view',
-    'page_type': "posts"
-  });
+  |
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      'event': 'page_view',
+      'page_type': "posts"
+    });
