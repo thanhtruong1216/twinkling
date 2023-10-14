@@ -25,7 +25,7 @@
                    placeholder: "Your blood type",
                    label: false %>
 
-      <%= f.input :password,
+      <%# <%= f.input :password,
                   required: false,
                   autofocus: false,
                   autocomplete: 'off',
@@ -33,12 +33,12 @@
                   input_html: { placeholder: t("users.edit.new_password"), value: "", autocomplete: "off" },
                   label: t('users.edit.new_password') %>
 
-      <%= f.input :password_confirmation,
+      <%# <%= f.input :password_confirmation,
                   required: false,
                   input_html: { placeholder: t("users.edit.confirm_new_password") },
                   label: t('users.edit.confirm_new_password') %>
 
-      <%= f.input :current_password,
+      <%# <%= f.input :current_password,
                   required: true,
                   input_html: { placeholder: t("users.edit.current_password") },
                   label: t('users.edit.current_password') %>

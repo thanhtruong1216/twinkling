@@ -1,6 +1,5 @@
 section.zodiacs
   .zodiacs-wrapper
-    / = render 'zodiacs/sort_form'
     .zodiac-header
       p.order-th ID
       p User name
@@ -9,6 +8,7 @@ section.zodiacs
       p Zodiac
       p Chinese zodiac
       p Destiny
+      p Blood type
 
     - @users.each_with_index do |user, index|
       .zodiac-row
@@ -19,3 +19,4 @@ section.zodiacs
         p= user&.west_zodiac
         p= user.chinese_zodiac
         p= user&.destiny
+        p= user&.blood
