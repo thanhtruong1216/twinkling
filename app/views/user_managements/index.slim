@@ -17,7 +17,7 @@ section.zodiacs
         p= user&.email
         p= user&.birthday
         p
-          - name = user.west_zodiac
+          - name = user.birthday.nil? || user.birthday ==  'Unknown' ? '' : zodiac(user.birthday)
           - case name
           - when 'Ma Kết'
             = t('zodiacs.capricorn')
