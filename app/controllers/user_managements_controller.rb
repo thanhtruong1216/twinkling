@@ -1,5 +1,9 @@
 class UserManagementsController < ApplicationController
   def index
-    @users = User.all
+    if current_user.role == 'admin'
+      @users = User.all
+    else
+      @users = []
+    end
   end
 end

@@ -7,6 +7,8 @@ section.zodiacs
       p Email
       p Birthday
       p Zodiac
+      p Chinese zodiac
+      p Destiny
 
     - @users.each_with_index do |user, index|
       .zodiac-row
@@ -15,3 +17,5 @@ section.zodiacs
         p= user&.email
         p= user&.birthday
         p= user&.west_zodiac
+        p= user.chinese_zodiac
+        p= user&.destiny
