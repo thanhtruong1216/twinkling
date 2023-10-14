@@ -1,0 +1,17 @@
+section.zodiacs
+  .zodiacs-wrapper
+    / = render 'zodiacs/sort_form'
+    .zodiac-header
+      p.order-th ID
+      p User name
+      p Email
+      p Birthday
+      p Zodiac
+
+    - @users.each_with_index do |user, index|
+      .zodiac-row
+        p.order= user.id
+        p= user&.name
+        p= user&.email
+        p= user&.birthday
+        p= user&.west_zodiac

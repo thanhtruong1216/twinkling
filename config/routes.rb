@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
     resources :zodiacs, only: [:index]
     resources :zodiac_suits, only: [:index]
+
+    resources :user_managements, only: :index
   end
 end
