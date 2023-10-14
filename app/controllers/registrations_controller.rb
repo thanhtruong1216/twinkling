@@ -14,4 +14,8 @@ class RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
+
+  def after_sign_up_path_for(resource)
+    after_sign_in_path_for(resource) if is_navigational_format?
+  end
 end

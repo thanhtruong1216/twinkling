@@ -16,7 +16,33 @@ section.zodiacs
         p= user&.name
         p= user&.email
         p= user&.birthday
-        p= user&.west_zodiac
+        p
+          - name = user.west_zodiac
+          - case name
+          - when 'Ma Kết'
+            = t('zodiacs.capricorn')
+          - when 'Bảo Bình'
+            = t('zodiacs.aquarius')
+          - when 'Song Ngư'
+            = t('zodiacs.pisces')
+          - when 'Bạch Dương'
+            = t('zodiacs.aries')
+          - when 'Kim Ngưu'
+            = t('zodiacs.taurus')
+          - when 'Song Tử'
+            = t('zodiacs.gemini')
+          - when 'Cự Giải'
+            = t('zodiacs.cancer')
+          - when 'Sư Tử'
+            = t('zodiacs.leo')
+          - when 'Xử Nữ'
+            = t('zodiacs.virgo')
+          - when 'Thiên Bình'
+            = t('zodiacs.libra')
+          - when 'Bọ Cạp'
+            = t('zodiacs.scorpius')
+          - when 'Nhân Mã'
+            = t('zodiacs.sagittarius')
         p= user.chinese_zodiac
         p= user&.destiny
         p= user&.blood
