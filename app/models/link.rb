@@ -1,6 +1,5 @@
 class Link < ApplicationRecord
-
-  # include CustomValidators
+  include CustomValidators
   include ::ApplicationHelper
 
   belongs_to :user
@@ -9,7 +8,7 @@ class Link < ApplicationRecord
   before_create :set_slug
 
   validates :url, presence: true
-  # validates :url, format: { with: VALID_URL_REGEX }
+  validates :url, format: { with: VALID_URL_REGEX }
   validates :slug, uniqueness: true, length: { maximum: 9 }
 
   def shortener
