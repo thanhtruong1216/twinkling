@@ -2,5 +2,7 @@ section style='width: 600px; height: 600px; font-size: 14pt; margin: auto; paddi
   div style='width: 100%; margin: auto'
     p Hello #{@user.email},
     p Thanks for joining and have a great day! Now sign in and do awesome things!
+    p You can confirm your account email through the link below:
+    p = link_to 'Confirm my account', user_confirmation_url(@resource, confirmation_token: @token)
     p Best regards,
     p BloodMoon Team
