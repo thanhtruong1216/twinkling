@@ -503,4 +503,8 @@ module ApplicationHelper
       'Nhân Mã': 'Sagittarius'
     }
   end
+
+  def backend_base_url
+    Rails.env.production? ? 'https://twinkling-star.herokuapp.com/' : 'http://localhost:3000'
+  end
 end

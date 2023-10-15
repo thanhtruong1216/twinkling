@@ -1,0 +1,11 @@
+article.new-post
+  h1
+    = t("header.link_shortener")
+  = simple_form_for @link do |f|
+    label= t('link_shortener.title')
+    = f.input :title, class: 'form-control', label: false, placeholder: 'Optional'
+
+    label Url
+    = f.input :url, class: 'form-control', label: false, placeholder: t('link_shortener.enter_your_url')
+
+    = f.button :submit, 'Create', class: 'twink-btn-submit twink-normal-btn'

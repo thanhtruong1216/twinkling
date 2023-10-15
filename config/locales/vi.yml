@@ -7,6 +7,8 @@ vi:
     posts: Bài viết
     articles: Tất cả bài viết
     you: Bạn
+    tools: Công cụ
+    link_shortener: Rút gọn link ngay
   footer:
     about_me: Về tôi
     contact_me: Liên hệ tôi
@@ -108,3 +110,8 @@ vi:
     content: "Nội dung bình luận"
     newest_comments: "Bình luận mới nhất"
     comments: "Tất cả bình luận"
+  link_shortener:
+    title: Tiêu đề
+    enter_your_url: Nhập url tại đây nha bạn
+    edit_link: Chỉnh sửa
+    you_have_no_links: Bạn chưa có link nào

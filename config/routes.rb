@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     resources :zodiac_suits, only: [:index]
 
     resources :user_managements, only: :index
+    resources :links
   end
 end

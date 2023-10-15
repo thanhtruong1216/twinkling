@@ -7,6 +7,8 @@ en:
     posts: Posts
     articles: All posts
     you: You
+    tools: Tools
+    link_shortener: Create shorten link
   footer:
     about_me: About me
     contact_me: Contact me
@@ -109,3 +111,8 @@ en:
     content: "Content"
     newest_comments: "Newest comments"
     comments: "Comments"
+  link_shortener:
+    title: Title
+    enter_your_url: Enter your url
+    edit_link: Edit link
+    you_have_no_links: You have no links
