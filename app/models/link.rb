@@ -4,6 +4,7 @@ class Link < ApplicationRecord
   include ::ApplicationHelper
 
   belongs_to :user
+  has_many :clicks
 
   before_create :set_slug
 

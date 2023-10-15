@@ -9,6 +9,8 @@ class LinksController < ApplicationController
 
   def show
     @link = current_user.links.find_by(slug: params[:id])
+    @link.clicks.create
+
     redirect_to @link.url
   end
 
