@@ -67,6 +67,7 @@ vi:
     enter_date_and_month: Nhập ngày và tháng
     date_month: Sinh nhật(ngày/tháng)
     find: Tìm ngay
+    invalid_date: Ngày không đúng định dạng
 
   relationship:
     follow: "Theo dõi"

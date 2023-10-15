@@ -23,6 +23,8 @@ class LinksController < ApplicationController
 
     if @link.save
       redirect_to links_path
+    else 
+      render 'new'
     end
   end
 

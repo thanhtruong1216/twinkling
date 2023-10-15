@@ -67,6 +67,7 @@ en:
     enter_date_and_month: 'Enter date and month'
     date_month: Birthday(date/month)
     find: Find now
+    invalid_date: Invalid date
 
   relationship:
     follow: "Follow"
