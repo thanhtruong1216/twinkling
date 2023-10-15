@@ -1,12 +1,14 @@
 class User < ApplicationRecord
   before_create :generate_key
-  # after_create :send_email
   # before_save :skip_confirmation_notification!
+  # after_create :skip_confirmation_notification
+  # after_create :set_confirmed_at
+  # # before_save :skip_confirmation_notification!
 
   extend FriendlyId
   friendly_id :slug, use: :slugged
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :confirmable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   # validates :user_name, presence: true, length: { maximum: 16 }
   # validates :full_name, presence: true, length: { maximum: 30 }
   validates :email, presence: true
@@ -34,6 +36,10 @@ class User < ApplicationRecord
   def generate_key
     self[:slug] = SecureRandom.uuid
   end
+
+  # def set_confirmed_at
+  #   self.update(confirmed_at: Time.now)
+  # end
 
   # def send_email
   #   UserNotifierMailer.send_signup_email(self).deliver
