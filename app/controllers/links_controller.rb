@@ -8,7 +8,7 @@ class LinksController < ApplicationController
   end
 
   def show
-    @link = current_user.links.find_by(slug: params[:slug])
+    @link = current_user.links.find_by(slug: params[:id])
     redirect_to @link.url
   end
 
@@ -36,6 +36,7 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
+    redirect_to links_path
   end
 
   private
@@ -45,6 +46,6 @@ class LinksController < ApplicationController
   end
   
   def set_link
-    @link = current_user.links.find_by(id: params[:slug])
+    @link = current_user.links.find_by(id: params[:id])
   end
 end

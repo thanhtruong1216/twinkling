@@ -120,5 +120,6 @@ en:
   link_shortener:
     title: Title
     enter_your_url: Enter your url
-    edit_link: Edit link
+    edit_link: Edit
     you_have_no_links: You have no links
+    delete_link: Delete

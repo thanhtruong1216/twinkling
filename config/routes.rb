@@ -29,6 +29,6 @@ Rails.application.routes.draw do
     resources :zodiac_suits, only: [:index]
     resources :user_managements, only: :index
     resources :links
-    get '/:slug', to: 'links#show'
+    get '/:id', to: 'links#show'
   end
 end
