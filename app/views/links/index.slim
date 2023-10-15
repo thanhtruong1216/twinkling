@@ -12,7 +12,7 @@ section.zodiacs
         .zodiac-row
           p.order= link.id
           p= link&.title
-          p= link_to link.shortener, link.url
+          p= link_to link.shortener, link_path(link)
           p= link.created_at.strftime("%a %d-%m-%Y")
           p 
             = link_to edit_link_path(link), type: 'button', class: 'btn btn-success'

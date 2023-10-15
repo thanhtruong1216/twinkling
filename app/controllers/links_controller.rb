@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 class LinksController < ApplicationController
-  # before_action :authorize_request
-  before_action :set_link, only: %i[show update destroy]
+  before_action :set_link, only: %i[update destroy]
 
   def index
     @links = current_user.links.order(created_at: :asc)
   end
 
   def show
+    @link = current_user.links.find_by(slug: params[:slug])
+    redirect_to @link.url
   end
 
   def new
@@ -44,10 +45,6 @@ class LinksController < ApplicationController
   end
   
   def set_link
-    @link = current_user.links.find_by(id: params[:id])
-
-    render json: { error: 'Link not found' } if @link.blank?
-
-    @link
+    @link = current_user.links.find_by(id: params[:slug])
   end
 end
