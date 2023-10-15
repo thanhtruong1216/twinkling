@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   before_action :set_link, only: %i[update destroy]
 
   def index
-    @links = current_user.links.order(created_at: :asc)
+    @links = current_user.links.order(created_at: :desc)
   end
 
   def show
