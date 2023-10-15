@@ -1,0 +1,12 @@
+article.zodiac-name
+  h1
+    = t("header.find_zodiac")
+
+  = simple_form_for :find_name, url: find_name_zodiacs_url, method: "GET" do |f|
+    div
+      label= t('zodiacs.date_month')
+      = f.input :birthday, label: false, placeholder: t('zodiacs.enter_date_and_month'), class: 'form-control zodiac-birthday'
+    = f.button :submit, t('zodiacs.find'), class: 'twink-btn-submit twink-normal-btn'
+
+  - if @result
+    p= "#{@result[:birthday]}: #{@result[:zodiac_name]}"

@@ -11,6 +11,7 @@ vi:
     link_shortener: Rút gọn link
     links: Links
     news: Bảng tin
+    find_zodiac: Tìm cung hoàng đạo
   footer:
     about_me: Về tôi
     contact_me: Liên hệ tôi
@@ -63,6 +64,9 @@ vi:
     libra: 'Thiên Bình'
     scorpius: 'Bọ Cạp'
     sagittarius: 'Nhân Mã'
+    enter_date_and_month: Nhập ngày và tháng
+    date_month: Sinh nhật(ngày/tháng)
+    find: Tìm ngay
 
   relationship:
     follow: "Theo dõi"

@@ -21,9 +21,12 @@ Rails.application.routes.draw do
     end
 
     resources :relationships, only: [:create, :destroy]
-    resources :zodiacs, only: [:index]
+    resources :zodiacs, only: [:index] do
+      collection do
+        get :find_name
+      end
+    end
     resources :zodiac_suits, only: [:index]
-
     resources :user_managements, only: :index
     resources :links
   end

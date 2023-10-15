@@ -18,7 +18,7 @@
         ul.posts-menu
           li 
             = link_to t('header.articles'), posts_path
-          li 
+          li
             = link_to t('header.new_post'), new_post_path
 
       div.dropdown.normal-header-link
@@ -29,6 +29,8 @@
         ul.posts-menu
           li 
             = link_to t('header.link_shortener'), new_link_path
+          li 
+            = link_to t('header.find_zodiac'), find_name_zodiacs_path
 
       div.dropdown.normal-header-link
         = link_to current_user do

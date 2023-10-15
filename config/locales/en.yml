@@ -8,9 +8,10 @@ en:
     articles: All posts
     you: You
     tools: Tools
-    link_shortener: Create shorten link
+    link_shortener: Create a shorten link
     links: Links
     news: News
+    find_zodiac: Find Zodiac
   footer:
     about_me: About me
     contact_me: Contact me
@@ -63,6 +64,9 @@ en:
     libra: 'Libra'
     scorpius: 'Scorpius'
     sagittarius: 'Sagittarius'
+    enter_date_and_month: 'Enter date and month'
+    date_month: Birthday(date/month)
+    find: Find now
 
   relationship:
     follow: "Follow"
