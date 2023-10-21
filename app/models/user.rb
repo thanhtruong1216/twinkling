@@ -33,7 +33,11 @@ class User < ApplicationRecord
     self[:slug] = SecureRandom.uuid
   end
 
+  def set_confirmed_at
+    self.update(confirmed_at: Time.now)
+  end
+
   def send_email
-    UserNotifierMailer.send_signup_email(User.last).deliver_now
+    UserNotifierMailer.send_signup_email(self).deliver_now
   end
 end
