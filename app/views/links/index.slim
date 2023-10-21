@@ -14,7 +14,7 @@ section.zodiacs
           p.order= index + 1
           p= link&.title
           p= link_to link.shortener, link_path(link.slug), target: '_blank'
-          p= link.created_at.strftime("%H:%M %a %d %b %Y")
+          p= link.created_at.strftime("%a %d %b %Y")
           p= link.clicks_count
           p 
             = link_to edit_link_path(link), type: 'button', class: 'btn btn-success zmr-1'
