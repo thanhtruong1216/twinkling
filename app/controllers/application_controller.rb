@@ -2,9 +2,15 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :authenticate_user!
   before_action :set_host_for_local_storage
+  before_action :set_time_zone
  
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def set_time_zone
+    off_set = Time.now.gmt_offset
+    Time.zone = ActiveSupport::TimeZone[off_set].name
   end
 
   def extract_locale_from_subdomain
