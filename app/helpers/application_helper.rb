@@ -25,7 +25,7 @@ module ApplicationHelper
 
   def zodiac(birthday)
     birthdate_splited = birthday.split('/')
-    birthdate_result = "#{birthdate_splited[0]}/#{birthdate_splited[1]}/#{birthdate_splited[1] == '01' ? '0001' : '0000'}".to_date
+    birthdate_result = "#{birthdate_splited[0]}/#{birthdate_splited[1]}/#{birthdate_splited[1] == '01' || birthdate_splited[1] =='1' ? '0001' : '0000'}".to_date
 
     if ("22/12/0000".to_date.."19/01/0001".to_date).cover?(birthdate_result)
       'Ma Kết'
