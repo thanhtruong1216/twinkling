@@ -10,7 +10,7 @@ class ZodiacsController < ApplicationController
   end
 
   def find_name
-    if params[:find_name].present? && params[:find_name][:birthday].split('/')[0].to_i.in?(1..31) && params[:find_name][:birthday].split('/')[1].to_i.in?(1..12)
+    if params[:find_name][:birthday].present? && params[:find_name][:birthday].split('/')[0].to_i.in?(1..31) && params[:find_name][:birthday].split('/')[1].to_i.in?(1..12)
       @result = {
         birthday: params[:find_name][:birthday],
         zodiac_name: zodiac(params[:find_name][:birthday])
