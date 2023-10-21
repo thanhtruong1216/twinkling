@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_key
+  after_create  :send_email
 
   extend FriendlyId
   friendly_id :slug, use: :slugged
