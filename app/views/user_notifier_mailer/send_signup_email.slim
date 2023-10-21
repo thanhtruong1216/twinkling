@@ -1,6 +1,21 @@
-section style='width: 600px; height: 600px; font-size: 14pt; margin: auto; padding: 20pt; background: whitesmoke;'
-  div style='width: 100%; margin: auto'
+section style="width: 700px; font-size: 14pt; margin: auto; padding: 20pt 0; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+  header.desktop-header__wrapper
+    div
+      div.content
+        h2 style='color: #8a2be2; padding: 0 20pt'
+          span TWINKLING STAR
+
+  div style="width: 100%;"
+    = image_tag 'lotus.jpg', style: "max-width: 100%;"
+
+  div style="width: 100%; margin: auto; font-family: 'Aref Ruqaa'; padding: 0 20pt"
     p Hello #{@user.email},
-    p Thanks for joining and have a great day! Now sign in and do awesome things!
+    p I am Thanh Truong from Twinkling Star App.
+    p Thanks for joining and have a great day!
+    p 
+      span style='margin-right: 5px' Please access this
+      = link_to 'link', 'https://twinkling-star.herokuapp.com/en/users/sign_in'
+      span style='margin-left: 5px' to sign in and do awesome things 🤓
+
     p Best regards,
-    p BloodMoon Team
+    p Thanh Truong
