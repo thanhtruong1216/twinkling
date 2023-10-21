@@ -6,6 +6,7 @@ Bundler.require(*Rails.groups)
 
 module Photogram
   class Application < Rails::Application
+    config.time_zone = ActiveSupport::TimeZone[Time.now.gmt_offset].name
     config.load_defaults 6.0
     I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
     I18n.available_locales = [:en, :vi]
