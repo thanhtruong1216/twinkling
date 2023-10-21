@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    EventTrack.create(name: 'Upload new avatar', user_id: current_user.id)
+    EventTrack.create(name: 'Update profile', user_id: current_user.id)
+    
     if @user.update(user_params)
       redirect_to user_path
     else
