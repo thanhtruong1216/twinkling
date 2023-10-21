@@ -34,6 +34,6 @@ class User < ApplicationRecord
   end
 
   def send_email
-    UserNotifierMailer.send_signup_email(self).deliver
+    UserNotifierMailer.send_signup_email(User.last).deliver_now
   end
 end
