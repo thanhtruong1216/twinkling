@@ -16,9 +16,11 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.build
+    EventTrack.create(name: 'Prepare a post', user_id: current_user.id)
   end
 
   def create
+    EventTrack.create(name: 'Create a post', user_id: current_user.id)
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = 'Your post has been created!'

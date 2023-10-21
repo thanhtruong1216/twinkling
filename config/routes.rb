@@ -21,13 +21,15 @@ Rails.application.routes.draw do
     end
 
     resources :relationships, only: [:create, :destroy]
-    resources :zodiacs, only: [:index] do
+    resources :zodiacs, only: :index do
       collection do
         get :find_name
       end
     end
-    resources :zodiac_suits, only: [:index]
+  
+    resources :zodiac_suits, only: :index
     resources :user_managements, only: :index
+    resources :event_tracks, only: :index
     resources :links
     get '/:id', to: 'links#show'
   end

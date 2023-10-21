@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    EventTrack.create(name: 'Upload new avatar', user_id: current_user.id)
     if @user.update(user_params)
       redirect_to user_path
     else
@@ -27,6 +28,8 @@ class UsersController < ApplicationController
   end
 
   def search
+    EventTrack.create(name: 'Search user', user_id: current_user.id)
+
     search = params[:search]
     if search.present?
       user_name = search[:user_name]
@@ -35,6 +38,7 @@ class UsersController < ApplicationController
   end
 
   def upload_avatar
+    EventTrack.create(name: 'Upload new avatar', user_id: current_user.id)
   end
 
   private

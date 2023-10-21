@@ -1,0 +1,13 @@
+section.zodiacs
+  .zodiacs-wrapper
+    .zodiac-header
+      p STT
+      p User Email
+      p Event name
+      p Created date
+    - @event_tracks.each_with_index do |event, index|
+      .zodiac-row
+        p= index + 1
+        p= event.user.email
+        p= event.name
+        p= event.created_at.strftime("%H:%M %a %d %b %Y")
