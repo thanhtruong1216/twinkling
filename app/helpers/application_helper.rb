@@ -29,7 +29,7 @@ module ApplicationHelper
 
     if ("22/12/0000".to_date.."19/01/0001".to_date).cover?(birthdate_result)
       'Ma Kết'
-    elsif ("20/01/0000".to_date.."18/02/0000".to_date).cover?(birthdate_result)
+    elsif ("20/01/0001".to_date.."18/02/0001".to_date).cover?(birthdate_result)
       'Bảo Bình'
     elsif ("19/02/0000".to_date.."20/03/0000".to_date).cover?(birthdate_result)
       'Song Ngư'
