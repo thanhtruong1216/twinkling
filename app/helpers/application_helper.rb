@@ -54,6 +54,36 @@ module ApplicationHelper
     end
   end
 
+  def zodiac_name_localed(name)
+    case name
+    when 'Ma Kết'
+      I18n.t('zodiacs.capricorn')
+    when 'Bảo Bình'
+      I18n.t('zodiacs.aquarius')
+    when 'Song Ngư'
+      I18n.t('zodiacs.pisces')
+    when 'Bạch Dương'
+      I18n.t('zodiacs.aries')
+    when 'Kim Ngưu'
+      I18n.t('zodiacs.taurus')
+    when 'Song Tử'
+      I18n.t('zodiacs.gemini')
+    when 'Cự Giải'
+      I18n.t('zodiacs.cancer')
+    when 'Sư Tử'
+      I18n.t('zodiacs.leo')
+    when 'Xử Nữ'
+      I18n.t('zodiacs.virgo')
+    when 'Thiên Bình'
+      I18n.t('zodiacs.libra')
+    when 'Bọ Cạp'
+      I18n.t('zodiacs.scorpius')
+    when 'Nhân Mã'
+      I18n.t('zodiacs.sagittarius')
+    else
+    end
+  end
+
   def destiny(year)
     case year.to_i
     when 1983

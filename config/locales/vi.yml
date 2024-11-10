@@ -107,6 +107,11 @@ vi:
       x_minutes:
         one: "%{count} phút trước"
         other: "%{count} phút trước"
+  famous:
+    first_name: "Tên"
+    last_name: "Họ"
+    birthday: Sinh nhật
+    create_person: Tạo nhân vật
   actions:
     save: "Lưu"
     cancel: "Hủy"
