@@ -1,7 +1,7 @@
 section.posts
   .famous-card-wrapper
     - @famous_people.each do |person|
-      .card.mb-3.border-primary.p-2.h-100.famous-card.w-100
+      .card.mb-3.border-primary.p-4.h-100.famous-card.w-100
         .row.g-0
           .col-md-3
              = image_tag (image_url(rails_storage_proxy_path(person.photo))), loading: 'lazy', class: 'famous-person-photo', crossorigin: 'anonymous'
