@@ -102,6 +102,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    bootstrap (5.3.3)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -226,6 +229,7 @@ GEM
       rack-protection
     orm_adapter (0.5.0)
     pg (1.5.4)
+    popper_js (2.11.8)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -393,6 +397,7 @@ DEPENDENCIES
   active_storage_validations
   aws-sdk-s3
   bootsnap (>= 1.4.2)
+  bootstrap (~> 5.0)
   bootstrap-sass
   capybara (>= 3.38.0)
   devise

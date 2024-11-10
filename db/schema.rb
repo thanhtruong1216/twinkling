@@ -68,8 +68,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_10_044956) do
   end
 
   create_table "famous_people", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "full_name"
+    t.string "real_name"
     t.string "birthday"
     t.string "key"
     t.datetime "created_at", null: false

@@ -8,14 +8,14 @@ article.new-post
       = f.input :photo, class: 'form-control', label: false
       
     label= t('famous.first_name')
-    = f.input :first_name, class: 'form-control', label: false, placeholder: t('famous.first_name')
+    = f.input :full_name, class: 'form-control', label: false, placeholder: t('famous.first_name')
 
-    label= t('famous.last_name')
-    = f.input :last_name, class: 'form-control', label: false, placeholder: t('famous.last_name')
+    / label= t('famous.last_name')
+    / = f.input :real_name, class: 'form-control', label: false, placeholder: t('famous.last_name')
 
     label= t('famous.birthday')
     = f.text_area :birthday, class: 'form-control', label: false, placeholder: 'Day/Month/Year'
 
-    .user-actions-btns-wrapper
+    .user-actions-btns-wrapper.mt-4
       = link_to t("users.edit.cancel"), root_path, class: 'twink-btn-cancel twink-normal-btn'
       = f.button :submit, t("famous.create_person"), class: 'twink-btn-submit twink-normal-btn'

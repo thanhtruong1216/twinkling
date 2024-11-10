@@ -1,14 +1,17 @@
-section.home.section-container
-  table.table.table-striped
-    thead
-      th Photo
-      th First Name
-      th Last Name
-      th Birthday
-    tbody
-      - @famous_people.each do |person|
-        tr
-          td = image_tag (image_url(rails_storage_proxy_path(person.photo))), loading: 'lazy', class: 'famous-person-photo', crossorigin: 'anonymous'
-          td =person.first_name
-          td =person.last_name
-          td = zodiac_name_localed(zodiac(person.birthday))
+section.posts
+  .famous-card-wrapper
+    - @famous_people.each do |person|
+      .card.mb-3.border-primary.p-2.h-100.famous-card.w-100
+        .row.g-0
+          .col-md-3
+             = image_tag (image_url(rails_storage_proxy_path(person.photo))), loading: 'lazy', class: 'famous-person-photo', crossorigin: 'anonymous'
+          .col-md-9
+            .card-body
+              h1.card-title
+                | #{person.full_name}
+              p.card-text
+                | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+              p.card-text
+                | #{person.birthday}
+              p.card-text
+                | #{zodiac_name_localed(zodiac(person.birthday))}

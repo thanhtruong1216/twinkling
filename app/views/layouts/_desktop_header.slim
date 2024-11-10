@@ -7,8 +7,8 @@
             h2 TWINKLING
             h2 TWINKLING
 
-      .search-form-container
-        = render 'layouts/search'
+      / .search-form-container
+      /   = render 'layouts/search'
 
       div.dropdown.normal-header-link
         = link_to posts_path do
@@ -31,6 +31,8 @@
             = link_to t('header.link_shortener'), new_link_path
           li 
             = link_to t('header.find_zodiac'), find_name_zodiacs_path
+          li 
+            = link_to t('header.create_person'), new_famous_person_path
 
       div.dropdown.normal-header-link
         = link_to current_user do

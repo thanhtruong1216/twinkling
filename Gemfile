@@ -12,6 +12,7 @@ gem 'slim'
 gem 'kaminari'
 gem 'simple_form'
 gem 'bootstrap-sass'
+gem 'bootstrap', '~> 5.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', "~> 6.0"

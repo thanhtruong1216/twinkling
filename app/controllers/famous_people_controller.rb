@@ -21,6 +21,6 @@ class FamousPeopleController < ApplicationController
   private
 
   def famous_person_params
-    params.require(:famous_person).permit(:photo, :first_name, :last_name, :birthday)
+    params.require(:famous_person).permit(:photo, :full_name, :real_name, :birthday)
   end
 end
