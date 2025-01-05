@@ -34,4 +34,12 @@ Rails.application.configure do
     enable_starttls_auto: true,
     domain: 'twinkling-star.herokuapp.com'
   }
+
+  server '3.141.41.196', user: 'ubuntu', roles: %w{app db web}
+  set :branch, 'master'
+  set :ssh_options, {
+    keys: %w(ThanhTruong.pem),
+    forward_agent: true,
+    auth_methods: %w(publickey)
+  }
 end
