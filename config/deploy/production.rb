@@ -1,9 +1,10 @@
-server '3.141.41.196', user: 'ubuntu', roles: %w{app web db}
+server "54.255.209.35", user: "ubuntu", roles: %w{app db web}
+
 set :migration_role, :app
 
 set :ssh_options, {
-  user: 'ubuntu',                        # Correct user
-  keys: %w(ThanhTruong.pem),    # Correct path to your SSH key
+  user: 'ubuntu', 
+  keys: %w(~/.ssh/id_rsa),
   forward_agent: true,
   auth_methods: %w(publickey),
   timeout: 60
