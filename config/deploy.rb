@@ -25,7 +25,7 @@ set :use_sudo, false
 
 set :ssh_options, {
   user: 'ubuntu',
-  keys: %w(~/Downloads/waterfall.pem), # Đường dẫn tới file SSH key trên máy local
+  keys: %w(~/.ssh/id_rsa),
   forward_agent: true,
   auth_methods: %w(publickey),
   timeout: 60
