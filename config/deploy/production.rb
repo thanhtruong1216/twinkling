@@ -4,7 +4,7 @@ set :migration_role, :app
 
 set :ssh_options, {
   user: 'ubuntu', 
-  keys: %w(~/.ssh/id_rsa),
+  keys: %w(~/Downloads/waterfall.pem),
   forward_agent: true,
   auth_methods: %w(publickey),
   timeout: 60

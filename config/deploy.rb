@@ -20,12 +20,12 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 set :keep_releases, 5
 
 # SSH
-set :user, 'deploy'
+set :user, 'ubuntu'
 set :use_sudo, false
 
 set :ssh_options, {
-  user: 'deploy',
-  keys: %w(waterfall.pem), # Đường dẫn tới file SSH key trên máy local
+  user: 'ubuntu',
+  keys: %w(~/Downloads/waterfall.pem), # Đường dẫn tới file SSH key trên máy local
   forward_agent: true,
   auth_methods: %w(publickey),
   timeout: 60
