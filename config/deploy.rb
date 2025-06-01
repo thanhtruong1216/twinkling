@@ -55,8 +55,8 @@ namespace :deploy do
   task :set_master_key do
     on roles(:app) do
       key = capture(:cat, "#{shared_path}/config/master.key").strip
-      set :default_env, fetch(:default_env).merge('RAILS_MASTER_KEY' => key)
-      info "RAILS_MASTER_KEY set from shared config"
+      set :default_env, { 'RAILS_MASTER_KEY' => key }
+      info "RAILS_MASTER_KEY set from #{shared_path}/config/master.key"
     end
   end
   before 'deploy:starting', 'deploy:set_master_key'
