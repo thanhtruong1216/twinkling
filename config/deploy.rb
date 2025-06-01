@@ -34,10 +34,23 @@ set :assets_roles, [:web]
 set :local_precompile, true
 set :assets_manifests, ['public/packs/manifest.json']
 
-# Environment variables (đọc master.key trên máy local để truyền qua SSH)
-set :default_env, {
-  'RAILS_MASTER_KEY' => File.read('config/master.key').strip,
-  'NODE_OPTIONS' => '--openssl-legacy-provider'
+namespace :master_key do
+  desc "Load master key content from server"
+  task :load do
+    on roles(:app) do
+      master_key = capture(:cat, "#{shared_path}/config/master.key").strip
+      set :rails_master_key, master_key
+    end
+  end
+end
+
+before 'deploy:starting', 'master_key:load'
+
+set :default_env, -> {
+  {
+    'RAILS_MASTER_KEY' => fetch(:rails_master_key),
+    'NODE_OPTIONS' => '--openssl-legacy-provider'
+  }
 }
 
 namespace :deploy do
