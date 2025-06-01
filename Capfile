@@ -3,7 +3,6 @@
 # Lock Capistrano to a specific version
 lock '3.19.2'
 
-require 'capistrano/rails'
 require 'capistrano/rails/collection'
 
 # Load DSL and set up stages
