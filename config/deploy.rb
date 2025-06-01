@@ -34,7 +34,7 @@ set :assets_roles, [:web]
 set :local_precompile, true
 set :assets_manifests, ['public/packs/manifest.json']
 
-# Environment variables
+# Environment variables (đọc master.key trên máy local để truyền qua SSH)
 set :default_env, {
   'RAILS_MASTER_KEY' => File.read('config/master.key').strip,
   'NODE_OPTIONS' => '--openssl-legacy-provider'
@@ -50,16 +50,6 @@ namespace :deploy do
     end
   end
   before 'deploy:assets:precompile', 'deploy:yarn_install'
-
-  desc 'Set RAILS_MASTER_KEY on server'
-  task :set_master_key do
-    on roles(:app) do
-      key = capture(:cat, "#{shared_path}/config/master.key").strip
-      set :default_env, { 'RAILS_MASTER_KEY' => key }
-      info "RAILS_MASTER_KEY set from #{shared_path}/config/master.key"
-    end
-  end
-  before 'deploy:starting', 'deploy:set_master_key'
 
   desc 'Clean old assets before precompile'
   task :assets_prepare do
