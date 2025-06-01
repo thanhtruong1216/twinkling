@@ -38,6 +38,9 @@ set :keep_releases, 3
 
 # Run yarn install before assets precompile
 before 'deploy:assets:precompile', 'deploy:yarn_install'
+set :local_precompile_clean, true
+set :local_precompile_assets_folder, 'public/assets'
+set :local_precompile_manifest_file, 'public/assets/.sprockets-manifest*.json'
 
 namespace :deploy do
   desc 'Run yarn install'

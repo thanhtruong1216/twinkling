@@ -5,6 +5,7 @@ lock '3.19.2'
 
 # Load DSL and set up stages
 require 'capistrano/setup'
+require 'capistrano/local_precompile'
 
 # Include default deployment tasks
 require 'capistrano/deploy'
