@@ -53,6 +53,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-rails-console'
 gem 'capistrano-puma', require: false
 gem 'capistrano-git'
+gem 'capistrano-rails-collection'
 
 # Performance
 gem 'bootsnap', '>= 1.4.2', require: false
