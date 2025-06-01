@@ -54,6 +54,18 @@ module.exports = function(api) {
         }
       ],
       [
+        require('@babel/plugin-transform-private-methods').default,
+        {
+          loose: true
+        }
+      ],
+      [
+        require('@babel/plugin-transform-private-property-in-object').default,
+        {
+          loose: true
+        }
+      ],
+      [
         require('@babel/plugin-transform-runtime').default,
         {
           helpers: false,

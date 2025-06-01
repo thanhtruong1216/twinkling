@@ -24,6 +24,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'https://twinkling-star.herokuapp.com' }
   config.action_mailer.perform_deliveries = true
+  config.assets.manifest = "public/assets/manifest.json"
 
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.sendgrid.net',
@@ -33,13 +34,5 @@ Rails.application.configure do
     password: ENV['SENDGRID_PASSWORD'],
     enable_starttls_auto: true,
     domain: 'twinkling-star.herokuapp.com'
-  }
-
-  server '3.141.41.196', user: 'ubuntu', roles: %w{app db web}
-  set :branch, 'master'
-  set :ssh_options, {
-    keys: %w(ThanhTruong.pem),
-    forward_agent: true,
-    auth_methods: %w(publickey)
   }
 end

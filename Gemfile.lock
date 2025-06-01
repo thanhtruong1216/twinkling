@@ -489,6 +489,7 @@ DEPENDENCIES
   guard-rspec
   kaminari
   launchy
+  listen (~> 3.0)
   mimemagic!
   mini_magick
   net-imap

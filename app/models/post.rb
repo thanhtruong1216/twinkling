@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
   validates :user_id, presence: true
   validates :content, presence: true
-  validates :photo, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+  validates :photo, content_type: ['image/png', 'image/jpeg']
   validates :photo, size: { less_than: 3.megabytes, message: 'is not given between size' }
 
   private

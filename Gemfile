@@ -57,6 +57,7 @@ gem 'capistrano-git'
 # Performance
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'listen', '~> 3.0'
 
 group :development, :test do
   gem 'rspec-rails', '>= 4.0.0.beta2'

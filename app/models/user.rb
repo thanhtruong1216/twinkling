@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_create :generate_key
-  after_create  :send_email
+  # after_create  :send_email
 
   extend FriendlyId
   friendly_id :slug, use: :slugged
@@ -38,7 +38,7 @@ class User < ApplicationRecord
     self.update(confirmed_at: Time.now)
   end
 
-  def send_email
-    UserNotifierMailer.send_signup_email(self).deliver_now
-  end
+  # def send_email
+  #   UserNotifierMailer.send_signup_email(self).deliver_now
+  # end
 end
