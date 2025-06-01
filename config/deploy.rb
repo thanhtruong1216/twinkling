@@ -29,11 +29,15 @@ set :ssh_options, {
   timeout: 600
 }
 
-# Local precompile assets setup
+# Assets: compile locally, NOT on server
 set :assets_roles, [:web]
-set :local_precompile, true
-set :assets_manifests, ['public/packs/manifest.json']
+set :assets_prefix, 'assets'
+set :compile_assets_locally, true
 
+# Xóa task precompile mặc định trên server để không chạy
+Rake::Task["deploy:assets:precompile"].clear_actions if Rake::Task.task_defined?("deploy:assets:precompile")
+
+# Load master.key từ server shared folder
 namespace :master_key do
   desc "Load master key content from server"
   task :load do
@@ -43,7 +47,6 @@ namespace :master_key do
     end
   end
 end
-
 before 'deploy:starting', 'master_key:load'
 
 set :default_env, -> {
@@ -53,29 +56,25 @@ set :default_env, -> {
   }
 }
 
+# YARN install trước khi precompile assets (local)
 namespace :deploy do
-  desc 'Run yarn install'
-  task :yarn_install do
-    on roles(:web) do
-      within release_path do
-        execute :yarn, 'install --production --frozen-lockfile --silent'
-      end
+  desc 'Run yarn install locally'
+  task :yarn_install_local do
+    run_locally do
+      execute "yarn install --production --frozen-lockfile --silent"
     end
   end
-  before 'deploy:assets:precompile', 'deploy:yarn_install'
+  before 'deploy:assets:precompile', 'deploy:yarn_install_local'
 
-  desc 'Clean old assets before precompile'
-  task :assets_prepare do
-    on roles(fetch(:assets_roles)) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :rake, 'assets:clean'
-        end
-      end
+  # Task precompile assets local và upload lên server
+  desc 'Precompile assets locally and upload'
+  task :precompile_assets_locally do
+    run_locally do
+      execute "RAILS_ENV=production bundle exec rake assets:clobber assets:precompile"
+      execute "rsync -av --delete public/assets/ #{fetch(:user)}@#{fetch(:server)}:#{shared_path}/public/assets/"
     end
   end
-  Rake::Task["deploy:assets:prepare"].clear_actions if Rake::Task.task_defined?("deploy:assets:prepare")
-  before 'deploy:assets:precompile', 'deploy:assets_prepare'
+  before 'deploy:updated', 'deploy:precompile_assets_locally'
 end
 
 # Puma setup
@@ -86,7 +85,3 @@ set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{shared_path}/log/puma.access.log"
 set :puma_error_log, "#{shared_path}/log/puma.error.log"
-
-set :assets_roles, [:web]
-set :assets_prefix, 'assets'
-set :compile_assets_locally, true
