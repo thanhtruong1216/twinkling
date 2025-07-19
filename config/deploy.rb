@@ -56,14 +56,16 @@ set :default_env, -> {
   }
 }
 
-# Bundler config không bị deprecated
+# Bundler config an toàn, tránh flag lỗi thời
 namespace :bundler do
-  desc "Set bundler deployment config"
+  desc "Set bundler configs safely"
   task :setup_config do
     on roles(:app) do
       within release_path do
-        execute :bundle, "config set --local deployment 'true'"
-        execute :bundle, "config set --local without 'development test'"
+        execute :bundle, "config set deployment 'true'"
+        execute :bundle, "config set without 'development test'"
+        execute :bundle, "config set jobs 1"
+        execute :bundle, "config set silence_root_warning true || true"
       end
     end
   end
@@ -101,5 +103,5 @@ set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{shared_path}/log/puma.access.log"
 set :puma_error_log, "#{shared_path}/log/puma.error.log"
 
-# Xoá cờ bundler lỗi thời (đã dùng config thay thế)
+# Không dùng bundle_flags nữa — dùng bundle config thay thế hoàn toàn
 # set :bundle_flags, '--deployment --quiet --without development test --jobs=1'
