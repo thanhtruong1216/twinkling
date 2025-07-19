@@ -56,6 +56,20 @@ set :default_env, -> {
   }
 }
 
+# Bundler config không bị deprecated
+namespace :bundler do
+  desc "Set bundler deployment config"
+  task :setup_config do
+    on roles(:app) do
+      within release_path do
+        execute :bundle, "config set --local deployment 'true'"
+        execute :bundle, "config set --local without 'development test'"
+      end
+    end
+  end
+end
+before 'bundler:install', 'bundler:setup_config'
+
 # Local yarn install
 namespace :deploy do
   desc 'Run yarn install locally'
@@ -87,5 +101,5 @@ set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{shared_path}/log/puma.access.log"
 set :puma_error_log, "#{shared_path}/log/puma.error.log"
 
-# Giảm tài nguyên cho bundler
-set :bundle_flags, '--deployment --quiet --without development test --jobs=1'
+# Xoá cờ bundler lỗi thời (đã dùng config thay thế)
+# set :bundle_flags, '--deployment --quiet --without development test --jobs=1'
