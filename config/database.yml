@@ -27,7 +27,7 @@ test:
 
 production:
   <<: *default
-  host: 18.141.139.250
+  host: 47.128.249.209
   adapter: postgresql
   encoding: utf8
   reconnect: false

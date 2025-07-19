@@ -16,7 +16,7 @@ append :linked_files, 'config/master.key', 'config/database.yml', 'config/creden
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'storage'
 
 # Keep last releases
-set :keep_releases, 5
+set :keep_releases, 1
 
 # SSH
 set :user, 'ubuntu'
