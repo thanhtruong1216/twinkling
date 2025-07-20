@@ -52,6 +52,9 @@ namespace :deploy do
     end
   end
 
+  # Run yarn before assets precompile
   before 'deploy:assets:precompile', 'deploy:yarn_install'
+
+  # Optional: recompile assets again after updated if needed
   after 'deploy:updated', 'deploy:compile_assets'
 end
