@@ -56,26 +56,31 @@ namespace :deploy do
   desc 'Yarn install on server'
   task :yarn_install do
     on roles(:web) do
-      execute "cd #{current_path} && yarn install --check-files"
+      within release_path do
+        execute :yarn, 'install', '--check-files'
+      end
     end
   end
 
   desc 'Precompile assets on server'
   task :precompile_assets do
     on roles(:web) do
-      with rails_env: fetch(:rails_env) do
-        execute "cd #{current_path} && bundle exec rake assets:precompile"
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, 'exec', 'rake', 'assets:precompile'
+        end
       end
     end
   end
 
-  before 'deploy:symlink:shared', 'deploy:yarn_install'
-  before 'deploy:symlink:shared', 'deploy:precompile_assets'
+  before 'deploy:symlink:release', 'deploy:yarn_install'
+  before 'deploy:symlink:release', 'deploy:precompile_assets'
 
   desc 'Restart app'
   task :restart do
     invoke 'puma:restart'
   end
+
   after :publishing, :restart
 end
 
