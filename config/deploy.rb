@@ -29,14 +29,33 @@ set :ssh_options, {
   timeout: 600
 }
 
-# ✅ Build assets TRÊN SERVER
+# ✅ Build assets TRÊN SERVER (not local)
 set :assets_roles, [:web]
 set :assets_prefix, 'assets'
 set :assets_manifests, ['app/assets/config/manifest.js']
 set :assets_precompile, ['assets:precompile']
 
-# ❌ Tắt hoàn toàn build assets local (tránh lỗi rbenv local)
+# ❌ Tắt toàn bộ các task mặc định liên quan assets local
 Rake::Task["deploy:assets:precompile"].clear_actions
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
+Rake::Task["deploy:assets:restore_manifest"].clear_actions
+Rake::Task["deploy:assets:clean"].clear_actions
+
+# ✅ Precompile assets thủ công trên server
+namespace :deploy do
+  desc 'Precompile assets on server'
+  task :precompile_assets do
+    on roles(:web) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, 'exec rake assets:precompile'
+        end
+      end
+    end
+  end
+
+  before 'deploy:symlink:release', 'deploy:precompile_assets'
+end
 
 # Load master.key từ server
 namespace :master_key do
@@ -50,6 +69,7 @@ namespace :master_key do
 end
 before 'deploy:starting', 'master_key:load'
 
+# ENV cho rbenv + node
 set :default_env, -> {
   {
     'RAILS_MASTER_KEY' => fetch(:rails_master_key),
