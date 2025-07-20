@@ -9,7 +9,9 @@ set :deploy_to, "/var/www/star"
 # Ruby version
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
-set :rbenv_custom_path, '/home/ubuntu/.rbenv' # Đường dẫn chính xác tới rbenv
+set :rbenv_custom_path, '/home/ubuntu/.rbenv'
+set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
 
 # Shared files and folders
 append :linked_files,
@@ -26,17 +28,6 @@ append :linked_dirs,
   'node_modules'
 
 set :keep_releases, 5
-
-# Tắt asset tasks mặc định của Capistrano
-%w[
-  deploy:assets:prepare
-  deploy:assets:backup_manifest
-  deploy:assets:restore_manifest
-  deploy:assets:clean
-  deploy:assets:precompile
-].each do |task_name|
-  Rake::Task[task_name].clear_actions rescue nil
-end
 
 # Tự load master.key từ shared path (trên server)
 namespace :master_key do
