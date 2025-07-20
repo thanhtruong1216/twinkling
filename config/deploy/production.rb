@@ -11,3 +11,4 @@ set :ssh_options, {
 }
 
 append :linked_files, 'config/master.key'
+set :rbenv_path, '/home/ubuntu/.rbenv'
