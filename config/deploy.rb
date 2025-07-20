@@ -23,28 +23,19 @@ set :default_env, {
 }
 
 # Shared files and dirs
-append :linked_files,
-  'config/database.yml',
-  'config/master.key'
+append :linked_files, 'config/database.yml', 'config/master.key'
 
 append :linked_dirs,
-  'log',
-  'tmp/pids',
-  'tmp/cache',
-  'tmp/sockets',
-  'public/system',
-  'storage',
-  'node_modules'
+  'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
+  'public/system', 'storage', 'node_modules'
 
-set :keep_releases, 5
+set :keep_releases, 1
 
-# ❌ Tắt task assets mặc định local
 %w[
   deploy:assets:prepare
   deploy:assets:backup_manifest
   deploy:assets:restore_manifest
   deploy:assets:precompile
-  deploy:assets:clean
 ].each do |task_name|
   Rake::Task[task_name].clear_actions rescue nil
 end
