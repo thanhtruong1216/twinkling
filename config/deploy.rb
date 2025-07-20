@@ -6,22 +6,26 @@ set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :deploy_to, "/var/www/star"
 
-# Ruby version và cấu hình rbenv
+# Ruby version
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
-set :rbenv_custom_path, '/home/ubuntu/.rbenv'
+set :rbenv_custom_path, '/home/ubuntu/.rbenv' # ✅ Đúng path của EC2 Ubuntu
 set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
+set :rbenv_roles, :all
 
-# Force PATH
-set :default_env, fetch(:default_env, {}).merge({
+# ENV cho rbenv + node
+set :default_env, {
   'RBENV_ROOT' => fetch(:rbenv_custom_path),
   'PATH' => "#{fetch(:rbenv_custom_path)}/shims:#{fetch(:rbenv_custom_path)}/bin:$PATH",
   'NODE_OPTIONS' => '--openssl-legacy-provider'
-})
+}
 
-# File và thư mục dùng chung giữa các bản release
-append :linked_files, 'config/database.yml', 'config/master.key'
+# Shared files and folders
+append :linked_files,
+  'config/database.yml',
+  'config/master.key'
+
 append :linked_dirs,
   'log',
   'tmp/pids',
@@ -33,7 +37,7 @@ append :linked_dirs,
 
 set :keep_releases, 5
 
-# Load master.key từ shared trước khi deploy
+# Tự load master.key từ shared path (trên server)
 namespace :master_key do
   desc "Load master key from shared path"
   task :load do
