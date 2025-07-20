@@ -7,11 +7,12 @@ set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :deploy_to, "/var/www/star"
 
 # RBENV settings
-set :rbenv_type, :user
+set :rbenv_type, :user # hoặc :system nếu bạn cài Ruby ở hệ thống, dùng `rbenv versions` để kiểm tra
 set :rbenv_ruby, '3.2.2'
 set :rbenv_prefix, "#{fetch(:rbenv_path, '$HOME/.rbenv')}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
+# Load master key
 namespace :master_key do
   desc "Load master key content from server"
   task :load do
@@ -21,11 +22,9 @@ namespace :master_key do
     end
   end
 end
-
 before 'deploy:starting', 'master_key:load'
 
-append :linked_files, 'config/database.yml'
-
+# Environment variables
 set :default_env, -> {
   {
     'RAILS_MASTER_KEY' => fetch(:rails_master_key),
@@ -41,12 +40,12 @@ set :bundle_without, %w{development test}.join(' ')
 set :format, :airbrussh
 set :pty, true
 
-# Files & directories to symlink in each release
+# Linked files & directories
 append :linked_files, "config/database.yml", "config/master.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
 
 # Keep last 5 releases
 set :keep_releases, 1
 
-# Optional: If using Passenger, uncomment below
-# require 'capistrano/passenger'
+# Enable Passenger restart
+require 'capistrano/passenger'
