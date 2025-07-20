@@ -1,4 +1,4 @@
-lock "~> 3.18.1"
+lock "~> 3.19.2"
 
 set :application, "twinkling"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
