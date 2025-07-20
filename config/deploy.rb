@@ -6,21 +6,6 @@ set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :deploy_to, "/var/www/star"
 
-# RBENV cấu hình chuẩn
-# set :rbenv_type, :user
-# set :rbenv_ruby, '3.2.2'
-# set :rbenv_custom_path, '/home/ubuntu/.rbenv'
-# set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
-# set :rbenv_map_bins, %w[rake gem bundle ruby rails yarn]
-# set :rbenv_roles, :all
-
-# Môi trường (PATH chuẩn để rbenv hoạt động)
-# set :default_env, {
-#   'RBENV_ROOT' => fetch(:rbenv_custom_path),
-#   'RBENV_VERSION' => fetch(:rbenv_ruby),
-#   'PATH' => "#{fetch(:rbenv_custom_path)}/shims:#{fetch(:rbenv_custom_path)}/bin:$PATH",
-#   'NODE_OPTIONS' => '--openssl-legacy-provider'
-# }
 
 # Shared files và thư mục
 append :linked_files, 'config/database.yml', 'config/master.key'
