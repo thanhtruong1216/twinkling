@@ -6,15 +6,15 @@ set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :deploy_to, "/var/www/star"
 
-# RBENV cấu hình
+# RBENV cấu hình chuẩn
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
 set :rbenv_custom_path, '/home/ubuntu/.rbenv'
 set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
+set :rbenv_map_bins, %w[rake gem bundle ruby rails yarn]
 set :rbenv_roles, :all
 
-# Môi trường
+# Môi trường (PATH chuẩn để rbenv hoạt động)
 set :default_env, {
   'RBENV_ROOT' => fetch(:rbenv_custom_path),
   'RBENV_VERSION' => fetch(:rbenv_ruby),
@@ -28,7 +28,7 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 set :keep_releases, 5
 
-# Load master.key từ thư mục shared
+# Load master.key từ thư mục shared trước khi check linked files
 namespace :master_key do
   desc "Load Rails master.key from shared"
   task :load do
@@ -50,26 +50,27 @@ namespace :deploy do
     end
   end
 
-  desc 'Precompile Rails assets'
-  task :precompile do
-    on roles(:web) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, 'exec', 'rake', 'assets:clobber'
-          execute :bundle, 'exec', 'rake', 'assets:precompile'
-        end
-      end
-    end
-  end
+  # desc 'Precompile Rails assets'
+  # task :precompile do
+  #   on roles(:web) do
+  #     within release_path do
+  #       with rails_env: fetch(:rails_env) do
+  #         execute :bundle, 'exec', 'rake', 'assets:clobber'
+  #         execute :bundle, 'exec', 'rake', 'assets:precompile'
+  #       end
+  #     end
+  #   end
+  # end
 
-  after 'deploy:updated', 'deploy:yarn_install'
-  after 'deploy:yarn_install', 'deploy:precompile'
+  # # Các bước chạy sau cập nhật code
+  # after 'deploy:updated', 'deploy:yarn_install'
+  # after 'deploy:yarn_install', 'deploy:precompile'
 
-  desc 'Restart Puma'
-  task :restart do
-    invoke 'puma:restart'
-  end
-  after 'deploy:publishing', 'deploy:restart'
+  # desc 'Restart Puma'
+  # task :restart do
+  #   invoke 'puma:restart'
+  # end
+  # after 'deploy:publishing', 'deploy:restart'
 
-  after :finishing, 'deploy:cleanup'
+  # after :finishing, 'deploy:cleanup'
 end
