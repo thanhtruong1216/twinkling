@@ -6,23 +6,20 @@ set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :deploy_to, "/var/www/star"
 
-# Ruby version
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
-set :rbenv_custom_path, '/home/ubuntu/.rbenv' # ✅ Đúng path rbenv trên EC2 Ubuntu
+set :rbenv_custom_path, '/home/ubuntu/.rbenv'
 set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
 set :rbenv_roles, :all
 
-# ENV cho rbenv + node
 set :default_env, {
   'RBENV_ROOT' => fetch(:rbenv_custom_path),
-  'RBENV_VERSION' => fetch(:rbenv_ruby), # ✅ Đảm bảo chọn đúng Ruby version
+  'RBENV_VERSION' => fetch(:rbenv_ruby),
   'PATH' => "#{fetch(:rbenv_custom_path)}/shims:#{fetch(:rbenv_custom_path)}/bin:$PATH",
   'NODE_OPTIONS' => '--openssl-legacy-provider'
 }
 
-# Shared files and folders
 append :linked_files,
   'config/database.yml',
   'config/master.key'
@@ -38,7 +35,12 @@ append :linked_dirs,
 
 set :keep_releases, 5
 
-# Tự load master.key từ shared path (trên server)
+# ❌ Tắt task mặc định chạy asset:precompile & clean ở local
+Rake::Task["deploy:assets:precompile"].clear_actions
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
+Rake::Task["deploy:assets:clean"].clear_actions
+
+# ✅ Tự load master key từ shared path
 namespace :master_key do
   desc "Load master key from shared path"
   task :load do
@@ -68,6 +70,7 @@ namespace :deploy do
     on roles(:web) do
       within release_path do
         with rails_env: fetch(:rails_env) do
+          execute :bundle, 'exec', 'rake', 'assets:clean'
           execute :bundle, 'exec', 'rake', 'assets:precompile'
         end
       end
