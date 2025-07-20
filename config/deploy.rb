@@ -1,4 +1,4 @@
-# config/deploy.rb
+# frozen_string_literal: true
 
 lock "~> 3.19.2"
 
@@ -25,21 +25,25 @@ set :linked_dirs, fetch(:linked_dirs, []).push(
   'storage'
 )
 
-# Bỏ qua precompile
+# Không dùng assets:precompile
 Rake::Task["deploy:assets:precompile"].clear_actions
 
-# Tự động load master.key + NODE_OPTIONS (nếu cần)
+# Load master.key vào biến môi trường trước khi chạy bất kỳ task nào
 namespace :master_key do
-  desc "Load master key content from server"
+  desc "Load master key content from shared/config/master.key on server"
   task :load do
     on roles(:app) do
-      master_key = capture(:cat, "#{shared_path}/config/master.key").strip
-      set :rails_master_key, master_key
-
-      set :default_env, fetch(:default_env, {}).merge({
-        'RAILS_MASTER_KEY' => master_key,
-        'NODE_OPTIONS' => '--openssl-legacy-provider'
-      })
+      master_key_path = "#{shared_path}/config/master.key"
+      if test("[ -f #{master_key_path} ]")
+        master_key = capture(:cat, master_key_path).strip
+        set :rails_master_key, master_key
+        set :default_env, fetch(:default_env, {}).merge({
+          'RAILS_MASTER_KEY' => master_key,
+          'NODE_OPTIONS' => '--openssl-legacy-provider'
+        })
+      else
+        error "❌ Missing #{master_key_path} on server."
+      end
     end
   end
 end
@@ -48,7 +52,7 @@ before 'deploy:starting', 'master_key:load'
 
 # Restart Puma sau khi deploy
 namespace :deploy do
-  desc 'Restart application'
+  desc 'Restart Puma'
   task :restart do
     invoke 'puma:restart'
   end
