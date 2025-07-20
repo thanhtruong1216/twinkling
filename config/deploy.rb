@@ -1,61 +1,20 @@
-# frozen_string_literal: true
+lock "~> 3.18.1"
 
-lock "~> 3.19.2"
-
-set :application, "star"
+set :application, "twinkling"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
+
 set :deploy_to, "/var/www/star"
 
+# Nếu bạn dùng rbenv
+set :rbenv_type, :user
+set :rbenv_ruby, '3.2.2'
 
-# Shared files và thư mục
-append :linked_files, 'config/database.yml', 'config/master.key'
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'storage', 'node_modules'
+set :pty, true
+set :format, :airbrussh
 
-set :keep_releases, 5
+# Use bundler
+set :bundle_flags, '--deployment'
+set :bundle_without, %w{development test}.join(' ')
 
-# Load master.key từ thư mục shared trước khi check linked files
-namespace :master_key do
-  desc "Load Rails master.key from shared"
-  task :load do
-    on roles(:app) do
-      mk = capture(:cat, "#{shared_path}/config/master.key").strip
-      set :default_env, fetch(:default_env).merge('RAILS_MASTER_KEY' => mk)
-    end
-  end
-end
-before 'deploy:check:linked_files', 'master_key:load'
-
-namespace :deploy do
-  desc 'Install yarn packages'
-  task :yarn_install do
-    on roles(:web) do
-      within release_path do
-        execute :yarn, 'install', '--check-files'
-      end
-    end
-  end
-
-  # desc 'Precompile Rails assets'
-  # task :precompile do
-  #   on roles(:web) do
-  #     within release_path do
-  #       with rails_env: fetch(:rails_env) do
-  #         execute :bundle, 'exec', 'rake', 'assets:clobber'
-  #         execute :bundle, 'exec', 'rake', 'assets:precompile'
-  #       end
-  #     end
-  #   end
-  # end
-
-  # # Các bước chạy sau cập nhật code
-  # after 'deploy:updated', 'deploy:yarn_install'
-  # after 'deploy:yarn_install', 'deploy:precompile'
-
-  # desc 'Restart Puma'
-  # task :restart do
-  #   invoke 'puma:restart'
-  # end
-  # after 'deploy:publishing', 'deploy:restart'
-
-  # after :finishing, 'deploy:cleanup'
-end
+append :linked_files, "config/database.yml", "config/master.key"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
