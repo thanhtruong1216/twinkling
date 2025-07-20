@@ -1,15 +1,12 @@
 lock "~> 3.19.2"
 
 set :application, "star"
-set :repo_url, "git@github.com:itviec/star.git"
-set :branch, "develop"
+set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
+set :branch, "master"
 set :deploy_to, "/var/www/star"
 set :user, "deploy"
 set :linked_files, fetch(:linked_files, []).push(
   'config/database.yml',
-  'config/secrets.yml',
-  'config/cable.yml',
-  'config/aws.yml',
   'config/master.key'
 )
 set :linked_dirs, fetch(:linked_dirs, []).push(
