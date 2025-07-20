@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'capistrano/rails/assets'
+
 lock '3.19.2'
 
 set :application, 'star'
@@ -29,17 +31,15 @@ set :ssh_options, {
   timeout: 600
 }
 
-# ✅ Build assets TRÊN SERVER (not local)
+# ✅ Build assets TRÊN SERVER (không build local)
 set :assets_roles, [:web]
 set :assets_prefix, 'assets'
 set :assets_manifests, ['app/assets/config/manifest.js']
 set :assets_precompile, ['assets:precompile']
 
-# ❌ Tắt toàn bộ các task mặc định liên quan assets local
-Rake::Task["deploy:assets:precompile"].clear_actions
-Rake::Task["deploy:assets:backup_manifest"].clear_actions
-Rake::Task["deploy:assets:restore_manifest"].clear_actions
-Rake::Task["deploy:assets:clean"].clear_actions
+# ❌ Tắt *local* precompile nếu dùng plugin capistrano-local-precompile
+# Nếu bạn không dùng plugin đó, KHÔNG cần dòng sau:
+# Rake::Task["deploy:assets:precompile"].clear_actions
 
 # ✅ Precompile assets thủ công trên server
 namespace :deploy do
