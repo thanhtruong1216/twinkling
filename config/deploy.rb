@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.17.0"
+lock "~> 3.19.0"
 
 set :application, "star"
 set :repo_url, "git@github.com:itviec/star.git"
