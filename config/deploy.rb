@@ -31,16 +31,6 @@ append :linked_dirs,
 
 set :keep_releases, 1
 
-# ❌ Tắt các task assets local mặc định để tránh lỗi (dùng bản custom phía dưới)
-%w[
-  deploy:assets:prepare
-  deploy:assets:backup_manifest
-  deploy:assets:restore_manifest
-  deploy:assets:precompile
-].each do |task_name|
-  Rake::Task[task_name].clear_actions rescue nil
-end
-
 # ✅ Load master.key từ shared
 namespace :master_key do
   desc "Load master key from shared path"
@@ -78,6 +68,21 @@ namespace :deploy do
     end
   end
 
+  # Thay vì xoá toàn bộ task mặc định (có thể gây lỗi), override clean task nếu cần
+  namespace :assets do
+    desc 'Clean up assets'
+    task :clean do
+      on roles(:web) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :bundle, :exec, :rake, 'assets:clobber'
+          end
+        end
+      end
+    end
+  end
+
+  before 'deploy:assets:precompile', 'deploy:assets:clean'
   before 'deploy:symlink:release', 'deploy:yarn_install'
   before 'deploy:symlink:release', 'deploy:precompile_assets'
 
