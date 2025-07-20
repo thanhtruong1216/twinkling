@@ -13,6 +13,13 @@ set :rbenv_custom_path, '/home/ubuntu/.rbenv'
 set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
 
+# Force PATH to include rbenv shims and bin
+set :default_env, fetch(:default_env, {}).merge({
+  'RBENV_ROOT' => fetch(:rbenv_custom_path),
+  'PATH' => "#{fetch(:rbenv_custom_path)}/shims:#{fetch(:rbenv_custom_path)}/bin:$PATH",
+  'NODE_OPTIONS' => '--openssl-legacy-provider'
+})
+
 # Shared files and folders
 append :linked_files,
   'config/database.yml',
@@ -75,8 +82,3 @@ namespace :deploy do
 
   after :publishing, :restart
 end
-
-# ENV cho rbenv + node
-set :default_env, fetch(:default_env, {}).merge({
-  'NODE_OPTIONS' => '--openssl-legacy-provider'
-})
