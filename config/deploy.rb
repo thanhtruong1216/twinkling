@@ -10,11 +10,27 @@ set :deploy_to, "/var/www/star"
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
 
-# Shared files and folders
-append :linked_files,
-  'config/database.yml',
-  'config/master.key'
+namespace :master_key do
+  desc "Load master key content from server"
+  task :load do
+    on roles(:app) do
+      master_key = capture(:cat, "#{shared_path}/config/master.key").strip
+      set :rails_master_key, master_key
+    end
+  end
+end
 
+before 'deploy:starting', 'master_key:load'
+
+set :default_env, -> {
+  {
+    'RAILS_MASTER_KEY' => fetch(:rails_master_key),
+    'NODE_OPTIONS' => '--openssl-legacy-provider'
+  }
+}
+
+# Shared files and folders
+append :linked_files, 'config/database.yml'
 append :linked_dirs,
   'log',
   'tmp/pids',
@@ -67,8 +83,3 @@ namespace :deploy do
   end
   after :publishing, :restart
 end
-
-# ENV cho rbenv + node (không load master.key từ local)
-set :default_env, {
-  'NODE_OPTIONS' => '--openssl-legacy-provider'
-}
