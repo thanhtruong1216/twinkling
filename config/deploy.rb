@@ -24,7 +24,6 @@ set :default_env, {
 
 # Shared files and dirs
 append :linked_files, 'config/database.yml', 'config/master.key'
-
 append :linked_dirs,
   'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
   'public/system', 'storage', 'node_modules'
@@ -68,23 +67,8 @@ namespace :deploy do
     end
   end
 
-  # Thay vì xoá toàn bộ task mặc định (có thể gây lỗi), override clean task nếu cần
-  namespace :assets do
-    desc 'Clean up assets'
-    task :clean do
-      on roles(:web) do
-        within release_path do
-          with rails_env: fetch(:rails_env) do
-            execute :bundle, :exec, :rake, 'assets:clobber'
-          end
-        end
-      end
-    end
-  end
-
-  before 'deploy:assets:precompile', 'deploy:assets:clean'
-  before 'deploy:symlink:release', 'deploy:yarn_install'
-  before 'deploy:symlink:release', 'deploy:precompile_assets'
+  before 'deploy:assets:precompile', 'deploy:yarn_install'
+  before 'deploy:assets:precompile', 'deploy:precompile_assets'
 
   desc 'Restart app after publishing'
   task :restart do
