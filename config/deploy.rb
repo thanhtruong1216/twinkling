@@ -29,9 +29,15 @@ set :ssh_options, {
   timeout: 600
 }
 
-# Assets: build trực tiếp trên server
+# ✅ Build assets TRÊN SERVER (not local)
 set :assets_roles, [:web]
 set :assets_prefix, 'assets'
+set :assets_manifests, ['app/assets/config/manifest.js']
+set :assets_precompile, ['assets:precompile']
+
+# ❌ Tắt build assets local (nếu dùng plugin capistrano-local-precompile)
+# Nếu bạn có dòng này trước đó thì hãy xóa:
+# set :assets_roles, [:local]
 
 # Load master.key từ server
 namespace :master_key do
