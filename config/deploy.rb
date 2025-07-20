@@ -1,36 +1,50 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.19.2"
+lock "~> 3.18.0"
 
-set :application, "twinkling"
-set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
+set :application, "star"
+set :repo_url, "git@github.com:itviec/star.git"
+set :branch, "develop"
 set :deploy_to, "/var/www/star"
+set :user, "deploy"
+set :linked_files, fetch(:linked_files, []).push(
+  'config/database.yml',
+  'config/secrets.yml',
+  'config/cable.yml',
+  'config/aws.yml',
+  'config/master.key'
+)
+set :linked_dirs, fetch(:linked_dirs, []).push(
+  'log',
+  'tmp/pids',
+  'tmp/cache',
+  'tmp/sockets',
+  'vendor/bundle',
+  '.bundle',
+  'public/system',
+  'public/uploads',
+  'storage'
+)
 
-# RBENV
-set :rbenv_type, :user
-set :rbenv_ruby, '3.2.2'
-set :rbenv_prefix, "#{fetch(:rbenv_path, '$HOME/.rbenv')}/bin/rbenv exec"
-set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+namespace :master_key do
+  desc "Load master key content from server"
+  task :load do
+    on roles(:app) do
+      master_key = capture(:cat, "#{shared_path}/config/master.key").strip
+      set :rails_master_key, master_key
 
-# Environment variables
-set :default_env, {
-  'RAILS_MASTER_KEY' => File.read('config/master.key').strip,
-  'NODE_OPTIONS' => '--openssl-legacy-provider'
-}
+      # Set biến môi trường sau khi đọc key
+      set :default_env, {
+        'RAILS_MASTER_KEY' => master_key,
+        'NODE_OPTIONS' => '--openssl-legacy-provider'
+      }
+    end
+  end
+end
 
-# Bundler
-set :bundle_flags, '--deployment'
-set :bundle_without, %w{development test}.join(' ')
+before 'deploy:starting', 'master_key:load'
 
-# Format & PTY
-set :format, :airbrussh
-set :pty, true
-
-# Linked files & directories
-append :linked_files, "config/database.yml", "config/master.key"
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
-
-# Releases
-set :keep_releases, 1
-
-# Passenger
-require 'capistrano/passenger'
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'puma:restart'
+  end
+end
