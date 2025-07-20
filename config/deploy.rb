@@ -6,7 +6,7 @@ set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :deploy_to, "/var/www/star"
 
-# RBENV
+# RBENV cấu hình
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
 set :rbenv_custom_path, '/home/ubuntu/.rbenv'
@@ -14,7 +14,7 @@ set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
 set :rbenv_roles, :all
 
-# ENV
+# Môi trường
 set :default_env, {
   'RBENV_ROOT' => fetch(:rbenv_custom_path),
   'RBENV_VERSION' => fetch(:rbenv_ruby),
@@ -22,31 +22,26 @@ set :default_env, {
   'NODE_OPTIONS' => '--openssl-legacy-provider'
 }
 
-# Shared files and dirs
+# Shared files và thư mục
 append :linked_files, 'config/database.yml', 'config/master.key'
-append :linked_dirs,
-  'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets',
-  'public/system', 'storage', 'node_modules'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'storage', 'node_modules'
 
-set :keep_releases, 1
+set :keep_releases, 5
 
-# ✅ Load master.key từ shared
+# Load master.key từ thư mục shared
 namespace :master_key do
-  desc "Load master key from shared path"
+  desc "Load Rails master.key from shared"
   task :load do
     on roles(:app) do
-      master_key = capture(:cat, "#{shared_path}/config/master.key").strip
-      set :default_env, fetch(:default_env, {}).merge({
-        'RAILS_MASTER_KEY' => master_key
-      })
+      mk = capture(:cat, "#{shared_path}/config/master.key").strip
+      set :default_env, fetch(:default_env).merge('RAILS_MASTER_KEY' => mk)
     end
   end
 end
-
 before 'deploy:check:linked_files', 'master_key:load'
 
 namespace :deploy do
-  desc 'Install yarn packages on server'
+  desc 'Install yarn packages'
   task :yarn_install do
     on roles(:web) do
       within release_path do
@@ -55,25 +50,26 @@ namespace :deploy do
     end
   end
 
-  desc 'Precompile assets on server'
-  task :precompile_assets do
+  desc 'Precompile Rails assets'
+  task :precompile do
     on roles(:web) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :rake, 'assets:clobber'
-          execute :bundle, :exec, :rake, 'assets:precompile'
+          execute :bundle, 'exec', 'rake', 'assets:clobber'
+          execute :bundle, 'exec', 'rake', 'assets:precompile'
         end
       end
     end
   end
 
-  before 'deploy:assets:precompile', 'deploy:yarn_install'
-  before 'deploy:assets:precompile', 'deploy:precompile_assets'
+  after 'deploy:updated', 'deploy:yarn_install'
+  after 'deploy:yarn_install', 'deploy:precompile'
 
-  desc 'Restart app after publishing'
+  desc 'Restart Puma'
   task :restart do
     invoke 'puma:restart'
   end
+  after 'deploy:publishing', 'deploy:restart'
 
-  after :publishing, :restart
+  after :finishing, 'deploy:cleanup'
 end
