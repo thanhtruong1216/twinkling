@@ -9,6 +9,7 @@ set :deploy_to, "/var/www/star"
 # Ruby version
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
+set :rbenv_custom_path, '/home/ubuntu/.rbenv' # Đường dẫn chính xác tới rbenv
 
 # Shared files and folders
 append :linked_files,
@@ -86,6 +87,5 @@ end
 
 # ENV cho rbenv + node
 set :default_env, fetch(:default_env, {}).merge({
-  'NODE_OPTIONS' => '--openssl-legacy-provider',
-  'PATH' => "/home/ubuntu/.rbenv/bin:$PATH"
+  'NODE_OPTIONS' => '--openssl-legacy-provider'
 })
