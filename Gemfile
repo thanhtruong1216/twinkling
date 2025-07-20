@@ -54,6 +54,7 @@ gem 'capistrano-rails-console'
 gem 'capistrano-puma', require: false
 gem 'capistrano-git'
 gem 'capistrano-rails-collection'
+gem 'capistrano-passenger'
 
 # Performance
 gem 'bootsnap', '>= 1.4.2', require: false

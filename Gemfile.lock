@@ -129,6 +129,8 @@ GEM
       capistrano (~> 3.1)
     capistrano-git (0.0.2)
       capistrano_colors (= 0.5.5)
+    capistrano-passenger (0.2.1)
+      capistrano (~> 3.0)
     capistrano-puma (0.2.3)
       capistrano (>= 3.0)
     capistrano-rails (1.7.0)
@@ -477,6 +479,7 @@ DEPENDENCIES
   capistrano
   capistrano-bundler
   capistrano-git
+  capistrano-passenger
   capistrano-puma
   capistrano-rails
   capistrano-rails-collection
