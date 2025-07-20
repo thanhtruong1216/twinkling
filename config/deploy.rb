@@ -29,13 +29,9 @@ set :ssh_options, {
   timeout: 600
 }
 
-# Assets: compile locally
+# Assets: build trực tiếp trên server
 set :assets_roles, [:web]
 set :assets_prefix, 'assets'
-set :compile_assets_locally, true
-
-# Xóa task mặc định precompile trên server
-Rake::Task["deploy:assets:precompile"].clear_actions if Rake::Task.task_defined?("deploy:assets:precompile")
 
 # Load master.key từ server
 namespace :master_key do
@@ -56,7 +52,7 @@ set :default_env, -> {
   }
 }
 
-# Bundler config an toàn, tránh flag lỗi thời
+# Bundler config an toàn
 namespace :bundler do
   desc "Set bundler configs safely"
   task :setup_config do
@@ -72,28 +68,6 @@ namespace :bundler do
 end
 before 'bundler:install', 'bundler:setup_config'
 
-# Local yarn install
-namespace :deploy do
-  desc 'Run yarn install locally'
-  task :yarn_install_local do
-    run_locally do
-      execute "yarn install --production --frozen-lockfile --silent || echo '⚠️ Yarn failed'"
-    end
-  end
-  before 'deploy:assets:precompile', 'deploy:yarn_install_local'
-
-  desc 'Precompile assets locally and upload'
-  task :precompile_assets_locally do
-    run_locally do
-      execute "RAILS_ENV=production bundle exec rake assets:clobber assets:precompile"
-      on roles(:web) do
-        upload!('./public/assets/', "#{shared_path}/public/assets/", recursive: true)
-      end
-    end
-  end
-  before 'deploy:updated', 'deploy:precompile_assets_locally'
-end
-
 # Puma setup (tối ưu cho EC2 t2.micro)
 set :puma_threads, [2, 4]
 set :puma_workers, 1
@@ -102,6 +76,3 @@ set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{shared_path}/log/puma.access.log"
 set :puma_error_log, "#{shared_path}/log/puma.error.log"
-
-# Không dùng bundle_flags nữa — dùng bundle config thay thế hoàn toàn
-# set :bundle_flags, '--deployment --quiet --without development test --jobs=1'
