@@ -86,5 +86,6 @@ end
 
 # ENV cho rbenv + node
 set :default_env, fetch(:default_env, {}).merge({
-  'NODE_OPTIONS' => '--openssl-legacy-provider'
+  'NODE_OPTIONS' => '--openssl-legacy-provider',
+  'PATH' => "/home/ubuntu/.rbenv/bin:$PATH"
 })
