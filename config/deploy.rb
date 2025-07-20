@@ -2,7 +2,7 @@
 lock "~> 3.19.0"
 
 set :application, "star"
-set :repo_url, "git@github.com:itviec/star.git"
+set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/star"
