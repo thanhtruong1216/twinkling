@@ -4,7 +4,7 @@ set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 set :branch, "master"
 set :deploy_to, "/var/www/star"
-set :user, "deploy"
+set :user, "ubuntu"
 
 set :linked_files, fetch(:linked_files, []).push(
   "config/database.yml",
