@@ -10,6 +10,9 @@ require 'capistrano/deploy'
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
 
+set :rbenv_type, :user
+set :rbenv_ruby, '3.2.2'
+
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'
