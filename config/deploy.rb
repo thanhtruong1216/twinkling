@@ -13,9 +13,7 @@ set :rbenv_ruby, '3.2.2'
 # Shared files and folders
 append :linked_files,
   'config/database.yml',
-  'config/master.key',
-  'config/credentials/production.yml.enc',
-  'config/credentials/production.key'
+  'config/master.key'
 
 append :linked_dirs,
   'log',
@@ -70,8 +68,7 @@ namespace :deploy do
   after :publishing, :restart
 end
 
-# ENV cho rbenv + node
+# ENV cho rbenv + node (không load master.key từ local)
 set :default_env, {
-  'RAILS_MASTER_KEY' => File.read('config/master.key').strip,
   'NODE_OPTIONS' => '--openssl-legacy-provider'
 }
