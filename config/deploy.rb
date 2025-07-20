@@ -9,7 +9,7 @@ set :deploy_to, "/var/www/star"
 # Ruby version
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
-set :rbenv_custom_path, '/home/ubuntu/.rbenv' # ✅ Đúng path của EC2 Ubuntu
+set :rbenv_custom_path, '/home/ubuntu/.rbenv' # ✅ Đúng path rbenv trên EC2 Ubuntu
 set :rbenv_prefix, "#{fetch(:rbenv_custom_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails yarn}
 set :rbenv_roles, :all
@@ -17,6 +17,7 @@ set :rbenv_roles, :all
 # ENV cho rbenv + node
 set :default_env, {
   'RBENV_ROOT' => fetch(:rbenv_custom_path),
+  'RBENV_VERSION' => fetch(:rbenv_ruby), # ✅ Đảm bảo chọn đúng Ruby version
   'PATH' => "#{fetch(:rbenv_custom_path)}/shims:#{fetch(:rbenv_custom_path)}/bin:$PATH",
   'NODE_OPTIONS' => '--openssl-legacy-provider'
 }
