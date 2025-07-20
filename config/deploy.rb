@@ -29,15 +29,14 @@ set :ssh_options, {
   timeout: 600
 }
 
-# ✅ Build assets TRÊN SERVER (not local)
+# ✅ Build assets TRÊN SERVER
 set :assets_roles, [:web]
 set :assets_prefix, 'assets'
 set :assets_manifests, ['app/assets/config/manifest.js']
 set :assets_precompile, ['assets:precompile']
 
-# ❌ Tắt build assets local (nếu dùng plugin capistrano-local-precompile)
-# Nếu bạn có dòng này trước đó thì hãy xóa:
-# set :assets_roles, [:local]
+# ❌ Tắt hoàn toàn build assets local (tránh lỗi rbenv local)
+Rake::Task["deploy:assets:precompile"].clear_actions
 
 # Load master.key từ server
 namespace :master_key do
