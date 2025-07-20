@@ -31,6 +31,7 @@ append :linked_dirs,
 
 set :keep_releases, 1
 
+# ❌ Tắt các task assets local mặc định để tránh lỗi (dùng bản custom phía dưới)
 %w[
   deploy:assets:prepare
   deploy:assets:backup_manifest
@@ -56,7 +57,7 @@ end
 before 'deploy:check:linked_files', 'master_key:load'
 
 namespace :deploy do
-  desc 'Yarn install on server'
+  desc 'Install yarn packages on server'
   task :yarn_install do
     on roles(:web) do
       within release_path do
@@ -70,8 +71,8 @@ namespace :deploy do
     on roles(:web) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, 'exec', 'rake', 'assets:clobber'
-          execute :bundle, 'exec', 'rake', 'assets:precompile'
+          execute :bundle, :exec, :rake, 'assets:clobber'
+          execute :bundle, :exec, :rake, 'assets:precompile'
         end
       end
     end
@@ -80,7 +81,7 @@ namespace :deploy do
   before 'deploy:symlink:release', 'deploy:yarn_install'
   before 'deploy:symlink:release', 'deploy:precompile_assets'
 
-  desc 'Restart app'
+  desc 'Restart app after publishing'
   task :restart do
     invoke 'puma:restart'
   end
