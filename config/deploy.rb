@@ -9,38 +9,38 @@ set :deploy_to, "/var/www/star"
 set :user, "deploy"
 
 set :linked_files, fetch(:linked_files, []).push(
-  'config/database.yml',
-  'config/master.key'
+  "config/database.yml",
+  "config/master.key"
 )
 
 set :linked_dirs, fetch(:linked_dirs, []).push(
-  'log',
-  'tmp/pids',
-  'tmp/cache',
-  'tmp/sockets',
-  'vendor/bundle',
-  '.bundle',
-  'public/system',
-  'public/uploads',
-  'storage'
+  "log",
+  "tmp/pids",
+  "tmp/cache",
+  "tmp/sockets",
+  "vendor/bundle",
+  ".bundle",
+  "public/system",
+  "public/uploads",
+  "storage"
 )
 
-# Không dùng assets:precompile
+# ✅ Không chạy precompile (vì assets đã được build sẵn)
 Rake::Task["deploy:assets:precompile"].clear_actions
 
-# Load master.key vào biến môi trường trước khi chạy bất kỳ task nào
+# ✅ Gán RAILS_MASTER_KEY từ shared/config/master.key vào ENV
 namespace :master_key do
-  desc "Load master key content from shared/config/master.key on server"
+  desc "Load master key from shared config"
   task :load do
     on roles(:app) do
       master_key_path = "#{shared_path}/config/master.key"
       if test("[ -f #{master_key_path} ]")
         master_key = capture(:cat, master_key_path).strip
         set :rails_master_key, master_key
-        set :default_env, fetch(:default_env, {}).merge({
-          'RAILS_MASTER_KEY' => master_key,
-          'NODE_OPTIONS' => '--openssl-legacy-provider'
-        })
+        set :default_env, fetch(:default_env, {}).merge(
+          "RAILS_MASTER_KEY" => master_key,
+          "NODE_OPTIONS" => "--openssl-legacy-provider"
+        )
       else
         error "❌ Missing #{master_key_path} on server."
       end
@@ -48,13 +48,13 @@ namespace :master_key do
   end
 end
 
-before 'deploy:starting', 'master_key:load'
+before "deploy:starting", "master_key:load"
 
-# Restart Puma sau khi deploy
+# ✅ Restart Puma sau khi publish
 namespace :deploy do
-  desc 'Restart Puma'
+  desc "Restart Puma"
   task :restart do
-    invoke 'puma:restart'
+    invoke "puma:restart"
   end
 
   after :publishing, :restart
