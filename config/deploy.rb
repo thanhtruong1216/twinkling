@@ -41,12 +41,15 @@ namespace :deploy do
     end
   end
 
-  desc "No explicit restart needed for Passenger"
+  desc "Restart application by touching tmp/restart.txt for Passenger"
   task :restart do
-    # Passenger tự reload khi code thay đổi
+    on roles(:app) do
+      within release_path do
+        execute :touch, "tmp/restart.txt"
+      end
+    end
   end
 
-  # Thứ tự các bước deploy:
   before 'deploy:assets:precompile', 'deploy:yarn_install'
   after :publishing, :restart
 end
