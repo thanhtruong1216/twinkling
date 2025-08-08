@@ -4,24 +4,24 @@ lock "~> 3.19.2"
 set :application, "star"
 set :repo_url, "git@github.com:thanhtruong1216/twinkling.git"
 
-# Directory to deploy to on the server
+# Thư mục deploy trên server
 set :deploy_to, "/var/www/#{fetch(:application)}"
 
-# Shared files and directories between releases
+# Các file và thư mục dùng chung giữa các release
 append :linked_files, "config/master.key", "config/database.yml", "config/credentials/production.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
 
-# Keep only the last release (adjust as needed)
-set :keep_releases, 1
+# Giữ lại số release gần nhất
+set :keep_releases, 3
 
-# Ruby version (using rbenv)
+# Ruby version (rbenv user install)
 set :rbenv_type, :user
 set :rbenv_ruby, '3.2.2'
 
-# Yarn install options
+# Yarn flags khi chạy yarn install
 set :yarn_flags, '--silent --no-progress'
 
-# Set environment variables including RAILS_MASTER_KEY
+# Thiết lập biến môi trường (đảm bảo RAILS_MASTER_KEY được load)
 set :default_env, lambda {
   master_key_path = "#{shared_path}/config/master.key"
   master_key = File.exist?(master_key_path) ? File.read(master_key_path).strip : ""
@@ -31,11 +31,11 @@ set :default_env, lambda {
   }
 }
 
-# Hook to restart Puma after deploy
+# Passenger tự reload app, không cần restart service
 namespace :deploy do
-  desc 'Restart application'
+  desc "No explicit restart needed for Passenger"
   task :restart do
-    invoke 'puma:restart'
+    # Passenger tự reload khi code thay đổi
   end
 
   after :publishing, :restart
