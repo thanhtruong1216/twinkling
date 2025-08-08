@@ -31,12 +31,22 @@ set :default_env, lambda {
   }
 }
 
-# Passenger tự reload app, không cần restart service
 namespace :deploy do
+  desc "Run yarn install on server"
+  task :yarn_install do
+    on roles(:web) do
+      within release_path do
+        execute :yarn, "install --production=false #{fetch(:yarn_flags)}"
+      end
+    end
+  end
+
   desc "No explicit restart needed for Passenger"
   task :restart do
     # Passenger tự reload khi code thay đổi
   end
 
+  # Thứ tự các bước deploy:
+  before 'deploy:assets:precompile', 'deploy:yarn_install'
   after :publishing, :restart
 end
