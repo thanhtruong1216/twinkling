@@ -12,4 +12,4 @@ set :ssh_options, {
 
 append :linked_files, 'config/master.key'
 set :rbenv_type, :user
-set :rbenv_ruby, '3.2.2'
+set :rbenv_ruby, '3.2.3'
