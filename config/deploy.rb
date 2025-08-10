@@ -16,7 +16,7 @@ set :keep_releases, 3
 
 # Ruby version (rbenv user install)
 set :rbenv_type, :user
-set :rbenv_ruby, '3.2.2'
+set :rbenv_ruby, '3.2.3'
 
 # Yarn flags khi chạy yarn install
 set :yarn_flags, '--silent --no-progress'
