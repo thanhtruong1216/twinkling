@@ -12,7 +12,7 @@ append :linked_files, "config/master.key", "config/database.yml", "config/creden
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
 
 # Giữ lại số release gần nhất
-set :keep_releases, 3
+set :keep_releases, 1
 
 # Ruby version (rbenv user install)
 set :rbenv_type, :user
