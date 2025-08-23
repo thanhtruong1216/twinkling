@@ -20,8 +20,8 @@
             = link_to t('header.articles'), posts_path
           li
             = link_to t('header.new_post'), new_post_path
-          li
-            = link_to t('header.famous_people'), famous_people_path
+          / li
+          /   = link_to t('header.famous_people'), famous_people_path
 
       div.dropdown.normal-header-link
         = link_to links_path do
@@ -33,8 +33,8 @@
             = link_to t('header.link_shortener'), new_link_path
           li 
             = link_to t('header.find_zodiac'), find_name_zodiacs_path
-          li 
-            = link_to t('header.create_person'), new_famous_person_path
+          / li 
+          /   = link_to t('header.create_person'), new_famous_person_path
 
       div.dropdown.normal-header-link
         = link_to current_user do
