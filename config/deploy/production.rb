@@ -1,4 +1,4 @@
-server "18.141.190.166", user: "ubuntu", roles: %w{app db web}
+server "3.1.159.144", user: "ubuntu", roles: %w{app db web}
 
 set :migration_role, :app
 
