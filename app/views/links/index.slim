@@ -4,23 +4,23 @@ section.zodiacs
       .zodiac-header
         p.order-th STT
         p Title
-        p Link
+        / p Link
         p Created time
-        p Clicks count
+        / p Clicks count
         p Actions
 
-      - @links.each_with_index do |link, index|
-        .zodiac-row
-          p.order= index + 1
-          p= link&.title
-          p= link_to link.shortener, link_path(link.slug), target: '_blank'
-          p= link.created_at.strftime("%a %d %b %Y")
-          p= link.clicks_count
-          p 
-            = link_to edit_link_path(link), type: 'button', class: 'btn btn-success zmr-1'
-              = t('link_shortener.edit_link')
-            = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
-              = t('link_shortener.delete_link')
+      / - @links.each_with_index do |link, index|
+      /   .zodiac-row
+      /     p.order= index + 1
+      /     p= link&.title
+      /     / p= link_to link.shortener, link_path(link.slug), target: '_blank'
+      /     p= link.created_at.strftime("%a %d %b %Y")
+      /     / p= link.clicks_count
+      /     p 
+      /       = link_to edit_link_path(link), type: 'button', class: 'btn btn-success zmr-1'
+      /         = t('link_shortener.edit_link')
+      /       = link_to link_path(link), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+      /         = t('link_shortener.delete_link')
     - else
       .text-center
         p= t('link_shortener.you_have_no_links')

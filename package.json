@@ -10,7 +10,10 @@
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^5.4.4",
+    "autoprefixer": "^10.4.21",
     "jquery": "^3.4.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {

@@ -1,0 +1,26 @@
+h1 Tạo Poll mới
+
+= form_with(model: @poll, local: true) do |f|
+  - if @poll.errors.any?
+    .alert.alert-danger
+      h4 = pluralize(@poll.errors.count, "lỗi") + ":"
+      ul
+        - @poll.errors.full_messages.each do |msg|
+          li = msg
+
+  div
+    = f.label :title, "Câu hỏi"
+    br
+    = f.text_field :title
+
+  h3 Options
+  = f.fields_for :options do |opt|
+    div
+      = opt.label :text, "Option"
+      br
+      = opt.text_field :text
+
+  div
+    = f.submit "Tạo Poll", class: "btn btn-success"
+
+= link_to "Quay lại", polls_path

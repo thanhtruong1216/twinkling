@@ -9,11 +9,11 @@ class LinksController < ApplicationController
   end
 
   def show
-    EventTrack.create(name: 'View shorten link detail', user_id: current_user.id)
-    @link = current_user.links.find_by(slug: params[:id])
-    @link.clicks.create
+    # EventTrack.create(name: 'View shorten link detail', user_id: current_user.id)
+    # @link = current_user.links.find_by(slug: params[:id])
+    # @link.clicks.create
 
-    redirect_to @link.url
+    # redirect_to @link.url
   end
 
   def new

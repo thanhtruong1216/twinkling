@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /vi|en/ do
-    root 'posts#index'
+    # root 'posts#index'
+    root "polls#index"
     devise_for :users, :controllers => { registrations: 'registrations', confirmations: 'confirmations' }
 
     resources :users do
@@ -33,5 +34,9 @@ Rails.application.routes.draw do
     resources :links
     resources :famous_people, only: [:index, :new, :create]
     get '/:id', to: 'links#show'
+
+    resources :polls, only: [:index, :show, :new, :create] do
+      resources :votes, only: [:create]
+    end
   end
 end

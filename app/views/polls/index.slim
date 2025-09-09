@@ -1,0 +1,11 @@
+section.posts.bg-sky-950
+  h1.text-blue-600 Danh sách Polls
+
+  - if user_signed_in?
+    = link_to "Tạo poll mới", new_poll_path, class: "btn btn-primary"
+
+  ul
+    - @polls.each do |poll|
+      li
+        = link_to poll.title, poll_path(poll)
+        |  (#{pluralize(poll.votes.count, "vote")})

@@ -1,0 +1,11 @@
+h1 = @poll.title
+
+ul
+  - @options.each do |option|
+    li
+      = option.text
+      |  - #{option.votes.count} votes
+      - if user_signed_in?
+        = button_to "Vote", poll_votes_path(@poll, option_id: option.id), method: :post
+
+= link_to "Quay lại danh sách", polls_path
