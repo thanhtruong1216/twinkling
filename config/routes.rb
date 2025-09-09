@@ -31,9 +31,9 @@ Rails.application.routes.draw do
     resources :zodiac_suits, only: :index
     resources :user_managements, only: :index
     resources :event_tracks, only: :index
-    resources :links
+    # resources :links
     resources :famous_people, only: [:index, :new, :create]
-    get '/:id', to: 'links#show'
+    # get '/:id', to: 'links#show'
 
     resources :polls, only: [:index, :show, :new, :create] do
       resources :votes, only: [:create]

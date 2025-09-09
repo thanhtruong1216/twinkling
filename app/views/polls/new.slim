@@ -1,26 +1,29 @@
-h1 Tạo Poll mới
+.container.my-5.posts
+  .row.justify-content-center
+    .col-md-8
+      .card.shadow
+        .card-body
+          h1.text-center.text-primary.mb-4 Tạo Poll mới
 
-= form_with(model: @poll, local: true) do |f|
-  - if @poll.errors.any?
-    .alert.alert-danger
-      h4 = pluralize(@poll.errors.count, "lỗi") + ":"
-      ul
-        - @poll.errors.full_messages.each do |msg|
-          li = msg
+          = form_with(model: @poll, local: true, class: "needs-validation") do |f|
+            - if @poll.errors.any?
+              .alert.alert-danger
+                h4 = pluralize(@poll.errors.count, "lỗi") + ":"
+                ul.mb-0
+                  - @poll.errors.full_messages.each do |msg|
+                    li = msg
 
-  div
-    = f.label :title, "Câu hỏi"
-    br
-    = f.text_field :title
+            .mb-3
+              = f.label :title, "Câu hỏi", class: "form-label fw-bold"
+              = f.text_field :title, class: "form-control", placeholder: "Nhập câu hỏi..."
 
-  h3 Options
-  = f.fields_for :options do |opt|
-    div
-      = opt.label :text, "Option"
-      br
-      = opt.text_field :text
+            h3.h5.mt-4.mb-3.text-secondary Options
+            = f.fields_for :options do |opt|
+              .mb-3
+                = opt.label :text, "Option", class: "form-label"
+                = opt.text_field :text, class: "form-control", placeholder: "Nhập lựa chọn..."
 
-  div
-    = f.submit "Tạo Poll", class: "btn btn-success"
+            .d-flex.mt-4.gap-2
+              = f.submit "Tạo Poll", class: "btn btn-success flex-grow-1"
+              = link_to "Quay lại", polls_path, class: "btn btn-outline-secondary"
 
-= link_to "Quay lại", polls_path
