@@ -11,15 +11,24 @@
       /   = render 'layouts/search'
 
       div.dropdown.normal-header-link
-        = link_to posts_path do
-          span= t('header.news')
-          = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
+        / = link_to posts_path do
+        /   span= t('header.news')
+        /   = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
 
+        = link_to polls_path do
+          span Polls
+          = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
         ul.posts-menu
           li 
-            = link_to t('header.articles'), posts_path
+            = link_to 'All polls', polls_path
           li
-            = link_to t('header.new_post'), new_post_path
+            = link_to 'New poll', new_poll_path
+
+        / ul.posts-menu
+        /   li 
+        /     = link_to t('header.articles'), posts_path
+        /   li
+        /     = link_to t('header.new_post'), new_post_path
           / li
           /   = link_to t('header.famous_people'), famous_people_path
 
