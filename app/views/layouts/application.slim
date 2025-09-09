@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta content=('text/html; charset=UTF-8') http-equiv='Content-Type'
-    title Wandergram
+    title Votia
     = csrf_meta_tags
     = csp_meta_tag
     = yield :meta
@@ -10,7 +10,9 @@ html
 
     link rel="preconnect" href="https://fonts.googleapis.com"
     link rel="preconnect" href="https://fonts.gstatic.com"
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=IM+Fell+French+Canon&display=swap" rel="stylesheet">
+    / Thêm vào head
+    link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet"
+
 
     = stylesheet_link_tag "tailwind", "data-turbo-track": "reload"
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -34,6 +36,13 @@ html
     script
       |
         window.process = { env: "#{Rails.env}" }
+    script
+      |
+        document.addEventListener("turbo:load", () => {
+          const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+          tooltipTriggerList.map(el => new bootstrap.Tooltip(el))
+        })
+
 
 / script
 /   |

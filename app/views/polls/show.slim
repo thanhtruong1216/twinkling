@@ -8,12 +8,21 @@
           - if @options.any?
             ul.list-group.mb-4
               - @options.each do |option|
+                - voter_names = option.votes.map { |v| v.user.name }.join(", ")
+
                 li.list-group-item.d-flex.justify-content-between.align-items-center
                   .fw-bold = option.text
                   .d-flex.align-items-center.gap-2
-                    span.badge.bg-secondary.fw-normal = pluralize(option.votes.count, "vote")
+                    span.badge.bg-secondary.fw-normal[
+                      data-bs-toggle="tooltip"
+                      data-bs-title=voter_names
+                    ]
+                      = pluralize(option.votes.count, "vote")
+
                     - if user_signed_in?
-                      = button_to "Vote", poll_votes_path(@poll, option_id: option.id), method: :post,
+                      = button_to "Vote",
+                        poll_votes_path(@poll, option_id: option.id),
+                        method: :post,
                         class: "btn btn-success btn-sm"
 
           - else
