@@ -2,7 +2,13 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @polls = Poll.visible.includes(:options).order(created_at: :desc)
+    @polls = Poll.visible
+                .left_joins(options: :votes)
+                .group('polls.id')
+                .select('polls.*, COUNT(votes.id) AS votes_count')
+                .order(Arel.sql("CASE WHEN COUNT(votes.id) > 100 THEN 1 ELSE 0 END DESC, COUNT(votes.id) DESC, polls.created_at DESC"))
+                .includes(:options)
+
     @polls_data = @polls.map do |poll|
       {
         id: poll.id,

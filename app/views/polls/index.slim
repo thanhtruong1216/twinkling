@@ -28,8 +28,12 @@
 
                 = render 'polls/following_user', poll: poll 
 
-              = link_to poll.title, poll_path(poll),
-                class: "h5 card-title text-dark text-decoration-none fw-bold mb-1"
+              .d-flex.align-items-center.mb-2
+                = link_to poll.title, poll_path(poll),
+                  class: "h5 card-title text-dark text-decoration-none fw-bold mb-1"
+                - total_votes = poll.options.sum { |opt| opt.votes.count }
+                - if total_votes > 2
+                  span.badge.bg-danger.ms-2 HOT
 
               - if poll.purpose.present?
                 span.text-muted style="font-size: 15px;"
@@ -46,7 +50,6 @@
                     li style="font-size: 15px !important;"
                       = "#{option.text} · #{vote_count} vote (#{vote_percent}%)"
 
-                / Canvas horizontal bar chart
                 canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80"
 
               .d-flex.justify-content-between.align-items-center.mt-2
