@@ -1,11 +1,11 @@
-.container.my-5.posts
+.container.py-5.page-wrapper
   .row.justify-content-center
     .col-md-8
       .card.shadow
         .card-body
           h1.text-center.text-primary.mb-4 Tạo Poll mới
 
-          = form_with(model: @poll, local: true, class: "needs-validation") do |f|
+          = form_with(model: @poll, local: true, class: "needs-validation", html: { multipart: true }) do |f|
             - if @poll.errors.any?
               .alert.alert-danger
                 h4 = pluralize(@poll.errors.count, "lỗi") + ":"
@@ -17,13 +17,24 @@
               = f.label :title, "Câu hỏi", class: "form-label fw-bold"
               = f.text_field :title, class: "form-control", placeholder: "Nhập câu hỏi..."
 
+            .mb-3
+              = f.label :description, "Câu trả lời của bạn (tuỳ chọn)", class: "form-label fw-bold"
+              = f.text_area :description, class: "form-control", rows: 3, placeholder: "Viết câu trả lời hoặc giải thích thêm..."
+
+            .mb-3
+              = f.label :image, "Ảnh cho Poll", class: "form-label fw-bold"
+              = f.file_field :image, class: "form-control"
+
             h3.h5.mt-4.mb-3.text-secondary Options
             = f.fields_for :options do |opt|
               .mb-3
                 = opt.label :text, "Option", class: "form-label"
                 = opt.text_field :text, class: "form-control", placeholder: "Nhập lựa chọn..."
 
+              .mb-3
+                = opt.label :image, "Ảnh cho Option", class: "form-label"
+                = opt.file_field :image, class: "form-control"
+
             .d-flex.mt-4.gap-2
               = f.submit "Tạo Poll", class: "btn btn-success flex-grow-1"
               = link_to "Quay lại", polls_path, class: "btn btn-outline-secondary"
-

@@ -1,24 +1,48 @@
-section.bg-light.min-vh-100.py-5
-  .container
-    h1.text-center.text-primary.fw-bold.mb-5 Danh sách Polls
+.py-5.page-wrapper.container
+  h1.text-center.text-primary.fw-bold.mb-5 Danh sách Polls
 
-    - if user_signed_in?
-      .d-flex.justify-content-center.mb-4
-        = link_to "➕ Tạo poll mới", new_poll_path,
-          class: "btn btn-lg btn-primary shadow"
+  - if user_signed_in?
+    .d-flex.justify-content-center.mb-4
+      = link_to "➕ Tạo poll mới", new_poll_path,
+        class: "btn btn-lg btn-primary shadow"
 
-    - if @polls.any?
-      .row.g-4
-        - @polls.each do |poll|
-          .col-md-6
-            .card.shadow-sm.h-100
-              .card-body.d-flex.flex-column.justify-content-between
-                .mb-3
+  - if @polls.any?
+    .row.g-4
+      - @polls.each do |poll|
+        .col-md-6
+          .card.shadow-sm.h-100
+            .card-body.d-flex.flex-column
+              .d-flex.align-items-center.mb-3
+                - if poll.image.attached?
+                  = image_tag poll.image,
+                          class: "shadow-sm border border-2 border-light",
+                          style: "width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"
+                .flex-grow-1.ms-3
                   = link_to poll.title, poll_path(poll),
-                    class: "h5 card-title text-dark text-decoration-none fw-bold"
-                  p.text-muted.small.mt-2 = pluralize(poll.votes.count, "vote")
-                .mt-auto
-                  = link_to "Chi tiết", poll_path(poll),
-                    class: "btn btn-outline-primary btn-sm"
-    - else
-      p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!
+                    class: "h5 card-title text-dark text-decoration-none fw-bold mb-1"
+                  p.text-muted.small.mb-1 style="font-size: 15px !important;"
+                    | Tạo bởi 
+                    strong= poll.user.user_name
+                    |  · #{time_ago_in_words(poll.created_at)} trước
+
+                  - if poll.description.present?
+                    span.text-muted.text-center style="font-size: 15px; line-height: 1.6;" 
+                      | Giải thích sự lựa chọn của chủ poll:
+                    span.text-muted.text-center style="font-size: 15px; line-height: 1.6;"
+                      = poll.description
+
+                  - if poll.options.any?
+                    p style="margin-bottom: 0; font-size: 15px !important;" 
+                      | Thống kê vote:
+                    ul.text-muted.small.mb-2
+                      - poll.options.each do |option|
+                        li style="font-size: 15px !important;"
+                          = "#{option.text} · #{pluralize(option.votes.count, 'vote')}"
+
+              .d-flex.justify-content-between.align-items-center.mt-auto
+                p.text-muted.small.mb-0
+                  = "#{poll.options.count} lựa chọn · #{pluralize(poll.votes.count, 'vote')}"
+                = link_to "Chi tiết", poll_path(poll),
+                  class: "btn btn-outline-primary btn-sm"
+  - else
+    p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!

@@ -1,0 +1,52 @@
+.container.py-5.page-wrapper
+  .row.justify-content-center
+    .col-md-8
+      .card.shadow
+        .card-body
+          h1.text-center.text-primary.mb-4 Chỉnh sửa Poll
+
+          = form_with(model: @poll, local: true, class: "needs-validation", html: { multipart: true }) do |f|
+            - if @poll.errors.any?
+              .alert.alert-danger
+                h4 = pluralize(@poll.errors.count, "lỗi") + ":"
+                ul.mb-0
+                  - @poll.errors.full_messages.each do |msg|
+                    li = msg
+
+            / .mb-3
+            /   = f.label :title, "Câu hỏi", class: "form-label fw-bold"
+            /   = f.text_field :title, class: "form-control", placeholder: "Nhập câu hỏi..."
+
+            .mb-3
+              = f.label :description, "Câu trả lời của bạn (tuỳ chọn)", class: "form-label fw-bold"
+              = f.text_area :description, class: "form-control", rows: 3, placeholder: "Viết câu trả lời hoặc giải thích thêm..."
+
+            .mb-3
+              = f.label :image, "Ảnh cho Poll", class: "form-label fw-bold"
+              = f.file_field :image, class: "form-control"
+              - if @poll.image.attached?
+                .mt-2
+                  = image_tag @poll.image, class: "shadow-sm", style: "width: 100px; height: 100px; object-fit: cover;"
+
+            h3.h5.mt-4.mb-3.text-secondary Options
+            = f.fields_for :options do |opt|
+              / .mb-3
+              /   = opt.label :text, "Option", class: "form-label"
+              /   = opt.text_field :text, class: "form-control", placeholder: "Nhập lựa chọn..."
+
+              .mb-3
+                = opt.label :image, "Ảnh cho option #{opt.object.text}", class: "form-label"
+                = opt.file_field :image, class: "form-control"
+                - if opt.object.image.attached?
+                  .mt-2
+                    = image_tag opt.object.image, class: "shadow-sm", style: "width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
+
+              -# Nếu option đã tồn tại, có thể xoá
+              / - if opt.object.persisted?
+              /   .form-check
+              /     = opt.check_box :_destroy, class: "form-check-input"
+              /     = opt.label :_destroy, "Xoá option này", class: "form-check-label"
+
+            .d-flex.mt-4.gap-2
+              = f.submit "Cập nhật Poll", class: "btn btn-success flex-grow-1"
+              = link_to "Hủy", poll_path(@poll), class: "btn btn-outline-secondary"

@@ -9,8 +9,7 @@ html
     meta content='width=device-width, initial-scale=1.0' name='viewport'
 
     link rel="preconnect" href="https://fonts.googleapis.com"
-    link rel="preconnect" href="https://fonts.gstatic.com"
-    / Thêm vào head
+    link rel="preconnect" href="https://fonts.gstatic.com"\
     link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet"
 
 
@@ -23,7 +22,7 @@ html
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6FJR2S6TE7"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   body
-    div
+    .page-container
       = render 'layouts/desktop_header'
       = render 'layouts/mobile_header'
       - flash.each do |message_type, message|

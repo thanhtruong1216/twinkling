@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :famous_people, only: [:index, :new, :create]
     # get '/:id', to: 'links#show'
 
-    resources :polls, only: [:index, :show, :new, :create] do
+    resources :polls, only: [:index, :show, :new, :create, :edit, :update] do
       resources :votes, only: [:create]
     end
   end

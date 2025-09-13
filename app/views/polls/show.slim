@@ -1,34 +1,57 @@
-.container.my-5.posts
+.container.py-5.page-wrapper
   .row.justify-content-center
     .col-md-8
       .card.shadow-lg
         .card-body
-          h1.card-title.text-center.text-primary.mb-4 = @poll.title
+          h1.card-title.text-center.mb-4
+            - if @poll.image.attached?
+              = image_tag @poll.image,
+                class: "rounded-circle me-2 align-middle shadow-sm",
+                style: "width: 40px; height: 40px; object-fit: cover;"
+            span.align-middle.fw-bold.text-primary style="font-size: 28px;"
+              = @poll.title
+
+          - if @poll.description.present?
+            p.text-muted.text-center.mt-2 style="font-size: 15px; font-style: italic; line-height: 1.6;"
+              = @poll.description
+          - else 
+            p.text-muted.text-center.mt-2 Người tạo poll vẫn chưa có lựa chọn cho poll này.
 
           - if @options.any?
             ul.list-group.mb-4
               - @options.each do |option|
                 - voter_names = option.votes.map { |v| v.user.name }.join(", ")
 
-                li.list-group-item.d-flex.justify-content-between.align-items-center
-                  .fw-bold = option.text
-                  .d-flex.align-items-center.gap-2
-                    span.badge.bg-secondary.fw-normal[
-                      data-bs-toggle="tooltip"
-                      data-bs-title=voter_names
-                    ]
-                      = pluralize(option.votes.count, "vote")
+                li.list-group-item
+                  .d-flex.justify-content-between.align-items-center
+                    .d-flex.align-items-center.gap-3
+                      - if option.image.attached?
+                        = image_tag option.image,
+                          class: "shadow-sm",
+                          style: "width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
 
-                    - if user_signed_in?
-                      = button_to "Vote",
-                        poll_votes_path(@poll, option_id: option.id),
-                        method: :post,
-                        class: "btn btn-success btn-sm"
+                      span.fw-semibold style="font-size: 18px; color: #333;"
+                        = option.text
 
-          - else
-            p.text-muted.text-center Chưa có lựa chọn nào cho poll này.
+                    .d-flex.align-items-center.gap-2
+                      span.badge.bg-secondary[
+                        style="font-size: 13px; font-weight: 500; padding: 5px 8px;"
+                        data-bs-toggle="tooltip"
+                        data-bs-title=voter_names
+                      ]
+                        = pluralize(option.votes.count, "vote")
 
+                      - if user_signed_in?
+                        = button_to "Vote",
+                          poll_votes_path(@poll, option_id: option.id),
+                          method: :post,
+                          class: "btn btn-success btn-sm",
+                          style: "border-radius: 12px; font-size: 14px; font-weight: 600; background-color: #22c55e;"
+            
           .d-flex.justify-content-between.mt-4
             = link_to "← Quay lại danh sách", polls_path, class: "btn btn-outline-secondary"
-            - if user_signed_in?
+            
+            .d-flex.gap-2
+              - if user_signed_in? && current_user == @poll.user
+                = link_to "Edit Poll", edit_poll_path(@poll), class: "btn btn-warning"
               = link_to "Tạo poll mới", new_poll_path, class: "btn btn-primary"

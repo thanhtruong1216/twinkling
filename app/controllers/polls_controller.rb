@@ -12,7 +12,7 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    2.times { @poll.options.build } # mặc định có 2 option
+    2.times { @poll.options.build }
   end
 
   def create
@@ -24,9 +24,27 @@ class PollsController < ApplicationController
     end
   end
 
+  def edit
+    @poll = Poll.find(params[:id])
+  end
+
+  def update
+    @poll = Poll.find(params[:id])
+    if @poll.update(poll_params)
+      redirect_to @poll, notice: "Poll đã được cập nhật thành công."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def poll_params
-    params.require(:poll).permit(:title, options_attributes: [:text, :color])
+    params.require(:poll).permit(
+      :title,
+      :image,
+      :description,
+      options_attributes: [:id, :text, :image, :_destroy]
+    )
   end
 end
