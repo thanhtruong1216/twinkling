@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_13_135231) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_13_152956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,6 +124,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_13_135231) do
     t.datetime "updated_at", null: false
     t.text "description"
     t.text "purpose"
+    t.boolean "visible"
     t.index ["user_id"], name: "index_polls_on_user_id"
   end
 

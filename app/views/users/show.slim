@@ -1,7 +1,7 @@
-meta property="og:type"          content="website"
-meta property="og:title"         content="Leaves"
-meta property="og:description"   content="My heart, my soul"
-meta property="og:image"         content=image_url("bg2.jpg")
+meta property="og:type" content="website"
+meta property="og:title" content="Leaves"
+meta property="og:description" content="My heart, my soul"
+meta property="og:image" content=image_url("bg2.jpg")
 
 - if @user.id == current_user.id
   section.user
@@ -9,7 +9,7 @@ meta property="og:image"         content=image_url("bg2.jpg")
       .user__fullname-box
         div
           div.user__avatar
-            = link_to upload_avatar_user_path(@user.slug)
+            = link_to upload_avatar_user_path(@user.slug) do
               - if @user.avatar.attached?
                 = image_tag @user.avatar, loading: 'lazy', class: 'user__avatar'
               - else
@@ -20,157 +20,94 @@ meta property="og:image"         content=image_url("bg2.jpg")
           .user__name-edit-group
             h2
               = @user&.full_name || @user&.user_name
-            - if @user.id == current_user.id
-              .user__edit-wrapper
-                .user__edit-btn
-                  = link_to edit_user_registration_path
-                    = t('users.show.edit_profile')
+            .user__edit-wrapper
+              .user__edit-btn
+                = link_to edit_user_registration_path
+                  = t('users.show.edit_profile')
         
         - if I18n.locale == I18n.default_locale
           .user__follows
             div
-              p
-                = @user.polls.count
+              p= @user.polls.count
               p= @user.polls.count > 1 ? t('relationship.polls') : t('relationship.poll')
-
             div
-              p
-                = @user.followers.count
-              p
-                = link_to followers_user_path(@user) do
-                  - @user.followers.count > 1 ? t('relationship.followers') : t('relationship.follower')
-
+              p= @user.followers.count
+              p= link_to followers_user_path(@user) do
+                - @user.followers.count > 1 ? t('relationship.followers') : t('relationship.follower')
             div
-              p
-                = @user.following.count
-              p
-                = link_to following_user_path(@user) do
-                  - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
+              p= @user.following.count
+              p= link_to following_user_path(@user) do
+                - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
         - else
           .user__follows.user__follows-vie
             div
-              p
-                = @user.polls.count
+              p= @user.polls.count
               p= @user.polls.count > 1 ? t('relationship.polls') : t('relationship.poll')
-
             div
-              p
-                = @user.followers.count
-              p
-                = link_to followers_user_path(@user) do
-                  - @user.followers.count > 1 ? t('relationship.followers') : t('relationship.follower')
-
+              p= @user.followers.count
+              p= link_to followers_user_path(@user) do
+                - @user.followers.count > 1 ? t('relationship.followers') : t('relationship.follower')
             div
-              p
-                = @user.following.count
-              p
-                = link_to following_user_path(@user) do
-                  - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
+              p= @user.following.count
+              p= link_to following_user_path(@user) do
+                - @user.following.count > 1 ? t('relationship.followings') : t('relationship.following')
 
-        - if I18n.locale == I18n.default_locale
+        - if @user.birthday.present?
           .user__zodiac-wrapper.user__follows
-            - if @user.birthday.present?
-              - name = zodiac(@user.birthday)
-              div
-                - case name
-                - when 'Ma Kết'
-                  p= t('zodiacs.capricorn')
-                - when 'Bảo Bình'
-                  = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.aquarius')
-                - when 'Song Ngư'
-                  p= t('zodiacs.pisces')
-                - when 'Bạch Dương'
-                  p= t('zodiacs.aries')
-                - when 'Kim Ngưu'
-                  = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.taurus')
-                - when 'Song Tử'
-                  = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.gemini')
-                - when 'Cự Giải'
-                  = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.cancer')
-                - when 'Sư Tử'
-                  = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.leo')
-                - when 'Xử Nữ'
-                  p= t('zodiacs.virgo')
-                - when 'Thiên Bình'
-                  p= t('zodiacs.libra')
-                - when 'Bọ Cạp'
-                  = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.scorpius')
-                - when 'Nhân Mã'
-                  = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.sagittarius')
+            - name = zodiac(@user.birthday)
+            div
+              - case name
+              - when 'Ma Kết'
+                p= t('zodiacs.capricorn')
+              - when 'Bảo Bình'
+                = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.aquarius')
+              - when 'Song Ngư'
+                p= t('zodiacs.pisces')
+              - when 'Bạch Dương'
+                p= t('zodiacs.aries')
+              - when 'Kim Ngưu'
+                = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.taurus')
+              - when 'Song Tử'
+                = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.gemini')
+              - when 'Cự Giải'
+                = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.cancer')
+              - when 'Sư Tử'
+                = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.leo')
+              - when 'Xử Nữ'
+                p= t('zodiacs.virgo')
+              - when 'Thiên Bình'
+                p= t('zodiacs.libra')
+              - when 'Bọ Cạp'
+                = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.scorpius')
+              - when 'Nhân Mã'
+                = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
+                p= t('zodiacs.sagittarius')
 
-              div= "#{t('users.blood_type')}: #{@user&.blood}"
-
-              - if @user.birthday.present?
-                div
-                  p= t('users.years', count: (days_from(@user.birthday) / 365.25).floor)
-                  - if (days_from(@user.birthday) % 365.25) > 0
-                    p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
-
-        - else
-          .user__zodiac-wrapper.user__follows.user__follows-vie
-            - if @user.birthday.present?
-              - name = zodiac(@user.birthday)
-              div
-                - case name
-                - when 'Ma Kết'
-                  p= t('zodiacs.capricorn')
-                - when 'Bảo Bình'
-                  = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.aquarius')
-                - when 'Song Ngư'
-                  p= t('zodiacs.pisces')
-                - when 'Bạch Dương'
-                  p= t('zodiacs.aries')
-                - when 'Kim Ngưu'
-                  = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.taurus')
-                - when 'Song Tử'
-                  = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.gemini')
-                - when 'Cự Giải'
-                  = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.cancer')
-                - when 'Sư Tử'
-                  = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.leo')
-                - when 'Xử Nữ'
-                  p= t('zodiacs.virgo')
-                - when 'Thiên Bình'
-                  p= t('zodiacs.libra')
-                - when 'Bọ Cạp'
-                  = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.scorpius')
-                - when 'Nhân Mã'
-                  = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.sagittarius')
-
-              div= "#{t('users.blood_type')}: #{@user&.blood}"
-
-              - if @user.birthday.present?
-                div
-                  p= t('users.years', count: (days_from(@user.birthday) / 365.25).floor)
-                  - if (days_from(@user.birthday) % 365.25) > 0
-                    p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
+            div= "#{t('users.blood_type')}: #{@user&.blood}"
+            div
+              p= t('users.years', count: (days_from(@user.birthday) / 365.25).floor)
+              - if (days_from(@user.birthday) % 365.25) > 0
+                p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
 
     .user__photos
       - @user.polls.each do |poll|
-        - if poll.image.attached?
-          .thumbnail-photo-wrapper
-            = link_to poll_path(poll) do
+        .thumbnail-photo-wrapper
+          = link_to poll_path(poll) do
+            - if poll.image.attached?
               = image_tag poll.image, loading: 'lazy', class: 'thumbnail-photo'
-        - else
-          .thumbnail-photo-wrapper
-            = link_to poll_path(poll) do
+            - else
               .thumbnail-photo.thumbnail-content-no-pic-wrapper
                 .thumbnail-content
-                  = poll.text
+                  = poll.content
+
+          - if current_user == @user
+            = link_to (poll.visible ? "Ẩn poll" : "Hiển thị poll"), toggle_visibility_poll_path(poll), method: :patch, class: "btn btn-sm btn-outline-primary mt-3"
 - else
   section.user
     .user__flex-box
@@ -181,160 +118,40 @@ meta property="og:image"         content=image_url("bg2.jpg")
               = image_tag @user.avatar, class: 'user__avatar'
           - else
             div.user__avatar
-              = link_to edit_user_registration_path
+              = link_to edit_user_registration_path do
                 = image_tag "user-alt-solid.svg", loading: 'lazy', class: 'user__avatar'
 
       .user__info-wrapper
         h2.user__fullname
           = @user&.user_name || @user&.full_name
-
-        - if I18n.locale == I18n.default_locale
-          .user__follows
-            div
-              p
-                = @user.polls.count
-              p
-                = t('relationship.polls')
-            div
-              p
-                = @user.followers.count
-              p
-                = link_to followers_user_path(@user) do
-                  = t('relationship.follower')
-            div
-              p
-                = @user.following.count
-              p
-                = link_to following_user_path(@user) do
-                  = t('relationship.following')
-
-          .user__zodiac-wrapper.user__follows
-            - if @user.birthday.present?
-              - name = zodiac(@user.birthday)
-              div
-                - case name
-                - when 'Ma Kết'
-                  p= t('zodiacs.capricorn')
-                - when 'Bảo Bình'
-                  = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.aquarius')
-                - when 'Song Ngư'
-                  p= t('zodiacs.pisces')
-                - when 'Bạch Dương'
-                  p= t('zodiacs.aries')
-                - when 'Kim Ngưu'
-                  = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.taurus')
-                - when 'Song Tử'
-                  = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.gemini')
-                - when 'Cự Giải'
-                  = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.cancer')
-                - when 'Sư Tử'
-                  = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.leo')
-                - when 'Xử Nữ'
-                  p= t('zodiacs.virgo')
-                - when 'Thiên Bình'
-                  p= t('zodiacs.libra')
-                - when 'Bọ Cạp'
-                  = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.scorpius')
-                - when 'Nhân Mã'
-                  = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.sagittarius')
-            
-              div= "#{t('users.blood_type')}: #{@user&.blood}"
-
-              - if @user.birthday.present?
-                div
-                  p= t('users.years', count: (days_from(@user.birthday) / 365.25).floor)
-                  - if (days_from(@user.birthday) % 365.25) > 0
-                    p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
-        - else
-          .user__follows.user__follows-vie
-            div
-              p
-                = @user.polls.count
-              p
-                = t('relationship.polls')
-            div
-              p
-                = @user.followers.count
-              p
-                = link_to followers_user_path(@user) do
-                  = t('relationship.follower')
-            div
-              p
-                = @user.following.count
-              p
-                = link_to following_user_path(@user) do
-                  = t('relationship.following')
-
-          .user__zodiac-wrapper.user__follows.user__follows-vie
-            - if @user.birthday.present?
-              - name = zodiac(@user.birthday)
-              div
-                - case name
-                - when 'Ma Kết'
-                  p= t('zodiacs.capricorn')
-                - when 'Bảo Bình'
-                  = image_tag 'bb.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.aquarius')
-                - when 'Song Ngư'
-                  p= t('zodiacs.pisces')
-                - when 'Bạch Dương'
-                  p= t('zodiacs.aries')
-                - when 'Kim Ngưu'
-                  = image_tag 'kn.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.taurus')
-                - when 'Song Tử'
-                  = image_tag 'st.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.gemini')
-                - when 'Cự Giải'
-                  = image_tag 'cg.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.cancer')
-                - when 'Sư Tử'
-                  = image_tag 'sutu.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.leo')
-                - when 'Xử Nữ'
-                  p= t('zodiacs.virgo')
-                - when 'Thiên Bình'
-                  p= t('zodiacs.libra')
-                - when 'Bọ Cạp'
-                  = image_tag 'bc.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.scorpius')
-                - when 'Nhân Mã'
-                  = image_tag 'nm.jpg', alt: 'zodiac-sign', class: 'user__zodiac-sign'
-                  p= t('zodiacs.sagittarius')
-            
-              div= "#{t('users.blood_type')}: #{@user&.blood}"
-
-              - if @user.birthday.present?
-                div
-                  p= t('users.years', count: (days_from(@user.birthday) / 365.25).floor)
-                  - if (days_from(@user.birthday) % 365.25) > 0
-                    p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
+        .user__follows
+          div
+            p= @user.polls.count
+            p= t('relationship.polls')
+          div
+            p= @user.followers.count
+            p= link_to followers_user_path(@user) do
+              = t('relationship.follower')
+          div
+            p= @user.following.count
+            p= link_to following_user_path(@user) do
+              = t('relationship.following')
 
     .user__photos
       - @user.polls.each do |poll|
-        - if poll.image.attached?
-          .thumbnail-photo-wrapper
-            = link_to poll_path(poll) do
+        .thumbnail-photo-wrapper
+          = link_to poll_path(poll) do
+            - if poll.image.attached?
               = image_tag poll.image, loading: 'lazy', class: 'thumbnail-photo'
-        - else
-          .thumbnail-photo-wrapper
-            = link_to poll_path(poll) do
+            - else
               .thumbnail-photo.thumbnail-content-no-pic-wrapper
                 .thumbnail-content
                   = poll.content
-
 script
-	|
-		$(document).ready(function() {
-			$("#edit_user #user_password").focus(function() {
+  |
+    $(document).ready(function() {
+      $("#edit_user #user_password").focus(function() {
         $(this).attr('placeholder', null);
         $(this).attr('value', '');
-			});
-		})
+      });
+    })

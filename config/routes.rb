@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
     resources :polls, only: [:index, :show, :new, :create, :edit, :update] do
       resources :votes, only: [:create]
+      member do
+        patch :toggle_visibility
+      end
     end
   end
 end

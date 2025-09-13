@@ -2,7 +2,7 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @polls = Poll.includes(:options).order(created_at: :desc)
+    @polls = Poll.visible.includes(:options).order(created_at: :desc)
     @polls_data = @polls.map do |poll|
       {
         id: poll.id,
@@ -42,6 +42,16 @@ class PollsController < ApplicationController
       redirect_to @poll, notice: "Poll đã được cập nhật thành công."
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def toggle_visibility
+    @poll = Poll.find(params[:id])
+    if @poll.user == current_user
+      @poll.update(visible: !@poll.visible)
+      redirect_back fallback_location: user_path(current_user), notice: (@poll.visible ? "Poll đã hiển thị" : "Poll đã ẩn")
+    else
+      redirect_back(fallback_location: user_path(current_user), alert: "Không thể chỉnh sửa poll này")
     end
   end
 
