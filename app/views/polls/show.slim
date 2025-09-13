@@ -33,7 +33,7 @@
                       - if option.image.attached?
                         = image_tag option.image,
                           class: "shadow-sm",
-                          style: "width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
+                          style: "min-width: 75px; width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
                       span.fw-semibold style="font-size: 18px; color: #333;"
                         = option.text
 
