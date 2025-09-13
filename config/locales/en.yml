@@ -14,6 +14,7 @@ en:
     find_zodiac: Find zodiac name
     create_person: Create person
     famous_people: Famous people
+    polls: Polls
   footer:
     about_me: About me
     contact_me: Contact me
@@ -80,6 +81,8 @@ en:
     followings: "followings"
     posts: "posts"
     post: "post"
+    polls: polls
+    poll: poll
   post:
     new:
       create_post: "Create post"

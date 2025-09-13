@@ -2,18 +2,24 @@
   .row.justify-content-center
     .col-md-8
       .card.shadow-lg
+        - if @poll.image.attached?
+          = image_tag @poll.image,
+            class: "shadow-sm mb-3",
+            style: "width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;"
         .card-body
-          h1.card-title.text-center.mb-4
-            - if @poll.image.attached?
-              = image_tag @poll.image,
-                class: "rounded-circle me-2 align-middle shadow-sm",
-                style: "width: 40px; height: 40px; object-fit: cover;"
-            span.align-middle.fw-bold.text-primary style="font-size: 28px;"
+          h3.card-title.mb-4
+            span.fw-bold.text-primary
               = @poll.title
 
+          - if @poll.purpose.present?
+            p.text-muted.mt-1.mb-2 style="font-size: 14px; line-height: 1.4;"
+              | Mục đích poll: 
+              strong= @poll.purpose
+
           - if @poll.description.present?
-            p.text-muted.text-center.mt-2 style="font-size: 15px; font-style: italic; line-height: 1.6;"
-              = @poll.description
+            p.text-muted.mt-2 style="font-size: 15px; line-height: 1.6;"
+              | Câu trả lời của chủ poll: 
+              strong= @poll.description
           - else 
             p.text-muted.text-center.mt-2 Người tạo poll vẫn chưa có lựa chọn cho poll này.
 
@@ -21,7 +27,6 @@
             ul.list-group.mb-4
               - @options.each do |option|
                 - voter_names = option.votes.map { |v| v.user.name }.join(", ")
-
                 li.list-group-item
                   .d-flex.justify-content-between.align-items-center
                     .d-flex.align-items-center.gap-3
@@ -29,7 +34,6 @@
                         = image_tag option.image,
                           class: "shadow-sm",
                           style: "width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
-
                       span.fw-semibold style="font-size: 18px; color: #333;"
                         = option.text
 
@@ -47,7 +51,7 @@
                           method: :post,
                           class: "btn btn-success btn-sm",
                           style: "border-radius: 12px; font-size: 14px; font-weight: 600; background-color: #22c55e;"
-            
+
           .d-flex.justify-content-between.mt-4
             = link_to "← Quay lại danh sách", polls_path, class: "btn btn-outline-secondary"
             

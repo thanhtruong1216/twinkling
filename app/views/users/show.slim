@@ -30,8 +30,8 @@ meta property="og:image"         content=image_url("bg2.jpg")
           .user__follows
             div
               p
-                = @user.posts.count
-              p= @user.posts.count > 1 ? t('relationship.posts') : t('relationship.post')
+                = @user.polls.count
+              p= @user.polls.count > 1 ? t('relationship.polls') : t('relationship.poll')
 
             div
               p
@@ -50,8 +50,8 @@ meta property="og:image"         content=image_url("bg2.jpg")
           .user__follows.user__follows-vie
             div
               p
-                = @user.posts.count
-              p= @user.posts.count > 1 ? t('relationship.posts') : t('relationship.post')
+                = @user.polls.count
+              p= @user.polls.count > 1 ? t('relationship.polls') : t('relationship.poll')
 
             div
               p
@@ -160,17 +160,17 @@ meta property="og:image"         content=image_url("bg2.jpg")
                     p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
 
     .user__photos
-      - @user.posts.each do |post|
-        - if post.photo.attached?
+      - @user.polls.each do |poll|
+        - if poll.image.attached?
           .thumbnail-photo-wrapper
-            = link_to post_path(post) do
-              = image_tag post.photo, loading: 'lazy', class: 'thumbnail-photo'
+            = link_to poll_path(poll) do
+              = image_tag poll.image, loading: 'lazy', class: 'thumbnail-photo'
         - else
           .thumbnail-photo-wrapper
-            = link_to post_path(post) do
+            = link_to poll_path(poll) do
               .thumbnail-photo.thumbnail-content-no-pic-wrapper
                 .thumbnail-content
-                  = post.content
+                  = poll.text
 - else
   section.user
     .user__flex-box
@@ -192,9 +192,9 @@ meta property="og:image"         content=image_url("bg2.jpg")
           .user__follows
             div
               p
-                = @user.posts.count
+                = @user.polls.count
               p
-                = t('relationship.posts')
+                = t('relationship.polls')
             div
               p
                 = @user.followers.count
@@ -256,9 +256,9 @@ meta property="og:image"         content=image_url("bg2.jpg")
           .user__follows.user__follows-vie
             div
               p
-                = @user.posts.count
+                = @user.polls.count
               p
-                = t('relationship.posts')
+                = t('relationship.polls')
             div
               p
                 = @user.followers.count
@@ -318,17 +318,17 @@ meta property="og:image"         content=image_url("bg2.jpg")
                     p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
 
     .user__photos
-      - @user.posts.each do |post|
-        - if post.photo.attached?
+      - @user.polls.each do |poll|
+        - if poll.image.attached?
           .thumbnail-photo-wrapper
-            = link_to post_path(post) do
-              = image_tag post.photo, loading: 'lazy', class: 'thumbnail-photo'
+            = link_to poll_path(poll) do
+              = image_tag poll.image, loading: 'lazy', class: 'thumbnail-photo'
         - else
           .thumbnail-photo-wrapper
-            = link_to post_path(post) do
+            = link_to poll_path(poll) do
               .thumbnail-photo.thumbnail-content-no-pic-wrapper
                 .thumbnail-content
-                  = post.content
+                  = poll.content
 
 script
 	|

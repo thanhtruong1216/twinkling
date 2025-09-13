@@ -18,6 +18,10 @@
               = f.text_field :title, class: "form-control", placeholder: "Nhập câu hỏi..."
 
             .mb-3
+              = f.label :purpose, "Mục đích của poll", class: "form-label fw-bold"
+              = f.text_area :purpose, class: "form-control", rows: 3, placeholder: "Giúp người trả lời hiểu bối cảnh và tập trung vào câu trả lời..."
+
+            .mb-3
               = f.label :description, "Câu trả lời của bạn (tuỳ chọn)", class: "form-label fw-bold"
               = f.text_area :description, class: "form-control", rows: 3, placeholder: "Viết câu trả lời hoặc giải thích thêm..."
 
