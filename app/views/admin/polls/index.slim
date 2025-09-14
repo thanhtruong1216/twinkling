@@ -1,0 +1,32 @@
+.container.py-5
+  h2.text-primary.mb-4 Danh sách polls
+
+  - if @polls.any?
+    table.table.table-striped
+      thead
+        tr
+          th Tiêu đề
+          th Người tạo
+          th Ngày tạo
+          th Hành động
+          th Curent status
+      tbody
+        - @polls.each do |poll|
+          tr
+            td= poll.title
+            td= poll.user.name
+            td= l(poll.created_at, format: :short)
+            td.d-flex.gap-2
+              = button_to "Duyệt",
+                approve_admin_poll_path(poll),
+                method: :patch,
+                class: "btn btn-success btn-sm"
+
+              = button_to "Từ chối",
+                reject_admin_poll_path(poll),
+                method: :patch,
+                class: "btn btn-danger btn-sm"
+
+            td= poll.status&.upcase
+  - else
+    p.text-muted Không có poll nào chờ duyệt.

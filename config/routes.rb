@@ -41,5 +41,14 @@ Rails.application.routes.draw do
         patch :toggle_visibility
       end
     end
+
+    namespace :admin do
+      resources :polls, only: [:index] do
+        member do
+          patch :approve
+          patch :reject
+        end
+      end
+    end
   end
 end
