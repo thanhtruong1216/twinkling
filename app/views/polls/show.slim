@@ -46,11 +46,19 @@
                         = pluralize(option.votes.count, "vote")
 
                       - if user_signed_in?
-                        = button_to "Vote",
-                          poll_votes_path(@poll, option_id: option.id),
-                          method: :post,
-                          class: "btn btn-success btn-sm",
-                          style: "border-radius: 12px; font-size: 14px; font-weight: 600; background-color: #22c55e;"
+                        - user_vote = option.votes.find_by(user_id: current_user.id)
+                        - if user_vote
+                          = button_to "Unvote",
+                            poll_vote_path(@poll, user_vote, option_id: option.id),
+                            method: :delete,
+                            class: "btn btn-outline-danger btn-sm",
+                            style: "border-radius: 12px; font-size: 14px; font-weight: 600;"
+                        - else
+                          = button_to "Vote",
+                            poll_votes_path(@poll, option_id: option.id),
+                            method: :post,
+                            class: "btn btn-success btn-sm",
+                            style: "border-radius: 12px; font-size: 14px; font-weight: 600; background-color: #22c55e;"
 
           .d-flex.justify-content-between.mt-4
             = link_to "← Quay lại danh sách", polls_path, class: "btn btn-outline-secondary"

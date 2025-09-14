@@ -22,6 +22,42 @@ body, html
   position: relative
   top: 80px
 
+.hot-poll-ticker
+  display: flex
+  overflow: hidden
+  white-space: nowrap
+  animation: scrollHot 20s linear infinite
+
+.hot-poll-item
+  display: inline-flex
+  align-items: center
+  margin-right: 30px
+
+#hotPollCarousel
+  .carousel-control-prev,
+  .carousel-control-next
+    top: 50%
+    transform: translateY(-50%)
+    width: 45px
+    height: 45px
+    background: rgba(255, 255, 255, 0.8)   // nền trắng mờ
+    border-radius: 50%
+    opacity: 1 !important
+    display: flex
+    align-items: center
+    justify-content: center
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2)
+
+    &:hover
+      background: rgba(255, 255, 255, 1)   // hover sáng hơn
+      transform: translateY(-50%) scale(1.1)
+      transition: all 0.2s ease-in-out
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon
+    filter: invert(0) brightness(0)        // icon đen
+    background-size: 20px 20px
+
 
 .card-body
   max-height: 80vh
