@@ -1,6 +1,4 @@
 .py-5.page-wrapper.container
-  h1.text-center.text-primary.fw-bold.mb-5 Danh sách Polls
-
   - if @hot_polls.any?
     section.hot-polls.py-5.bg-light
       .container
@@ -24,8 +22,6 @@
           button.carousel-control-next type="button" data-bs-target="#hotPollCarousel" data-bs-slide="next"
             span.carousel-control-next-icon aria-hidden="true"
             span.visually-hidden Next
-
-
 
   - if user_signed_in?
     .d-flex.justify-content-center.mb-4.mt-4
@@ -86,9 +82,9 @@
   - else
     p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!
 
-/===================== JS vẽ horizontal bar chart =====================/
+/===================== JS vẽ chart và khởi tạo carousel =====================/
 script
-  | document.addEventListener("DOMContentLoaded", () => {
+  | function renderPollCharts() {
   |   const pollsData = #{raw @polls_data.to_json};
   |   pollsData.forEach(poll => {
   |     const ctx = document.getElementById(`pollChart-${poll.id}`);
@@ -140,16 +136,31 @@ script
   |       }
   |     });
   |   });
+  | }
+  |
+  | function initCarousels() {
+  |   var carousels = document.querySelectorAll('.carousel');
+  |   carousels.forEach((carousel) => {
+  |     new bootstrap.Carousel(carousel, {
+  |       interval: 3000,
+  |       ride: "carousel"
+  |     });
+  |   });
+  | }
+  |
+  | document.addEventListener("DOMContentLoaded", () => {
+  |   renderPollCharts();
+  |   initCarousels();
+  | });
+  |
+  | document.addEventListener("turbolinks:load", () => {
+  |   renderPollCharts();
+  |   initCarousels();
+  | });
+  |
+  | document.addEventListener("turbo:load", () => {
+  |   renderPollCharts();
+  |   initCarousels();
   | });
 
-
-    document.addEventListener("turbolinks:load", () => {
-      var carousels = document.querySelectorAll('.carousel');
-      carousels.forEach((carousel) => {
-        new bootstrap.Carousel(carousel, {
-          interval: 3000,
-          ride: "carousel"
-        });
-      });
-    });
 

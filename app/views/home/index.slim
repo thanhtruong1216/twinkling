@@ -40,18 +40,12 @@ html
       | @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
   body.overflow-auto
-    / Hero Section
     section.hero
       .container
         h1 Bạn nói, cả thế giới lắng nghe
         p.lead Miễn phí, công khai, và đến với mọi người trên thế giới. Vote một lần, kết nối, chia sẻ và khám phá nhiều góc nhìn. Một cú click, ý kiến của bạn được cả thế giới lắng nghe.
         = link_to 'Khám phá ngay', polls_path, class: 'btn btn-gradient btn-lg mt-4'
 
-    / Features Section
-    / Features Section (mới, với 8 card)
-    / Features Section (cập nhật, 8 card)
-    
-    / Features Section (cập nhật, 9 card)
     section.feature id="features"
       .container
         h2(data-aos="fade-up") Tại sao chọn Votia?
@@ -138,6 +132,31 @@ html
     script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
     script
       |
-        document.addEventListener('DOMContentLoaded', function() {
-          AOS.init({ duration: 800, once: true });
-        });
+        (function() {
+          function initAOSIfReady() {
+            if (!window.AOS) return false;
+            if (!window.__AOS_INITIALIZED__) {
+              AOS.init({ duration: 800, once: true });
+              window.__AOS_INITIALIZED__ = true;
+            } else {
+              AOS.refresh();
+            }
+            return true;
+          }
+
+          function ensureInitAOS() {
+            if (initAOSIfReady()) return;
+            var tries = 0, max = 20;
+            var t = setInterval(function() {
+              tries++;
+              if (initAOSIfReady() || tries >= max) clearInterval(t);
+            }, 100);
+          }
+
+          ['DOMContentLoaded','turbo:load','turbolinks:load','turbo:render','turbolinks:render','page:load']
+            .forEach(function(ev) {
+              document.addEventListener(ev, ensureInitAOS, { passive: true });
+            });
+
+          ensureInitAOS();
+        })();

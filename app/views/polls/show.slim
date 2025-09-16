@@ -1,6 +1,6 @@
 .container.py-5.page-wrapper
   .row.justify-content-center
-    .col-md-8
+    .col-md-12
       .card.shadow-lg
         - if @poll.image.attached?
           = image_tag @poll.image,
@@ -8,62 +8,163 @@
             style: "width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;"
         .card-body
           h3.card-title.mb-4
-            span.fw-bold.text-primary
-              = @poll.title
+            span.fw-bold.text-primary= @poll.title
 
           - if @poll.purpose.present?
             p.text-muted.mt-1.mb-2 style="font-size: 14px; line-height: 1.4;"
-              | Mục đích poll: 
-              strong= @poll.purpose
+              | Mục đích poll:
+              strong= " " + @poll.purpose
 
           - if @poll.description.present?
             p.text-muted.mt-2 style="font-size: 15px; line-height: 1.6;"
-              | Câu trả lời của chủ poll: 
-              strong= @poll.description
-          - else 
-            p.text-muted.text-center.mt-2 Người tạo poll vẫn chưa có lựa chọn cho poll này.
+              | Câu trả lời của chủ poll:
+              strong= " " + @poll.description
 
           - if @options.any?
             ul.list-group.mb-4
               - @options.each do |option|
-                - voter_names = option.votes.map { |v| v.user.name }.join(", ")
-                li.list-group-item
-                  .d-flex.justify-content-between.align-items-center
-                    .d-flex.align-items-center.gap-3
-                      - if option.image.attached?
-                        = image_tag option.image,
-                          class: "shadow-sm",
-                          style: "min-width: 75px; width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
-                      span.fw-semibold style="font-size: 18px; color: #333;"
-                        = option.text
-
-                    .d-flex.align-items-center.gap-2
-                      span.badge.bg-secondary[
-                        style="font-size: 13px; font-weight: 500; padding: 5px 8px;"
-                        data-bs-toggle="tooltip"
-                        data-bs-title=voter_names
-                      ]
+                - voter_names = option.votes.map { |v| v.user&.full_name || v.user&.user_name }.compact.join(", ")
+                li.list-group-item.border-0.mb-3.p-0
+                  .d-flex.align-items-center.p-3.shadow-sm.rounded-3 style="background: #f9fafb;"
+                    - if option.image.attached?
+                      = image_tag option.image, class: "shadow-sm me-3", style: "width:60px; height:60px; object-fit:cover; border-radius:12px;"
+                    .flex-grow-1
+                      span.fw-semibold.d-block.mb-1 style="font-size:16px; color:#111;"= option.text
+                      span.badge.bg-secondary style="font-size:12px; font-weight:500;" data-bs-toggle="tooltip" data-bs-title=voter_names
                         = pluralize(option.votes.count, "vote")
+                    - if user_signed_in?
+                      - user_vote = option.votes.find_by(user_id: current_user.id)
+                      - if user_vote
+                        = button_to "Unvote",
+                          poll_vote_path(@poll, user_vote, option_id: option.id),
+                          method: :delete,
+                          class: "btn btn-danger btn-sm",
+                          style: "border-radius:20px; font-weight:600;"
+                      - else
+                        - already_voted = current_user.votes.exists?(option_id: @options.map(&:id))
+                        = button_to "Vote",
+                          poll_votes_path(@poll, option_id: option.id),
+                          method: :post,
+                          class: "btn btn-success btn-sm #{'disabled opacity-50' if already_voted}",
+                          style: "border-radius:20px; font-weight:600;"
 
-                      - if user_signed_in?
-                        - user_vote = option.votes.find_by(user_id: current_user.id)
-                        - if user_vote
-                          = button_to "Unvote",
-                            poll_vote_path(@poll, user_vote, option_id: option.id),
-                            method: :delete,
-                            class: "btn btn-outline-danger btn-sm",
-                            style: "border-radius: 12px; font-size: 14px; font-weight: 600;"
-                        - else
-                          = button_to "Vote",
-                            poll_votes_path(@poll, option_id: option.id),
-                            method: :post,
-                            class: "btn btn-success btn-sm",
-                            style: "border-radius: 12px; font-size: 14px; font-weight: 600; background-color: #22c55e;"
+          / --- two pie charts side by side ---
+          .mt-5
+            .row.justify-content-center.align-items-start.g-4
+              .col-md-6.text-center
+                h5.fw-bold.mb-3 Thống kê theo lựa chọn
+                .chart-card.mx-auto style="max-width:420px; height:360px;"
+                  canvas#votesByOptionChart
+              .col-md-6.text-center
+                h5.fw-bold.mb-3 Thống kê theo quốc gia
+                .chart-card.mx-auto style="max-width:420px; height:360px;"
+                  canvas#votesByCountryChart
+                #votesByCountryLegend.text-center.mt-2
 
           .d-flex.justify-content-between.mt-4
             = link_to "← Quay lại danh sách", polls_path, class: "btn btn-outline-secondary"
-            
             .d-flex.gap-2
               - if user_signed_in? && current_user == @poll.user
                 = link_to "Edit Poll", edit_poll_path(@poll), class: "btn btn-warning"
               = link_to "Tạo poll mới", new_poll_path, class: "btn btn-primary"
+
+/ -------------------- Javascript (Slim friendly) -------------------- /
+script
+  | (function() {
+  |   function initPollCharts() {
+  |     const optionCtx = document.getElementById('votesByOptionChart');
+  |     if (optionCtx) {
+  |       const dataOption = #{raw @options.map { |o| [o.text, o.votes.count] }.to_h.to_json};
+  |       const labelsOption = Object.keys(dataOption);
+  |       const valuesOption = Object.values(dataOption);
+  |       const totalOption = valuesOption.reduce((a, b) => a + b, 0) || 1;
+  |
+  |       new Chart(optionCtx, {
+  |         type: 'pie',
+  |         data: {
+  |           labels: labelsOption,
+  |           datasets: [{
+  |             data: valuesOption,
+  |             backgroundColor: [
+  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#8dd3c7', '#fdb462'
+  |             ]
+  |           }]
+  |         },
+  |         options: {
+  |           responsive: true,
+  |           maintainAspectRatio: false,
+  |           plugins: {
+  |             legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
+  |             datalabels: {
+  |               formatter: (value) => {
+  |                 const pct = ((value / totalOption) * 100).toFixed(1);
+  |                 return pct + '%';
+  |               },
+  |               color: '#fff',
+  |               font: { weight: 'bold', size: 12 }
+  |             },
+  |             tooltip: {
+  |               callbacks: {
+  |                 label: function(ctx) {
+  |                   const val = ctx.parsed;
+  |                   const pct = ((val / totalOption) * 100).toFixed(1);
+  |                   return ctx.label + ': ' + val + ' (' + pct + '%)';
+  |                 }
+  |               }
+  |             }
+  |           }
+  |         },
+  |         plugins: [ChartDataLabels]
+  |       });
+  |     }
+  |
+  |     const countryCtx = document.getElementById('votesByCountryChart');
+  |     if (countryCtx) {
+  |       const dataCountry = #{raw (@votes_by_country || {}).to_json};
+  |       const labelsCountry = Object.keys(dataCountry);
+  |       const valuesCountry = Object.values(dataCountry);
+  |       const totalCountry = valuesCountry.reduce((a, b) => a + b, 0) || 1;
+  |
+  |       new Chart(countryCtx, {
+  |         type: 'pie',
+  |         data: {
+  |           labels: labelsCountry,
+  |           datasets: [{
+  |             data: valuesCountry,
+  |             backgroundColor: [
+  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#c9cbcf', '#b0e0e6'
+  |             ]
+  |           }]
+  |         },
+  |         options: {
+  |           responsive: true,
+  |           maintainAspectRatio: false,
+  |           plugins: {
+  |             legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
+  |             datalabels: {
+  |               formatter: (value) => {
+  |                 const pct = ((value / totalCountry) * 100).toFixed(1);
+  |                 return pct + '%';
+  |               },
+  |               color: '#fff',
+  |               font: { weight: 'bold', size: 12 }
+  |             },
+  |             tooltip: {
+  |               callbacks: {
+  |                 label: function(ctx) {
+  |                   const val = ctx.parsed;
+  |                   const pct = ((val / totalCountry) * 100).toFixed(1);
+  |                   return ctx.label + ': ' + val + ' (' + pct + '%)';
+  |                 }
+  |               }
+  |             }
+  |           }
+  |         },
+  |         plugins: [ChartDataLabels]
+  |       });
+  |     }
+  |   }
+  |
+  |   document.addEventListener('turbolinks:load', initPollCharts);
+  |   document.addEventListener('turbo:load', initPollCharts);
+  | })();

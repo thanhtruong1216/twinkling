@@ -62,6 +62,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'listen', '~> 3.0'
 
 gem "tailwindcss-rails"
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails', '>= 4.0.0.beta2'

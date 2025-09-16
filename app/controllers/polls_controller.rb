@@ -15,6 +15,8 @@ class PollsController < ApplicationController
   def show
     @poll = Poll.find(params[:id])
     @options = @poll.options
+    @votes_by_country = @poll.votes.group(:country).count
+    @votes_by_option = @poll.options.joins(:votes).group(:text).count
   end
 
   def new

@@ -8,7 +8,24 @@ class VotesController < ApplicationController
     if poll.votes.exists?(user_id: current_user.id)
       redirect_to poll, alert: "Bạn đã vote rồi!"
     else
-      option.votes.create!(user: current_user)
+      ip = request.headers["CF-Connecting-IP"] ||   # Cloudflare
+          request.headers["X-Real-IP"]        ||   # Nginx/Proxy
+          request.remote_ip                        # fallback Rails
+
+      country = nil
+      begin
+        result = Geocoder.search(ip).first
+        country = result.country if result
+      rescue => e
+        Rails.logger.error "Geocoder failed: #{e.message}"
+      end
+
+      option.votes.create!(
+        user: current_user,
+        ip_address: ip,
+        country: country
+      )
+
       redirect_to poll, notice: "Vote thành công!"
     end
   end

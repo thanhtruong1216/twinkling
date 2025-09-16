@@ -1,4 +1,4 @@
-puts '--> Seeding users, polls, options, votes with single image and distributed votes...'
+puts '--> Seeding users, polls, options, votes with multiple countries...'
 
 Vote.destroy_all
 Option.destroy_all
@@ -6,6 +6,12 @@ Poll.destroy_all
 User.destroy_all
 
 image_file_path = Rails.root.join('app', 'assets', 'images', 'slide-image_9.jpeg')
+
+# Danh sách quốc gia mẫu
+COUNTRIES = [
+  "Vietnam", "United States", "Japan", "France", "Germany",
+  "Canada", "Australia", "India", "Brazil", "United Kingdom"
+]
 
 main_user = User.create!(
   email: "thanhtruong1216@gmail.com",
@@ -41,7 +47,9 @@ User.find_each do |user|
       title: Faker::Quote.famous_last_words,
       description: Faker::Movies::StarWars.quote,
       purpose: Faker::TvShows::GameOfThrones.quote,
-      user: user
+      user: user,
+      status: 'approved',
+      visible: true
     )
 
     poll.image.attach(io: File.open(image_file_path), filename: "poll_image.jpg") if File.exist?(image_file_path)
@@ -57,9 +65,16 @@ User.find_each do |user|
     voters = User.where.not(id: user.id).to_a.shuffle
     voters.each do |voter|
       chosen_option = options.sample
-      chosen_option.votes.create!(user: voter)
+      country = COUNTRIES.sample
+      ip_address = Faker::Internet.public_ip_v4_address
+
+      chosen_option.votes.create!(
+        user: voter,
+        ip_address: ip_address,
+        country: country
+      )
     end
   end
 end
 
-puts '--> Seed complete with distributed votes and single image for all attachments!'
+puts '--> Seed complete with distributed votes across multiple countries!'
