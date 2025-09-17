@@ -1,7 +1,7 @@
 .py-5.page-wrapper.container
   - if user_signed_in?
     .d-flex.justify-content-center.mb-4.mt-4
-      = link_to "➕ Tạo poll mới", new_poll_path, class: "btn btn-lg btn-primary shadow"
+      = link_to t("new.new_poll"), new_poll_path, class: "btn btn-lg btn-primary shadow"
 
   - if @polls.any?
     .row.g-4

@@ -22,7 +22,8 @@ main_user = User.create!(
   password: "123456",
   password_confirmation: "123456"
 )
-# main_user.avatar.attach(io: File.open(image_file_path), filename: "avatar_main.jpg") if File.exist?(image_file_path)
+
+main_user.avatar.attach(io: File.open(image_file_path), filename: "avatar_main.jpg") if File.exist?(image_file_path)
 
 # Tạo thêm 25 user khác (đảm bảo đủ votes)
 25.times do
@@ -33,7 +34,8 @@ main_user = User.create!(
     password: "opensesame",
     password_confirmation: "opensesame"
   )
-  # user.avatar.attach(io: File.open(image_file_path), filename: "avatar.jpg") if File.exist?(image_file_path)
+  
+  user.avatar.attach(io: File.open(image_file_path), filename: "avatar.jpg") if File.exist?(image_file_path)
   user.save!
 end
 

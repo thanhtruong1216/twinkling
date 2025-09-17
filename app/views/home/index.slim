@@ -110,9 +110,10 @@ html
                     - poll_group.each do |poll|
                       .col-md-6
                         .card
-                          = image_tag poll.image, style: "height:150px; width:100%; object-fit:cover; border-radius:5px 5px 0 0;" if poll.image.attached?
-                          .card-body
-                            = link_to poll.title, poll_path(poll), class: "h5 text-dark text-decoration-none"
+                          = link_to poll_path(poll)
+                            = image_tag poll.image, style: "height:150px; width:100%; object-fit:cover; border-radius:5px 5px 0 0;" if poll.image.attached?
+                            .card-body
+                              = link_to poll.title, poll_path(poll), class: "h5 text-dark text-decoration-none"
 
             button.carousel-control-prev type="button" data-bs-target="#hotPollCarousel" data-bs-slide="prev"
               span.carousel-control-prev-icon aria-hidden="true"

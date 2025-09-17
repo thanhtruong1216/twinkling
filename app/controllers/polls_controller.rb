@@ -2,7 +2,7 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @polls = Poll.active_polls.includes(options: :votes).order(created_at: :desc)
+    @polls = Poll.includes(options: :votes).order(created_at: :desc)
     @hot_polls = @polls.sort_by { |p| -p.options.sum { |opt| opt.votes.size } }.first(6)
     @polls_data = @polls.map do |poll|
       {
