@@ -60,8 +60,6 @@ gem 'capistrano-passenger'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'listen', '~> 3.0'
-
-gem "tailwindcss-rails"
 gem 'geocoder'
 
 group :development, :test do
