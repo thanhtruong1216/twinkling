@@ -54,7 +54,7 @@ html
             .feature-card
               i.bi.bi-globe2.fs-1.mb-3.text-primary
               h3 = t('landing.features.public')
-              p = t('landing.features.public_desc')
+              p style="font-size: 15px;" = t('landing.features.public_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="200")
             .feature-card
               i.bi.bi-people.fs-1.mb-3.text-success
@@ -98,7 +98,30 @@ html
               h3 = t('landing.features.smart_decision')
               p = t('landing.features.smart_decision_desc')
 
-    / Testimonials Section
+    - if @hot_polls.any?
+      section.hot-polls.py-5.bg-light
+        .container
+          h2.text-center.mb-4 = t('landing.carousel.hot_polls')
+          #hotPollCarousel.carousel.slide data-bs-ride="carousel" data-bs-interval="3000"
+            .carousel-inner
+              - @hot_polls.each_slice(2).with_index do |poll_group, i|
+                .carousel-item class=(i == 0 ? "active" : "")
+                  .row.g-4
+                    - poll_group.each do |poll|
+                      .col-md-6
+                        .card
+                          = image_tag poll.image, style: "height:150px; width:100%; object-fit:cover; border-radius:5px 5px 0 0;" if poll.image.attached?
+                          .card-body
+                            = link_to poll.title, poll_path(poll), class: "h5 text-dark text-decoration-none"
+
+            button.carousel-control-prev type="button" data-bs-target="#hotPollCarousel" data-bs-slide="prev"
+              span.carousel-control-prev-icon aria-hidden="true"
+              span.visually-hidden Previous
+
+            button.carousel-control-next type="button" data-bs-target="#hotPollCarousel" data-bs-slide="next"
+              span.carousel-control-next-icon aria-hidden="true"
+              span.visually-hidden Next
+
     section.testimonial
       h2(data-aos="fade-up") = t('landing.testimonial.title')
       .d-flex.flex-column.align-items-center
@@ -112,7 +135,6 @@ html
           p = t('landing.testimonial.t3')
           strong = t('landing.testimonial.t3_author')
 
-    / Call to Action
     section.cta
       .container
         h2(data-aos="fade-up") = t('landing.cta.title')

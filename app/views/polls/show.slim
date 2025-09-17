@@ -12,12 +12,12 @@
 
           - if @poll.purpose.present?
             p.text-muted.mt-1.mb-2 style="font-size: 14px; line-height: 1.4;"
-              | Mục đích poll:
+              = t("show.purpose")
               strong= " " + @poll.purpose
 
           - if @poll.description.present?
             p.text-muted.mt-2 style="font-size: 15px; line-height: 1.6;"
-              | Câu trả lời của chủ poll:
+              = t("show.description")
               strong= " " + @poll.description
 
           - if @options.any?
@@ -28,58 +28,115 @@
                   .d-flex.align-items-center.p-3.shadow-sm.rounded-3 style="background: #f9fafb;"
                     - if option.image.attached?
                       = image_tag option.image, class: "shadow-sm me-3", style: "width:60px; height:60px; object-fit:cover; border-radius:12px;"
-                    .flex-grow-1
+                    .flex-grow-1.pe-4
                       span.fw-semibold.d-block.mb-1 style="font-size:16px; color:#111;"= option.text
                       span.badge.bg-secondary style="font-size:12px; font-weight:500;" data-bs-toggle="tooltip" data-bs-title=voter_names
                         = pluralize(option.votes.count, "vote")
+
                     - if user_signed_in?
                       - user_vote = option.votes.find_by(user_id: current_user.id)
+
                       - if user_vote
-                        = button_to "Unvote",
+                        = button_to t("show.unvote"),
                           poll_vote_path(@poll, user_vote, option_id: option.id),
                           method: :delete,
-                          class: "btn btn-danger btn-sm",
+                          class: "btn btn-danger btn-sm me-2",
                           style: "border-radius:20px; font-weight:600;"
+
+                        button.btn.btn-outline-primary.btn-sm.ms-2 data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600;"
+                          = t("show.add_comment")
+
+                        .modal.fade id="commentModal-#{option.id}" tabindex="-1" aria-hidden="true"
+                          .modal-dialog.modal-dialog-centered
+                            .modal-content
+                              .modal-header
+                                h5.modal-title= t("show.your_comment")
+                                button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+                              = form_with(model: [@poll, user_vote], local: true) do |vf|
+                                .modal-body
+                                  = vf.text_area :comment,
+                                    rows: 3,
+                                    placeholder: t("show.placeholder_comment"),
+                                    class: "form-control"
+                                .modal-footer
+                                  = vf.submit t("show.submit_vote"), class: "btn btn-success"
                       - else
                         - already_voted = current_user.votes.exists?(option_id: @options.map(&:id))
-                        = button_to "Vote",
-                          poll_votes_path(@poll, option_id: option.id),
-                          method: :post,
-                          class: "btn btn-success btn-sm #{'disabled opacity-50' if already_voted}",
-                          style: "border-radius:20px; font-weight:600;"
+                        - if already_voted
+                          = button_to t("show.vote"),
+                            poll_votes_path(@poll, option_id: option.id),
+                            method: :post,
+                            class: "btn btn-success btn-sm disabled opacity-50 me-2",
+                            style: "border-radius:20px; font-weight:600;",
+                            title: "You already voted"
+                        - else
+                          = button_to t("show.vote"),
+                            poll_votes_path(@poll, option_id: option.id),
+                            method: :post,
+                            class: "btn btn-success btn-sm",
+                            style: "border-radius:20px; font-weight:600;"
+
+                        button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="border-radius:20px; font-weight:600;"
+                          style="border-radius:20px; font-weight:600; opacity:0.6; cursor:not-allowed;"
+                          = t("show.add_comment")
+
 
           - if @poll.options.any?
             - total_votes = @poll.options.sum { |opt| opt.votes.count }.nonzero? || 1
-            p style="margin-bottom: 0; font-size: 15px !important;" 
-              | Thống kê vote:
+            h5 style="margin-bottom: 0;" 
+              = t("show.stats")
             ul.text-muted.small.mb-2
               - @poll.options.each do |option|
                 - vote_count = option.votes.count
                 - vote_percent = ((vote_count.to_f / total_votes) * 100).round
                 li style="font-size: 15px !important;"
                   = "#{option.text} · #{vote_count} vote (#{vote_percent}%)"
+
           .mt-5
             .row.justify-content-center.align-items-start.g-4
               .col-md-6.text-center
-                h5.fw-bold.mb-3 Thống kê theo lựa chọn
+                h5.fw-bold.mb-3= t("show.stats_by_option")
                 .chart-card.mx-auto style="max-width:420px; height:360px;"
                   canvas#votesByOptionChart
               .col-md-6.text-center
-                h5.fw-bold.mb-3 Thống kê theo quốc gia
+                h5.fw-bold.mb-3= t("show.stats_by_country")
                 .chart-card.mx-auto style="max-width:420px; height:360px;"
                   canvas#votesByCountryChart
                 #votesByCountryLegend.text-center.mt-2
 
+          .mt-4
+            h5.fw-semibold.mb-3= t("show.comments_by_option")
+
+            - @poll.options.each do |option|
+              .card.mb-3
+                .card-header.bg-light.fw-bold
+                  = option.text
+                  small.text-muted.ms-2 = "(#{option.votes.where.not(comment: [nil, '']).count} bình luận)"
+
+                .card-body
+                  - comments = option.votes.where.not(comment: [nil, ""]).includes(:user).order(created_at: :desc)
+                  - if comments.any?
+                    - comments.each do |vote|
+                      .mb-3.border-bottom.pb-2
+                        strong= vote.user&.user_name || "User"
+                        small.text-muted.ms-2
+                          | #{t("show.voted")} #{distance_of_time_in_words_to_now(vote.created_at)} #{t("show.ago")}
+                        - if vote.comment.present?
+                          p.mb-0.mt-1= vote.comment
+                  - else
+                    p.text-muted.mb-0= t("show.no_comment_option")
+
           .d-flex.justify-content-between.mt-4
-            = link_to "← Quay lại danh sách", polls_path, class: "btn btn-outline-secondary"
+            = link_to t("show.back_to_list"), polls_path, class: "btn btn-outline-secondary"
             .d-flex.gap-2
               - if user_signed_in? && current_user == @poll.user
-                = link_to "✏️ Edit Poll", edit_poll_path(@poll), class: "btn btn-warning"
-                = link_to "🗑 Delete Poll", poll_path(@poll),
-                  data: { confirm: "Bạn có chắc chắn muốn xoá poll này?" },
+                = link_to t("show.edit_poll"), edit_poll_path(@poll), class: "btn btn-warning"
+                = link_to t("show.delete_poll"), poll_path(@poll),
+                  data: { confirm: t("show.delete_poll_confirm") },
                   method: :delete,
                   class: "btn btn-danger"
-              = link_to "➕ Tạo poll mới", new_poll_path, class: "btn btn-primary"
+              = link_to t("show.new_poll"), new_poll_path, class: "btn btn-primary"
+
 
 / -------------------- Javascript (Slim friendly) -------------------- /
 script
@@ -99,7 +156,8 @@ script
   |           datasets: [{
   |             data: valuesOption,
   |             backgroundColor: [
-  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#8dd3c7', '#fdb462'
+  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+  |               '#9966FF', '#FF9F40', '#8dd3c7', '#fdb462'
   |             ]
   |           }]
   |         },
@@ -145,7 +203,8 @@ script
   |           datasets: [{
   |             data: valuesCountry,
   |             backgroundColor: [
-  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#c9cbcf', '#b0e0e6'
+  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+  |               '#9966FF', '#FF9F40', '#c9cbcf', '#b0e0e6'
   |             ]
   |           }]
   |         },
@@ -178,6 +237,21 @@ script
   |     }
   |   }
   |
-  |   document.addEventListener('turbolinks:load', initPollCharts);
-  |   document.addEventListener('turbo:load', initPollCharts);
+  |   function initTooltips() {
+  |     var tooltipTriggerList = [].slice.call(
+  |       document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  |     );
+  |     tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+  |       new bootstrap.Tooltip(tooltipTriggerEl);
+  |     });
+  |   }
+  |
+  |   document.addEventListener('turbolinks:load', function() {
+  |     initPollCharts();
+  |     initTooltips();
+  |   });
+  |   document.addEventListener('turbo:load', function() {
+  |     initPollCharts();
+  |     initTooltips();
+  |   });
   | })();

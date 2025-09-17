@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     # get '/:id', to: 'links#show'
 
     resources :polls, only: [:index, :show, :new, :create, :edit, :update] do
-      resources :votes, only: [:create, :destroy]
+      resources :votes, only: [:create, :destroy, :update]
       member do
         patch :toggle_visibility
       end

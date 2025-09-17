@@ -18,6 +18,7 @@ vi:
   footer:
     about_me: "Về tôi"
     contact_me: "Liên hệ tôi"
+    title: 2025 Votia. Mọi quyền được bảo lưu.
 
   users:
     index:
@@ -155,7 +156,7 @@ vi:
       connect: "Kết nối cộng đồng"
       connect_desc: "Tìm những người có cùng quan điểm và chia sẻ ý tưởng với họ."
       trust_vote: "Bình chọn đáng tin cậy"
-      trust_vote_desc: "Mỗi người chỉ có thể bình chọn một lần trong mỗi poll, đảm bảo kết quả chính xác và minh bạch."
+      trust_vote_desc: "Mỗi người chỉ có thể bình chọn một lần trong mỗi poll, đảm bảo kết quả chính xác."
       comment: "Bình luận lựa chọn của bạn"
       comment_desc: "Ngoài bình chọn, bạn có thể giải thích lý do để người khác hiểu rõ hơn."
       insights: "Thống kê & Phân tích"
@@ -180,3 +181,84 @@ vi:
       title: "Hãy để thế giới lắng nghe bạn"
       subtitle: "Tham gia Votia ngay để chia sẻ ý tưởng và tìm cộng đồng của bạn."
       button: "Bắt đầu ngay"
+    carousel:
+      hot_polls: Poll nổi bật
+
+  index:
+    poll_purpose: Mục đích của người tạo poll
+
+  show:
+    purpose: "Mục đích của người tạo poll:"
+    description: "Câu trả lời của người tạo poll:"
+    unvote: "Bỏ chọn"
+    vote: "Bình chọn"
+    add_comment: "Thêm bình luận"
+    your_comment: "Bình luận của bạn"
+    placeholder_comment: "Nhập suy nghĩ của bạn..."
+    submit_vote: "Gửi bình luận"
+    stats: "Thống kê bình chọn:"
+    stats_by_option: "Thống kê theo lựa chọn"
+    stats_by_country: "Thống kê theo quốc gia"
+    comments_by_option: "Bình luận từ người tham gia (theo từng lựa chọn)"
+    no_comment_option: "Chưa có bình luận nào cho lựa chọn này."
+    back_to_list: "← Quay lại danh sách"
+    edit_poll: "✏️ Chỉnh sửa Poll"
+    delete_poll: "🗑 Xóa Poll"
+    delete_poll_confirm: "Bạn có chắc chắn muốn xóa poll này?"
+    new_poll: "➕ Tạo poll mới"
+    voted: "Đã vote"
+    ago: "trước"
+    created: "Được tạo"
+  
+  new:
+    new_poll: "Tạo Poll mới"
+    errors:
+      one: "lỗi"
+      other: "lỗi"
+    labels:
+      title: "Câu hỏi"
+      purpose: "Mục đích của poll"
+      description: "Câu trả lời của bạn (tuỳ chọn)"
+      image: "Ảnh cho Poll"
+      option_text: "Option"
+      option_image: "Ảnh cho Option"
+    placeholders:
+      title: "Nhập câu hỏi..."
+      purpose: "Giúp người trả lời hiểu bối cảnh và tập trung vào câu trả lời..."
+      description: "Viết câu trả lời hoặc giải thích thêm..."
+      option_text: "Nhập lựa chọn..."
+    buttons:
+      create: "Tạo Poll"
+      back: "Quay lại"
+    section:
+      options: "Options"
+    
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: "ít hơn 1 phút"
+        other: "ít hơn %{count} phút"
+      x_minutes:
+        one: "1 phút"
+        other: "%{count} phút"
+      about_x_hours:
+        one: "khoảng 1 giờ"
+        other: "khoảng %{count} giờ"
+      x_days:
+        one: "1 ngày"
+        other: "%{count} ngày"
+      about_x_months:
+        one: "khoảng 1 tháng"
+        other: "khoảng %{count} tháng"
+      x_months:
+        one: "1 tháng"
+        other: "%{count} tháng"
+      about_x_years:
+        one: "khoảng 1 năm"
+        other: "khoảng %{count} năm"
+      over_x_years:
+        one: "hơn 1 năm"
+        other: "hơn %{count} năm"
+      almost_x_years:
+        one: "gần 1 năm"
+        other: "gần %{count} năm"

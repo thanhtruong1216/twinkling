@@ -3,42 +3,42 @@
     .col-md-12
       .card.shadow
         .card-body
-          h1.text-center.text-primary.mb-4 Tạo Poll mới
+          h1.text-center.text-primary.mb-4= t('new.new_poll')
 
           = form_with(model: @poll, local: true, class: "needs-validation", html: { multipart: true }) do |f|
             - if @poll.errors.any?
               .alert.alert-danger
-                h4 = pluralize(@poll.errors.count, "lỗi") + ":"
+                h4= pluralize(@poll.errors.count, t('new.errors.other')) + ":"
                 ul.mb-0
                   - @poll.errors.full_messages.each do |msg|
-                    li = msg
+                    li= msg
 
             .mb-3
-              = f.label :title, "Câu hỏi", class: "form-label fw-bold"
-              = f.text_field :title, class: "form-control", placeholder: "Nhập câu hỏi..."
+              = f.label :title, t('new.labels.title'), class: "form-label fw-bold"
+              = f.text_field :title, class: "form-control", placeholder: t('new.placeholders.title')
 
             .mb-3
-              = f.label :purpose, "Mục đích của poll", class: "form-label fw-bold"
-              = f.text_area :purpose, class: "form-control", rows: 3, placeholder: "Giúp người trả lời hiểu bối cảnh và tập trung vào câu trả lời..."
+              = f.label :purpose, t('new.labels.purpose'), class: "form-label fw-bold"
+              = f.text_area :purpose, class: "form-control", rows: 3, placeholder: t('new.placeholders.purpose')
 
             .mb-3
-              = f.label :description, "Câu trả lời của bạn (tuỳ chọn)", class: "form-label fw-bold"
-              = f.text_area :description, class: "form-control", rows: 3, placeholder: "Viết câu trả lời hoặc giải thích thêm..."
+              = f.label :description, t('new.labels.description'), class: "form-label fw-bold"
+              = f.text_area :description, class: "form-control", rows: 3, placeholder: t('new.placeholders.description')
 
             .mb-3
-              = f.label :image, "Ảnh cho Poll", class: "form-label fw-bold"
+              = f.label :image, t('new.labels.image'), class: "form-label fw-bold"
               = f.file_field :image, class: "form-control"
 
-            h3.h5.mt-4.mb-3.text-secondary Options
+            h3.h5.mt-4.mb-3.text-secondary= t('new.section.options')
             = f.fields_for :options do |opt|
               .mb-3
-                = opt.label :text, "Option", class: "form-label"
-                = opt.text_field :text, class: "form-control", placeholder: "Nhập lựa chọn..."
+                = opt.label :text, t('new.labels.option_text'), class: "form-label"
+                = opt.text_field :text, class: "form-control", placeholder: t('new.placeholders.option_text')
 
               .mb-3
-                = opt.label :image, "Ảnh cho Option", class: "form-label"
+                = opt.label :image, t('new.labels.option_image'), class: "form-label"
                 = opt.file_field :image, class: "form-control"
 
             .d-flex.mt-4.gap-2
-              = f.submit "Tạo Poll", class: "btn btn-success flex-grow-1"
-              = link_to "Quay lại", polls_path, class: "btn btn-outline-secondary"
+              = f.submit t('new.buttons.create'), class: "btn btn-success flex-grow-1"
+              = link_to t('new.buttons.back'), polls_path, class: "btn btn-outline-secondary"

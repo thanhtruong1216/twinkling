@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_16_123149) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_17_134926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -193,6 +193,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_16_123149) do
     t.string "country"
     t.string "city"
     t.string "ip_address"
+    t.text "comment"
     t.index ["option_id"], name: "index_votes_on_option_id"
     t.index ["user_id", "option_id"], name: "index_votes_on_user_id_and_option_id", unique: true
     t.index ["user_id"], name: "index_votes_on_user_id"

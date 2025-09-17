@@ -3,76 +3,38 @@
     header.desktop-header__wrapper
       div
         = link_to root_path, class: 'app-name' do
+          = image_tag 'flower.svg', style: "width: 60px;"
           div.content
             h2 VOTIA
             h2 VOTIA
 
-      / .search-form-container
-      /   = render 'layouts/search'
-
       div.dropdown.normal-header-link
-        / = link_to posts_path do
-        /   span= t('header.news')
-        /   = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
-        = link_to polls_path, class: 'me-4' do 
+        = link_to polls_path, class: 'me-4 text-decoration-none' do 
           span All polls
 
-        = link_to 'New poll', new_poll_path
-
-
-        / = link_to polls_path do
-        /   span Polls
-        /   = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
-        / ul.posts-menu
-        /   li 
-        /     = link_to 'All polls', polls_path
-        /   li
-        /     = link_to 'New poll', new_poll_path
-
-        / ul.posts-menu
-        /   li 
-        /     = link_to t('header.articles'), posts_path
-        /   li
-        /     = link_to t('header.new_post'), new_post_path
-          / li
-          /   = link_to t('header.famous_people'), famous_people_path
+        = link_to 'New poll', new_poll_path, class: 'text-decoration-none'
 
       div.dropdown.normal-header-link
-        / = link_to links_path do
-        /   span= t('header.tools')
-        /   = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
-
-        ul.posts-menu
-          li 
-            / = link_to t('header.link_shortener'), new_link_path
-          li 
-            = link_to t('header.find_zodiac'), find_name_zodiacs_path
-          / li 
-          /   = link_to t('header.create_person'), new_famous_person_path
-
-      div.dropdown.normal-header-link
-        = link_to current_user do
+        = link_to current_user, class: 'text-decoration-none' do
           span= current_user.user_name
           = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
 
-        ul.posts-menu
+        ul.posts-menu.text-start
           li 
-            = link_to t('header.profile'), current_user
-          / li 
-          /   = link_to t('header.links'), links_path
+            = link_to t('header.profile'), current_user, class: 'text-decoration-none'
           li 
-            = link_to t('header.logout'), destroy_user_session_path, method: :delete
+            = link_to t('header.logout'), destroy_user_session_path, method: :delete, class: 'text-decoration-none'
       
       div(class="#{I18n.locale == I18n.default_locale ? 'locale-active-en' : 'locale-active-vi'}")
         div.locale-en
-          = link_to 'EN', locale: 'en'
+          = link_to 'EN', locale: 'en', class: 'text-decoration-none'
         div.locale-vi
-          = link_to 'VI', locale: 'vi'
+          = link_to 'VI', locale: 'vi', class: 'text-decoration-none'
 - else
   section.desktop-header.desktop-header-no-signin
     header.desktop-header__wrapper
       div(class="#{I18n.locale == I18n.default_locale ? 'locale-active-en' : 'locale-active-vi'}")
         div.locale-en
-          = link_to 'EN', locale: 'en'
+          = link_to 'EN', locale: 'en', class: 'text-decoration-none'
         div.locale-vi
-          = link_to 'VI', locale: 'vi'
+          = link_to 'VI', locale: 'vi', class: 'text-decoration-none'

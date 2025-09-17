@@ -18,6 +18,7 @@ en:
   footer:
     about_me: "About me"
     contact_me: "Contact me"
+    title: 2025 Votia. All rights reserved.
 
   users:
     index:
@@ -155,7 +156,7 @@ en:
       connect: "Connect communities"
       connect_desc: "Find like-minded people and share ideas with them."
       trust_vote: "Trustworthy voting"
-      trust_vote_desc: "Each person can only vote once per poll, ensuring accurate and transparent results."
+      trust_vote_desc: "Each person can only vote once per poll, ensuring accurate results."
       comment: "Comment your choice"
       comment_desc: "Besides voting, you can explain your reasons so others understand better."
       insights: "Statistics & Insights"
@@ -180,3 +181,91 @@ en:
       title: "Let the world hear you"
       subtitle: "Join Votia now to share your ideas and find your community."
       button: "Start now"
+    carousel:
+      hot_polls: Hot Polls
+
+  index:
+    poll_purpose: Poll purpose
+
+  show:
+    purpose: "Purpose of the poll creator:"
+    description: "Poll creator's answer:"
+    unvote: "Unvote"
+    vote: "Vote"
+    add_comment: "Add Comment"
+    your_comment: "Your Comment"
+    placeholder_comment: "Enter your thoughts..."
+    submit_vote: "Submit comment"
+    stats: "Vote statistics:"
+    stats_by_option: "Statistics by option"
+    stats_by_country: "Statistics by country"
+    comments_by_option: "Comments from participants (by option)"
+    no_comment_option: "No comments yet for this option."
+    back_to_list: "← Back to list"
+    edit_poll: "✏️ Edit Poll"
+    delete_poll: "🗑 Delete Poll"
+    delete_poll_confirm: "Are you sure you want to delete this poll?"
+    new_poll: "➕ Create new poll"
+    voted: "Voted"
+    ago: "ago"
+    created: "Created"
+  
+  new:
+    new_poll: "Create New Poll"
+    errors:
+      one: "error"
+      other: "errors"
+    labels:
+      title: "Question"
+      purpose: "Purpose of the poll"
+      description: "Your answer (optional)"
+      image: "Poll Image"
+      option_text: "Option"
+      option_image: "Option Image"
+    placeholders:
+      title: "Enter your question..."
+      purpose: "Help respondents understand the context and focus on their answers..."
+      description: "Write your answer or add more explanation..."
+      option_text: "Enter option..."
+    buttons:
+      create: "Create Poll"
+      back: "Back"
+    section:
+      options: "Options"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute"
+      less_than_x_seconds:
+        one: "less than 1 second"
+        other: "less than %{count} seconds"
+      x_seconds:
+        one: "1 second"
+        other: "%{count} seconds"
+      less_than_x_minutes:
+        one: "less than a minute"
+        other: "less than %{count} minutes"
+      x_minutes:
+        one: "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one: "about 1 hour"
+        other: "about %{count} hours"
+      x_days:
+        one: "1 day"
+        other: "%{count} days"
+      about_x_months:
+        one: "about 1 month"
+        other: "about %{count} months"
+      x_months:
+        one: "1 month"
+        other: "%{count} months"
+      about_x_years:
+        one: "about 1 year"
+        other: "about %{count} years"
+      over_x_years:
+        one: "over 1 year"
+        other: "over %{count} years"
+      almost_x_years:
+        one: "almost 1 year"
+        other: "almost %{count} years"

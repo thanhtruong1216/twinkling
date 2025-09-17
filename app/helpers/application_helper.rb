@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include ActionView::Helpers::DateHelper
   def days_from(from_time)
     to_time             = Time.current
     from_time = DateTime.new(from_time.split('/')[2].to_i, from_time.split('/')[1].to_i, from_time.split('/')[0].to_i)
