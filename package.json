@@ -15,7 +15,6 @@
     "bootstrap": "^5.3.8",
     "jquery": "^3.4.1",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.13",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
