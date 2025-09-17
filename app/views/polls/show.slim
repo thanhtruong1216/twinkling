@@ -48,7 +48,16 @@
                           class: "btn btn-success btn-sm #{'disabled opacity-50' if already_voted}",
                           style: "border-radius:20px; font-weight:600;"
 
-          / --- two pie charts side by side ---
+          - if @poll.options.any?
+            - total_votes = @poll.options.sum { |opt| opt.votes.count }.nonzero? || 1
+            p style="margin-bottom: 0; font-size: 15px !important;" 
+              | Thống kê vote:
+            ul.text-muted.small.mb-2
+              - @poll.options.each do |option|
+                - vote_count = option.votes.count
+                - vote_percent = ((vote_count.to_f / total_votes) * 100).round
+                li style="font-size: 15px !important;"
+                  = "#{option.text} · #{vote_count} vote (#{vote_percent}%)"
           .mt-5
             .row.justify-content-center.align-items-start.g-4
               .col-md-6.text-center
@@ -65,8 +74,12 @@
             = link_to "← Quay lại danh sách", polls_path, class: "btn btn-outline-secondary"
             .d-flex.gap-2
               - if user_signed_in? && current_user == @poll.user
-                = link_to "Edit Poll", edit_poll_path(@poll), class: "btn btn-warning"
-              = link_to "Tạo poll mới", new_poll_path, class: "btn btn-primary"
+                = link_to "✏️ Edit Poll", edit_poll_path(@poll), class: "btn btn-warning"
+                = link_to "🗑 Delete Poll", poll_path(@poll),
+                  data: { confirm: "Bạn có chắc chắn muốn xoá poll này?" },
+                  method: :delete,
+                  class: "btn btn-danger"
+              = link_to "➕ Tạo poll mới", new_poll_path, class: "btn btn-primary"
 
 / -------------------- Javascript (Slim friendly) -------------------- /
 script

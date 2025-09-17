@@ -3,7 +3,7 @@ html
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    title Votia - Bạn nói, cả thế giới lắng nghe
+    title Votia - = t('landing.hero.title')
     link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"
@@ -42,90 +42,82 @@ html
   body.overflow-auto
     section.hero
       .container
-        h1 Bạn nói, cả thế giới lắng nghe
-        p.lead Miễn phí, công khai, và đến với mọi người trên thế giới. Vote một lần, kết nối, chia sẻ và khám phá nhiều góc nhìn. Một cú click, ý kiến của bạn được cả thế giới lắng nghe.
-        = link_to 'Khám phá ngay', polls_path, class: 'btn btn-gradient btn-lg mt-4'
+        h1 = t('landing.hero.title')
+        p.mt-3.fw-light = t('landing.hero.slogan')
+        = link_to t('landing.hero.button'), polls_path, class: 'btn btn-gradient btn-lg mt-4'
 
     section.feature id="features"
       .container
-        h2(data-aos="fade-up") Tại sao chọn Votia?
+        h2(data-aos="fade-up") = t('landing.features.why_choose')
         .row
           .col-md-4(data-aos="fade-up" data-aos-delay="100")
             .feature-card
               i.bi.bi-globe2.fs-1.mb-3.text-primary
-              h3 Public cho cả thế giới
-              p Mọi ý kiến của bạn sẽ được nghe bởi tất cả mọi người trên toàn cầu.
+              h3 = t('landing.features.public')
+              p = t('landing.features.public_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="200")
             .feature-card
               i.bi.bi-people.fs-1.mb-3.text-success
-              h3 Kết nối cộng đồng
-              p Tìm thấy những người cùng quan điểm và chia sẻ ý tưởng với họ.
+              h3 = t('landing.features.free')
+              p = t('landing.features.free_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="300")
             .feature-card
               i.bi.bi-check2-circle.fs-1.mb-3.text-info
-              h3 Vote đáng tin
-              p Mỗi người chỉ được vote 1 lần cho mỗi poll, đảm bảo kết quả chính xác và minh bạch.
+              h3 = t('landing.features.trust_vote')
+              p = t('landing.features.trust_vote_desc')
         .row.mt-4
           .col-md-4(data-aos="fade-up" data-aos-delay="400")
             .feature-card
               i.bi.bi-pencil.fs-1.mb-3.text-secondary
-              h3 Comment giải thích lựa chọn
-              p Ngoài vote, bạn có thể comment để giải thích lý do, giúp mọi người hiểu rõ hơn.
+              h3 = t('landing.features.comment')
+              p = t('landing.features.comment_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="500")
             .feature-card
               i.bi.bi-bar-chart.fs-1.mb-3.text-info
-              h3 Thống kê & Insights
-              p Xem ngay thống kê tổng quan của poll, biết được xu hướng của cộng đồng.
+              h3 = t('landing.features.insights')
+              p = t('landing.features.insights_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="600")
             .feature-card
               i.bi.bi-star.fs-1.mb-3.text-warning
-              h3 Đa chiều & khách quan
-              p Khám phá nhiều góc nhìn, đưa ra quyết định thông minh.
+              h3 = t('landing.features.objective')
+              p = t('landing.features.objective_desc')
         .row.mt-4
           .col-md-4(data-aos="fade-up" data-aos-delay="700")
             .feature-card
               i.bi.bi-emoji-smile.fs-1.mb-3.text-warning
-              h3 Poll vui & nghiêm túc
-              p Tạo poll vui để giải trí hoặc poll nghiêm túc để đưa ra quyết định đúng đắn.
+              h3 = t('landing.features.fun_poll')
+              p = t('landing.features.fun_poll_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="800")
             .feature-card
               i.bi.bi-heart.fs-1.mb-3.text-danger
-              h3 Không cô đơn
-              p Mỗi ý kiến đều được lắng nghe, bạn không bao giờ cô đơn.
+              h3 = t('landing.features.not_alone')
+              p = t('landing.features.not_alone_desc')
           .col-md-4(data-aos="fade-up" data-aos-delay="900")
             .feature-card
               i.bi.bi-lightbulb.fs-1.mb-3.text-warning
-              h3 Quyết định thông minh
-              p Nhìn nhận vấn đề từ nhiều góc độ để đưa ra quyết định tốt nhất.
+              h3 = t('landing.features.smart_decision')
+              p = t('landing.features.smart_decision_desc')
 
     / Testimonials Section
     section.testimonial
-      h2(data-aos="fade-up") Người dùng nói gì
+      h2(data-aos="fade-up") = t('landing.testimonial.title')
       .d-flex.flex-column.align-items-center
         .testimonial-card(data-aos="fade-up" data-aos-delay="100")
-          p "Votia giúp mình thấy nhiều góc nhìn khác nhau, quyết định dễ dàng hơn!"
-          strong - Lan, 28 tuổi
+          p = t('landing.testimonial.t1')
+          strong = t('landing.testimonial.t1_author')
         .testimonial-card(data-aos="fade-up" data-aos-delay="200")
-          p "Mình kết nối được với những người có cùng quan điểm, thật tuyệt!"
-          strong - Minh, 32 tuổi
+          p = t('landing.testimonial.t2')
+          strong = t('landing.testimonial.t2_author')
         .testimonial-card(data-aos="fade-up" data-aos-delay="300")
-          p "Không còn cô đơn khi chia sẻ ý kiến nữa, mọi người đều lắng nghe."
-          strong - Hương, 25 tuổi
+          p = t('landing.testimonial.t3')
+          strong = t('landing.testimonial.t3_author')
 
     / Call to Action
     section.cta
       .container
-        h2(data-aos="fade-up") Hãy để thế giới lắng nghe bạn
-        p.mt-2(data-aos="fade-up" data-aos-delay="100") Tham gia Votia ngay để chia sẻ ý tưởng và tìm cộng đồng của bạn.
-        = link_to 'Bắt đầu ngay', new_poll_path, class: 'btn btn-gradient btn-lg mt-4'
-
-    / Footer
-    footer.text-center
-      p &copy; 2025 Votia. Mọi quyền được bảo lưu.
-      p.mt-2
-        a.text-white.mx-2(href="#") i.bi.bi-facebook
-        a.text-white.mx-2(href="#") i.bi.bi-twitter
-        a.text-white.mx-2(href="#") i.bi.bi-instagram
+        h2(data-aos="fade-up") = t('landing.cta.title')
+        p.mt-2(data-aos="fade-up" data-aos-delay="100") = t('landing.cta.subtitle')
+        = link_to t('landing.cta.button'), new_poll_path, class: 'btn btn-gradient btn-lg mt-4'
 
     / Scripts
     script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

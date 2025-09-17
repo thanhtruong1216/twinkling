@@ -14,15 +14,20 @@
         / = link_to posts_path do
         /   span= t('header.news')
         /   = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
+        = link_to polls_path, class: 'me-4' do 
+          span All polls
 
-        = link_to polls_path do
-          span Polls
-          = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
-        ul.posts-menu
-          li 
-            = link_to 'All polls', polls_path
-          li
-            = link_to 'New poll', new_poll_path
+        = link_to 'New poll', new_poll_path
+
+
+        / = link_to polls_path do
+        /   span Polls
+        /   = image_tag 'chevron-down-solid.svg', class: 'header-down-icon'
+        / ul.posts-menu
+        /   li 
+        /     = link_to 'All polls', polls_path
+        /   li
+        /     = link_to 'New poll', new_poll_path
 
         / ul.posts-menu
         /   li 

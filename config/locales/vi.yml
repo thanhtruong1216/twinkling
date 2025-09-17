@@ -4,20 +4,21 @@ vi:
     profile: "Hồ sơ"
     new_post: "Đăng bài"
     search: "Tên người dùng không dấu..."
-    posts: Bài viết
-    articles: Tất cả bài viết
-    you: Bạn
-    tools: Công cụ
-    link_shortener: Rút gọn link
-    links: Links
-    news: Bảng tin
-    find_zodiac: Tìm cung hoàng đạo
-    create_person: Tạo nhân vật
-    famous_people: Người nổi tiếng
-    polls: Polls
+    posts: "Bài viết"
+    articles: "Tất cả bài viết"
+    you: "Bạn"
+    tools: "Công cụ"
+    link_shortener: "Rút gọn link"
+    links: "Links"
+    news: "Bảng tin"
+    find_zodiac: "Tìm cung hoàng đạo"
+    create_person: "Tạo nhân vật"
+    famous_people: "Người nổi tiếng"
+    polls: "Polls"
   footer:
-    about_me: Về tôi
-    contact_me: Liên hệ tôi
+    about_me: "Về tôi"
+    contact_me: "Liên hệ tôi"
+
   users:
     index:
       message_search: "người được tìm thấy"
@@ -41,36 +42,36 @@ vi:
       upload_your_avatar: "Tải ảnh đại diện của bạn"
       upload: "Tải lên"
     forgot_password:
-      forgot_your_password: Bạn quên mật khẩu phải không?
-      send_me_reset_password_instructions: Tôi muốn đặt lại mật khẩu
+      forgot_your_password: "Bạn quên mật khẩu phải không?"
+      send_me_reset_password_instructions: "Tôi muốn đặt lại mật khẩu"
     account:
-      have_an_account: Bạn đã có tài khoản rồi?
-      do_not_have_an_account: Bạn chưa có tài khoản?
-      login: Đăng nhập
-      sign_up: Đăng ký
-      sign_up_to_see_photos_and_videos: Chia sẻ bất kỳ điều gì bạn muốn
-      remember_me: Nhớ tôi
-    blood_type: 'Nhóm máu'
+      have_an_account: "Bạn đã có tài khoản rồi?"
+      do_not_have_an_account: "Bạn chưa có tài khoản?"
+      login: "Đăng nhập"
+      sign_up: "Đăng ký"
+      sign_up_to_see_photos_and_videos: "Chia sẻ bất kỳ điều gì bạn muốn"
+      remember_me: "Nhớ tôi"
+    blood_type: "Nhóm máu"
     years: "%{count} tuổi"
     days: "%{count} ngày"
 
   zodiacs:
-    capricorn: 'Ma Kết'
-    aquarius: 'Bảo Bình'
-    pisces: 'Song Ngư'
-    aries: 'Bạch Dương'
-    taurus: 'Kim Ngưu'
-    gemini: 'Song Tử'
-    cancer: 'Cự Giải'
-    leo: 'Sư Tử'
-    virgo: 'Xử Nữ'
-    libra: 'Thiên Bình'
-    scorpius: 'Bọ Cạp'
-    sagittarius: 'Nhân Mã'
-    enter_date_and_month: Nhập ngày và tháng
-    date_month: Sinh nhật(ngày/tháng)
-    find: Tìm ngay
-    invalid_date: Ngày không đúng định dạng
+    capricorn: "Ma Kết"
+    aquarius: "Bảo Bình"
+    pisces: "Song Ngư"
+    aries: "Bạch Dương"
+    taurus: "Kim Ngưu"
+    gemini: "Song Tử"
+    cancer: "Cự Giải"
+    leo: "Sư Tử"
+    virgo: "Xử Nữ"
+    libra: "Thiên Bình"
+    scorpius: "Bọ Cạp"
+    sagittarius: "Nhân Mã"
+    enter_date_and_month: "Nhập ngày và tháng"
+    date_month: "Sinh nhật (ngày/tháng)"
+    find: "Tìm ngay"
+    invalid_date: "Ngày không đúng định dạng"
 
   relationship:
     follow: "Theo dõi"
@@ -81,22 +82,23 @@ vi:
     followings: "người đang theo dõi"
     posts: "bài viết"
     post: "bài viết"
-    polls: polls
-    poll: poll
+    polls: "polls"
+    poll: "poll"
+
   post:
     new:
       create_post: "Tạo bài viết"
-      content: Nội dung bài viết
-      author: Tác giả
-      photo: Hình ảnh
-      origin: Sách/Phim/Bản nhạc
+      content: "Nội dung bài viết"
+      author: "Tác giả"
+      photo: "Hình ảnh"
+      origin: "Sách/Phim/Bản nhạc"
     likes:
       people_like_first: "Hãy là người like đầu tiên"
       people_liked: "người đã thích"
     comments:
       add_comment: "Bình luận..."
       post: "Đăng"
-      view: "Hiển thị "
+      view: "Hiển thị"
       view_all: "Hiển thị"
       comment: "bình luận"
       comments: "bình luận"
@@ -104,7 +106,7 @@ vi:
       view_all_comments: "Xem tất cả bình luận"
     date_time:
       x_days:
-        one: 1 day ago
+        one: "1 ngày trước"
         other: "%{count} ngày trước"
       x_hours: 
         one: "%{count} giờ trước"
@@ -112,24 +114,69 @@ vi:
       x_minutes:
         one: "%{count} phút trước"
         other: "%{count} phút trước"
+
   famous:
     first_name: "Tên"
     last_name: "Họ"
-    birthday: Sinh nhật
-    create_person: Tạo nhân vật
+    birthday: "Sinh nhật"
+    create_person: "Tạo nhân vật"
+
   actions:
     save: "Lưu"
     cancel: "Hủy"
     edit: "Sửa"
     delete: "Xóa"
+
   comment:
     edit_comment: "Sửa bình luận của bạn"
     content: "Nội dung bình luận"
     newest_comments: "Bình luận mới nhất"
     comments: "Tất cả bình luận"
+
   link_shortener:
-    title: Tiêu đề
-    enter_your_url: Nhập url tại đây nha bạn
-    edit_link: Chỉnh sửa
-    you_have_no_links: Bạn chưa có link nào
-    delete_link: Xóa
+    title: "Tiêu đề"
+    enter_your_url: "Nhập url tại đây nha bạn"
+    edit_link: "Chỉnh sửa"
+    you_have_no_links: "Bạn chưa có link nào"
+    delete_link: "Xóa"
+
+  landing:
+    hero:
+      title: "Bạn lên tiếng, thế giới lắng nghe"
+      subtitle: "Miễn phí, công khai và dành cho tất cả mọi người trên toàn cầu. Bình chọn một lần, kết nối, chia sẻ và khám phá những góc nhìn khác nhau. Chỉ với một cú nhấp chuột, ý kiến của bạn sẽ được lắng nghe khắp thế giới."
+      slogan: Với mong muốn đồng hành, sẻ chia, lắng nghe và thấu hiểu để không ai trên trái đất này cảm thấy đơn độc. Chúng ta sẽ có bạn bè trên suốt hành trình sống để hỗ trợ lẫn nhau trong việc tìm ra niềm vui và đối mặt với những quyết định quan trọng.
+      button: "Khám phá ngay"
+    features:
+      why_choose: "Tại sao chọn Votia?"
+      free: Hoàn toàn miễn phí
+      free_desc: Không giới hạn, không phí ẩn, luôn miễn phí cho mọi người.
+      public: "Công khai với thế giới"
+      public_desc: "Ý kiến của bạn được lắng nghe bởi tất cả mọi người trên toàn cầu."
+      connect: "Kết nối cộng đồng"
+      connect_desc: "Tìm những người có cùng quan điểm và chia sẻ ý tưởng với họ."
+      trust_vote: "Bình chọn đáng tin cậy"
+      trust_vote_desc: "Mỗi người chỉ có thể bình chọn một lần trong mỗi poll, đảm bảo kết quả chính xác và minh bạch."
+      comment: "Bình luận lựa chọn của bạn"
+      comment_desc: "Ngoài bình chọn, bạn có thể giải thích lý do để người khác hiểu rõ hơn."
+      insights: "Thống kê & Phân tích"
+      insights_desc: "Xem kết quả bình chọn ngay lập tức và khám phá xu hướng cộng đồng."
+      objective: "Đa chiều & Khách quan"
+      objective_desc: "Khám phá các góc nhìn khác nhau để đưa ra quyết định thông minh hơn."
+      fun_poll: "Poll vui & nghiêm túc"
+      fun_poll_desc: "Tạo poll để giải trí hoặc đưa ra quyết định quan trọng."
+      not_alone: "Không bao giờ đơn độc"
+      not_alone_desc: "Mọi ý kiến đều được lắng nghe — bạn không bao giờ đơn độc."
+      smart_decision: "Quyết định thông minh"
+      smart_decision_desc: "Xem xét vấn đề từ nhiều góc độ để đưa ra lựa chọn tốt nhất."
+    testimonial:
+      title: "Người dùng nói gì"
+      t1: "\"Votia giúp tôi thấy được nhiều góc nhìn khác nhau và quyết định dễ dàng hơn!\""
+      t1_author: "- Lan, 28 tuổi"
+      t2: "\"Tôi đã kết nối với những người có cùng quan điểm. Thật tuyệt vời!\""
+      t2_author: "- Minh, 32 tuổi"
+      t3: "\"Tôi không còn cảm thấy đơn độc khi chia sẻ ý kiến — mọi người đều lắng nghe.\""
+      t3_author: "- Hương, 25 tuổi"
+    cta:
+      title: "Hãy để thế giới lắng nghe bạn"
+      subtitle: "Tham gia Votia ngay để chia sẻ ý tưởng và tìm cộng đồng của bạn."
+      button: "Bắt đầu ngay"
