@@ -12,27 +12,31 @@
       </div>
     <% end %>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { autocomplete: "disabled" }) do |f| %>
-      <div class="form-inputs">
+      <div class="form-inputs flex flex-col gap-4">
         <%= f.input :email,
                     required: true,
                     autofocus: false,
                     placeholder: "Your Email",
                     autocomplete: 'off',
                     tabindex: "-1",
-                    label: false %>
+                    label: false,
+                    input_html: { class: "rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" } %>
+
         <%= f.input :password,
                     required: true,
-                    input_html: { autocomplete: "current-password" },
+                    input_html: { autocomplete: "current-password", class: "rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" },
                     placeholder: "Password",
                     label: false %>
-        <%= f.input :remember_me, as: :boolean, label: t('users.account.remember_me') if devise_mapping.rememberable? %>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, t('users.account.login'), class: "twink-normal-btn twink-btn-submit user-form-submit-btn" %>
+        <%= f.button :submit, t('users.account.login'), 
+              class: "mt-4 btn btn-primary twink-btn twink-btn-submit user-form-submit-btn w-full py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition duration-200" %>
       </div>
     <% end %>
-    <%= render "devise/shared/links" %>
+
+    <%= render "devise/shared/links", class: "mt-4 text-center text-sm text-gray-500" %>
+
   </div>
 </section>
 

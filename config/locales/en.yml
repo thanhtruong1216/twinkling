@@ -15,6 +15,7 @@ en:
     create_person: "Create person"
     famous_people: "Famous people"
     polls: "Polls"
+    new_poll: New poll
   footer:
     about_me: "About me"
     contact_me: "Contact me"
@@ -150,7 +151,7 @@ en:
     features:
       why_choose: "Why choose Votia?"
       free: Completely Free
-      free_desc: No limits, no hidden fees, always free for everyone."
+      free_desc: No limits, no hidden fees, always free for everyone.
       public: "Public to the world"
       public_desc: "Your opinions are heard by everyone worldwide."
       connect: "Connect communities"
@@ -161,8 +162,8 @@ en:
       comment_desc: "Besides voting, you can explain your reasons so others understand better."
       insights: "Statistics & Insights"
       insights_desc: "See poll results instantly and discover community trends."
-      objective: "Multidimensional & Objective"
-      objective_desc: "Explore different perspectives for smarter decisions."
+      objective: "Multidimensional"
+      objective_desc: "See the bigger picture in everything"
       fun_poll: "Fun & serious polls"
       fun_poll_desc: "Create polls for entertainment or serious decisions."
       not_alone: "Not alone"
@@ -209,6 +210,8 @@ en:
     voted: "Voted"
     ago: "ago"
     created: "Created"
+    like: Like
+    unlike: Unlike
   
   new:
     new_poll: "Create New Poll"

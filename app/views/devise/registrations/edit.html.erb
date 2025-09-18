@@ -1,53 +1,47 @@
 <section class="user-form-container" id="user-form-edit-container">
   <h1><%= t("users.edit.update_profile") %></h1>
-  <%= simple_form_for(resource, as: resource_name, url: user_path(@user.slug), html: { method: :put }) do |f| %>
+
+  <%= simple_form_for(resource, as: resource_name, url: user_path(@user.slug), html: { method: :put, class: "needs-validation" }) do |f| %>
     <%= f.error_notification %>
+
     <div class="form-inputs">
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+        <p class="text-warning">
+          Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+        </p>
       <% end %>
+
       <%= f.input :full_name,
-          required: true,
-          label: t('users.edit.full_name') %>
+                  required: true,
+                  label: t('users.edit.full_name'),
+                  input_html: { class: "form-control" } %>
 
       <%= f.input :user_name,
-          required: true,
-          label: t('users.edit.user_name') %>
+                  required: true,
+                  label: t('users.edit.user_name'),
+                  input_html: { class: "form-control" } %>
 
       <%= f.input :birthday,
-                   required: false,
-                   placeholder: "31/12/1991",
-                   label: false %>
+                  required: false,
+                  placeholder: "31/12/1991",
+                  label: false,
+                  input_html: { class: "form-control" } %>
 
       <%= f.input :blood,
-                   required: false,
-                   placeholder: "Your blood type",
-                   label: false %>
-
-      <%# <%= f.input :password,
                   required: false,
-                  autofocus: false,
-                  autocomplete: 'off',
-                  tabindex: "-1",
-                  input_html: { placeholder: t("users.edit.new_password"), value: "", autocomplete: "off" },
-                  label: t('users.edit.new_password') %>
+                  placeholder: "Your blood type",
+                  label: false,
+                  input_html: { class: "form-control" } %>
 
-      <%# <%= f.input :password_confirmation,
-                  required: false,
-                  input_html: { placeholder: t("users.edit.confirm_new_password") },
-                  label: t('users.edit.confirm_new_password') %>
-
-      <%# <%= f.input :current_password,
-                  required: true,
-                  input_html: { placeholder: t("users.edit.current_password") },
-                  label: t('users.edit.current_password') %>
+      <%# Nếu muốn mở password fields sau, chỉ cần thêm lại với input_html: { class: "form-control" } %>
 
     </div>
 
-    <div class="form-actions user-actions-btns-wrapper">
-      <%= link_to t('users.edit.cancel'), user_path(@user.slug), class: "twink-normal-btn twink-btn-cancel" %>
-      <%= f.button :submit, t("users.edit.update"), class: "twink-normal-btn twink-btn-submit" %>
+    <div class="form-actions user-actions-btns-wrapper mt-3">
+      <%= link_to t('users.edit.cancel'), user_path(@user.slug), class: "twink-normal-btn twink-btn-cancel btn btn-danger rounded-end text-center" %>
+      <%= f.button :submit, t("users.edit.update"), class: "twink-normal-btn twink-btn-submit btn btn-primary rounded-end text-center" %>
     </div>
+
   <% end %>
 </section>

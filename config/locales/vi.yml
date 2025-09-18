@@ -15,6 +15,7 @@ vi:
     create_person: "Tạo nhân vật"
     famous_people: "Người nổi tiếng"
     polls: "Polls"
+    new_poll: Tạo poll
   footer:
     about_me: "Về tôi"
     contact_me: "Liên hệ tôi"
@@ -162,7 +163,7 @@ vi:
       insights: "Thống kê & Phân tích"
       insights_desc: "Xem kết quả bình chọn ngay lập tức và khám phá xu hướng cộng đồng."
       objective: "Đa chiều & Khách quan"
-      objective_desc: "Khám phá các góc nhìn khác nhau để đưa ra quyết định thông minh hơn."
+      objective_desc: "Nhìn thấy bức tranh tổng thể trong mọi việc."
       fun_poll: "Poll vui & nghiêm túc"
       fun_poll_desc: "Tạo poll để giải trí hoặc đưa ra quyết định quan trọng."
       not_alone: "Không bao giờ đơn độc"
@@ -209,6 +210,8 @@ vi:
     voted: "Đã vote"
     ago: "trước"
     created: "Được tạo"
+    like: Thích
+    unlike: Bỏ thích
   
   new:
     new_poll: "Tạo Poll mới"
