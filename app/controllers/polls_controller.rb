@@ -21,7 +21,7 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    2.times { @poll.options.build }
+    3.times { @poll.options.build }
   end
 
   def create

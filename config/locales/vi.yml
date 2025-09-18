@@ -223,8 +223,8 @@ vi:
       purpose: "Mục đích của poll"
       description: "Câu trả lời của bạn (tuỳ chọn)"
       image: "Ảnh cho Poll"
-      option_text: "Option"
-      option_image: "Ảnh cho Option"
+      option_text: "Lựa chọn"
+      option_image: "Ảnh cho lựa chọn"
     placeholders:
       title: "Nhập câu hỏi..."
       purpose: "Giúp người trả lời hiểu bối cảnh và tập trung vào câu trả lời..."
@@ -234,7 +234,7 @@ vi:
       create: "Tạo Poll"
       back: "Quay lại"
     section:
-      options: "Options"
+      options: "Lựa chọn"
     
   datetime:
     distance_in_words:

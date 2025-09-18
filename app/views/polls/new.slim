@@ -29,14 +29,14 @@
               = f.label :image, t('new.labels.image'), class: "form-label fw-bold"
               = f.file_field :image, class: "form-control"
 
-            h3.h5.mt-4.mb-3.text-secondary= t('new.section.options')
+            h3.h5.mt-4.mb-3.text-secondary.fw-bold= t('new.section.options')
             = f.fields_for :options do |opt|
               .mb-3
-                = opt.label :text, t('new.labels.option_text'), class: "form-label"
+                = opt.label :text, "#{t('new.labels.option_text')} #{opt.index + 1}", class: "form-label fw-bold"
                 = opt.text_field :text, class: "form-control", placeholder: t('new.placeholders.option_text')
-
+              
               .mb-3
-                = opt.label :image, t('new.labels.option_image'), class: "form-label"
+                = opt.label :image, "#{t('new.labels.option_image')} #{opt.index + 1}", class: "form-label fw-bold"
                 = opt.file_field :image, class: "form-control"
 
             .d-flex.mt-4.gap-2
