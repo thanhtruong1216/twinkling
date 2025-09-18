@@ -4,5 +4,5 @@ section.users
     .upload-photo-wrapper
       = f.input :avatar, class: 'form-control'
     .user-actions-btns-wrapper
-      = link_to t("users.edit.cancel"), user_path, class: "twink-normal-btn twink-btn-cancel btn btn-danger rounded-end text-center"
+      = link_to t("users.edit.cancel"), user_path, class: "twink-normal-btn twink-btn-cancel btn btn-danger rounded-end text-center d-flex align-items-center justify-content-center"
       = f.button :submit, t('users.upload_avatar.upload'), class: 'twink-normal-btn twink-btn-submit btn btn-primary rounded-end text-center'
