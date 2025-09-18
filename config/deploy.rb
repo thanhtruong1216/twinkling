@@ -21,13 +21,14 @@ set :rbenv_ruby, '3.2.3'
 # Yarn flags khi chạy yarn install
 set :yarn_flags, '--silent --no-progress'
 
-# Thiết lập biến môi trường (đảm bảo RAILS_MASTER_KEY được load)
+# Thiết lập biến môi trường (đảm bảo RAILS_MASTER_KEY được load và Node/Yarn đúng)
 set :default_env, lambda {
   master_key_path = "#{shared_path}/config/master.key"
   master_key = File.exist?(master_key_path) ? File.read(master_key_path).strip : ""
   {
     "RAILS_MASTER_KEY" => master_key,
-    "NODE_OPTIONS" => "--openssl-legacy-provider"
+    "NODE_OPTIONS" => "--openssl-legacy-provider",
+    "PATH" => "/home/ubuntu/.nvm/versions/node/v20.19.5/bin:$PATH"
   }
 }
 
