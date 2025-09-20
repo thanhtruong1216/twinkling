@@ -20,6 +20,9 @@ en:
     about_me: "About me"
     contact_me: "Contact me"
     title: 2025 Votia. All rights reserved.
+  
+  share:
+    comment: comments
 
   users:
     index:

@@ -21,6 +21,9 @@ vi:
     contact_me: "Liên hệ tôi"
     title: 2025 Votia. Mọi quyền được bảo lưu.
 
+  share:
+    comment: bình luận
+
   users:
     index:
       message_search: "người được tìm thấy"

@@ -109,7 +109,7 @@
               .card.mb-3
                 .card-header.bg-light.fw-bold
                   = option.text
-                  small.text-muted.ms-2 = "(#{option.votes.where.not(comment: [nil, '']).count} bình luận)"
+                  small.text-muted.ms-2 = "(#{option.votes.where.not(comment: [nil, '']).count} #{t('share.comment')})"
 
                 .card-body
                   - comments = option.votes.where.not(comment: [nil, ""]).includes(:user, :comment_likes).order(created_at: :desc)
