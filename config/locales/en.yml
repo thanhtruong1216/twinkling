@@ -236,6 +236,16 @@ en:
     section:
       options: "Options"
 
+  likes:
+    no_one: "No one liked yet"
+    you_liked: "You liked this"
+    you_and_others:
+      one: "You and 1 person liked this"
+      other: "You and %{count} people liked this"
+    others:
+      one: "1 person liked this"
+      other: "%{count} people liked this"
+
   datetime:
     distance_in_words:
       half_a_minute: "half a minute"

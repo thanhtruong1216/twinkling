@@ -235,7 +235,17 @@ vi:
       back: "Quay lại"
     section:
       options: "Lựa chọn"
-    
+
+  likes:
+    no_one: "Chưa có ai thích"
+    you_liked: "Bạn đã thích"
+    you_and_others:
+      one: "Bạn và 1 người khác đã thích"
+      other: "Bạn và %{count} người khác đã thích"
+    others:
+      one: "1 người đã thích"
+      other: "%{count} người đã thích"
+
   datetime:
     distance_in_words:
       less_than_x_minutes:

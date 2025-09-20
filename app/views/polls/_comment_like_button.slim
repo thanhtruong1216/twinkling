@@ -1,0 +1,25 @@
+- total_likes = vote.comment_likes.count
+
+= button_to poll_vote_comment_likes_path(poll, vote),
+  method: (liked ? :delete : :post),
+  remote: true,
+  class: "btn btn-sm #{liked ? 'btn-danger text-white' : 'btn-outline-primary'} me-2",
+  form: { class: "d-inline" } do
+  - if liked
+    i.bi.bi-hand-thumbs-up-fill.me-1
+    | Unlike
+  - else
+    i.bi.bi-hand-thumbs-up.me-1
+    | Like
+
+small.text-muted.ms-2
+  - if total_likes.zero?
+    | No one liked yet
+  - elsif liked
+    - others = total_likes - 1
+    - if others > 0
+      | You and #{others} others
+    - else
+      | You liked this
+  - else
+    | #{total_likes} liked this

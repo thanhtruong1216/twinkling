@@ -16,7 +16,7 @@ html
       |   overflow-x: hidden;
       | }
       | .hero {
-      |   min-height: 60vh;
+      |   min-height: 40vh;
       |   display: flex;
       |   align-items: center;
       |   justify-content: center;
@@ -40,14 +40,14 @@ html
       | @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
   body.overflow-auto
-    section.hero
+    section.hero.py-5.page-wrapper.mb-4
       .container
         h1 = t('landing.hero.title')
         p.mt-3.fw-light = t('landing.hero.slogan')
         = link_to t('landing.hero.button'), polls_path, class: 'btn btn-gradient btn-lg mt-4'
 
     section.feature id="features"
-      .container
+      .container.pt-4
         h2(data-aos="fade-up") = t('landing.features.why_choose')
         .row
           .col-md-4(data-aos="fade-up" data-aos-delay="100")

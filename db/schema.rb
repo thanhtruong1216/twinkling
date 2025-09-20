@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_17_134926) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_17_170743) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_17_134926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["link_id"], name: "index_clicks_on_link_id"
+  end
+
+  create_table "comment_likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vote_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comment_likes_on_user_id"
+    t.index ["vote_id"], name: "index_comment_likes_on_vote_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -201,6 +210,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_09_17_134926) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comment_likes", "users"
+  add_foreign_key "comment_likes", "votes"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"

@@ -1,0 +1,1 @@
+$("#comment-like-wrapper-<%= @vote.id %>").html("<%= j render 'polls/comment_like_button', vote: @vote, liked: @liked, poll: @vote.option.poll %>");

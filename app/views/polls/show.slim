@@ -6,6 +6,7 @@
           = image_tag @poll.image,
             class: "shadow-sm mb-3",
             style: "width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;"
+
         .card-body
           h3.card-title.mb-4
             span.fw-bold.text-primary= @poll.title
@@ -35,7 +36,6 @@
 
                     - if user_signed_in?
                       - user_vote = option.votes.find_by(user_id: current_user.id)
-
                       - if user_vote
                         = button_to t("show.unvote"),
                           poll_vote_path(@poll, user_vote, option_id: option.id),
@@ -79,7 +79,6 @@
                         button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="border-radius:20px; font-weight:600; opacity:0.6; cursor:not-allowed;"
                           = t("show.add_comment")
 
-
           - if @poll.options.any?
             - total_votes = @poll.options.sum { |opt| opt.votes.count }.nonzero? || 1
             h5 style="margin-bottom: 0;" 
@@ -90,7 +89,7 @@
                 - vote_percent = ((vote_count.to_f / total_votes) * 100).round
                 li style="font-size: 15px !important;"
                   = "#{option.text} · #{vote_count} vote (#{vote_percent}%)"
-
+          
           .mt-5
             .row.justify-content-center.align-items-start.g-4
               .col-md-6.text-center
@@ -113,15 +112,19 @@
                   small.text-muted.ms-2 = "(#{option.votes.where.not(comment: [nil, '']).count} bình luận)"
 
                 .card-body
-                  - comments = option.votes.where.not(comment: [nil, ""]).includes(:user).order(created_at: :desc)
+                  - comments = option.votes.where.not(comment: [nil, ""]).includes(:user, :comment_likes).order(created_at: :desc)
                   - if comments.any?
                     - comments.each do |vote|
-                      .mb-3.border-bottom.pb-2
+                      .mb-3.border-bottom.pb-2 id="comment-#{vote.id}"
+                        - if user_signed_in?
+                          - liked = vote.comment_likes.exists?(user: current_user)
                         strong= vote.user&.user_name || "User"
                         small.text-muted.ms-2
                           | #{t("show.voted")} #{distance_of_time_in_words_to_now(vote.created_at)} #{t("show.ago")}
                         - if vote.comment.present?
                           p.mb-0.mt-1= vote.comment
+                          div id="comment-like-wrapper-#{vote.id}"
+                            = render 'polls/comment_like_button', vote: vote, liked: liked, poll: @poll
                   - else
                     p.text-muted.mb-0= t("show.no_comment_option")
 
@@ -135,9 +138,7 @@
                   method: :delete,
                   class: "btn btn-danger"
               = link_to t("show.new_poll"), new_poll_path, class: "btn btn-primary"
-
-
-/ -------------------- Javascript (Slim friendly) -------------------- /
+            
 script
   | (function() {
   |   function initPollCharts() {

@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :links
   has_many :polls, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :comment_likes
+  has_many :liked_votes, through: :comment_likes, source: :vote
 
   has_one_attached :avatar
 
