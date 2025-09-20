@@ -11,6 +11,10 @@
               = f.label :image, t('new.labels.image'), class: "form-label fw-bold"
               = f.file_field :image, class: "form-control"
 
+            .mb-3
+              = f.label :purpose, t('new.labels.purpose'), class: "form-label fw-bold"
+              = f.text_area :purpose, class: "form-control", rows: 3, placeholder: t('new.placeholders.purpose')
+
             .d-flex.mt-4.gap-2
               = f.submit 'Update', class: "btn btn-success flex-grow-1"
               = link_to 'Back', polls_path, class: "btn btn-outline-secondary"
