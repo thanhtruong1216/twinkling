@@ -23,6 +23,7 @@ vi:
 
   share:
     comment: bình luận
+    details: Chi tiết
 
   users:
     index:

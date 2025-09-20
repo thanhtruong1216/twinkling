@@ -1,0 +1,16 @@
+.container.py-5.page-wrapper
+  .row.justify-content-center
+    .col-md-12
+      .card.shadow
+        .card-body
+          h1.text-center.text-primary.mb-4
+            = @poll.new_record? ? t('new.new_poll') : t('edit.edit_poll')
+
+          = form_with(model: @poll, local: true, class: "needs-validation", html: { multipart: true }) do |f|
+            .mb-3
+              = f.label :image, t('new.labels.image'), class: "form-label fw-bold"
+              = f.file_field :image, class: "form-control"
+
+            .d-flex.mt-4.gap-2
+              = f.submit 'Update', class: "btn btn-success flex-grow-1"
+              = link_to 'Back', polls_path, class: "btn btn-outline-secondary"

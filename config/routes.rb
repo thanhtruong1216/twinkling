@@ -45,7 +45,7 @@ Rails.application.routes.draw do
     end
 
     namespace :admin do
-      resources :polls, only: [:index] do
+      resources :polls do
         member do
           patch :approve
           patch :reject

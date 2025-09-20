@@ -23,6 +23,7 @@ en:
   
   share:
     comment: comments
+    details: Details
 
   users:
     index:

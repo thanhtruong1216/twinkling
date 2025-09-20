@@ -26,6 +26,8 @@
                 reject_admin_poll_path(poll),
                 method: :patch,
                 class: "btn btn-danger btn-sm"
+              
+              = link_to "Edit", edit_admin_poll_path(poll), class: "btn btn-danger btn-sm"
 
             td= poll.status&.upcase
   - else

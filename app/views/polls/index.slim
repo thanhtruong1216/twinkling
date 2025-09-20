@@ -12,37 +12,38 @@
               = image_tag poll.image,
                 class: "shadow-sm border border-2 border-light",
                 style: "width: 100%; height: 150px; object-fit: cover; border-radius: 10px 10px 0 0;"
-            .card-body.d-flex.flex-column
-              div.text-muted.small.mb-3.d-flex.justify-content-between.align-items-center style="font-size: 15px !important;"
-                .avatar-wrapper
-                  = link_to user_path(poll.user), class: 'd-flex align-items-center' do
-                    .avatar-linear-wrapper
-                      - if poll.user.avatar.attached?
-                        = image_tag (image_url(rails_storage_proxy_path(poll.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
-                      - else
-                        = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
-                    span.sub-header__user-name
-                      = poll.user.user_name || poll.user.full_name
+            .card-body.d-flex.flex-column.justify-content-between
+              div.text-muted.small.mb-3.d-flex.flex-column.justify-content-between style="font-size: 15px !important;"
+                .d-flex.justify-content-between.align-items-center.mb-3
+                  .avatar-wrapper
+                    = link_to user_path(poll.user), class: 'd-flex align-items-center' do
+                      .avatar-linear-wrapper
+                        - if poll.user.avatar.attached?
+                          = image_tag (image_url(rails_storage_proxy_path(poll.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+                        - else
+                          = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+                      span.sub-header__user-name
+                        = poll.user.user_name || poll.user.full_name
 
-                = render 'polls/following_user', poll: poll 
+                  = render 'polls/following_user', poll: poll 
 
-              .d-flex.align-items-center.mb-2
-                = link_to poll.title, poll_path(poll),
-                  class: "h5 card-title text-dark text-decoration-none fw-bold mb-1"
-                - total_votes = poll.options.sum { |opt| opt.votes.count }
-                - if total_votes > 2
-                  span.badge.bg-danger.ms-2 HOT
+                .d-flex.align-items-center.mb-2
+                  = link_to poll.title, poll_path(poll),
+                    class: "h5 card-title text-dark text-decoration-none fw-bold mb-1"
+                  - total_votes = poll.options.sum { |opt| opt.votes.count }
+                  - if total_votes > 2
+                    span.badge.bg-danger.ms-2 HOT
 
-              - if poll.purpose.present?
-                span.text-muted style="font-size: 15px;"
-                  | #{t("index.poll_purpose")}: #{poll.purpose}
+                - if poll.purpose.present?
+                  span.text-muted style="font-size: 15px;"
+                    | #{t("index.poll_purpose")}: #{poll.purpose}
 
-                canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80"
+                  canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80"
 
               .d-flex.justify-content-between.align-items-center.mt-2
                 p.text-muted.small.mb-0 style="font-size: 15px !important;"
                   | #{t("show.created")} #{distance_of_time_in_words_to_now(poll.created_at)} #{t("show.ago")}
-                = link_to "Chi tiết", poll_path(poll), class: "btn btn-outline-primary btn-sm"
+                = link_to t('share.details'), poll_path(poll), class: "btn btn-outline-primary btn-sm mt-auto"
 
   - else
     p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!
