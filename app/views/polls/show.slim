@@ -12,9 +12,9 @@
             span.fw-bold.text-primary= @poll.title
 
           - if @poll.purpose.present?
-            p.text-muted.mt-1.mb-2 style="font-size: 14px; line-height: 1.4;"
-              = t("show.purpose")
-              strong= " " + @poll.purpose
+            p.mt-1.mb-2 style="font-size: 14px; line-height: 1.4;"
+              strong.fw-bold= t("show.purpose") + ": "
+              = @poll.purpose
 
           - if @poll.description.present?
             p.text-muted.mt-2 style="font-size: 15px; line-height: 1.6;"
