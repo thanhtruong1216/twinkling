@@ -224,7 +224,7 @@ vi:
       other: "lỗi"
     labels:
       title: "Câu hỏi"
-      purpose: "Mục đích của poll"
+      purpose: "Mục đích của người tạo poll"
       description: "Câu trả lời của bạn (tuỳ chọn)"
       image: "Ảnh cho Poll"
       option_text: "Lựa chọn"

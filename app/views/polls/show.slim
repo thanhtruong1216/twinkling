@@ -13,13 +13,13 @@
 
           - if @poll.purpose.present?
             p.mt-1.mb-2 style="font-size: 14px; line-height: 1.4;"
-              strong.fw-bold= t("show.purpose") + ": "
+              strong.fw-bold.me-1= t("show.purpose")
               = @poll.purpose
 
           - if @poll.description.present?
-            p.text-muted.mt-2 style="font-size: 15px; line-height: 1.6;"
-              = t("show.description")
-              strong= " " + @poll.description
+            p.mt-2 style="font-size: 15px; line-height: 1.4;"
+              strong.fw-bold.me-1= t("show.description")
+              = @poll.description
 
           - if @options.any?
             ul.list-group.mb-4
