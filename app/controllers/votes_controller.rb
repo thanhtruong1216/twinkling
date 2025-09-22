@@ -6,6 +6,7 @@ class VotesController < ApplicationController
     @poll = @option.poll
     @options = @poll.options
     @votes_by_country = @poll.votes.group(:country).count
+    @current_request = Rails.application.routes.recognize_path(URI(request.referer).path)[:action]
 
     if @poll.votes.exists?(user_id: current_user.id)
       respond_to do |format|
@@ -61,6 +62,7 @@ class VotesController < ApplicationController
     @vote = @option.votes.find_by(user_id: current_user.id)
     @options = @poll.options
     @votes_by_country = @poll.votes.group(:country).count
+    @current_request = Rails.application.routes.recognize_path(URI(request.referer).path)[:action]
 
     if @vote
       @vote.destroy

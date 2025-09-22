@@ -42,9 +42,9 @@
                           span.me-2 style="font-size: 15px !important;" = option.text  
                           - user_vote = option.votes.find_by(user_id: current_user.id)
                           - if user_vote
-                            = render 'votes/unvote_button', poll: poll, vote: user_vote, option: option
+                            = render 'votes/unvote_button', poll: poll, vote: user_vote, option: option, current_action: 'index'
                           - else
-                            = render 'votes/vote_button', poll: poll, option: option
+                            = render 'votes/vote_button', poll: poll, option: option, current_action: 'index'
               = render 'polls/chart', poll: poll
   - else
     p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!

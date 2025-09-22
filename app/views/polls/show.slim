@@ -39,9 +39,9 @@
                       - disabled_other = user_voted_option_id.present? && option.id != user_voted_option_id
 
                       - if user_vote
-                        = render 'votes/unvote_button', poll: @poll, vote: user_vote, option: option
+                        = render 'votes/unvote_button', poll: @poll, vote: user_vote, option: option, current_action: 'show'
                       - else
-                        = render 'votes/vote_button', poll: @poll, option: option, disabled: disabled_other
+                        = render 'votes/vote_button', poll: @poll, option: option, disabled: disabled_other, current_action: 'show'
 
           = render 'poll_stats', poll: @poll
           

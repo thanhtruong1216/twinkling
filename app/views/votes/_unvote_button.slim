@@ -6,8 +6,8 @@
     class: "btn btn-danger btn-sm unvote-btn",
     style: "border-radius:20px; font-weight:600; font-size: 15px !important;"
   
-  - if action_name != "index"
-    button.btn.btn-outline-primary.btn-sm.ms-2 data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600;"
+  - if current_action.to_s != "index"
+    button.btn.btn-outline-primary.btn-sm.ms-2 data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600; font-size: 15px !important;"
       = t("show.add_comment")
     .modal.fade id="commentModal-#{option.id}" tabindex="-1" aria-hidden="true"
       .modal-dialog.modal-dialog-centered

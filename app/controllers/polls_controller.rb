@@ -12,6 +12,12 @@ class PollsController < ApplicationController
 
     # Hot polls = nhiều votes nhất
     @hot_polls = @polls.order("votes_count DESC").limit(6)
+    if request.referer.present?
+      referer_path = URI(request.referer).path rescue nil
+      @current_action = Rails.application.routes.recognize_path(referer_path)[:action] if referer_path
+    else
+      @current_action = action_name
+    end
 
     # Dữ liệu poll (dùng counter_cache nếu có)
     @polls_data = @polls.map do |poll|
@@ -33,6 +39,12 @@ class PollsController < ApplicationController
 
     @votes_by_country = @poll.votes.group(:country).count
     @votes_by_option  = @poll.options.joins(:votes).group(:text).count
+    if request.referer.present?
+      referer_path = URI(request.referer).path rescue nil
+      @current_action = Rails.application.routes.recognize_path(referer_path)[:action] if referer_path
+    else
+      @current_action = action_name
+    end
   end
 
   def new
