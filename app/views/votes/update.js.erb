@@ -1,67 +1,135 @@
 <% if @poll && @option %>
   <% vote = current_user.votes.find_by(option_id: @option.id) %>
 
+  // Cập nhật nút vote/unvote
   <% if vote %>
     $("#vote-btn-<%= @option.id %>").html("<%= j render('votes/unvote_button', poll: @poll, option: @option, vote: vote) %>");
   <% else %>
     $("#vote-btn-<%= @option.id %>").html("<%= j render('votes/vote_button', poll: @poll, option: @option) %>");
   <% end %>
 
+  // Cập nhật bar chart
   $("#poll-chart-wrapper-<%= @poll.id %>").html("<%= j render('polls/chart', poll: @poll) %>");
 
+  // Cập nhật pie chart votes by option
+  $("#votesByOptionChart").replaceWith("<%= j render('polls/pie_chart_option', poll: @poll) %>");
+
+  // Cập nhật pie chart votes by country
+  $("#votesByCountryChart").replaceWith("<%= j render('polls/pie_chart_country', poll: @poll) %>");
+
+  // === Khởi tạo lại tất cả chart và tooltip ===
   (function() {
-    const ctx = document.getElementById("pollChart-<%= @poll.id %>");
-    if (!ctx) return;
+    function initPollCharts() {
+      // Bar chart
+      const ctx = document.getElementById("pollChart-<%= @poll.id %>");
+      if (ctx) {
+        const optionsData = <%= raw @poll.options.map { |o| { text: o.text, votes: o.votes.count } }.to_json %>;
+        const totalVotes = optionsData.reduce((sum, opt) => sum + opt.votes, 0) || 1;
 
-    const optionsData = <%= raw @poll.options.map { |o| { text: o.text, votes: o.votes.count } }.to_json %>;
-    const totalVotes = optionsData.reduce((sum, opt) => sum + opt.votes, 0) || 1;
-
-    const data = {
-      labels: optionsData.map(opt => opt.text),
-      datasets: [{
-        label: 'Vote %',
-        data: optionsData.map(opt => ((opt.votes / totalVotes) * 100).toFixed(0)),
-        backgroundColor: [
-          'rgba(54, 162, 235, 0.7)',
-          'rgba(255, 99, 132, 0.7)',
-          'rgba(255, 206, 86, 0.7)',
-          'rgba(75, 192, 192, 0.7)',
-          'rgba(153, 102, 255, 0.7)',
-          'rgba(255, 159, 64, 0.7)'
-        ],
-        borderColor: 'rgba(0,0,0,0.1)',
-        borderWidth: 1,
-        barThickness: 20
-      }]
-    };
-
-    new Chart(ctx, {
-      type: 'bar',
-      data: data,
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            enabled: true,
-            callbacks: {
-              label: function(context) {
-                const voteCount = optionsData[context.dataIndex].votes;
-                return `${context.raw}% (${voteCount} vote${voteCount === 1 ? '' : 's'})`;
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: optionsData.map(opt => opt.text),
+            datasets: [{
+              label: 'Vote %',
+              data: optionsData.map(opt => ((opt.votes / totalVotes) * 100).toFixed(0)),
+              backgroundColor: [
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+              ],
+              borderColor: 'rgba(0,0,0,0.1)',
+              borderWidth: 1,
+              barThickness: 20
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  label: function(context) {
+                    const voteCount = optionsData[context.dataIndex].votes;
+                    return `${context.raw}% (${voteCount} vote${voteCount === 1 ? '' : 's'})`;
+                  }
+                }
               }
+            },
+            scales: {
+              x: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } },
+              y: { ticks: { autoSkip: false } }
             }
           }
-        },
-        scales: {
-          x: {
-            beginAtZero: true,
-            max: 100,
-            ticks: { callback: value => value + '%' }
-          },
-          y: { ticks: { autoSkip: false } }
-        }
+        });
       }
-    });
+
+      // Pie chart votes by option
+      const optionPieCtx = document.getElementById("votesByOptionChart");
+      if (optionPieCtx) {
+        const dataOption = <%= raw @options.map { |o| [o.text, o.votes.count] }.to_h.to_json %>;
+        const labelsOption = Object.keys(dataOption);
+        const valuesOption = Object.values(dataOption);
+        const totalOption = valuesOption.reduce((a,b)=>a+b,0)||1;
+
+        new Chart(optionPieCtx, {
+          type: 'pie',
+          data: {
+            labels: labelsOption,
+            datasets: [{
+              data: valuesOption,
+              backgroundColor: ['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF','#FF9F40','#8dd3c7','#fdb462']
+            }]
+          },
+          options: {
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+              legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
+              datalabels:{ formatter:(value)=>((value/totalOption)*100).toFixed(1)+'%', color:'#fff', font:{ weight:'bold', size:12 } },
+              tooltip:{ callbacks:{ label:function(ctx){ const val=ctx.parsed; const pct=((val/totalOption)*100).toFixed(1); return ctx.label+': '+val+' ('+pct+'%)'; } } }
+            }
+          },
+          plugins:[ChartDataLabels]
+        });
+      }
+
+      // Pie chart votes by country
+      const countryPieCtx = document.getElementById("votesByCountryChart");
+      if (countryPieCtx) {
+        const dataCountry = <%= raw (@votes_by_country || {}).to_json %>;
+        const labelsCountry = Object.keys(dataCountry);
+        const valuesCountry = Object.values(dataCountry);
+        const totalCountry = valuesCountry.reduce((a,b)=>a+b,0)||1;
+
+        new Chart(countryPieCtx, {
+          type:'pie',
+          data:{ labels:labelsCountry, datasets:[{ data:valuesCountry, backgroundColor:['#FF6384','#36A2EB','#FFCE56','#4BC0C0','#9966FF','#FF9F40','#c9cbcf','#b0e0e6'] }] },
+          options:{
+            responsive:true,
+            maintainAspectRatio:false,
+            plugins:{
+              legend:{ position:'bottom', labels:{ boxWidth:12, padding:12 } },
+              datalabels:{ formatter:(value)=>((value/totalCountry)*100).toFixed(1)+'%', color:'#fff', font:{ weight:'bold', size:12 } },
+              tooltip:{ callbacks:{ label:function(ctx){ const val=ctx.parsed; const pct=((val/totalCountry)*100).toFixed(1); return ctx.label+': '+val+' ('+pct+'%)'; } } }
+            }
+          },
+          plugins:[ChartDataLabels]
+        });
+      }
+    }
+
+    function initTooltips() {
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach(function (el) { new bootstrap.Tooltip(el); });
+    }
+
+    initPollCharts();
+    initTooltips();
   })();
 <% end %>

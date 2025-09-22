@@ -31,7 +31,6 @@ class PollsController < ApplicationController
     @poll = Poll.includes(:options, :votes).find(params[:id])
     @options = @poll.options
 
-    # Group trong DB để giảm tải
     @votes_by_country = @poll.votes.group(:country).count
     @votes_by_option  = @poll.options.joins(:votes).group(:text).count
   end

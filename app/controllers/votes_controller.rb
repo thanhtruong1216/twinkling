@@ -4,6 +4,8 @@ class VotesController < ApplicationController
   def create
     @option = Option.find(params[:option_id] || params.dig(:vote, :option_id))
     @poll = @option.poll
+    @options = @poll.options
+    @votes_by_country = @poll.votes.group(:country).count
 
     if @poll.votes.exists?(user_id: current_user.id)
       respond_to do |format|
@@ -57,6 +59,8 @@ class VotesController < ApplicationController
     @option = Option.find(params[:option_id])
     @poll = @option.poll
     @vote = @option.votes.find_by(user_id: current_user.id)
+    @options = @poll.options
+    @votes_by_country = @poll.votes.group(:country).count
 
     if @vote
       @vote.destroy
