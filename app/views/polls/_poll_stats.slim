@@ -1,0 +1,11 @@
+#poll-stats
+  - if poll.options.any?
+    - total_votes = poll.options.sum { |opt| opt.votes.count }.nonzero? || 1
+    h5 style="margin-bottom: 0;" 
+      = t("show.stats")
+    ul.text-muted.small.mb-2
+      - poll.options.each do |option|
+        - vote_count = option.votes.count
+        - vote_percent = ((vote_count.to_f / total_votes) * 100).round
+        li style="font-size: 15px !important;"
+          = "#{option.text} · #{vote_count} vote (#{vote_percent}%)"

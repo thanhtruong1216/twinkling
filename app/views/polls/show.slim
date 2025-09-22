@@ -31,8 +31,7 @@
                       = image_tag option.image, class: "shadow-sm me-3", style: "min-width: 60px; width:60px; height:60px; object-fit:cover; border-radius:12px;"
                     .flex-grow-1.pe-4
                       span.fw-semibold.d-block.mb-1 style="font-size:16px; color:#111;"= option.text
-                      span.badge.bg-secondary style="font-size:12px; font-weight:500;" data-bs-toggle="tooltip" data-bs-title=voter_names
-                        = pluralize(option.votes.count, "vote")
+                      = render 'polls/vote_badge', option: option, voter_names: voter_names
 
                     - if user_signed_in?
                       - user_vote = option.votes.find_by(user_id: current_user.id)
@@ -62,16 +61,7 @@
                         button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="font-weight:600; opacity:0.6; cursor:not-allowed;"
                           = t("show.add_comment")
 
-          - if @poll.options.any?
-            - total_votes = @poll.options.sum { |opt| opt.votes.count }.nonzero? || 1
-            h5 style="margin-bottom: 0;" 
-              = t("show.stats")
-            ul.text-muted.small.mb-2
-              - @poll.options.each do |option|
-                - vote_count = option.votes.count
-                - vote_percent = ((vote_count.to_f / total_votes) * 100).round
-                li style="font-size: 15px !important;"
-                  = "#{option.text} · #{vote_count} vote (#{vote_percent}%)"
+          = render 'poll_stats', poll: @poll
           
           .mt-5
             .row.justify-content-center.align-items-start.g-4
@@ -82,7 +72,6 @@
                 h5.fw-bold.mb-3= t("show.stats_by_country")
                 = render 'pie_chart_country'
                 #votesByCountryLegend.text-center.mt-2
-
 
           .mt-4
             h5.fw-semibold.mb-3= t("show.comments_by_option")

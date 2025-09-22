@@ -17,7 +17,8 @@
   // Cập nhật pie chart votes by country
   $("#votesByCountryChart").replaceWith("<%= j render('polls/pie_chart_country', poll: @poll) %>");
 
-  // === Khởi tạo lại tất cả chart và tooltip ===
+  $("#poll-stats").html("<%= j render('polls/poll_stats', poll: @poll) %>");
+  
   (function() {
     function initPollCharts() {
       // Bar chart
