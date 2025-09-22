@@ -18,7 +18,18 @@
   $("#votesByCountryChart").replaceWith("<%= j render('polls/pie_chart_country', poll: @poll) %>");
 
   $("#poll-stats").html("<%= j render('polls/poll_stats', poll: @poll) %>");
-  
+
+  <% @option.reload %>
+  <% voter_names = @option.votes.map { |v| v.user&.full_name || v.user&.user_name }.compact.join(", ") %>
+  <% new_badge_html = j(render('polls/vote_badge', option: @option, voter_names: voter_names)) %>
+
+  // Cập nhật badge vote an toàn
+  $('#vote-badge-<%= @option.id %>').replaceWith("<%= new_badge_html.html_safe %>");
+
+  // Khởi tạo lại tooltip Bootstrap
+  var tooltipEl = document.getElementById('vote-badge-<%= @option.id %>');
+  if (tooltipEl) bootstrap.Tooltip.getOrCreateInstance(tooltipEl);
+
   (function() {
     function initPollCharts() {
       // Bar chart
