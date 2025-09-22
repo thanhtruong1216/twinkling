@@ -1,13 +1,9 @@
 .py-5.page-wrapper.container
-  / - if user_signed_in?
-  /   .d-flex.justify-content-center.mb-4.mt-4
-  /     = link_to t("new.new_poll"), new_poll_path, class: "btn btn-lg btn-primary shadow"
-
   - if @polls.any?
     .row.g-4
       - @polls.each do |poll|
         .col-md-6
-          .card.shadow-sm.h-100
+          .card.shadow-sm.h-100 style="border-radius: 10px;"
             - if poll.image.attached?
               = image_tag poll.image,
                 class: "shadow-sm border border-2 border-light",
@@ -25,7 +21,7 @@
                       span.sub-header__user-name
                         = poll.user.user_name || poll.user.full_name
 
-                  = render 'polls/following_user', poll: poll 
+                  = render 'polls/following_user', poll: poll
 
                 .d-flex.align-items-center.mb-2
                   = link_to poll.title, poll_path(poll),
@@ -38,13 +34,40 @@
                   span.text-muted style="font-size: 15px;"
                     | #{t("index.poll_purpose")}: #{poll.purpose}
 
-                  canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80"
+                - if user_signed_in?
+                  ul.list-unstyled.mt-3
+                    - poll.options.each do |option|
+                      li.mb-2
+                        .d-flex.align-items-center.justify-content-between
+                          span.me-2 style="font-size: 15px !important;" = option.text
+                          - already_voted = current_user.votes.exists?(option_id: poll.options.map(&:id))
+                          - user_vote = option.votes.find_by(user_id: current_user.id)
 
-              .d-flex.justify-content-between.align-items-center.mt-2
-                p.text-muted.small.mb-0 style="font-size: 15px !important;"
-                  | #{t("show.created")} #{distance_of_time_in_words_to_now(poll.created_at)} #{t("show.ago")}
-                = link_to t('share.details'), poll_path(poll), class: "btn btn-outline-primary btn-sm mt-auto"
-
+                          - if user_vote
+                            = button_to t("show.unvote"),
+                              poll_vote_path(poll, user_vote, option_id: option.id),
+                              method: :delete,
+                              class: "btn btn-danger btn-sm",
+                              style: "font-size: 15px !important;"
+                          - elsif already_voted
+                            = button_to t("show.vote"),
+                              poll_votes_path(poll, option_id: option.id),
+                              method: :post,
+                              class: "btn btn-success btn-sm disabled opacity-50",
+                              style: "font-size: 15px !important;",
+                              title: "You already voted"
+                          - else
+                            = button_to t("show.vote"),
+                              poll_votes_path(poll, option_id: option.id),
+                              method: :post,
+                              class: "btn btn-success btn-sm",
+                              style: "font-size: 15px !important;"               
+              div
+                canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80"
+                .d-flex.justify-content-between.align-items-center.mt-4
+                  p.text-muted.small.mb-0 style="font-size: 15px !important;"
+                    | #{t("show.created")} #{distance_of_time_in_words_to_now(poll.created_at)} #{t("show.ago")}
+                  = link_to t('share.details'), poll_path(poll), class: "btn btn-outline-primary btn-sm mt-auto"
   - else
     p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!
 
@@ -128,5 +151,3 @@ script
   |   renderPollCharts();
   |   initCarousels();
   | });
-
-

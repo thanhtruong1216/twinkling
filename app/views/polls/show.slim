@@ -67,16 +67,16 @@
                             poll_votes_path(@poll, option_id: option.id),
                             method: :post,
                             class: "btn btn-success btn-sm disabled opacity-50 me-2",
-                            style: "border-radius:20px; font-weight:600;",
+                            style: "font-weight:600;",
                             title: "You already voted"
                         - else
                           = button_to t("show.vote"),
                             poll_votes_path(@poll, option_id: option.id),
                             method: :post,
                             class: "btn btn-success btn-sm",
-                            style: "border-radius:20px; font-weight:600;"
+                            style: "font-weight:600;"
 
-                        button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="border-radius:20px; font-weight:600; opacity:0.6; cursor:not-allowed;"
+                        button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="font-weight:600; opacity:0.6; cursor:not-allowed;"
                           = t("show.add_comment")
 
           - if @poll.options.any?

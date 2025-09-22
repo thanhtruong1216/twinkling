@@ -26,7 +26,7 @@ class VotesController < ApplicationController
         country: country
       )
 
-      redirect_to poll, notice: "Vote thành công!"
+      redirect_back fallback_location: poll_path(poll), notice: "Vote thành công!"
     end
   end
 
@@ -34,14 +34,14 @@ class VotesController < ApplicationController
     poll = Poll.find_by(id: params[:poll_id])
     vote = Vote.find_by(id: params[:id])
     unless vote.user_id == current_user.id
-      redirect_to poll, alert: t('show.cannot_edit_vote', default: "You cannot edit this vote")
+      redirect_back fallback_location: poll_path(poll), alert: t('show.cannot_edit_vote', default: "You cannot edit this vote")
       return
     end
 
     if vote.update(comment: params[:vote][:comment])
-      redirect_to poll, notice: t('show.comment_updated', default: "Comment updated")
+      redirect_back fallback_location: poll_path(poll), notice: t('show.comment_updated', default: "Comment updated")
     else
-      redirect_to poll, alert: vote.errors.full_messages.to_sentence
+      redirect_back fallback_location: poll_path(poll), alert: vote.errors.full_messages.to_sentence
     end
   end
 
@@ -51,9 +51,9 @@ class VotesController < ApplicationController
 
     if vote
       vote.destroy
-      redirect_to option.poll, notice: "Bạn đã unvote."
+      redirect_back fallback_location: poll_path(option.poll), notice: "Bạn đã unvote."
     else
-      redirect_to option.poll, alert: "Bạn chưa vote option này."
+      redirect_back fallback_location: poll_path(option.poll), alert: "Bạn chưa vote option này."
     end
   end
 end
