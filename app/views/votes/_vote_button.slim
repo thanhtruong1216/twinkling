@@ -1,0 +1,7 @@
+div id="vote-btn-#{option.id}"
+  = button_to t("show.vote"),
+    poll_votes_path(poll, option_id: option.id),
+    method: :post,
+    remote: true,
+    class: "btn btn-success btn-sm",
+    style: "border-radius:20px; font-weight:600; font-size: 15px !important;"

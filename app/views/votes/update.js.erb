@@ -1,0 +1,67 @@
+<% if @poll && @option %>
+  <% vote = current_user.votes.find_by(option_id: @option.id) %>
+
+  <% if vote %>
+    $("#vote-btn-<%= @option.id %>").html("<%= j render('votes/unvote_button', poll: @poll, option: @option, vote: vote) %>");
+  <% else %>
+    $("#vote-btn-<%= @option.id %>").html("<%= j render('votes/vote_button', poll: @poll, option: @option) %>");
+  <% end %>
+
+  $("#poll-chart-wrapper-<%= @poll.id %>").html("<%= j render('polls/chart', poll: @poll) %>");
+
+  (function() {
+    const ctx = document.getElementById("pollChart-<%= @poll.id %>");
+    if (!ctx) return;
+
+    const optionsData = <%= raw @poll.options.map { |o| { text: o.text, votes: o.votes.count } }.to_json %>;
+    const totalVotes = optionsData.reduce((sum, opt) => sum + opt.votes, 0) || 1;
+
+    const data = {
+      labels: optionsData.map(opt => opt.text),
+      datasets: [{
+        label: 'Vote %',
+        data: optionsData.map(opt => ((opt.votes / totalVotes) * 100).toFixed(0)),
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.7)',
+          'rgba(255, 99, 132, 0.7)',
+          'rgba(255, 206, 86, 0.7)',
+          'rgba(75, 192, 192, 0.7)',
+          'rgba(153, 102, 255, 0.7)',
+          'rgba(255, 159, 64, 0.7)'
+        ],
+        borderColor: 'rgba(0,0,0,0.1)',
+        borderWidth: 1,
+        barThickness: 20
+      }]
+    };
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            enabled: true,
+            callbacks: {
+              label: function(context) {
+                const voteCount = optionsData[context.dataIndex].votes;
+                return `${context.raw}% (${voteCount} vote${voteCount === 1 ? '' : 's'})`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { callback: value => value + '%' }
+          },
+          y: { ticks: { autoSkip: false } }
+        }
+      }
+    });
+  })();
+<% end %>

@@ -2,15 +2,18 @@ class VotesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    option = Option.find(params[:option_id] || params[:vote][:option_id])
-    poll = option.poll
+    @option = Option.find(params[:option_id] || params.dig(:vote, :option_id))
+    @poll = @option.poll
 
-    if poll.votes.exists?(user_id: current_user.id)
-      redirect_to poll, alert: "Bạn đã vote rồi!"
+    if @poll.votes.exists?(user_id: current_user.id)
+      respond_to do |format|
+        format.html { redirect_to @poll, alert: "Bạn đã vote rồi!" }
+        format.js { render "update", layout: false }
+      end
     else
       ip = request.headers["CF-Connecting-IP"] ||
-          request.headers["X-Real-IP"]        ||
-          request.remote_ip
+           request.headers["X-Real-IP"]        ||
+           request.remote_ip
 
       country = nil
       begin
@@ -20,13 +23,18 @@ class VotesController < ApplicationController
         Rails.logger.error "Geocoder failed: #{e.message}"
       end
 
-      option.votes.create!(
+      @option.votes.create!(
         user: current_user,
         ip_address: ip,
         country: country
       )
 
-      redirect_back fallback_location: poll_path(poll), notice: "Vote thành công!"
+      @poll.reload
+
+      respond_to do |format|
+        format.html { redirect_back fallback_location: poll_path(@poll), notice: "Vote thành công!" }
+        format.js { render "update", layout: false }
+      end
     end
   end
 
@@ -46,14 +54,22 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    option = Option.find(params[:option_id])
-    vote = option.votes.find_by(user_id: current_user.id)
+    @option = Option.find(params[:option_id])
+    @poll = @option.poll
+    @vote = @option.votes.find_by(user_id: current_user.id)
 
-    if vote
-      vote.destroy
-      redirect_back fallback_location: poll_path(option.poll), notice: "Bạn đã unvote."
+    if @vote
+      @vote.destroy
+      @poll.reload
+      respond_to do |format|
+        format.html { redirect_back fallback_location: poll_path(@poll), notice: "Bạn đã unvote." }
+        format.js { render "update", layout: false }
+      end
     else
-      redirect_back fallback_location: poll_path(option.poll), alert: "Bạn chưa vote option này."
+      respond_to do |format|
+        format.html { redirect_back fallback_location: poll_path(@poll), alert: "Bạn chưa vote option này." }
+        format.js { render "update", layout: false }
+      end
     end
   end
 end

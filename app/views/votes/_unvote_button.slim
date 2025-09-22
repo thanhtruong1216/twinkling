@@ -1,0 +1,7 @@
+div id="vote-btn-#{option.id}"
+  = button_to t("show.unvote"),
+    poll_vote_path(poll, vote, option_id: option.id),
+    method: :delete,
+    remote: true,
+    class: "btn btn-danger btn-sm",
+    style: "border-radius:20px; font-weight:600; font-size: 15px !important;"

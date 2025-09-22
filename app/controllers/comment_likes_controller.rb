@@ -9,7 +9,7 @@ class CommentLikesController < ApplicationController
     else
       @liked = false
     end
-    @vote.reload   # thêm dòng này
+    @vote.reload
     respond_to do |format|
       format.js { render "update", layout: false }
       format.html { redirect_back fallback_location: poll_path(@vote.option.poll), notice: "Liked!" }
@@ -19,7 +19,7 @@ class CommentLikesController < ApplicationController
   def destroy
     @vote.comment_likes.find_by(user: current_user)&.destroy
     @liked = false
-    @vote.reload   # thêm dòng này
+    @vote.reload
     respond_to do |format|
       format.js { render "update", layout: false }
       format.html { redirect_back fallback_location: poll_path(@vote.option.poll), notice: "Unliked!" }

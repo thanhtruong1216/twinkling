@@ -40,13 +40,6 @@
                 - if opt.object.image.attached?
                   .mt-2
                     = image_tag opt.object.image, class: "shadow-sm", style: "width: 75px; height: 75px; object-fit: cover; border-radius: 10px;"
-
-              -# Nếu option đã tồn tại, có thể xoá
-              / - if opt.object.persisted?
-              /   .form-check
-              /     = opt.check_box :_destroy, class: "form-check-input"
-              /     = opt.label :_destroy, "Xoá option này", class: "form-check-label"
-
             .d-flex.mt-4.gap-2
               = f.submit "Cập nhật Poll", class: "btn btn-success flex-grow-1"
               = link_to "Hủy", poll_path(@poll), class: "btn btn-outline-secondary"

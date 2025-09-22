@@ -37,11 +37,7 @@
                     - if user_signed_in?
                       - user_vote = option.votes.find_by(user_id: current_user.id)
                       - if user_vote
-                        = button_to t("show.unvote"),
-                          poll_vote_path(@poll, user_vote, option_id: option.id),
-                          method: :delete,
-                          class: "btn btn-danger btn-sm me-2",
-                          style: "border-radius:20px; font-weight:600;"
+                        = render 'votes/unvote_button', poll: @poll, vote: user_vote, option: option
 
                         button.btn.btn-outline-primary.btn-sm.ms-2 data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600;"
                           = t("show.add_comment")
@@ -61,20 +57,7 @@
                                 .modal-footer
                                   = vf.submit t("show.submit_vote"), class: "btn btn-success"
                       - else
-                        - already_voted = current_user.votes.exists?(option_id: @options.map(&:id))
-                        - if already_voted
-                          = button_to t("show.vote"),
-                            poll_votes_path(@poll, option_id: option.id),
-                            method: :post,
-                            class: "btn btn-success btn-sm disabled opacity-50 me-2",
-                            style: "font-weight:600;",
-                            title: "You already voted"
-                        - else
-                          = button_to t("show.vote"),
-                            poll_votes_path(@poll, option_id: option.id),
-                            method: :post,
-                            class: "btn btn-success btn-sm",
-                            style: "font-weight:600;"
+                        = render 'votes/vote_button', poll: @poll, option: option
 
                         button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="font-weight:600; opacity:0.6; cursor:not-allowed;"
                           = t("show.add_comment")
