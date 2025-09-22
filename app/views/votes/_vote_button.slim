@@ -1,7 +1,12 @@
-div id="vote-btn-#{option.id}"
+.d-flex.align-items-center id="vote-btn-#{option.id}"
   = button_to t("show.vote"),
     poll_votes_path(poll, option_id: option.id),
     method: :post,
     remote: true,
-    class: "btn btn-success btn-sm",
+    class: "btn btn-success btn-sm vote-btn",
     style: "border-radius:20px; font-weight:600; font-size: 15px !important;"
+  
+  - if action_name != "index"
+    button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="font-weight:600; opacity:0.6; cursor:not-allowed; border-radius:20px;"
+      = t("show.add_comment")
+

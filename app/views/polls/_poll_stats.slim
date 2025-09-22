@@ -1,7 +1,7 @@
 #poll-stats
   - if poll.options.any?
     - total_votes = poll.options.sum { |opt| opt.votes.count }.nonzero? || 1
-    h5 style="margin-bottom: 0;" 
+    h5.mb-2
       = t("show.stats")
     ul.text-muted.small.mb-2
       - poll.options.each do |option|

@@ -1,7 +1,25 @@
-div id="vote-btn-#{option.id}"
+.d-flex.align-items-center id="vote-btn-#{option.id}"
   = button_to t("show.unvote"),
     poll_vote_path(poll, vote, option_id: option.id),
     method: :delete,
     remote: true,
-    class: "btn btn-danger btn-sm",
+    class: "btn btn-danger btn-sm unvote-btn",
     style: "border-radius:20px; font-weight:600; font-size: 15px !important;"
+  
+  - if action_name != "index"
+    button.btn.btn-outline-primary.btn-sm.ms-2 data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600;"
+      = t("show.add_comment")
+    .modal.fade id="commentModal-#{option.id}" tabindex="-1" aria-hidden="true"
+      .modal-dialog.modal-dialog-centered
+        .modal-content
+          .modal-header
+            h5.modal-title= t("show.your_comment")
+            button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
+          = form_with(model: [poll, option.votes.find_by(user_id: current_user.id)], local: true) do |vf|
+            .modal-body
+              = vf.text_area :comment,
+                rows: 3,
+                placeholder: t("show.placeholder_comment"),
+                class: "form-control"
+            .modal-footer
+              = vf.submit t("show.submit_vote"), class: "btn btn-success"

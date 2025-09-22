@@ -22,6 +22,7 @@
               = @poll.description
 
           - if @options.any?
+            - user_voted_option_id = current_user.votes.joins(:option).find_by(options: { poll_id: @poll.id })&.option_id
             ul.list-group.mb-4
               - @options.each do |option|
                 - voter_names = option.votes.map { |v| v.user&.full_name || v.user&.user_name }.compact.join(", ")
@@ -35,31 +36,12 @@
 
                     - if user_signed_in?
                       - user_vote = option.votes.find_by(user_id: current_user.id)
+                      - disabled_other = user_voted_option_id.present? && option.id != user_voted_option_id
+
                       - if user_vote
                         = render 'votes/unvote_button', poll: @poll, vote: user_vote, option: option
-
-                        button.btn.btn-outline-primary.btn-sm.ms-2 data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600;"
-                          = t("show.add_comment")
-
-                        .modal.fade id="commentModal-#{option.id}" tabindex="-1" aria-hidden="true"
-                          .modal-dialog.modal-dialog-centered
-                            .modal-content
-                              .modal-header
-                                h5.modal-title= t("show.your_comment")
-                                button.btn-close type="button" data-bs-dismiss="modal" aria-label="Close"
-                              = form_with(model: [@poll, user_vote], local: true) do |vf|
-                                .modal-body
-                                  = vf.text_area :comment,
-                                    rows: 3,
-                                    placeholder: t("show.placeholder_comment"),
-                                    class: "form-control"
-                                .modal-footer
-                                  = vf.submit t("show.submit_vote"), class: "btn btn-success"
                       - else
-                        = render 'votes/vote_button', poll: @poll, option: option
-
-                        button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="font-weight:600; opacity:0.6; cursor:not-allowed;"
-                          = t("show.add_comment")
+                        = render 'votes/vote_button', poll: @poll, option: option, disabled: disabled_other
 
           = render 'poll_stats', poll: @poll
           
