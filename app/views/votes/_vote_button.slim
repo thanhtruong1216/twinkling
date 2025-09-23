@@ -1,10 +1,12 @@
 .d-flex.align-items-center id="vote-btn-#{option.id}"
-  = button_to t("show.vote"),
-    poll_votes_path(poll, option_id: option.id),
+  = button_to poll_votes_path(poll, option_id: option.id),
     method: :post,
     remote: true,
-    class: "btn btn-success btn-sm vote-btn",
-    style: "border-radius:20px; font-weight:600; font-size: 15px !important;"
+    class: "vote-btn"
+    i.bi.bi-hand-thumbs-up-fill
+    = t("show.vote")
+
   - if current_action.to_s != "index"
-    button.btn.btn-outline-primary.btn-sm.ms-2.disabled style="font-weight:600; opacity:0.6; cursor:not-allowed; border-radius:20px; font-size: 15px !important;"
+    button.btn.btn-outline-primary.btn-sm.ms-2.disabled.d-flex.align-items-center style="gap:6px; font-weight:600; opacity:0.6; cursor:not-allowed; border-radius:20px; font-size: 15px !important;"
+      i.bi.bi-chat-dots
       = t("show.add_comment")

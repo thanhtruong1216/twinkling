@@ -911,3 +911,80 @@
 //         }
 //     }
 // }
+
+
+.hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+  background: linear-gradient(135deg, rgba(0,123,255,0.85), rgba(0,198,255,0.85)),
+              url('/assets/hero-bg.jpg') center/cover no-repeat;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+}
+
+.card:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.cta {
+  background: linear-gradient(270deg,#00c6ff,#007bff,#00c6ff);
+  background-size: 400% 400%;
+  animation: gradientMove 8s ease infinite;
+}
+@keyframes gradientMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.vote-btn, .unvote-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  border-radius: 50px;
+  font-size: 14px !important;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.vote-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: #fff;
+}
+.vote-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(32, 201, 151, 0.4);
+}
+
+.unvote-btn {
+  background: linear-gradient(135deg, #dc3545, #ff6b81);
+  color: #fff;
+}
+.unvote-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(220, 53, 69, 0.4);
+}
+
+.vote-btn i, .unvote-btn i {
+  font-size: 16px;
+}
