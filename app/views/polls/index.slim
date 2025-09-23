@@ -4,14 +4,13 @@
       - @polls.each do |poll|
         .col-md-6
           .card.shadow-sm.h-100.position-relative.poll-card style="border-radius: 10px;"
-            span.badge.bg-primary.m-2.vote-badge
-              - vote_count = poll.votes.count
-              = vote_count > 1 ? "#{poll.votes.count} #{t('share.votes')}" : "#{poll.votes.count} #{t('share.vote')}"
+            = render 'polls/votes_count_badge', poll: poll
 
             - if poll.image.attached?
-              = image_tag poll.image,
-                class: "shadow-sm border border-2 border-light",
-                style: "width: 100%; height: 150px; object-fit: cover; border-radius: 10px 10px 0 0;"
+              = link_to poll_path(poll)
+                = image_tag poll.image,
+                  class: "shadow-sm border border-2 border-light",
+                  style: "width: 100%; height: 150px; object-fit: cover; border-radius: 10px 10px 0 0;"
             .card-body.d-flex.flex-column.justify-content-between
               div.text-muted.small.mb-3.d-flex.flex-column.justify-content-between style="font-size: 15px !important;"
                 .d-flex.justify-content-between.align-items-center.mb-3

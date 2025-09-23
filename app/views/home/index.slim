@@ -162,14 +162,11 @@ html
                     - poll_group.each do |poll|
                       .col-md-6
                         .card.shadow-sm.h-100.position-relative.poll-card style="border-radius: 10px;"
-                          span.badge.bg-primary.m-2.vote-badge
-                            - vote_count = poll.votes.count
-                            = vote_count > 1 ? "#{poll.votes.count} #{t('share.votes')}" : "#{poll.votes.count} #{t('share.vote')}"
+                          = render 'polls/votes_count_badge', poll: poll
                           = link_to poll_path(poll)
                             = image_tag poll.image, style: "height:150px; width:100%; object-fit:cover; border-radius:5px 5px 0 0;" if poll.image.attached?
                             .card-body
                               = link_to poll.title, poll_path(poll), class: "h5 text-dark text-decoration-none"
-                          
                               - if user_signed_in?
                                 ul.list-unstyled.mt-3
                                   - poll.options.each do |option|
