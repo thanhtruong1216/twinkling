@@ -26,6 +26,7 @@
 
   // Cập nhật badge vote an toàn
   $('#vote-badge-<%= @option.id %>').replaceWith("<%= new_badge_html.html_safe %>");
+  
 
   // Khởi tạo lại tooltip Bootstrap
   var tooltipEl = document.getElementById('vote-badge-<%= @option.id %>');
@@ -37,7 +38,7 @@
     <% new_badge_html = j(render('polls/vote_badge', option: opt, voter_names: voter_names)) %>
 
     $('#vote-badge-<%= opt.id %>').replaceWith("<%= new_badge_html.html_safe %>");
-    $('#vote-counts').replaceWith("<%= new_votes_badge_html.html_safe %>");
+    $('#vote-counts-<%= @poll.id %>').replaceWith("<%= new_votes_badge_html.html_safe %>");
   <% end %>
 
 

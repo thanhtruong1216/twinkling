@@ -1,3 +1,3 @@
-span.badge.bg-primary.m-2.vote-badge id='vote-counts'
+span.badge.bg-primary.m-2.vote-badge id="vote-counts-#{poll.id}"
   - vote_count = poll.votes.count
   = vote_count > 1 ? "#{poll.votes.count} #{t('share.votes')}" : "#{poll.votes.count} #{t('share.vote')}"
