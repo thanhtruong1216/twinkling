@@ -91,7 +91,7 @@ html
     section.hero.py-5.page-wrapper.mb-4
       .container
         h1 = t('landing.hero.title')
-        p.mt-3.fw-light = t('landing.hero.slogan')
+        p.mt-3.fw-light.w-75.mx-auto = t('landing.hero.slogan')
         p.mt-3.fw-light = t('landing.hero.vote')
         = link_to t('landing.hero.button'), polls_path, class: 'btn btn-gradient btn-lg mt-4'
 
@@ -148,8 +148,6 @@ html
               h3 = t('landing.features.smart_decision')
               p = t('landing.features.smart_decision_desc')
 
-
-
     - if @hot_polls.any?
       section.hot-polls.py-5.bg-light
         .container
@@ -198,7 +196,7 @@ html
 
     section.testimonial
       h2(data-aos="fade-up") = t('landing.testimonial.title')
-      .d-flex.flex-column.align-items-center
+      .d-flex.flex-row.justify-content-center.gap-3.flex-wrap
         .testimonial-card(data-aos="fade-up" data-aos-delay="100")
           p = t('landing.testimonial.t1')
           strong = t('landing.testimonial.t1_author')
@@ -208,6 +206,7 @@ html
         .testimonial-card(data-aos="fade-up" data-aos-delay="300")
           p = t('landing.testimonial.t3')
           strong = t('landing.testimonial.t3_author')
+
 
     / Scripts
     script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
