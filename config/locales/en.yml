@@ -24,6 +24,13 @@ en:
   share:
     comment: comments
     details: Details
+    votes: votes
+    vote: vote
+    like: Like
+    unlike: Unlike
+    no_one_like: No one liked yet
+    you_like_this: You liked this
+    other_like: You and %{others} like this
 
   users:
     index:
@@ -200,7 +207,7 @@ en:
     vote: "Vote"
     add_comment: "Add Comment"
     your_comment: "Your Comment"
-    placeholder_comment: "Enter your thoughts..."
+    placeholder_comment: "Explain more about your choice..."
     submit_vote: "Submit comment"
     stats: "Vote statistics:"
     stats_by_option: "Statistics by option"

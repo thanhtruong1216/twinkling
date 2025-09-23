@@ -2,15 +2,13 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    # Lấy poll + tổng số votes bằng SQL thay vì tính trong Ruby
     @polls = Poll
       .left_joins(options: :votes)
       .select("polls.*, COUNT(votes.id) AS votes_count")
       .group("polls.id")
       .order(created_at: :desc)
-      .includes(:options) # preload options để tránh N+1
+      .includes(:options)
 
-    # Hot polls = nhiều votes nhất
     @hot_polls = @polls.order("votes_count DESC").limit(6)
     if request.referer.present?
       referer_path = URI(request.referer).path rescue nil
@@ -19,7 +17,6 @@ class PollsController < ApplicationController
       @current_action = action_name
     end
 
-    # Dữ liệu poll (dùng counter_cache nếu có)
     @polls_data = @polls.map do |poll|
       {
         id: poll.id,

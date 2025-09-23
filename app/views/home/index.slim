@@ -15,12 +15,13 @@ html
       |   margin: 0;
       |   overflow-x: hidden;
       | }
+      | 
       | .hero {
       |   min-height: 40vh;
       |   display: flex;
       |   align-items: center;
       |   justify-content: center;
-      |   background: linear-gradient(135deg, #007bff, #00c6ff);
+      |   background: linear-gradient(135deg, #4f46e5, #ec4899); /* tím -> hồng */
       |   color: white;
       |   text-align: center;
       |   padding: 0 20px;
@@ -28,16 +29,63 @@ html
       | .hero h1 { font-size: 3rem; font-weight: 700; animation: fadeInDown 1s ease; }
       | .hero p { font-size: 1.25rem; margin: 20px 0; animation: fadeInUp 1s ease 0.5s; }
       | section { padding: 80px 20px; text-align: center; }
-      | .feature-card { padding: 40px 20px; margin: 20px 0; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: white; }
-      | .feature h2 { margin-bottom: 40px; }
-      | .btn-gradient { background: linear-gradient(90deg, #007bff, #00c6ff); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-size: 1.1rem; }
-      | .btn-gradient:hover { opacity: 0.9; }
-      | .cta { background: linear-gradient(90deg,#00c6ff,#007bff); color: white; }
-      | .testimonial { background: #e0f7fa; color: #333; }
-      | .testimonial-card { padding: 30px 20px; margin: 20px 0; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; }
-      | footer { background: #111; color: white; padding: 40px 20px; }
-      | @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-30px); } 100% { opacity: 1; transform: translateY(0); } }
-      | @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+      | 
+      | .feature-card {
+      |   padding: 40px 20px;
+      |   margin: 20px 0;
+      |   border-radius: 15px;
+      |   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      |   background: white;
+      | }
+      | 
+      | .btn-gradient {
+      |   background: linear-gradient(90deg, #4f46e5, #ec4899);
+      |   color: white;
+      |   border: none;
+      |   padding: 12px 30px;
+      |   border-radius: 50px;
+      |   font-size: 1.1rem;
+      |   font-weight: 600;
+      |   transition: all 0.3s ease;
+      | }
+      | .btn-gradient:hover {
+      |   opacity: 0.9;
+      |   transform: translateY(-2px);
+      |   box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+      | }
+      | 
+      | .cta {
+      |   background: linear-gradient(90deg,#ec4899,#4f46e5);
+      |   color: white;
+      | }
+      | 
+      | .testimonial {
+      |   background: #f5f3ff; /* tím nhạt */
+      |   color: #333;
+      | }
+      | .testimonial-card {
+      |   padding: 30px 20px;
+      |   margin: 20px 0;
+      |   border-radius: 15px;
+      |   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      |   max-width: 500px;
+      |   background: white;
+      | }
+      | 
+      | footer {
+      |   background: #1e1b4b; /* tím đậm */
+      |   color: white;
+      |   padding: 40px 20px;
+      | }
+      | 
+      | @keyframes fadeInDown {
+      |   0% { opacity: 0; transform: translateY(-30px); }
+      |   100% { opacity: 1; transform: translateY(0); }
+      | }
+      | @keyframes fadeInUp {
+      |   0% { opacity: 0; transform: translateY(30px); }
+      |   100% { opacity: 1; transform: translateY(0); }
+      | }
 
   body.overflow-auto
     section.hero.py-5.page-wrapper.mb-4
@@ -82,6 +130,7 @@ html
               i.bi.bi-star.fs-1.mb-3.text-warning
               h3 = t('landing.features.objective')
               p = t('landing.features.objective_desc')
+
         .row.mt-4
           .col-md-4(data-aos="fade-up" data-aos-delay="700")
             .feature-card
@@ -99,6 +148,8 @@ html
               h3 = t('landing.features.smart_decision')
               p = t('landing.features.smart_decision_desc')
 
+
+
     - if @hot_polls.any?
       section.hot-polls.py-5.bg-light
         .container
@@ -110,7 +161,10 @@ html
                   .row.g-4
                     - poll_group.each do |poll|
                       .col-md-6
-                        .card
+                        .card.shadow-sm.h-100.position-relative.poll-card style="border-radius: 10px;"
+                          span.badge.bg-primary.m-2.vote-badge
+                            - vote_count = poll.votes.count
+                            = vote_count > 1 ? "#{poll.votes.count} #{t('share.votes')}" : "#{poll.votes.count} #{t('share.vote')}"
                           = link_to poll_path(poll)
                             = image_tag poll.image, style: "height:150px; width:100%; object-fit:cover; border-radius:5px 5px 0 0;" if poll.image.attached?
                             .card-body
@@ -124,6 +178,12 @@ html
               span.carousel-control-next-icon aria-hidden="true"
               span.visually-hidden Next
 
+    section.cta
+      .container
+        h2(data-aos="fade-up") = t('landing.cta.title')
+        p.mt-2(data-aos="fade-up" data-aos-delay="100") = t('landing.cta.subtitle')
+        = link_to t('landing.cta.button'), new_poll_path, class: 'btn btn-gradient btn-lg mt-4'
+
     section.testimonial
       h2(data-aos="fade-up") = t('landing.testimonial.title')
       .d-flex.flex-column.align-items-center
@@ -136,12 +196,6 @@ html
         .testimonial-card(data-aos="fade-up" data-aos-delay="300")
           p = t('landing.testimonial.t3')
           strong = t('landing.testimonial.t3_author')
-
-    section.cta
-      .container
-        h2(data-aos="fade-up") = t('landing.cta.title')
-        p.mt-2(data-aos="fade-up" data-aos-delay="100") = t('landing.cta.subtitle')
-        = link_to t('landing.cta.button'), new_poll_path, class: 'btn btn-gradient btn-lg mt-4'
 
     / Scripts
     script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

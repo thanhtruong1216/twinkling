@@ -24,6 +24,13 @@ vi:
   share:
     comment: bình luận
     details: Chi tiết
+    votes: bình chọn
+    vote: bình chọn
+    like: Thích
+    unlike: Không thích nữa
+    no_one_like: Chưa có ai thích
+    you_like_this: Bạn đã thích
+    other_like: Bạn và %{others} đã thích
 
   users:
     index:
@@ -200,7 +207,7 @@ vi:
     vote: "Bình chọn"
     add_comment: "Thêm bình luận"
     your_comment: "Bình luận của bạn"
-    placeholder_comment: "Nhập suy nghĩ của bạn..."
+    placeholder_comment: "Lý giải thêm về lựa chọn của bạn..."
     submit_vote: "Gửi bình luận"
     stats: "Thống kê bình chọn:"
     stats_by_option: "Thống kê theo lựa chọn"

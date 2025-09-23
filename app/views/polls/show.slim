@@ -75,7 +75,7 @@
                         small.text-muted.ms-2
                           | #{t("show.voted")} #{distance_of_time_in_words_to_now(vote.created_at)} #{t("show.ago")}
                         - if vote.comment.present?
-                          p.mb-0.mt-1= vote.comment
+                          p.mb-0.mt-1 style="font-size: 15px !important;" = vote.comment
                           div id="comment-like-wrapper-#{vote.id}"
                             = render 'polls/comment_like_button', vote: vote, liked: liked, poll: @poll
                   - else

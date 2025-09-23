@@ -3,23 +3,23 @@
 = button_to poll_vote_comment_likes_path(poll, vote),
   method: (liked ? :delete : :post),
   remote: true,
-  class: "btn btn-sm #{liked ? 'btn-danger text-white' : 'btn-outline-primary'} me-2",
+  class: "btn btn-like #{liked ? 'liked' : ''}",
   form: { class: "d-inline" } do
   - if liked
     i.bi.bi-hand-thumbs-up-fill.me-1
-    | Unlike
+    span style="font-size: 14px;" = t('share.unlike')
   - else
-    i.bi.bi-hand-thumbs-up.me-1
-    | Like
+    i.bi.bi-hand-thumbs-up.me-1 style="font-size: 14px;"
+    span style="font-size: 14px;" = t('share.like')
 
 small.text-muted.ms-2
   - if total_likes.zero?
-    | No one liked yet
+    span= t('share.no_one_like')
   - elsif liked
     - others = total_likes - 1
     - if others > 0
-      | You and #{others} others
+      span= t('share.other_like', others: others)
     - else
-      | You liked this
+      span= t('share.you_like_this')
   - else
     | #{total_likes} liked this

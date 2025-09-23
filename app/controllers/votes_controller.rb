@@ -3,41 +3,41 @@ class VotesController < ApplicationController
 
   def create
     @option = Option.find(params[:option_id] || params.dig(:vote, :option_id))
-    @poll = @option.poll
+    @poll   = Poll.includes(:options, :votes).find(@option.poll_id)
     @options = @poll.options
     @votes_by_country = @poll.votes.group(:country).count
-    @current_request = Rails.application.routes.recognize_path(URI(request.referer).path)[:action]
+    @current_request = begin
+      referer = request.referer
+      referer ? Rails.application.routes.recognize_path(URI(referer).path)[:action] : "show"
+    rescue
+      "show"
+    end
 
-    if @poll.votes.exists?(user_id: current_user.id)
-      respond_to do |format|
-        format.html { redirect_to @poll, alert: "Bạn đã vote rồi!" }
-        format.js { render "update", layout: false }
-      end
-    else
-      ip = request.headers["CF-Connecting-IP"] ||
-           request.headers["X-Real-IP"]        ||
-           request.remote_ip
+    ip = request.headers["CF-Connecting-IP"] ||
+        request.headers["X-Real-IP"]        ||
+        request.remote_ip
 
-      country = nil
-      begin
-        result = Geocoder.search(ip).first
-        country = result.country if result
-      rescue => e
-        Rails.logger.error "Geocoder failed: #{e.message}"
-      end
+    country = nil
+    begin
+      result = Geocoder.search(ip).first
+      country = result.country if result
+    rescue => e
+      Rails.logger.error "Geocoder failed: #{e.message}"
+    end
 
+    unless @option.votes.exists?(user_id: current_user.id)
       @option.votes.create!(
         user: current_user,
         ip_address: ip,
         country: country
       )
+    end
 
-      @poll.reload
+    @poll.reload
 
-      respond_to do |format|
-        format.html { redirect_back fallback_location: poll_path(@poll), notice: "Vote thành công!" }
-        format.js { render "update", layout: false }
-      end
+    respond_to do |format|
+      format.html { redirect_back fallback_location: poll_path(@poll), notice: "Vote thành công!" }
+      format.js   { render "update", layout: false }
     end
   end
 
@@ -58,7 +58,7 @@ class VotesController < ApplicationController
 
   def destroy
     @option = Option.find(params[:option_id])
-    @poll = @option.poll
+    @poll = Poll.includes(:options, :votes).find(@option.poll_id)
     @vote = @option.votes.find_by(user_id: current_user.id)
     @options = @poll.options
     @votes_by_country = @poll.votes.group(:country).count

@@ -15,6 +15,15 @@
               = f.label :purpose, t('new.labels.purpose'), class: "form-label fw-bold"
               = f.text_area :purpose, class: "form-control", rows: 3, placeholder: t('new.placeholders.purpose')
 
+            = f.fields_for :options do |opt|
+              .mb-3
+                = opt.label :text, "#{t('new.labels.option_text')} #{opt.index + 1}", class: "form-label fw-bold"
+                = opt.text_field :text, class: "form-control", placeholder: t('new.placeholders.option_text')
+              
+              .mb-3
+                = opt.label :image, "#{t('new.labels.option_image')} #{opt.index + 1}", class: "form-label fw-bold"
+                = opt.file_field :image, class: "form-control"
+
             .d-flex.mt-4.gap-2
               = f.submit 'Update', class: "btn btn-success flex-grow-1"
               = link_to 'Back', polls_path, class: "btn btn-outline-secondary"

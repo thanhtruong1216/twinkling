@@ -3,7 +3,11 @@
     .row.g-4
       - @polls.each do |poll|
         .col-md-6
-          .card.shadow-sm.h-100 style="border-radius: 10px;"
+          .card.shadow-sm.h-100.position-relative.poll-card style="border-radius: 10px;"
+            span.badge.bg-primary.m-2.vote-badge
+              - vote_count = poll.votes.count
+              = vote_count > 1 ? "#{poll.votes.count} #{t('share.votes')}" : "#{poll.votes.count} #{t('share.vote')}"
+
             - if poll.image.attached?
               = image_tag poll.image,
                 class: "shadow-sm border border-2 border-light",

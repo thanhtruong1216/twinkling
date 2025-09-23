@@ -30,6 +30,16 @@
   var tooltipEl = document.getElementById('vote-badge-<%= @option.id %>');
   if (tooltipEl) bootstrap.Tooltip.getOrCreateInstance(tooltipEl);
 
+  <% @poll.options.each do |opt| %>
+    <% opt.reload %>
+    <% voter_names = opt.votes.map { |v| v.user&.full_name || v.user&.user_name }.compact.join(", ") %>
+    <% new_badge_html = j(render('polls/vote_badge', option: opt, voter_names: voter_names)) %>
+
+    $('#vote-badge-<%= opt.id %>').replaceWith("<%= new_badge_html.html_safe %>");
+  <% end %>
+
+
+
   (function() {
     function initPollCharts() {
       // Bar chart

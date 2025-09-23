@@ -931,17 +931,19 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.feature-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-}
+#features {
+  .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+  }
 
-.card:hover img {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+  .card:hover img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
 }
 
 .cta {
@@ -980,6 +982,7 @@
   background: linear-gradient(135deg, #dc3545, #ff6b81);
   color: #fff;
 }
+
 .unvote-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(220, 53, 69, 0.4);
@@ -988,3 +991,115 @@
 .vote-btn i, .unvote-btn i {
   font-size: 16px;
 }
+
+.tooltip .tooltip-inner {
+  font-size: 12px !important;
+  font-weight: 500;
+  padding: 6px 10px;
+}
+
+.btn-like {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  font-size: 14px !important;
+  color: #495057;
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 18px;
+  }
+
+  &:hover {
+    background-color: #f1f3f5;
+    color: #0d6efd;
+  }
+
+  &.liked {
+    color: #0d6efd;
+
+    i {
+      color: #0d6efd;
+    }
+
+    &:hover {
+      background-color: rgba(13, 110, 253, 0.1);
+    }
+  }
+}
+
+// Style cho text nhỏ phía sau (No one liked yet)
+.like-info {
+  font-size: 13px;
+  color: #6c757d;
+  margin-left: 8px;
+}
+
+.poll-card  {
+  position: relative;
+  margin-top: 20px;
+}
+
+.vote-badge {
+  position: absolute !important;
+  top: -20px;
+  right: -8px;
+  background: #0d6efd;
+  padding: 10px !important;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 10;
+  transition: transform 0.2s ease;
+  z-index: 9999;
+
+  .poll-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.locale-active-en,
+.locale-active-vi {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+
+  .locale-en a,
+  .locale-vi a {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 14px !important;
+    font-weight: 600;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #555;
+    background-color: #f9f9f9;
+    transition: all 0.25s ease;
+
+    &:hover {
+      background-color: #f1f1f1;
+      color: #333;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+  }
+
+  &.locale-active-en .locale-en a,
+  &.locale-active-vi .locale-vi a {
+    background-color: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+    box-shadow: 0 3px 6px rgba(79,70,229,0.25);
+  }
+}
+
+
