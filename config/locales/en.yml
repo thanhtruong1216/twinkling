@@ -163,25 +163,25 @@ en:
     features:
       why_choose: "Why choose Votia?"
       free: Completely Free
-      free_desc: No limits, no hidden fees, always free for everyone.
-      public: "Public to the world"
-      public_desc: "Your opinions are heard by everyone worldwide."
+      free_desc: No limits, no hidden fees, always free for everyone
+      public: "Connect and Share"
+      public_desc: "Always open up about your concerns and find solutions together with you"
       connect: "Connect communities"
       connect_desc: "Find like-minded people and share ideas with them."
       trust_vote: "Trustworthy voting"
-      trust_vote_desc: "Each person can only vote once per poll, ensuring accurate results."
+      trust_vote_desc: "Objective results from real users from multiple countries"
       comment: "Comment your choice"
-      comment_desc: "Besides voting, you can explain your reasons so others understand better."
+      comment_desc: "Besides voting, you can explain your reasons so others understand better"
       insights: "Statistics & Insights"
       insights_desc: "See poll results instantly and discover community trends."
       objective: "Multidimensional"
       objective_desc: "Always seeking deeper layers, see the bigger picture in everything"
       fun_poll: "Fun & serious polls"
-      fun_poll_desc: "Create polls for entertainment or serious decisions."
+      fun_poll_desc: "Create polls for entertainment or serious decisions"
       not_alone: "Not alone"
-      not_alone_desc: "Every opinion is heard — you are never alone."
+      not_alone_desc: "Every opinion is heard — you are never alone"
       smart_decision: "Smart decisions"
-      smart_decision_desc: "Look at issues from multiple angles to make the best choice."
+      smart_decision_desc: "Look at issues from multiple angles to make the best choice"
     testimonial:
       title: "What users say"
       t1: "\"Votia helps me see different perspectives and make decisions easier!\""

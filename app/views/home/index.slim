@@ -154,7 +154,7 @@ html
       section.hot-polls.py-5.bg-light
         .container
           h2.text-center.mb-4 = t('landing.carousel.hot_polls')
-          #hotPollCarousel.carousel.slide data-bs-ride="carousel" data-bs-interval="3000"
+          #hotPollCarousel.carousel.slide data-bs-ride="carousel" data-bs-interval="5000"
             .carousel-inner
               - @hot_polls.each_slice(2).with_index do |poll_group, i|
                 .carousel-item class=(i == 0 ? "active" : "")
@@ -169,6 +169,21 @@ html
                             = image_tag poll.image, style: "height:150px; width:100%; object-fit:cover; border-radius:5px 5px 0 0;" if poll.image.attached?
                             .card-body
                               = link_to poll.title, poll_path(poll), class: "h5 text-dark text-decoration-none"
+                          
+                              - if user_signed_in?
+                                ul.list-unstyled.mt-3
+                                  - poll.options.each do |option|
+                                    li.mb-2
+                                      .d-flex.align-items-center.justify-content-between
+                                        div
+                                          - if option.image.attached?
+                                            = image_tag option.image, class: "shadow-sm me-3", style: "min-width: 60px; width:60px; height:60px; object-fit:cover; border-radius:12px;"
+                                          span.me-2 style="font-size: 15px !important;" = option.text  
+                                        - user_vote = option.votes.find_by(user_id: current_user.id)
+                                        - if user_vote
+                                          = render 'votes/unvote_button', poll: poll, vote: user_vote, option: option, current_action: 'index'
+                                        - else
+                                          = render 'votes/vote_button', poll: poll, option: option, current_action: 'index'
 
             button.carousel-control-prev type="button" data-bs-target="#hotPollCarousel" data-bs-slide="prev"
               span.carousel-control-prev-icon aria-hidden="true"
