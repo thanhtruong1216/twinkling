@@ -87,6 +87,10 @@
           .d-flex.justify-content-between.mt-4
             = link_to t("show.back_to_list"), polls_path, class: "btn btn-outline-secondary"
             .d-flex.gap-2
+              button.btn.btn-success#sharePollBtn type="button"
+                i.bi.bi-share-fill.me-1
+                = t("show.share_poll")
+
               - if user_signed_in? && current_user == @poll.user
                 = link_to t("show.edit_poll"), edit_poll_path(@poll), class: "btn btn-warning"
                 = link_to t("show.delete_poll"), poll_path(@poll),
@@ -97,6 +101,30 @@
             
 script
   | (function() {
+  |   function initShareButton() {
+  |     const shareBtn = document.getElementById("sharePollBtn");
+  |     if (shareBtn) {
+  |       shareBtn.addEventListener("click", async () => {
+  |         const url = window.location.href;
+  |         const title = "#{j @poll.title}";
+  |         try {
+  |           if (navigator.share) {
+  |             await navigator.share({
+  |               title: title,
+  |               text: "",
+  |               url: url
+  |             });
+  |           } else {
+  |             await navigator.clipboard.writeText(url);
+  |             alert("");
+  |           }
+  |         } catch (err) {
+  |           console.error("Share failed:", err);
+  |         }
+  |       });
+  |     }
+  |   }
+  |
   |   function initPollCharts() {
   |     const optionCtx = document.getElementById('votesByOptionChart');
   |     if (optionCtx) {
@@ -205,9 +233,11 @@ script
   |   document.addEventListener('turbolinks:load', function() {
   |     initPollCharts();
   |     initTooltips();
+  |     initShareButton();
   |   });
   |   document.addEventListener('turbo:load', function() {
   |     initPollCharts();
   |     initTooltips();
+  |     initShareButton();
   |   });
   | })();
