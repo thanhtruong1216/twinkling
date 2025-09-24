@@ -2,28 +2,23 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
+    # Eager load options để tránh N+1, dùng counter_cache để không query votes
     @polls = Poll
-      .left_joins(options: :votes)
-      .select("polls.*, COUNT(votes.id) AS votes_count")
-      .group("polls.id")
-      .order(created_at: :desc)
       .includes(:options)
+      .order(created_at: :desc)
 
-    @hot_polls = @polls.order("votes_count DESC").limit(6)
-    if request.referer.present?
-      referer_path = URI(request.referer).path rescue nil
-      @current_action = Rails.application.routes.recognize_path(referer_path)[:action] if referer_path
-    else
-      @current_action = action_name
-    end
+    @hot_polls = Poll
+      .order(votes_count: :desc)
+      .limit(6)
 
+    # Build data cho chart: lấy trực tiếp từ counter_cache
     @polls_data = @polls.map do |poll|
       {
         id: poll.id,
         options: poll.options.map do |opt|
           {
             text: opt.text,
-            votes: opt.respond_to?(:votes_count) ? opt.votes_count : opt.votes.size
+            votes: opt.votes_count # dùng counter_cache, không gọi .size
           }
         end
       }
@@ -31,11 +26,24 @@ class PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.includes(:options, :votes).find(params[:id])
+    @poll = Poll.includes(:options).find(params[:id])
     @options = @poll.options
 
-    @votes_by_country = @poll.votes.group(:country).count
-    @votes_by_option  = @poll.options.joins(:votes).group(:text).count
+    # Đếm vote theo country (join options để lọc theo poll_id)
+    @votes_by_country = Vote.joins(:option)
+                            .where(options: { poll_id: @poll.id })
+                            .group(:country)
+                            .count
+
+    # Đếm vote theo option
+    @votes_by_option = Vote.joins(:option)
+                          .where(options: { poll_id: @poll.id })
+                          .group(:option_id)
+                          .count
+
+    # Map sang option text
+    @votes_by_option_text = @poll.options.map { |opt| [opt.text, @votes_by_option[opt.id] || 0] }.to_h
+
     set_meta_tags(
       title: @poll.title,
       description: @poll.purpose.presence,
