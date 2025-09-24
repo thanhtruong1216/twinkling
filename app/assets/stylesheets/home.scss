@@ -1110,3 +1110,23 @@
   left: -25px;
 }
 
+/* Input Instagram style */
+.user-form-container .form-control {
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 14px;
+  background-color: #fafafa;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  box-shadow: none;
+}
+
+.user-form-container .form-control:focus {
+  border-color: #0095f6; /* xanh Instagram */
+  background-color: #fff;
+  outline: none;
+  box-shadow: none; /* không glow */
+}
+
+
+
