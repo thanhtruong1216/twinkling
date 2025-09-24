@@ -47,12 +47,6 @@ class PollsController < ApplicationController
         image: @poll.image.attached? ? url_for(@poll.image) : view_context.image_url("studiovinari-brands.svg")
       }
     )
-    if request.referer.present?
-      referer_path = URI(request.referer).path rescue nil
-      @current_action = Rails.application.routes.recognize_path(referer_path)[:action] if referer_path
-    else
-      @current_action = action_name
-    end
   end
 
   def new
