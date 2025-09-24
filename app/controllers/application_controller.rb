@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include MetaTags::ControllerHelper
+  
   before_action :set_locale
   before_action :authenticate_user!
   before_action :set_host_for_local_storage

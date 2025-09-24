@@ -37,7 +37,8 @@ gem 'ed25519', '~> 1.2'
 gem 'faker'
 gem 'nokogiri', '1.15.2'
 gem 'rack-cors'
-gem 'psych', '< 4.0.0' # Để tránh lỗi tương thích Ruby 3.2, kiểm tra kỹ nếu lỗi xảy ra
+gem 'psych', '< 4.0.0'
+gem 'meta-tags'
 
 # Net libraries
 gem 'net-ssh'

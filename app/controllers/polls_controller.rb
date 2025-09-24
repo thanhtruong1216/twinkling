@@ -36,6 +36,17 @@ class PollsController < ApplicationController
 
     @votes_by_country = @poll.votes.group(:country).count
     @votes_by_option  = @poll.options.joins(:votes).group(:text).count
+    set_meta_tags(
+      title: @poll.title,
+      description: @poll.purpose.presence,
+      og: {
+        title: @poll.title,
+        description: @poll.purpose.presence,
+        type: "website",
+        url: request.original_url,
+        image: @poll.image.attached? ? url_for(@poll.image) : view_context.image_url("studiovinari-brands.svg")
+      }
+    )
     if request.referer.present?
       referer_path = URI(request.referer).path rescue nil
       @current_action = Rails.application.routes.recognize_path(referer_path)[:action] if referer_path

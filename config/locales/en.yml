@@ -31,6 +31,7 @@ en:
     no_one_like: No one liked yet
     you_like_this: You liked this
     other_like: You and %{others} like this
+    by_your_side: Choizo – luôn đồng hành cùng bạn
 
   users:
     index:

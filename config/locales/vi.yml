@@ -31,6 +31,7 @@ vi:
     no_one_like: Chưa có ai thích
     you_like_this: Bạn đã thích
     other_like: Bạn và %{others} đã thích
+    by_your_side: Choizo – luôn đồng hành cùng bạn
 
   users:
     index:
