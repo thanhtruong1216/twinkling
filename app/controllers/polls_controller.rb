@@ -29,19 +29,16 @@ class PollsController < ApplicationController
     @poll = Poll.includes(:options).find(params[:id])
     @options = @poll.options
 
-    # Đếm vote theo country (join options để lọc theo poll_id)
     @votes_by_country = Vote.joins(:option)
                             .where(options: { poll_id: @poll.id })
                             .group(:country)
                             .count
 
-    # Đếm vote theo option
     @votes_by_option = Vote.joins(:option)
                           .where(options: { poll_id: @poll.id })
                           .group(:option_id)
                           .count
-
-    # Map sang option text
+                          
     @votes_by_option_text = @poll.options.map { |opt| [opt.text, @votes_by_option[opt.id] || 0] }.to_h
 
     set_meta_tags(
