@@ -10,6 +10,7 @@ set :deploy_to, "/var/www/#{fetch(:application)}"
 # Các file và thư mục dùng chung giữa các release
 append :linked_files, "config/master.key", "config/database.yml", "config/credentials/production.key"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "storage"
+append :linked_dirs, 'public/assets'
 
 # Giữ lại số release gần nhất
 set :keep_releases, 1
