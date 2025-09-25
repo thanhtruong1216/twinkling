@@ -9,7 +9,8 @@ head
         - if @poll.image.attached?
           = image_tag @poll.image,
             class: "shadow-sm mb-3",
-            style: "width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;"
+            style: "width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;",
+            fetchpriority: 'high'
 
         .card-body
           h3.card-title.mb-4
@@ -33,7 +34,7 @@ head
                 li.list-group-item.border-0.mb-3.p-0
                   .d-flex.align-items-center.p-3.shadow-sm.rounded-3 style="background: #f9fafb;"
                     - if option.image.attached?
-                      = image_tag option.image, class: "shadow-sm me-3", style: "min-width: 60px; width:60px; height:60px; object-fit:cover; border-radius:12px;"
+                      = image_tag option.image, class: "shadow-sm me-3", style: "min-width: 60px; width:60px; height:60px; object-fit:cover; border-radius:12px;", fetchpriority: 'high'
                     - else 
                       = image_tag 'slide-image_9.jpeg', class: "shadow-sm me-3", style: "min-width: 60px; width:60px; height:60px; object-fit:cover; border-radius:12px;"
 
