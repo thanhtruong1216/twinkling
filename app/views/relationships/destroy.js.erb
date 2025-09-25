@@ -1,1 +1,1 @@
-jQuery(".follow-form").html("<%= j render "users/follow", user: @user %>");
+jQuery(".follow-form[data-user-id='<%= @user.id %>']").html("<%= j render "users/follow", user: @user %>");

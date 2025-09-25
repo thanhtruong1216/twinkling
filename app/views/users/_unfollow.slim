@@ -1,2 +1,2 @@
-= form_tag relationship_path(followed_relationship_id(user)), method: :delete , remote: true do
+= form_tag relationship_path(user, user_id: user.id), method: :delete, remote: true do
   = submit_tag t('relationship.unfollow'), id: "unfollow-btn"

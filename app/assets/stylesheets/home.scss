@@ -1059,7 +1059,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   z-index: 10;
   transition: transform 0.2s ease;
-  z-index: 9999;
+  z-index: 9998;
 
   .poll-card:hover & {
     transform: scale(1.05);

@@ -6,9 +6,9 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    relationship = Relationship.find(params[:id])
-    @user = relationship.followed
-    relationship.destroy
+    puts 'params', params
+    @user = User.find(params[:user_id])
+    current_user.unfollow(@user)
     render layout: false
   end
 end

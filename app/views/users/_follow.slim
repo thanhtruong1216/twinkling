@@ -1,3 +1,2 @@
-= form_for(Relationship.new(followed_id: user.id, id: current_user.id), remote: true) do |f|
-  = hidden_field_tag :followed_id, user.id
-  = f.submit t('relationship.follow'), id: 'follow-btn'
+= form_tag relationships_path(followed_id: user.id), method: :post, remote: true do
+  = submit_tag t('relationship.follow'), id: "follow-btn"

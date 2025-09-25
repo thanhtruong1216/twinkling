@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include MetaTags::ControllerHelper
+  helper UsersHelper
   
   before_action :set_locale
   before_action :authenticate_user!
