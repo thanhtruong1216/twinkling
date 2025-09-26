@@ -33,7 +33,7 @@ head
                 .d-flex.align-items-center.mb-2
                   = link_to poll.title, poll_path(poll),
                     class: "h5 card-title text-dark text-decoration-none fw-bold mb-1"
-                  - total_votes = poll.options.sum { |opt| opt.votes_count }
+                  - total_votes = poll.options.sum { |opt| opt.votes.count }
                   - if total_votes > 2
                     span.badge.bg-danger.ms-2 HOT
 
