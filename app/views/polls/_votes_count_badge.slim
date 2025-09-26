@@ -1,4 +1,4 @@
 span.badge.bg-primary.m-2.vote-badge id="vote-counts-#{poll.id}"
-  - vote_count = poll.votes.count
-  = vote_count > 1 ? "#{poll.votes.count} #{t('share.votes')}" : "#{poll.votes.count} #{t('share.vote')}"
+  - vote_count = poll.options.sum(:votes_count)
+  = vote_count > 1 ? "#{vote_count} #{t('share.votes')}" : "#{vote_count} #{t('share.vote')}"
 

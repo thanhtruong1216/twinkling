@@ -1110,7 +1110,6 @@
   left: -25px;
 }
 
-/* Input Instagram style */
 .user-form-container .form-control {
   border: 1px solid #dbdbdb;
   border-radius: 6px;
@@ -1122,11 +1121,8 @@
 }
 
 .user-form-container .form-control:focus {
-  border-color: #0095f6; /* xanh Instagram */
+  border-color: #0095f6;
   background-color: #fff;
   outline: none;
-  box-shadow: none; /* không glow */
+  box-shadow: none;
 }
-
-
-
