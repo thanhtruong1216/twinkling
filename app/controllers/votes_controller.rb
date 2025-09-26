@@ -3,7 +3,7 @@ class VotesController < ApplicationController
 
   def create
     @option = Option.find(params[:option_id] || params.dig(:vote, :option_id))
-    @poll   = Poll.includes(:options, :votes).find(@option.poll_id)
+    @poll   = Poll.includes(options: { votes: :user }).find(@option.poll_id)
     @options = @poll.options
     @votes_by_country = @poll.votes.group(:country).count
     @current_request = begin
@@ -32,9 +32,6 @@ class VotesController < ApplicationController
         country: country
       )
     end
-
-    @poll.reload
-
     respond_to do |format|
       format.html { redirect_back fallback_location: poll_path(@poll), notice: "Vote thành công!" }
       format.js   { render "update", layout: false }
@@ -66,7 +63,6 @@ class VotesController < ApplicationController
 
     if @vote
       @vote.destroy
-      @poll.reload
       respond_to do |format|
         format.html { redirect_back fallback_location: poll_path(@poll), notice: "Bạn đã unvote." }
         format.js { render "update", layout: false }

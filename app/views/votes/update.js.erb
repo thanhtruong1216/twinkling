@@ -48,7 +48,7 @@
       // Bar chart
       const ctx = document.getElementById("pollChart-<%= @poll.id %>");
       if (ctx) {
-        const optionsData = <%= raw @poll.options.map { |o| { text: o.text, votes: o.votes.count } }.to_json %>;
+        const optionsData = <%= raw @poll.options.map { |o| { text: o.text, votes: o.votes_count } }.to_json %>;
         const totalVotes = optionsData.reduce((sum, opt) => sum + opt.votes, 0) || 1;
 
         new Chart(ctx, {
@@ -97,7 +97,7 @@
       // Pie chart votes by option
       const optionPieCtx = document.getElementById("votesByOptionChart");
       if (optionPieCtx) {
-        const dataOption = <%= raw @options.map { |o| [o.text, o.votes.count] }.to_h.to_json %>;
+        const dataOption = <%= raw @options.map { |o| [o.text, o.votes_count] }.to_h.to_json %>;
         const labelsOption = Object.keys(dataOption);
         const valuesOption = Object.values(dataOption);
         const totalOption = valuesOption.reduce((a,b)=>a+b,0)||1;

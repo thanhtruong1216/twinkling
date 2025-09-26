@@ -133,7 +133,7 @@ script
   |   function initPollCharts() {
   |     const optionCtx = document.getElementById('votesByOptionChart');
   |     if (optionCtx) {
-  |       const dataOption = #{raw @options.map { |o| [o.text, o.votes.count] }.to_h.to_json};
+  |       const dataOption = #{raw @options.map { |o| [o.text, o.votes_count] }.to_h.to_json};
   |       const labelsOption = Object.keys(dataOption);
   |       const valuesOption = Object.values(dataOption);
   |       const totalOption = valuesOption.reduce((a, b) => a + b, 0) || 1;

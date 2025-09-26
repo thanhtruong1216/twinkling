@@ -1,5 +1,5 @@
 div id="poll-chart-wrapper-#{poll.id}"
-  canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80" data-labels="#{poll.options.map(&:text).to_json}" data-values="#{poll.options.map { |o| o.votes.count }.to_json}"
+  canvas.poll-chart id="pollChart-#{poll.id}" width="300" height="80" data-labels="#{poll.options.map(&:text).to_json}" data-values="#{poll.options.map { |o| o.votes_count }.to_json}"
   .d-flex.justify-content-between.align-items-center.mt-4
     p.text-muted.small.mb-0 style="font-size: 15px !important;"
       | #{t("show.created")} #{distance_of_time_in_words_to_now(poll.created_at)} #{t("show.ago")}

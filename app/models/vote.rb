@@ -1,6 +1,6 @@
 class Vote < ApplicationRecord
   belongs_to :user
-  belongs_to :option
+  belongs_to :option, counter_cache: true
   has_many :comment_likes, dependent: :destroy
   has_many :liking_users, through: :comment_likes, source: :user
 
