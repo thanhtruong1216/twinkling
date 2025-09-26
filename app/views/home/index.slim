@@ -15,7 +15,7 @@ head
     |   display: flex;
     |   align-items: center;
     |   justify-content: center;
-    |   background: linear-gradient(135deg, #4f46e5, #ec4899); /* tím -> hồng */
+    |   background: linear-gradient(135deg, #4f46e5, #ec4899);
     |   color: white;
     |   text-align: center;
     |   padding: 0 20px;
@@ -54,7 +54,7 @@ head
     | }
     | 
     | .testimonial {
-    |   background: #f5f3ff; /* tím nhạt */
+    |   background: #f5f3ff;
     |   color: #333;
     | }
     | .testimonial-card {
@@ -67,7 +67,7 @@ head
     | }
     | 
     | footer {
-    |   background: #1e1b4b; /* tím đậm */
+    |   background: #1e1b4b;
     |   color: white;
     |   padding: 40px 20px;
     | }
@@ -200,38 +200,3 @@ head
         .testimonial-card(data-aos="fade-up" data-aos-delay="300")
           p = t('landing.testimonial.t3')
           strong = t('landing.testimonial.t3_author')
-
-
-    / Scripts
-    script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
-    script
-      |
-        (function() {
-          function initAOSIfReady() {
-            if (!window.AOS) return false;
-            if (!window.__AOS_INITIALIZED__) {
-              AOS.init({ duration: 800, once: true });
-              window.__AOS_INITIALIZED__ = true;
-            } else {
-              AOS.refresh();
-            }
-            return true;
-          }
-
-          function ensureInitAOS() {
-            if (initAOSIfReady()) return;
-            var tries = 0, max = 20;
-            var t = setInterval(function() {
-              tries++;
-              if (initAOSIfReady() || tries >= max) clearInterval(t);
-            }, 100);
-          }
-
-          ['DOMContentLoaded','turbo:load','turbolinks:load','turbo:render','turbolinks:render','page:load']
-            .forEach(function(ev) {
-              document.addEventListener(ev, ensureInitAOS, { passive: true });
-            });
-
-          ensureInitAOS();
-        })();
