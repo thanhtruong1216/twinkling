@@ -6,10 +6,11 @@
   class: "btn btn-like #{liked ? 'liked' : ''}",
   form: { class: "d-inline" } do
   - if liked
-    i.bi.bi-hand-thumbs-up-fill.me-1
-    span style="font-size: 14px;" = t('share.unlike')
+    = image_tag 'svgs/like-filled.svg', alt: 'Liked button', class: 'me-1'
+    span style="font-size: 14px;" 
+      = t('share.unlike')
   - else
-    i.bi.bi-hand-thumbs-up.me-1 style="font-size: 14px;"
+    = image_tag 'svgs/like-outline.svg', alt: 'Like button', class: 'me-1'
     span style="font-size: 14px;" = t('share.like')
 
 small.text-muted.ms-2

@@ -3,7 +3,7 @@
     method: :post,
     remote: true,
     class: "vote-btn"
-    i.bi.bi-hand-thumbs-up-fill
+    = image_tag 'svgs/like.svg', alt: 'Like button'
     = t("show.vote")
 
   - if current_action.to_s != "index"

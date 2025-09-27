@@ -3,7 +3,7 @@
     method: :delete,
     remote: true,
     class: "unvote-btn"
-    i.bi.bi-x-circle-fill
+    = image_tag 'svgs/unlike.svg', alt: 'Unlike Button'
     = t("show.unvote")
   - if current_action.to_s != "index"
     button.btn.btn-outline-primary.btn-sm.ms-2.d-flex.align-items-center data-bs-toggle="modal" data-bs-target="#commentModal-#{option.id}" style="border-radius:20px; font-weight:600; font-size: 15px !important; gap:6px;"
