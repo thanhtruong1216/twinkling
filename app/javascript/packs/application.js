@@ -9,9 +9,9 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 // import "bootstrap"
-import "bootstrap/dist/css/bootstrap"
-import * as bootstrap from "bootstrap"; // import tất cả và lưu trong biến bootstrap
-window.bootstrap = bootstrap;    
+// import "bootstrap/dist/css/bootstrap"
+// import * as bootstrap from "bootstrap"; // import tất cả và lưu trong biến bootstrap
+// window.bootstrap = bootstrap;    
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

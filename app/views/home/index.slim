@@ -91,52 +91,52 @@ head
 
     section.feature id="features"
       .container.pt-4
-        h2(data-aos="fade-up") = t('landing.features.why_choose')
+        h2
         .row
-          .col-md-4(data-aos="fade-up" data-aos-delay="100")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/connect.svg', alt: 'connect', class: 'feature-icon'
               h3 = t('landing.features.public')
               p style="font-size: 15px;" = t('landing.features.public_desc')
-          .col-md-4(data-aos="fade-up" data-aos-delay="200")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/free.svg', alt: 'free', class: 'feature-icon'
               h3 = t('landing.features.free')
               p = t('landing.features.free_desc')
-          .col-md-4(data-aos="fade-up" data-aos-delay="300")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/trust.svg', alt: 'trust', class: 'feature-icon'
               h3 = t('landing.features.trust_vote')
               p = t('landing.features.trust_vote_desc')
         .row.mt-4
-          .col-md-4(data-aos="fade-up" data-aos-delay="400")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/comment.svg', alt: 'comment', class: 'feature-icon'
               h3 = t('landing.features.comment')
               p = t('landing.features.comment_desc')
-          .col-md-4(data-aos="fade-up" data-aos-delay="500")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/insight.svg', alt: 'Insight', class: 'feature-icon'
               h3 = t('landing.features.insights')
               p = t('landing.features.insights_desc')
-          .col-md-4(data-aos="fade-up" data-aos-delay="600")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/deep.svg', alt: 'Deep', class: 'feature-icon'
               h3 = t('landing.features.objective')
               p = t('landing.features.objective_desc')
 
         .row.mt-4
-          .col-md-4(data-aos="fade-up" data-aos-delay="700")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/smile.svg', alt: 'Smile', class: 'feature-icon'
               h3 = t('landing.features.fun_poll')
               p = t('landing.features.fun_poll_desc')
-          .col-md-4(data-aos="fade-up" data-aos-delay="800")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/heart-eyes.svg', alt: 'Heart', class: 'feature-icon'
               h3 = t('landing.features.not_alone')
               p = t('landing.features.not_alone_desc')
-          .col-md-4(data-aos="fade-up" data-aos-delay="900")
+          .col-md-4
             .feature-card
               = image_tag 'svgs/leaf.svg', alt: 'Leaf', class: 'feature-icon'
               h3 = t('landing.features.smart_decision')
@@ -184,19 +184,19 @@ head
 
     section.cta
       .container
-        h2(data-aos="fade-up") = t('landing.cta.title')
-        p.mt-2(data-aos="fade-up" data-aos-delay="100") = t('landing.cta.subtitle')
+        h2
+        p.mt-2
         = link_to t('landing.cta.button'), new_poll_path, class: 'btn btn-gradient btn-lg mt-4'
 
     section.testimonial
-      h2(data-aos="fade-up") = t('landing.testimonial.title')
+      h2
       .d-flex.flex-row.justify-content-center.gap-3.flex-wrap
-        .testimonial-card(data-aos="fade-up" data-aos-delay="100")
+        .testimonial-card
           p = t('landing.testimonial.t1')
           strong = t('landing.testimonial.t1_author')
-        .testimonial-card(data-aos="fade-up" data-aos-delay="200")
+        .testimonial-card
           p = t('landing.testimonial.t2')
           strong = t('landing.testimonial.t2_author')
-        .testimonial-card(data-aos="fade-up" data-aos-delay="300")
+        .testimonial-card
           p = t('landing.testimonial.t3')
           strong = t('landing.testimonial.t3_author')

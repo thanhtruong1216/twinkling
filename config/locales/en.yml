@@ -19,7 +19,7 @@ en:
   footer:
     about_me: "About me"
     contact_me: "Contact me"
-    title: 2025 Choizo. All rights reserved.
+    title: 2025 Polla. All rights reserved.
   
   share:
     comment: comments
@@ -31,7 +31,7 @@ en:
     no_one_like: No one liked yet
     you_like_this: You liked this
     other_like: You and %{others} like this
-    by_your_side: Choizo – luôn đồng hành cùng bạn
+    by_your_side: Polla – luôn đồng hành cùng bạn
 
   users:
     index:
@@ -162,7 +162,7 @@ en:
       button: "Explore now"
       vote: Every vote you cast can bring motivation and empower someone to overcome their challenges.
     features:
-      why_choose: "Why choose Choizo?"
+      why_choose: "Why choose Polla?"
       free: Completely Free
       free_desc: No limits, no hidden fees, always free for everyone
       public: "Connect and Share"
@@ -185,7 +185,7 @@ en:
       smart_decision_desc: "Look at issues from multiple angles to make the best choice"
     testimonial:
       title: "What users say"
-      t1: "\"Choizo helps me see different perspectives and make decisions easier!\""
+      t1: "\"Polla helps me see different perspectives and make decisions easier!\""
       t1_author: "- Lan, 28"
       t2: "\"I connected with people who share my views. Amazing!\""
       t2_author: "- Minh, 32"
@@ -193,7 +193,7 @@ en:
       t3_author: "- Huong, 25"
     cta:
       title: "Let the world hear you"
-      subtitle: "Join Choizo now to share your opinion with everyone"
+      subtitle: "Join Polla now to share your opinion with everyone"
       button: "Start now"
     carousel:
       hot_polls: Hot Polls

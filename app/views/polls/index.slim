@@ -57,37 +57,45 @@ head
     p.text-center.text-muted.mt-5 Chưa có poll nào. Hãy tạo poll đầu tiên!
 
 /===================== JS vẽ chart và khởi tạo carousel =====================/
+
 script
+  | let pollCharts = {};
+  |
   | function renderPollCharts() {
   |   const pollsData = #{raw @polls_data.to_json};
+  |   if (!Array.isArray(pollsData)) return;
+  |
   |   pollsData.forEach(poll => {
   |     const ctx = document.getElementById(`pollChart-${poll.id}`);
   |     if (!ctx) return;
-  |     
-  |     const totalVotes = poll.options.reduce((sum, opt) => sum + opt.votes, 0);
-  |     
-  |     const data = {
-  |       labels: poll.options.map(opt => opt.text),
-  |       datasets: [{
-  |         label: 'Vote %',
-  |         data: poll.options.map(opt => ((opt.votes / totalVotes) * 100).toFixed(0)),
-  |         backgroundColor: [
-  |           'rgba(54, 162, 235, 0.7)',
-  |           'rgba(255, 99, 132, 0.7)',
-  |           'rgba(255, 206, 86, 0.7)',
-  |           'rgba(75, 192, 192, 0.7)',
-  |           'rgba(153, 102, 255, 0.7)',
-  |           'rgba(255, 159, 64, 0.7)'
-  |         ],
-  |         borderColor: 'rgba(0,0,0,0.1)',
-  |         borderWidth: 1,
-  |         barThickness: 20
-  |       }]
-  |     };
-  |     
-  |     new Chart(ctx, {
+  |
+  |     if (pollCharts[poll.id]) {
+  |       pollCharts[poll.id].destroy();
+  |     }
+  |
+  |     const totalVotes = poll.options.reduce((sum, opt) => sum + opt.votes, 0) || 1;
+  |     ctx.height = poll.options.length * 30;
+  |
+  |     pollCharts[poll.id] = new Chart(ctx, {
   |       type: 'bar',
-  |       data: data,
+  |       data: {
+  |         labels: poll.options.map(opt => opt.text),
+  |         datasets: [{
+  |           label: 'Vote %',
+  |           data: poll.options.map(opt => ((opt.votes / totalVotes) * 100).toFixed(0)),
+  |           backgroundColor: [
+  |             '#9C27B0',
+  |             '#BA68C8',
+  |             '#7E57C2',
+  |             '#64B5F6',
+  |             '#4DD0E1',
+  |             '#F06292'
+  |           ],
+  |           borderWidth: 0,
+  |           barThickness: 20,
+  |           maxBarThickness: 20
+  |         }]
+  |       },
   |       options: {
   |         indexAxis: 'y',
   |         responsive: true,
@@ -98,13 +106,17 @@ script
   |             callbacks: {
   |               label: function(context) {
   |                 const voteCount = poll.options[context.dataIndex].votes;
-  |                 return `${context.raw}% (${voteCount} vote)`;
+  |                 return `${context.raw}% (${voteCount} vote${voteCount === 1 ? '' : 's'})`;
   |               }
   |             }
   |           }
   |         },
   |         scales: {
-  |           x: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } },
+  |           x: {
+  |             beginAtZero: true,
+  |             max: 100,
+  |             ticks: { callback: value => value + '%' }
+  |           },
   |           y: { ticks: { autoSkip: false } }
   |         }
   |       }
@@ -113,12 +125,8 @@ script
   | }
   |
   | function initCarousels() {
-  |   var carousels = document.querySelectorAll('.carousel');
-  |   carousels.forEach((carousel) => {
-  |     new bootstrap.Carousel(carousel, {
-  |       interval: 3000,
-  |       ride: "carousel"
-  |     });
+  |   document.querySelectorAll('.carousel').forEach(carousel => {
+  |     new bootstrap.Carousel(carousel, { interval: 3000, ride: "carousel" });
   |   });
   | }
   |

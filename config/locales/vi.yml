@@ -19,7 +19,7 @@ vi:
   footer:
     about_me: "Về tôi"
     contact_me: "Liên hệ tôi"
-    title: 2025 Choizo. Mọi quyền được bảo lưu.
+    title: 2025 Polla. Mọi quyền được bảo lưu.
 
   share:
     comment: bình luận
@@ -31,7 +31,7 @@ vi:
     no_one_like: Chưa có ai thích
     you_like_this: Bạn đã thích
     other_like: Bạn và %{others} đã thích
-    by_your_side: Choizo – luôn đồng hành cùng bạn
+    by_your_side: Polla – luôn đồng hành cùng bạn
 
   users:
     index:
@@ -162,7 +162,7 @@ vi:
       button: "Khám phá ngay"
       vote: Mỗi lá phiếu của bạn có thể mang lại động lực, tiếp thêm sức mạnh giúp ai đó vượt qua thử thách.
     features:
-      why_choose: "Tại sao chọn Choizo?"
+      why_choose: "Tại sao chọn Polla?"
       free: Hoàn toàn miễn phí
       free_desc: Không giới hạn, không phí ẩn, luôn miễn phí cho mọi người
       public: "Kết nối và sẻ chia"
@@ -185,7 +185,7 @@ vi:
       smart_decision_desc: "Xem xét vấn đề từ nhiều góc độ để đưa ra lựa chọn tốt nhất"
     testimonial:
       title: "Người dùng nói gì"
-      t1: "\"Choizo giúp tôi thấy được nhiều góc nhìn khác nhau và quyết định dễ dàng hơn!\""
+      t1: "\"Polla giúp tôi thấy được nhiều góc nhìn khác nhau và quyết định dễ dàng hơn!\""
       t1_author: "- Lan, 28 tuổi"
       t2: "\"Tôi đã kết nối với những người có cùng quan điểm. Thật tuyệt vời!\""
       t2_author: "- Minh, 32 tuổi"
@@ -193,7 +193,7 @@ vi:
       t3_author: "- Hương, 25 tuổi"
     cta:
       title: "Hãy để thế giới lắng nghe bạn"
-      subtitle: "Tham gia Choizo ngay để chia sẻ ý kiến của bạn với mọi người"
+      subtitle: "Tham gia Polla ngay để chia sẻ ý kiến của bạn với mọi người"
       button: "Bắt đầu ngay"
     carousel:
       hot_polls: Poll nổi bật

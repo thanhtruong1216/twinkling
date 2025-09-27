@@ -1,444 +1,444 @@
-@import 'bootstrap'
+// @import 'bootstrap'
 
-@import 'mixins'
-@import 'variables'
-@import 'header'
-@import 'general'
+// @import 'mixins'
+// @import 'variables'
+// @import 'header'
+// @import 'general'
 
-.new-post
-  textarea
-    line-height: 20pt !important
+// .new-post
+//   textarea
+//     line-height: 20pt !important
 
-.upload-photo-wrapper
-  padding-top: 10pt
-  input
-    padding: 20px 0 20px 20px
-    border-radius: 5px
+// .upload-photo-wrapper
+//   padding-top: 10pt
+//   input
+//     padding: 20px 0 20px 20px
+//     border-radius: 5px
 
-.posts
-  display: flex
-  flex-direction: column
-  justify-content: center
-  position: absolute
-  top: 120px
-  // position: absolute
-  // top: 70pt
-  // bottom: 70pt
-  // left: 0
-  // right: 0
-  // height: 800px
-  // overflow: scroll
-  // height: calc(100vh - 94px)
+// .posts
+//   display: flex
+//   flex-direction: column
+//   justify-content: center
+//   position: absolute
+//   top: 120px
+//   // position: absolute
+//   // top: 70pt
+//   // bottom: 70pt
+//   // left: 0
+//   // right: 0
+//   // height: 800px
+//   // overflow: scroll
+//   // height: calc(100vh - 94px)
 
-  &__wrapper
-    // padding-bottom: 100px
-    height: 100%
-    overflow: scroll
-  a
-    @include link
-    display: flex
-    align-items: center
+//   &__wrapper
+//     // padding-bottom: 100px
+//     height: 100%
+//     overflow: scroll
+//   a
+//     @include link
+//     display: flex
+//     align-items: center
 
-  &__actions
-    display: flex
-    align-items: center
-    padding: 10pt 0 10pt 0
-    .like-wrapper
-      display: flex
-      flex-direction: column
-      div:first-child
-        display: flex
-        // padding-bottom: 10pt
-        > div
-          padding-left: 20pt
+//   &__actions
+//     display: flex
+//     align-items: center
+//     padding: 10pt 0 10pt 0
+//     .like-wrapper
+//       display: flex
+//       flex-direction: column
+//       div:first-child
+//         display: flex
+//         // padding-bottom: 10pt
+//         > div
+//           padding-left: 20pt
 
-  &__photo
-    @include thumbnail-image
-    max-height: 585px
+//   &__photo
+//     @include thumbnail-image
+//     max-height: 585px
 
-  &__post-wrapper
-    border: $border-line
-    margin-bottom: 15pt
-    padding-bottom: 10px
+//   &__post-wrapper
+//     border: $border-line
+//     margin-bottom: 15pt
+//     padding-bottom: 10px
 
-  &__comments-count
-    padding: 0 10pt
+//   &__comments-count
+//     padding: 0 10pt
 
-  &__add-comment-box
-    display: none
+//   &__add-comment-box
+//     display: none
 
-  &__post-content
-    padding: 10pt 10pt 0 10pt
-    p 
-      padding-top: 0
-      margin-top: 0
-    // display: -webkit-box
-    // overflow: hidden
-    // text-overflow: ellipsis
-    // -webkit-line-clamp: 5
-    // -webkit-box-orient: vertical
-  &__post-content.no-pic-post
-    // p 
-    //   padding-top: 20pt
+//   &__post-content
+//     padding: 10pt 10pt 0 10pt
+//     p 
+//       padding-top: 0
+//       margin-top: 0
+//     // display: -webkit-box
+//     // overflow: hidden
+//     // text-overflow: ellipsis
+//     // -webkit-line-clamp: 5
+//     // -webkit-box-orient: vertical
+//   &__post-content.no-pic-post
+//     // p 
+//     //   padding-top: 20pt
 
-  .sub-header
-    display: flex
-    align-items: center
-    justify-content: space-between
-    padding-left: 10pt
-    padding-right: 10pt
-    padding-top: 10pt
-    > div
-      display: flex
-      align-items: center
+//   .sub-header
+//     display: flex
+//     align-items: center
+//     justify-content: space-between
+//     padding-left: 10pt
+//     padding-right: 10pt
+//     padding-top: 10pt
+//     > div
+//       display: flex
+//       align-items: center
 
-  .fb-share-button
-    padding-top: 2pt
+//   .fb-share-button
+//     padding-top: 2pt
 
-  .distance-time-wrapper
-    display: flex
-    justify-content: flex-end
-    padding: 10pt
+//   .distance-time-wrapper
+//     display: flex
+//     justify-content: flex-end
+//     padding: 10pt
 
-.post
-  position: absolute
-  top: 70pt
-  bottom: 0
-  left: 0
-  right: 0
-  height: 100vh
-  overflow: scroll
-  padding-bottom: 100pt
+// .post
+//   position: absolute
+//   top: 70pt
+//   bottom: 0
+//   left: 0
+//   right: 0
+//   height: 100vh
+//   overflow: scroll
+//   padding-bottom: 100pt
 
-  textarea
-    margin-bottom: 0 !important
+//   textarea
+//     margin-bottom: 0 !important
 
-  &__comments
-    h4
-      padding-bottom: 10pt
+//   &__comments
+//     h4
+//       padding-bottom: 10pt
 
-  .posts__actions 
-    margin-left: 10pt
+//   .posts__actions 
+//     margin-left: 10pt
   
-  &__header-desktop
-    display: none
+//   &__header-desktop
+//     display: none
 
-  &__fixed-box
-    display: none
+//   &__fixed-box
+//     display: none
 
-  &__add-comment-mobile
-    .post__comments
-      padding: 10pt
-      .comments:last-child
-        padding-bottom: 50pt
-    form
-      display: flex
-      border: $border-line
-      border-radius: 20pt
-      height: 38pt
-      line-height: 35pt
-      padding: 0 20pt
-      width: 80vw
-      margin-right: 10pt
-      textarea, input
-        background-color: transparent
-        border: none
-        padding: 0
-      input[type='submit']
-        display: flex
-        justify-content: flex-end
-        flex: 1
-      textarea
-        line-height: 35pt
-        flex: 2
-    .sub-header
-      display: none
-      .avatar-linear-wrapper
+//   &__add-comment-mobile
+//     .post__comments
+//       padding: 10pt
+//       .comments:last-child
+//         padding-bottom: 50pt
+//     form
+//       display: flex
+//       border: $border-line
+//       border-radius: 20pt
+//       height: 38pt
+//       line-height: 35pt
+//       padding: 0 20pt
+//       width: 80vw
+//       margin-right: 10pt
+//       textarea, input
+//         background-color: transparent
+//         border: none
+//         padding: 0
+//       input[type='submit']
+//         display: flex
+//         justify-content: flex-end
+//         flex: 1
+//       textarea
+//         line-height: 35pt
+//         flex: 2
+//     .sub-header
+//       display: none
+//       .avatar-linear-wrapper
 
-  &__add-comment-wrapper
-    display: flex
-    justify-content: space-between
-    border-bottom: $border-line
-    padding: 10pt 0
-    background: #efefef
-    align-items: center
-    .avatar-simple-wrapper
-      margin-left: 10pt
+//   &__add-comment-wrapper
+//     display: flex
+//     justify-content: space-between
+//     border-bottom: $border-line
+//     padding: 10pt 0
+//     background: #efefef
+//     align-items: center
+//     .avatar-simple-wrapper
+//       margin-left: 10pt
 
-  &__add-comment
-    border-radius: 20px
-    padding: 10pt 0
-    margin: 20pt 0
+//   &__add-comment
+//     border-radius: 20px
+//     padding: 10pt 0
+//     margin: 20pt 0
 
-  &__content
-    flex: 1.5
-    overflow: scroll
-    padding-bottom: 15pt
-    border-right: 1px solid rgba(0, 0, 0, 0.0975)
-    img
-      width: 100%
-      height: 384px
+//   &__content
+//     flex: 1.5
+//     overflow: scroll
+//     padding-bottom: 15pt
+//     border-right: 1px solid rgba(0, 0, 0, 0.0975)
+//     img
+//       width: 100%
+//       height: 384px
 
-  &__comments-wrapper
-    flex: 1
+//   &__comments-wrapper
+//     flex: 1
 
-  &__title-fixed
-    position: fixed
-    border-bottom: $border-line
-    z-index: 99
-    background-color: white
-    width: 100%
+//   &__title-fixed
+//     position: fixed
+//     border-bottom: $border-line
+//     z-index: 99
+//     background-color: white
+//     width: 100%
 
-  &__actions
-    display: flex
-    align-items: center
-    justify-content: flex-end
-    padding: 10pt 0
-    div
-      padding-right: 20pt
-      display: flex
-      align-items: center
+//   &__actions
+//     display: flex
+//     align-items: center
+//     justify-content: flex-end
+//     padding: 10pt 0
+//     div
+//       padding-right: 20pt
+//       display: flex
+//       align-items: center
 
-  &__icon
-    width: 20pt
+//   &__icon
+//     width: 20pt
 
-  &__edit-icon
-    width: 25pt
+//   &__edit-icon
+//     width: 25pt
 
-.fb-share-button
-  padding-top: 2pt
+// .fb-share-button
+//   padding-top: 2pt
 
-.new-post
-  padding: 70pt 20pt 0 20pt
-  overflow: scroll
-  form 
-    height: 100%
-  &:has(.alert-danger)
-    padding: 20pt 20pt 0 20pt
+// .new-post
+//   padding: 70pt 20pt 0 20pt
+//   overflow: scroll
+//   form 
+//     height: 100%
+//   &:has(.alert-danger)
+//     padding: 20pt 20pt 0 20pt
 
-  .user-actions-btns-wrapper
-    // position: fixed
-    // width: 100vw
-    // left: 0
-    // right: 0
-    // bottom: 30pt
-    // display: flex
-    justify-content: space-between
+//   .user-actions-btns-wrapper
+//     // position: fixed
+//     // width: 100vw
+//     // left: 0
+//     // right: 0
+//     // bottom: 30pt
+//     // display: flex
+//     justify-content: space-between
 
-.zodiac-name
-  padding: 70pt 20pt 0 20pt
-  height: calc(100vh - 150px)
-  overflow: scroll
-  max-width: 800pt
-  margin: 0 auto 0 auto
-  input
-    max-width: 400px
-    height: 45px
-    padding-top: 0
-    margin-bottom: 0 !important
+// .zodiac-name
+//   padding: 70pt 20pt 0 20pt
+//   height: calc(100vh - 150px)
+//   overflow: scroll
+//   max-width: 800pt
+//   margin: 0 auto 0 auto
+//   input
+//     max-width: 400px
+//     height: 45px
+//     padding-top: 0
+//     margin-bottom: 0 !important
 
-.zodiac-input-wrapper
-  .form-group, input
-    margin-bottom: 0 !important
+// .zodiac-input-wrapper
+//   .form-group, input
+//     margin-bottom: 0 !important
 
-@media screen and (min-width: 767px)
-  .posts
-    &__post
-      display: flex
-      flex-direction: column
-      margin: 0 auto
+// @media screen and (min-width: 767px)
+//   .posts
+//     &__post
+//       display: flex
+//       flex-direction: column
+//       margin: 0 auto
 
-    .distance-time-wrapper
-      padding: 10pt 20pt 10pt 10pt
+//     .distance-time-wrapper
+//       padding: 10pt 20pt 10pt 10pt
 
-    .sub-header
-      padding: 10pt 0 0 20pt
-      display: flex
-      align-items: center
-      justify-content: space-between
-      padding-left: 10pt
-      padding-right: 10pt
-      padding-top: 10pt
-    > div
-      // display: flex
-      // align-items: center
-      .avatar-wrapper
-        display: flex
-        align-items: center
+//     .sub-header
+//       padding: 10pt 0 0 20pt
+//       display: flex
+//       align-items: center
+//       justify-content: space-between
+//       padding-left: 10pt
+//       padding-right: 10pt
+//       padding-top: 10pt
+//     > div
+//       // display: flex
+//       // align-items: center
+//       .avatar-wrapper
+//         display: flex
+//         align-items: center
 
-    &__comments-count
-      padding: 0 0 10pt 20pt
+//     &__comments-count
+//       padding: 0 0 10pt 20pt
 
-    &__likes-count
-      padding: 10pt 0 0 20pt
+//     &__likes-count
+//       padding: 10pt 0 0 20pt
 
-    // &__actions
-    //   padding-left: 20pt
+//     // &__actions
+//     //   padding-left: 20pt
 
-    &__post-content
-      padding-left: 20pt
+//     &__post-content
+//       padding-left: 20pt
 
-    &__photo
-      max-width: 100%
-      object-fit: cover
+//     &__photo
+//       max-width: 100%
+//       object-fit: cover
 
-    &__add-comment-box
-      display: flex
-      border-top: $border-line
+//     &__add-comment-box
+//       display: flex
+//       border-top: $border-line
 
-      form
-        padding: 0 20pt
-        height: 50pt
-        align-items: center
-        // border-bottom: $border-line
-      textarea
-        border: none
+//       form
+//         padding: 0 20pt
+//         height: 50pt
+//         align-items: center
+//         // border-bottom: $border-line
+//       textarea
+//         border: none
    
-        margin: 0
-      input[type='submit']
-        margin-bottom: 0
-      @include add-comment-box
+//         margin: 0
+//       input[type='submit']
+//         margin-bottom: 0
+//       @include add-comment-box
 
-    &__add-comment-mobile
-      display: none
+//     &__add-comment-mobile
+//       display: none
 
-  .new-post
-    max-width: 800pt
-    margin: 0 auto 0 auto
-    // padding-top: 100pt
+//   .new-post
+//     max-width: 800pt
+//     margin: 0 auto 0 auto
+//     // padding-top: 100pt
 
-  .post
-    display: flex
-    border: $border-line
-    top: 100pt
-    height: 450pt
-    position: absolute
-    top: 100pt
-    bottom: 0
-    left: 0
-    right: 0
-    height: initial
+//   .post
+//     display: flex
+//     border: $border-line
+//     top: 100pt
+//     height: 450pt
+//     position: absolute
+//     top: 100pt
+//     bottom: 0
+//     left: 0
+//     right: 0
+//     height: initial
 
-    &__comments-desktop-wrapper
-      h4
-        padding-bottom: 10pt
+//     &__comments-desktop-wrapper
+//       h4
+//         padding-bottom: 10pt
       
-    &__cover-image
-      object-fit: cover
-      height: 400pt
+//     &__cover-image
+//       object-fit: cover
+//       height: 400pt
 
-    .like-wrapper
-      div:first-child
-        padding-bottom: 0
+//     .like-wrapper
+//       div:first-child
+//         padding-bottom: 0
 
-    .posts__add-comment-box
-      border-bottom: none
-      form
-        padding-left: 10pt
+//     .posts__add-comment-box
+//       border-bottom: none
+//       form
+//         padding-left: 10pt
 
-    .sub-header
-      width: 100%
+//     .sub-header
+//       width: 100%
 
-    .actions-icon
-      margin-bottom: 15px
+//     .actions-icon
+//       margin-bottom: 15px
 
-    &__ations-btns
-      display: flex
-      align-items: center
-      > div:first-child
-        display: flex
-        align-items: center
-        > div
-          display: none
-      > div:last-child
-        display: none
+//     &__ations-btns
+//       display: flex
+//       align-items: center
+//       > div:first-child
+//         display: flex
+//         align-items: center
+//         > div
+//           display: none
+//       > div:last-child
+//         display: none
 
-    &__actions-desktop
-      background-color: white
-      z-index: 9999
+//     &__actions-desktop
+//       background-color: white
+//       z-index: 9999
 
-    &__count-likes-btn
-      display: flex
-      align-items: center
-      padding-left: 20pt
-      padding-top: 10pt
+//     &__count-likes-btn
+//       display: flex
+//       align-items: center
+//       padding-left: 20pt
+//       padding-top: 10pt
 
-    &__header-desktop
-      flex: 1
-      display: block
-      > div:first-child
-        border-bottom: $border-line
-      > div:last-child
-        border-top: $border-line
-      > div:not(.post__actions-desktop)
-        padding: 0 10pt
+//     &__header-desktop
+//       flex: 1
+//       display: block
+//       > div:first-child
+//         border-bottom: $border-line
+//       > div:last-child
+//         border-top: $border-line
+//       > div:not(.post__actions-desktop)
+//         padding: 0 10pt
 
-    &__comments-desktop-wrapper
-      height: 217pt
-      overflow: scroll
-      form
-        display: flex 
+//     &__comments-desktop-wrapper
+//       height: 217pt
+//       overflow: scroll
+//       form
+//         display: flex 
 
-    &__comments-desktop
-      display: initial
-      position: relative
-      top: 20pt
+//     &__comments-desktop
+//       display: initial
+//       position: relative
+//       top: 20pt
 
-    &__add-comment-mobile
-      display: none
+//     &__add-comment-mobile
+//       display: none
 
-    &__add-comment-desktop-wrapper
-      display: flex
-      padding-left: 10pt
-      input
-        border: none
-      @include add-comment-box
-      padding-right: 15pt
+//     &__add-comment-desktop-wrapper
+//       display: flex
+//       padding-left: 10pt
+//       input
+//         border: none
+//       @include add-comment-box
+//       padding-right: 15pt
 
-    &__comments-wrapper
-      display: flex
-      border: $border-line
+//     &__comments-wrapper
+//       display: flex
+//       border: $border-line
 
-    &__content
-      display: block
-      flex: 2
-      h1
-        display: none
-    &__comments
-      > div
-        display: flex
-        flex-direction: column
-        padding-bottom: 10pt
+//     &__content
+//       display: block
+//       flex: 2
+//       h1
+//         display: none
+//     &__comments
+//       > div
+//         display: flex
+//         flex-direction: column
+//         padding-bottom: 10pt
 
-@media screen and (min-width: 767px)
-  .post
-    max-width: 520pt
-    margin: 0 auto
-    max-height: 450pt
-    padding-bottom: 0
-    .sub-header
-      padding: 10pt !important
+// @media screen and (min-width: 767px)
+//   .post
+//     max-width: 520pt
+//     margin: 0 auto
+//     max-height: 450pt
+//     padding-bottom: 0
+//     .sub-header
+//       padding: 10pt !important
 
-    &__content 
-      height: 450pt
+//     &__content 
+//       height: 450pt
 
-@media screen and (min-width: 1023px)
-  .posts
-    width: 900pt
-    margin: 0 auto
-    // top: 85pt
-    margin-bottom: 20pt
+// @media screen and (min-width: 1023px)
+//   .posts
+//     width: 900pt
+//     margin: 0 auto
+//     // top: 85pt
+//     margin-bottom: 20pt
 
-  .post
-    max-width: 800pt
-    margin: 0 auto
+//   .post
+//     max-width: 800pt
+//     margin: 0 auto
 
-  .new-post
-    // height:  !important
-    overflow: scroll
-    position: initial
-    padding: 80pt 20pt 0 20pt !important
-    // form
-    //   height: 800pt
-    .user-actions-btns-wrapper
-      justify-content: flex-end
+//   .new-post
+//     // height:  !important
+//     overflow: scroll
+//     position: initial
+//     padding: 80pt 20pt 0 20pt !important
+//     // form
+//     //   height: 800pt
+//     .user-actions-btns-wrapper
+//       justify-content: flex-end
