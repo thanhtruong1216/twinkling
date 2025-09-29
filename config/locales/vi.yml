@@ -225,6 +225,7 @@ vi:
     created: "Được tạo"
     like: Thích
     unlike: Bỏ thích
+    overview: "Đã có %{users_count} người tham gia đóng góp cho poll này"
   
   new:
     new_poll: "Tạo Poll mới"

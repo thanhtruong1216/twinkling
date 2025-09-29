@@ -225,6 +225,7 @@ en:
     created: "Created"
     like: Like
     unlike: Unlike
+    overview: "%{users_count} people have contributed to this poll"
   
   new:
     new_poll: "Create New Poll"

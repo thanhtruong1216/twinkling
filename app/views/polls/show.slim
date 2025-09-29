@@ -3,6 +3,9 @@ head
   = display_meta_tags
 
 .container.py-5.page-wrapper
+  div
+    - unique_voters_count = @poll.votes.select(:user_id).distinct.count
+    p.text-muted= t("show.overview", users_count: unique_voters_count)
   .row.justify-content-center
     .col-md-12
       .card.shadow-lg
