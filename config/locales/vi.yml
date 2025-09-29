@@ -222,7 +222,7 @@ vi:
     new_poll: "➕ Tạo poll mới"
     voted: "Đã vote"
     ago: "trước"
-    created: "Được tạo"
+    created: "Được tạo vào"
     like: Thích
     unlike: Bỏ thích
     overview: "Đã có %{users_count} người tham gia đóng góp cho poll này"

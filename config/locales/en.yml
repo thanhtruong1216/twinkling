@@ -222,7 +222,7 @@ en:
     new_poll: "➕ Create new poll"
     voted: "Voted"
     ago: "ago"
-    created: "Created"
+    created: "Created at"
     like: Like
     unlike: Unlike
     overview: "%{users_count} people have contributed to this poll"
