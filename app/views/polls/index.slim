@@ -17,18 +17,18 @@ head
                   fetchpriority: 'high'
             .card-body.d-flex.flex-column.justify-content-between
               div.text-muted.small.mb-3.d-flex.flex-column.justify-content-between style="font-size: 15px !important;"
-                .d-flex.justify-content-between.align-items-center.mb-3
-                  .avatar-wrapper
-                    = link_to user_path(poll.user), class: 'd-flex align-items-center' do
-                      .avatar-linear-wrapper
-                        - if poll.user.avatar.attached?
-                          = image_tag (image_url(rails_storage_proxy_path(poll.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous', fetchpriority: 'high'
-                        - else
-                          = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
-                      span.sub-header__user-name
-                        = poll.user.user_name || poll.user.full_name
+                / .d-flex.justify-content-between.align-items-center.mb-3
+                /   .avatar-wrapper
+                /     = link_to user_path(poll.user), class: 'd-flex align-items-center' do
+                /       .avatar-linear-wrapper
+                /         - if poll.user.avatar.attached?
+                /           = image_tag (image_url(rails_storage_proxy_path(poll.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous', fetchpriority: 'high'
+                /         - else
+                /           = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+                /       span.sub-header__user-name
+                /         = poll.user.user_name || poll.user.full_name
 
-                  = render 'polls/following_user', poll: poll
+                /   = render 'polls/following_user', poll: poll
 
                 .d-flex.align-items-center.mb-2
                   = link_to poll.title, poll_path(poll),

@@ -94,20 +94,9 @@ meta property="og:image" content=image_url("bg2.jpg")
               p= t('users.years', count: (days_from(@user.birthday) / 365.25).floor)
               - if (days_from(@user.birthday) % 365.25) > 0
                 p= t('users.days', count: (days_from(@user.birthday) % 365.25).ceil)
-
-    .user__photos
+    .d-flex.justify-content-center.flex-column
       - @user.polls.each do |poll|
-        .thumbnail-photo-wrapper
-          = link_to poll_path(poll) do
-            - if poll.image.attached?
-              = image_tag poll.image, loading: 'lazy', class: 'thumbnail-photo'
-            - else
-              .thumbnail-photo.thumbnail-content-no-pic-wrapper
-                .thumbnail-content
-                  = poll.content
-
-          - if current_user == @user
-            = link_to (poll.visible ? "Ẩn poll" : "Hiển thị poll"), toggle_visibility_poll_path(poll), method: :patch, class: "btn btn-sm btn-outline-primary mt-3"
+        = render 'users/polls', user: @user, poll: poll
 - else
   section.user
     .user__flex-box
@@ -126,9 +115,10 @@ meta property="og:image" content=image_url("bg2.jpg")
           = @user&.user_name || @user&.full_name
         .user__follows
           div
-            p= @user.polls.count
-            p= t('relationship.polls')
-          div
+            - poll_count = @user.polls.count
+            p= poll_count
+            p= poll_count > 1 ? t('relationship.polls') : t('relationship.poll')
+          .me-4
             p= @user.followers.count
             p= link_to followers_user_path(@user) do
               = t('relationship.follower')
@@ -136,17 +126,9 @@ meta property="og:image" content=image_url("bg2.jpg")
             p= @user.following.count
             p= link_to following_user_path(@user) do
               = t('relationship.following')
-
-    .user__photos
+    div
       - @user.polls.each do |poll|
-        .thumbnail-photo-wrapper
-          = link_to poll_path(poll) do
-            - if poll.image.attached?
-              = image_tag poll.image, loading: 'lazy', class: 'thumbnail-photo'
-            - else
-              .thumbnail-photo.thumbnail-content-no-pic-wrapper
-                .thumbnail-content
-                  = poll.content
+        = render 'users/polls', user: @user, poll: poll
 script
   |
     $(document).ready(function() {

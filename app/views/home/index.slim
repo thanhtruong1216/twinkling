@@ -95,19 +95,24 @@ head
         .row
           .col-md-4
             .feature-card
-              = image_tag 'svgs/connect.svg', alt: 'connect', class: 'feature-icon'
+              = image_tag 'svgs/free.svg', alt: 'connect', class: 'feature-icon'
               h3 = t('landing.features.public')
               p style="font-size: 15px;" = t('landing.features.public_desc')
-          .col-md-4
-            .feature-card
-              = image_tag 'svgs/free.svg', alt: 'free', class: 'feature-icon'
-              h3 = t('landing.features.free')
-              p = t('landing.features.free_desc')
+          / .col-md-4
+          /   .feature-card
+          /     = image_tag 'svgs/free.svg', alt: 'free', class: 'feature-icon'
+          /     h3 = t('landing.features.free')
+          /     p = t('landing.features.free_desc')
           .col-md-4
             .feature-card
               = image_tag 'svgs/trust.svg', alt: 'trust', class: 'feature-icon'
               h3 = t('landing.features.trust_vote')
               p = t('landing.features.trust_vote_desc')
+          .col-md-4
+            .feature-card
+              = image_tag 'svgs/insight.svg', alt: 'Insight', class: 'feature-icon'
+              h3 = t('landing.features.insights')
+              p = t('landing.features.insights_desc')
         .row.mt-4
           .col-md-4
             .feature-card
@@ -116,31 +121,36 @@ head
               p = t('landing.features.comment_desc')
           .col-md-4
             .feature-card
-              = image_tag 'svgs/insight.svg', alt: 'Insight', class: 'feature-icon'
-              h3 = t('landing.features.insights')
-              p = t('landing.features.insights_desc')
-          .col-md-4
-            .feature-card
               = image_tag 'svgs/deep.svg', alt: 'Deep', class: 'feature-icon'
               h3 = t('landing.features.objective')
               p = t('landing.features.objective_desc')
-
-        .row.mt-4
           .col-md-4
             .feature-card
               = image_tag 'svgs/smile.svg', alt: 'Smile', class: 'feature-icon'
               h3 = t('landing.features.fun_poll')
               p = t('landing.features.fun_poll_desc')
-          .col-md-4
-            .feature-card
-              = image_tag 'svgs/heart-eyes.svg', alt: 'Heart', class: 'feature-icon'
-              h3 = t('landing.features.not_alone')
-              p = t('landing.features.not_alone_desc')
-          .col-md-4
-            .feature-card
-              = image_tag 'svgs/leaf.svg', alt: 'Leaf', class: 'feature-icon'
-              h3 = t('landing.features.smart_decision')
-              p = t('landing.features.smart_decision_desc')
+          / .col-md-4
+          /   .feature-card
+          /     = image_tag 'svgs/leaf.svg', alt: 'Leaf', class: 'feature-icon'
+          /     h3 = t('landing.features.smart_decision')
+          /     p = t('landing.features.smart_decision_desc')
+
+        / .row.mt-4
+        /   .col-md-4
+        /     .feature-card
+        /       = image_tag 'svgs/smile.svg', alt: 'Smile', class: 'feature-icon'
+        /       h3 = t('landing.features.fun_poll')
+        /       p = t('landing.features.fun_poll_desc')
+          / .col-md-4
+          /   .feature-card
+          /     = image_tag 'svgs/heart-eyes.svg', alt: 'Heart', class: 'feature-icon'
+          /     h3 = t('landing.features.not_alone')
+          /     p = t('landing.features.not_alone_desc')
+          / .col-md-4
+          /   .feature-card
+          /     = image_tag 'svgs/leaf.svg', alt: 'Leaf', class: 'feature-icon'
+          /     h3 = t('landing.features.smart_decision')
+          /     p = t('landing.features.smart_decision_desc')
 
     - if @hot_polls.any?
       section.hot-polls.py-5.bg-light
@@ -182,10 +192,12 @@ head
               span.carousel-control-next-icon aria-hidden="true"
               span.visually-hidden Next
 
+    
+
     section.cta
       .container
-        h2
-        p.mt-2
+        h2= t('landing.cta.title')
+        p.mt-2= t('landing.cta.subtitle')
         = link_to t('landing.cta.button'), new_poll_path, class: 'btn btn-gradient btn-lg mt-4'
 
     section.testimonial

@@ -3,18 +3,36 @@ head
   = display_meta_tags
 
 .container.py-5.page-wrapper
-  .d-flex.justify-content-between
-    - unique_voters_count = @poll.votes.select(:user_id).distinct.count
-    = "#{t('show.created')} #{@poll.created_at.strftime("%H:%M %d-%m-%Y")}"
-    p.text-muted= t("show.overview", users_count: unique_voters_count)
   .row.justify-content-center
     .col-md-12
+      .d-flex.justify-content-between.mb-3
+        .d-flex.justify-content-between.align-items-center.mb-3
+          .avatar-wrapper
+            = link_to user_path(@poll.user), class: 'd-flex align-items-center' do
+              .avatar-linear-wrapper
+                - if @poll.user.avatar.attached?
+                  = image_tag (image_url(rails_storage_proxy_path(@poll.user.avatar))), loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous', fetchpriority: 'high'
+                - else
+                  = image_tag 'user-alt-solid.svg', loading: 'lazy', class: 'linear-avatar', crossorigin: 'anonymous'
+              span.sub-header__user-name
+                = @poll.user.user_name || @poll.user.full_name
+          = render 'polls/following_user', poll: @poll
+        div
+          button.btn.btn-success.me-2#sharePollBtn type="button" data-bs-toggle="tooltip"
+            = t("show.share_poll")
+          = link_to t("show.new_poll"), new_poll_path, class: "btn btn-primary", data: { bs_toggle: "tooltip" }, title: t("show.new_poll")
+
       .card.shadow-lg style="border-radius: 10px;"
         - if @poll.image.attached?
           = image_tag @poll.image,
             class: "shadow-sm mb-3",
             style: "width: 100%; height: 200px; object-fit: cover; border-radius: 10px 10px 0 0;",
             fetchpriority: 'high'
+
+        .d-flex.justify-content-between.mx-4
+          - unique_voters_count = @poll.votes.select(:user_id).distinct.count
+          span style="font-size: 14px;" = "#{t('show.created')} #{@poll.created_at.strftime("%H:%M %d-%m-%Y")}"
+          span style="font-size: 14px;" = t("show.overview", users_count: unique_voters_count)
 
         .card-body
           h3.card-title.mb-4
@@ -96,157 +114,157 @@ head
           .d-flex.justify-content-between.mt-4
             = link_to t("show.back_to_list"), polls_path, class: "btn btn-info"
             .d-flex.gap-2
-              button.btn.btn-success#sharePollBtn type="button"
-                i.bi.bi-share-fill.me-1
-                = t("show.share_poll")
-
               - if user_signed_in? && current_user == @poll.user
-                = link_to t("show.edit_poll"), edit_poll_path(@poll), class: "btn btn-warning"
-                = link_to t("show.delete_poll"), poll_path(@poll),
-                  data: { confirm: t("show.delete_poll_confirm") },
+                = link_to edit_poll_path(@poll), class: "btn btn-warning d-flex align-items-center", data: { bs_toggle: "tooltip" }, title: t("show.edit_poll") do
+                  / = image_tag 'svgs/edit.svg', class: 'normal-svg'
+                  span= t("show.edit_poll")
+                = link_to poll_path(@poll),
+                  data: { confirm: t("show.delete_poll_confirm"), bs_toggle: "tooltip" },
+                  title: t("show.delete_poll"),
                   method: :delete,
-                  class: "btn btn-danger"
-              = link_to t("show.new_poll"), new_poll_path, class: "btn btn-primary"
-            
+                  class: "btn btn-danger align-items-center" do 
+                  / = image_tag 'svgs/delete.svg', class: 'normal-svg'
+                  span.pt-1= t("show.delete_poll")
+
 script
-  | (function() {
-  |   function initShareButton() {
-  |     const shareBtn = document.getElementById("sharePollBtn");
-  |     if (shareBtn) {
-  |       shareBtn.addEventListener("click", async () => {
-  |         const url = window.location.href;
-  |         const title = "#{j @poll.title}";
-  |         try {
-  |           if (navigator.share) {
-  |             await navigator.share({
-  |               title: title,
-  |               text: "",
-  |               url: url
-  |             });
-  |           } else {
-  |             await navigator.clipboard.writeText(url);
-  |             alert("");
-  |           }
-  |         } catch (err) {
-  |           console.error("Share failed:", err);
+  | function initShareButton() {
+  |   const shareBtn = document.getElementById("sharePollBtn");
+  |   if (shareBtn) {
+  |     shareBtn.addEventListener("click", async () => {
+  |       const url = window.location.href;
+  |       const title = "#{j @poll.title}";
+  |       try {
+  |         if (navigator.share) {
+  |           await navigator.share({
+  |             title: title,
+  |             text: "Check out this poll!",
+  |             url: url
+  |           });
+  |         } else {
+  |           await navigator.clipboard.writeText(url);
+  |           alert("✅ Poll link copied to clipboard!");
   |         }
-  |       });
-  |     }
+  |       } catch (err) {
+  |         console.error("Share failed:", err);
+  |       }
+  |     });
   |   }
+  | }
   |
-  |   function initPollCharts() {
-  |     const optionCtx = document.getElementById('votesByOptionChart');
-  |     if (optionCtx) {
-  |       const dataOption = #{raw @options.map { |o| [o.text, o.votes_count] }.to_h.to_json};
-  |       const labelsOption = Object.keys(dataOption);
-  |       const valuesOption = Object.values(dataOption);
-  |       const totalOption = valuesOption.reduce((a, b) => a + b, 0) || 1;
+  | function initPollCharts() {
+  |   const optionCtx = document.getElementById('votesByOptionChart');
+  |   if (optionCtx) {
+  |     const dataOption = #{raw @options.map { |o| [o.text, o.votes_count] }.to_h.to_json};
+  |     const labelsOption = Object.keys(dataOption);
+  |     const valuesOption = Object.values(dataOption);
+  |     const totalOption = valuesOption.reduce((a, b) => a + b, 0) || 1;
   |
-  |       new Chart(optionCtx, {
-  |         type: 'pie',
-  |         data: {
-  |           labels: labelsOption,
-  |           datasets: [{
-  |             data: valuesOption,
-  |             backgroundColor: [
-  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
-  |               '#9966FF', '#FF9F40', '#8dd3c7', '#fdb462'
-  |             ]
-  |           }]
-  |         },
-  |         options: {
-  |           responsive: true,
-  |           maintainAspectRatio: false,
-  |           plugins: {
-  |             legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
-  |             datalabels: {
-  |               formatter: (value) => {
-  |                 const pct = ((value / totalOption) * 100).toFixed(1);
-  |                 return pct + '%';
-  |               },
-  |               color: '#fff',
-  |               font: { weight: 'bold', size: 12 }
+  |     new Chart(optionCtx, {
+  |       type: 'pie',
+  |       data: {
+  |         labels: labelsOption,
+  |         datasets: [{
+  |           data: valuesOption,
+  |           backgroundColor: [
+  |             '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+  |             '#9966FF', '#FF9F40', '#8dd3c7', '#fdb462'
+  |           ]
+  |         }]
+  |       },
+  |       options: {
+  |         responsive: true,
+  |         maintainAspectRatio: false,
+  |         plugins: {
+  |           legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
+  |           datalabels: {
+  |             formatter: (value) => {
+  |               const pct = ((value / totalOption) * 100).toFixed(1);
+  |               return pct + '%';
   |             },
-  |             tooltip: {
-  |               callbacks: {
-  |                 label: function(ctx) {
-  |                   const val = ctx.parsed;
-  |                   const pct = ((val / totalOption) * 100).toFixed(1);
-  |                   return ctx.label + ': ' + val + ' (' + pct + '%)';
-  |                 }
+  |             color: '#fff',
+  |             font: { weight: 'bold', size: 12 }
+  |           },
+  |           tooltip: {
+  |             callbacks: {
+  |               label: function(ctx) {
+  |                 const val = ctx.parsed;
+  |                 const pct = ((val / totalOption) * 100).toFixed(1);
+  |                 return ctx.label + ': ' + val + ' (' + pct + '%)';
   |               }
   |             }
   |           }
-  |         },
-  |         plugins: [ChartDataLabels]
-  |       });
-  |     }
-  |
-  |     const countryCtx = document.getElementById('votesByCountryChart');
-  |     if (countryCtx) {
-  |       const dataCountry = #{raw (@votes_by_country || {}).to_json};
-  |       const labelsCountry = Object.keys(dataCountry);
-  |       const valuesCountry = Object.values(dataCountry);
-  |       const totalCountry = valuesCountry.reduce((a, b) => a + b, 0) || 1;
-  |
-  |       new Chart(countryCtx, {
-  |         type: 'pie',
-  |         data: {
-  |           labels: labelsCountry,
-  |           datasets: [{
-  |             data: valuesCountry,
-  |             backgroundColor: [
-  |               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
-  |               '#9966FF', '#FF9F40', '#c9cbcf', '#b0e0e6'
-  |             ]
-  |           }]
-  |         },
-  |         options: {
-  |           responsive: true,
-  |           maintainAspectRatio: false,
-  |           plugins: {
-  |             legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
-  |             datalabels: {
-  |               formatter: (value) => {
-  |                 const pct = ((value / totalCountry) * 100).toFixed(1);
-  |                 return pct + '%';
-  |               },
-  |               color: '#fff',
-  |               font: { weight: 'bold', size: 12 }
-  |             },
-  |             tooltip: {
-  |               callbacks: {
-  |                 label: function(ctx) {
-  |                   const val = ctx.parsed;
-  |                   const pct = ((val / totalCountry) * 100).toFixed(1);
-  |                   return ctx.label + ': ' + val + ' (' + pct + '%)';
-  |                 }
-  |               }
-  |             }
-  |           }
-  |         },
-  |         plugins: [ChartDataLabels]
-  |       });
-  |     }
-  |   }
-  |
-  |   function initTooltips() {
-  |     var tooltipTriggerList = [].slice.call(
-  |       document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  |     );
-  |     tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-  |       new bootstrap.Tooltip(tooltipTriggerEl);
+  |         }
+  |       },
+  |       plugins: [ChartDataLabels]
   |     });
   |   }
   |
-  |   document.addEventListener('turbolinks:load', function() {
-  |     initPollCharts();
-  |     initTooltips();
-  |     initShareButton();
+  |   const countryCtx = document.getElementById('votesByCountryChart');
+  |   if (countryCtx) {
+  |     const dataCountry = #{raw (@votes_by_country || {}).to_json};
+  |     const labelsCountry = Object.keys(dataCountry);
+  |     const valuesCountry = Object.values(dataCountry);
+  |     const totalCountry = valuesCountry.reduce((a, b) => a + b, 0) || 1;
+  |
+  |     new Chart(countryCtx, {
+  |       type: 'pie',
+  |       data: {
+  |         labels: labelsCountry,
+  |         datasets: [{
+  |           data: valuesCountry,
+  |           backgroundColor: [
+  |             '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+  |             '#9966FF', '#FF9F40', '#c9cbcf', '#b0e0e6'
+  |           ]
+  |         }]
+  |       },
+  |       options: {
+  |         responsive: true,
+  |         maintainAspectRatio: false,
+  |         plugins: {
+  |           legend: { position: 'bottom', labels: { boxWidth: 12, padding: 12 } },
+  |           datalabels: {
+  |             formatter: (value) => {
+  |               const pct = ((value / totalCountry) * 100).toFixed(1);
+  |               return pct + '%';
+  |             },
+  |             color: '#fff',
+  |             font: { weight: 'bold', size: 12 }
+  |           },
+  |           tooltip: {
+  |             callbacks: {
+  |               label: function(ctx) {
+  |                 const val = ctx.parsed;
+  |                 const pct = ((val / totalCountry) * 100).toFixed(1);
+  |                 return ctx.label + ': ' + val + ' (' + pct + '%)';
+  |               }
+  |             }
+  |           }
+  |         }
+  |       },
+  |       plugins: [ChartDataLabels]
+  |     });
+  |   }
+  | }
+  |
+  | function initTooltips() {
+  |   var tooltipTriggerList = [].slice.call(
+  |     document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  |   );
+  |   tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+  |     if (tooltipTriggerEl.getAttribute("title")) {
+  |       new bootstrap.Tooltip(tooltipTriggerEl);
+  |     }
   |   });
-  |   document.addEventListener('turbo:load', function() {
-  |     initPollCharts();
-  |     initTooltips();
-  |     initShareButton();
-  |   });
-  | })();
+  | }
+  |
+  | document.addEventListener('turbolinks:load', function() {
+  |   initPollCharts();
+  |   initTooltips();
+  |   initShareButton();
+  | });
+  | document.addEventListener('turbo:load', function() {
+  |   initPollCharts();
+  |   initTooltips();
+  |   initShareButton();
+  | });

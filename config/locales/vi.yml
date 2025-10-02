@@ -216,8 +216,8 @@ vi:
     comments_by_option: "Bình luận từ người tham gia (theo từng lựa chọn)"
     no_comment_option: "Chưa có bình luận nào cho lựa chọn này."
     back_to_list: "← Quay lại danh sách"
-    edit_poll: "✏️ Chỉnh sửa Poll"
-    delete_poll: "🗑 Xóa Poll"
+    edit_poll: "Chỉnh sửa Poll"
+    delete_poll: "Xóa Poll"
     delete_poll_confirm: "Bạn có chắc chắn muốn xóa poll này?"
     new_poll: "➕ Tạo poll mới"
     voted: "Đã vote"
@@ -225,7 +225,7 @@ vi:
     created: "Được tạo vào"
     like: Thích
     unlike: Bỏ thích
-    overview: "Đã có %{users_count} người tham gia đóng góp cho poll này"
+    overview: "Đã có %{users_count} người tham gia đóng góp"
   
   new:
     new_poll: "Tạo Poll mới"

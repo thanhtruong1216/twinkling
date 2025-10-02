@@ -216,8 +216,8 @@ en:
     comments_by_option: "Comments from participants (by option)"
     no_comment_option: "No comments yet for this option."
     back_to_list: "← Back to list"
-    edit_poll: "✏️ Edit Poll"
-    delete_poll: "🗑 Delete Poll"
+    edit_poll: "Edit Poll"
+    delete_poll: "Delete Poll"
     delete_poll_confirm: "Are you sure you want to delete this poll?"
     new_poll: "➕ Create new poll"
     voted: "Voted"
@@ -225,7 +225,7 @@ en:
     created: "Created at"
     like: Like
     unlike: Unlike
-    overview: "%{users_count} people have contributed to this poll"
+    overview: "%{users_count} people have contributed"
   
   new:
     new_poll: "Create New Poll"
